@@ -1381,6 +1381,74 @@ export const forcesModuleData: ForcesModule = {
 <div class="subsection">
   <h3 class="subsection-heading">🧩 Subsection 6 – Required Practical: Hooke's Law</h3>
   
+  <!-- Animated Equipment Setup Diagram -->
+  <div class="key-idea-block anim-pause-hover" style="padding: 1rem; margin: 1rem 0;">
+    <h4>🔬 Apparatus Setup (hover to pause)</h4>
+    <div style="display: flex; justify-content: center; padding: 0.5rem;">
+      <svg width="280" height="260" viewBox="0 0 280 260">
+        <!-- Clamp stand base -->
+        <rect x="40" y="230" width="120" height="12" fill="#4a5568" rx="2"/>
+        
+        <!-- Clamp stand rod -->
+        <rect x="55" y="30" width="8" height="200" fill="#718096"/>
+        
+        <!-- Boss and clamp -->
+        <rect x="55" y="50" width="60" height="8" fill="#4a5568"/>
+        <rect x="110" y="45" width="15" height="18" fill="#4a5568" rx="2"/>
+        
+        <!-- Spring (animated stretch) -->
+        <g class="anim-spring-stretch">
+          <path d="M 117 63 
+                   L 110 73 L 124 83 L 110 93 L 124 103 
+                   L 110 113 L 124 123 L 110 133 L 117 143" 
+                fill="none" stroke="#3b82f6" stroke-width="3" stroke-linecap="round"/>
+        </g>
+        
+        <!-- Mass hanger -->
+        <rect x="110" y="145" width="14" height="25" fill="#ef4444" class="anim-bounce-slow"/>
+        <text x="117" y="162" fill="white" font-size="8" text-anchor="middle" font-weight="bold">M</text>
+        
+        <!-- Ruler -->
+        <rect x="180" y="40" width="20" height="180" fill="#fef3c7" stroke="#f59e0b" stroke-width="1"/>
+        <!-- Ruler markings -->
+        <line x1="180" y1="60" x2="192" y2="60" stroke="#333" stroke-width="1"/>
+        <line x1="180" y1="80" x2="188" y2="80" stroke="#333" stroke-width="0.5"/>
+        <line x1="180" y1="100" x2="192" y2="100" stroke="#333" stroke-width="1"/>
+        <line x1="180" y1="120" x2="188" y2="120" stroke="#333" stroke-width="0.5"/>
+        <line x1="180" y1="140" x2="192" y2="140" stroke="#333" stroke-width="1"/>
+        <line x1="180" y1="160" x2="188" y2="160" stroke="#333" stroke-width="0.5"/>
+        <line x1="180" y1="180" x2="192" y2="180" stroke="#333" stroke-width="1"/>
+        <text x="203" y="63" fill="#333" font-size="7">0</text>
+        <text x="203" y="103" fill="#333" font-size="7">5</text>
+        <text x="203" y="143" fill="#333" font-size="7">10</text>
+        <text x="203" y="183" fill="#333" font-size="7">15</text>
+        
+        <!-- Extension marker line (animated) -->
+        <line x1="125" y1="63" x2="175" y2="63" stroke="#22c55e" stroke-width="1" stroke-dasharray="3,3"/>
+        <line x1="125" y1="145" x2="175" y2="145" stroke="#22c55e" stroke-width="1" stroke-dasharray="3,3"/>
+        <line x1="165" y1="63" x2="165" y2="145" stroke="#22c55e" stroke-width="2" marker-start="url(#extArrowUp)" marker-end="url(#extArrowDown)"/>
+        <text x="145" y="105" fill="#22c55e" font-size="9" font-weight="bold">extension</text>
+        
+        <!-- Labels -->
+        <text x="59" y="25" fill="currentColor" font-size="8" text-anchor="middle">Clamp</text>
+        <text x="59" y="35" fill="currentColor" font-size="8" text-anchor="middle">stand</text>
+        <text x="117" y="195" fill="#3b82f6" font-size="9" text-anchor="middle">Spring</text>
+        <text x="117" y="215" fill="#ef4444" font-size="9" text-anchor="middle">Mass (Force)</text>
+        <text x="190" y="232" fill="#f59e0b" font-size="9" text-anchor="middle">Ruler</text>
+        
+        <defs>
+          <marker id="extArrowUp" markerWidth="6" markerHeight="6" refX="3" refY="3" orient="auto">
+            <path d="M3,6 L3,0 L0,3 z" fill="#22c55e"/>
+          </marker>
+          <marker id="extArrowDown" markerWidth="6" markerHeight="6" refX="3" refY="3" orient="auto">
+            <path d="M3,0 L3,6 L0,3 z" fill="#22c55e"/>
+          </marker>
+        </defs>
+      </svg>
+    </div>
+    <p style="text-align: center; font-size: 0.8rem; color: var(--muted-foreground);">Add masses to increase force • Measure extension from ruler</p>
+  </div>
+  
   <div class="key-facts-block">
     <h4>🔬 Method Summary:</h4>
     <ol>

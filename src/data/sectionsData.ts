@@ -706,6 +706,66 @@ export const sectionsData: TopicSection[] = [
       <li>Cooling allows solid particles to form a regular crystal lattice as solubility decreases.</li>
     </ul>
   </div>
+  
+  <!-- Animated Crystallisation Diagram -->
+  <div class="key-idea-block anim-pause-hover" style="padding: 1rem; margin: 1rem 0;">
+    <h4>🔬 Crystallisation Setup (hover to pause)</h4>
+    <div style="display: flex; justify-content: center; padding: 0.5rem;">
+      <svg width="240" height="180" viewBox="0 0 240 180">
+        <!-- Tripod -->
+        <line x1="50" y1="155" x2="70" y2="130" stroke="#4a5568" stroke-width="3"/>
+        <line x1="130" y1="155" x2="110" y2="130" stroke="#4a5568" stroke-width="3"/>
+        <line x1="90" y1="155" x2="90" y2="130" stroke="#4a5568" stroke-width="3"/>
+        
+        <!-- Gauze -->
+        <rect x="55" y="125" width="70" height="5" fill="#a8a29e" stroke="#78716c" stroke-width="1"/>
+        <line x1="60" y1="127" x2="60" y2="130" stroke="#78716c" stroke-width="0.5"/>
+        <line x1="70" y1="127" x2="70" y2="130" stroke="#78716c" stroke-width="0.5"/>
+        <line x1="80" y1="127" x2="80" y2="130" stroke="#78716c" stroke-width="0.5"/>
+        <line x1="100" y1="127" x2="100" y2="130" stroke="#78716c" stroke-width="0.5"/>
+        <line x1="110" y1="127" x2="110" y2="130" stroke="#78716c" stroke-width="0.5"/>
+        
+        <!-- Bunsen burner flame -->
+        <rect x="82" y="155" width="16" height="10" fill="#4a5568"/>
+        <path d="M90 155 L90 145 L85 135 L95 135 L90 145" fill="#f97316" class="anim-pulse"/>
+        <text x="90" y="173" fill="currentColor" font-size="6" text-anchor="middle">Heat</text>
+        
+        <!-- Evaporating basin -->
+        <ellipse cx="90" cy="115" rx="50" ry="12" fill="#d4d4d8" stroke="#78716c" stroke-width="2"/>
+        <path d="M45 115 Q 45 90 90 90 Q 135 90 135 115" fill="#d4d4d8" stroke="#78716c" stroke-width="2"/>
+        
+        <!-- Solution in basin -->
+        <ellipse cx="90" cy="108" rx="40" ry="8" fill="#3b82f6" opacity="0.4"/>
+        
+        <!-- Steam rising (animated) -->
+        <path d="M70 85 Q 65 75, 70 65" fill="none" stroke="#94a3b8" stroke-width="2" opacity="0.5" class="anim-flow-up"/>
+        <path d="M90 80 Q 85 70, 90 60" fill="none" stroke="#94a3b8" stroke-width="2" opacity="0.5" class="anim-flow-up anim-delay-300"/>
+        <path d="M110 85 Q 105 75, 110 65" fill="none" stroke="#94a3b8" stroke-width="2" opacity="0.5" class="anim-flow-up anim-delay-500"/>
+        
+        <!-- Crystal formation at edges -->
+        <rect x="55" y="102" width="4" height="4" fill="#fff" stroke="#3b82f6" stroke-width="0.5" transform="rotate(45 57 104)" class="anim-pulse-fast"/>
+        <rect x="62" y="100" width="3" height="3" fill="#fff" stroke="#3b82f6" stroke-width="0.5" transform="rotate(45 63.5 101.5)" class="anim-pulse-fast"/>
+        <rect x="115" y="102" width="4" height="4" fill="#fff" stroke="#3b82f6" stroke-width="0.5" transform="rotate(45 117 104)" class="anim-pulse-fast"/>
+        <rect x="120" y="100" width="3" height="3" fill="#fff" stroke="#3b82f6" stroke-width="0.5" transform="rotate(45 121.5 101.5)" class="anim-pulse-fast"/>
+        
+        <!-- Result section -->
+        <rect x="170" y="80" width="55" height="70" fill="hsl(var(--muted))" rx="4" stroke="currentColor" stroke-width="1"/>
+        <text x="197" y="95" fill="currentColor" font-size="7" text-anchor="middle">Result:</text>
+        
+        <!-- Crystal shapes in result -->
+        <rect x="180" y="105" width="10" height="10" fill="#fff" stroke="#3b82f6" stroke-width="1" transform="rotate(45 185 110)"/>
+        <rect x="195" y="115" width="8" height="8" fill="#fff" stroke="#3b82f6" stroke-width="1" transform="rotate(45 199 119)"/>
+        <rect x="205" y="100" width="12" height="12" fill="#fff" stroke="#3b82f6" stroke-width="1" transform="rotate(45 211 106)"/>
+        <text x="197" y="145" fill="#3b82f6" font-size="7" text-anchor="middle">Crystals</text>
+        
+        <!-- Labels -->
+        <text x="90" y="55" fill="#94a3b8" font-size="7" text-anchor="middle">Steam</text>
+        <text x="35" y="108" fill="#3b82f6" font-size="7">Solution</text>
+        <text x="90" y="35" fill="currentColor" font-size="7" text-anchor="middle">Evaporating basin</text>
+      </svg>
+    </div>
+    <p style="text-align: center; font-size: 0.8rem; color: var(--muted-foreground);">Heat gently until crystals form at edge • Cool slowly for pure crystals</p>
+  </div>
   <div class="warning-block">
     <h4>⚠️ Safety Note</h4>
     <p>Avoid boiling all the water away — this can decompose the salt or make crystals impure.</p>
@@ -749,6 +809,77 @@ export const sectionsData: TopicSection[] = [
       <li>Condensation happens because cold water enters at the bottom of the condenser and leaves at the top, ensuring efficient cooling.</li>
     </ul>
   </div>
+  
+  <!-- Animated Simple Distillation Diagram -->
+  <div class="key-idea-block anim-pause-hover" style="padding: 1rem; margin: 1rem 0;">
+    <h4>🔬 Simple Distillation Setup (hover to pause)</h4>
+    <div style="display: flex; justify-content: center; padding: 0.5rem;">
+      <svg width="320" height="200" viewBox="0 0 320 200">
+        <!-- Heat source (Bunsen burner) -->
+        <rect x="30" y="175" width="50" height="10" fill="#4a5568"/>
+        <path d="M55 175 L55 165 L50 155 L60 155 L55 165" fill="#f97316" class="anim-pulse"/>
+        <text x="55" y="195" fill="currentColor" font-size="7" text-anchor="middle">Heat</text>
+        
+        <!-- Round-bottomed flask -->
+        <ellipse cx="55" cy="140" rx="35" ry="25" fill="#dbeafe" stroke="#3b82f6" stroke-width="2"/>
+        <rect x="48" y="100" width="14" height="25" fill="#dbeafe" stroke="#3b82f6" stroke-width="2"/>
+        <text x="55" y="145" fill="#3b82f6" font-size="7" text-anchor="middle">Solution</text>
+        
+        <!-- Steam bubbles rising -->
+        <circle cx="50" cy="125" r="3" fill="#fff" opacity="0.7" class="anim-bubble-rise"/>
+        <circle cx="60" cy="128" r="2" fill="#fff" opacity="0.6" class="anim-bubble-rise-2"/>
+        <circle cx="55" cy="120" r="2.5" fill="#fff" opacity="0.6" class="anim-bubble-rise-3"/>
+        
+        <!-- Thermometer -->
+        <rect x="58" y="70" width="4" height="35" fill="#fecaca" stroke="#ef4444" stroke-width="1"/>
+        <circle cx="60" cy="75" r="5" fill="#ef4444"/>
+        <text x="72" y="90" fill="#ef4444" font-size="7">100°C</text>
+        
+        <!-- Delivery tube / side arm -->
+        <path d="M62 108 Q 80 108, 100 95 L 180 60" fill="none" stroke="#3b82f6" stroke-width="8"/>
+        <path d="M62 108 Q 80 108, 100 95 L 180 60" fill="none" stroke="#dbeafe" stroke-width="5"/>
+        
+        <!-- Condenser outer tube -->
+        <rect x="180" y="50" width="80" height="20" fill="none" stroke="#3b82f6" stroke-width="2" rx="3"/>
+        
+        <!-- Condenser inner tube -->
+        <line x1="180" y1="60" x2="260" y2="60" stroke="#dbeafe" stroke-width="4"/>
+        
+        <!-- Cold water in/out arrows -->
+        <path d="M190 45 L190 55" stroke="#06b6d4" stroke-width="2" marker-end="url(#waterArrow)"/>
+        <path d="M250 65 L250 75" stroke="#06b6d4" stroke-width="2" marker-end="url(#waterArrow)"/>
+        <text x="190" y="40" fill="#06b6d4" font-size="6" text-anchor="middle">Cold in</text>
+        <text x="250" y="85" fill="#06b6d4" font-size="6" text-anchor="middle">Warm out</text>
+        
+        <!-- Vapour flow animation -->
+        <circle r="3" fill="#fff" opacity="0.8" class="anim-flow-right">
+          <animateMotion dur="2s" repeatCount="indefinite" path="M 80 100 Q 130 80, 180 60 L 260 60"/>
+        </circle>
+        
+        <!-- Collection tube -->
+        <path d="M260 60 L280 80 L280 120" fill="none" stroke="#3b82f6" stroke-width="4"/>
+        
+        <!-- Collecting beaker -->
+        <path d="M265 120 L265 170 L295 170 L295 120" fill="none" stroke="currentColor" stroke-width="2"/>
+        <rect x="267" y="145" width="26" height="23" fill="#3b82f6" opacity="0.3"/>
+        
+        <!-- Drops falling -->
+        <circle cx="280" cy="125" r="2" fill="#3b82f6" class="anim-flow-down"/>
+        
+        <!-- Labels -->
+        <text x="55" y="165" fill="currentColor" font-size="7" text-anchor="middle">Flask</text>
+        <text x="220" y="45" fill="currentColor" font-size="7" text-anchor="middle">Condenser</text>
+        <text x="280" y="185" fill="currentColor" font-size="7" text-anchor="middle">Distillate</text>
+        
+        <defs>
+          <marker id="waterArrow" markerWidth="6" markerHeight="6" refX="3" refY="3" orient="auto">
+            <path d="M0,0 L6,3 L0,6 z" fill="#06b6d4"/>
+          </marker>
+        </defs>
+      </svg>
+    </div>
+    <p style="text-align: center; font-size: 0.8rem; color: var(--muted-foreground);">Heat evaporates solvent • Condenser cools vapour • Distillate collected</p>
+  </div>
   <div class="exam-tip-block">
     <h4>🧠 Common Exam Tip</h4>
     <p>Label "distillate" (collected liquid) and "residue" (left in flask) correctly in diagrams — AQA often awards marks for this.</p>
@@ -788,6 +919,75 @@ export const sectionsData: TopicSection[] = [
       <li>The temperature gradient in the column ensures better separation.</li>
       <li>Each fraction condenses at its own boiling point, forming pure samples.</li>
     </ul>
+  </div>
+  
+  <!-- Animated Fractional Distillation Diagram -->
+  <div class="key-idea-block anim-pause-hover" style="padding: 1rem; margin: 1rem 0;">
+    <h4>🔬 Fractional Distillation Setup (hover to pause)</h4>
+    <div style="display: flex; justify-content: center; padding: 0.5rem;">
+      <svg width="280" height="220" viewBox="0 0 280 220">
+        <!-- Heat source -->
+        <rect x="30" y="195" width="40" height="8" fill="#4a5568"/>
+        <path d="M50 195 L50 188 L45 180 L55 180 L50 188" fill="#f97316" class="anim-pulse"/>
+        
+        <!-- Round-bottomed flask -->
+        <ellipse cx="50" cy="165" rx="30" ry="20" fill="#dbeafe" stroke="#3b82f6" stroke-width="2"/>
+        <rect x="43" y="130" width="14" height="25" fill="#dbeafe" stroke="#3b82f6" stroke-width="2"/>
+        
+        <!-- Liquid mixture in flask -->
+        <ellipse cx="50" cy="170" rx="25" ry="12" fill="#a855f7" opacity="0.4"/>
+        <text x="50" y="173" fill="#a855f7" font-size="6" text-anchor="middle">Mixture</text>
+        
+        <!-- Fractionating column -->
+        <rect x="40" y="50" width="20" height="80" fill="none" stroke="#3b82f6" stroke-width="2"/>
+        
+        <!-- Glass beads in column -->
+        <circle cx="48" cy="60" r="4" fill="#94a3b8" opacity="0.6"/>
+        <circle cx="52" cy="70" r="3" fill="#94a3b8" opacity="0.6"/>
+        <circle cx="47" cy="80" r="4" fill="#94a3b8" opacity="0.6"/>
+        <circle cx="53" cy="90" r="3" fill="#94a3b8" opacity="0.6"/>
+        <circle cx="48" cy="100" r="4" fill="#94a3b8" opacity="0.6"/>
+        <circle cx="52" cy="110" r="3" fill="#94a3b8" opacity="0.6"/>
+        <circle cx="47" cy="120" r="4" fill="#94a3b8" opacity="0.6"/>
+        
+        <!-- Rising vapour bubbles -->
+        <circle cx="50" cy="85" r="2" fill="#fff" opacity="0.7" class="anim-bubble-rise"/>
+        <circle cx="50" cy="105" r="2" fill="#fff" opacity="0.6" class="anim-bubble-rise-2"/>
+        
+        <!-- Temperature gradient labels -->
+        <text x="25" y="55" fill="#06b6d4" font-size="6">Cool</text>
+        <text x="25" y="115" fill="#ef4444" font-size="6">Hot</text>
+        
+        <!-- Thermometer -->
+        <rect x="52" y="35" width="4" height="20" fill="#fecaca" stroke="#ef4444" stroke-width="1"/>
+        <circle cx="54" cy="40" r="4" fill="#ef4444"/>
+        
+        <!-- Side arm to condenser -->
+        <path d="M60 55 Q 80 55, 100 45 L 150 30" fill="none" stroke="#3b82f6" stroke-width="6"/>
+        <path d="M60 55 Q 80 55, 100 45 L 150 30" fill="none" stroke="#dbeafe" stroke-width="3"/>
+        
+        <!-- Condenser -->
+        <rect x="150" y="20" width="70" height="18" fill="none" stroke="#3b82f6" stroke-width="2" rx="2"/>
+        <line x1="150" y1="29" x2="220" y2="29" stroke="#dbeafe" stroke-width="3"/>
+        
+        <!-- Water flow -->
+        <text x="160" y="15" fill="#06b6d4" font-size="5">Cold H₂O</text>
+        
+        <!-- Collection beaker -->
+        <path d="M225 35 L235 55 L235 85 L255 85 L255 55 L245 35" fill="none" stroke="currentColor" stroke-width="1.5"/>
+        <rect x="237" y="65" width="16" height="18" fill="#3b82f6" opacity="0.3"/>
+        
+        <!-- Drop animation -->
+        <circle cx="240" cy="50" r="2" fill="#3b82f6" class="anim-flow-down"/>
+        
+        <!-- Labels -->
+        <text x="50" y="45" fill="currentColor" font-size="6" text-anchor="middle">Fractionating</text>
+        <text x="50" y="53" fill="currentColor" font-size="6" text-anchor="middle">column</text>
+        <text x="245" y="100" fill="currentColor" font-size="6" text-anchor="middle">Fraction 1</text>
+        <text x="185" y="45" fill="currentColor" font-size="6" text-anchor="middle">Condenser</text>
+      </svg>
+    </div>
+    <p style="text-align: center; font-size: 0.8rem; color: var(--muted-foreground);">Glass beads increase surface area • Temperature gradient separates fractions</p>
   </div>
   <div class="example-block">
     <h4>🧠 Real-Life Applications</h4>
@@ -839,6 +1039,74 @@ export const sectionsData: TopicSection[] = [
       <li>The more soluble a substance, the further it travels.</li>
       <li>If a substance is strongly attracted to the paper, it moves less.</li>
     </ul>
+  </div>
+  
+  <!-- Animated Chromatography Diagram -->
+  <div class="key-idea-block anim-pause-hover" style="padding: 1rem; margin: 1rem 0;">
+    <h4>🎨 Paper Chromatography Setup (hover to pause)</h4>
+    <div style="display: flex; justify-content: center; padding: 0.5rem;">
+      <svg width="260" height="200" viewBox="0 0 260 200">
+        <!-- Beaker -->
+        <path d="M40 60 L40 170 L180 170 L180 60" fill="none" stroke="currentColor" stroke-width="2"/>
+        <rect x="42" y="155" width="136" height="13" fill="#dbeafe" opacity="0.4"/>
+        <text x="110" y="185" fill="currentColor" font-size="7" text-anchor="middle">Solvent</text>
+        
+        <!-- Paper strip -->
+        <rect x="100" y="30" width="20" height="135" fill="#fef3c7" stroke="#f59e0b" stroke-width="1"/>
+        
+        <!-- Baseline (pencil) -->
+        <line x1="102" y1="145" x2="118" y2="145" stroke="#78716c" stroke-width="1"/>
+        <text x="85" y="147" fill="#78716c" font-size="6">Baseline</text>
+        
+        <!-- Sample spots on baseline -->
+        <circle cx="110" cy="145" r="3" fill="#ef4444" opacity="0.8"/>
+        
+        <!-- Solvent front rising (animated) -->
+        <rect x="101" y="80" width="18" height="65" fill="#3b82f6" opacity="0.15">
+          <animate attributeName="y" values="145;80;145" dur="6s" repeatCount="indefinite"/>
+          <animate attributeName="height" values="0;65;0" dur="6s" repeatCount="indefinite"/>
+        </rect>
+        
+        <!-- Separated dyes (appearing as solvent rises) -->
+        <circle cx="110" cy="90" r="4" fill="#a855f7" opacity="0.8">
+          <animate attributeName="opacity" values="0;0;0.8;0.8;0" dur="6s" repeatCount="indefinite"/>
+        </circle>
+        <circle cx="110" cy="110" r="4" fill="#3b82f6" opacity="0.8">
+          <animate attributeName="opacity" values="0;0;0.8;0.8;0" dur="6s" repeatCount="indefinite"/>
+        </circle>
+        <circle cx="110" cy="130" r="4" fill="#ef4444" opacity="0.8">
+          <animate attributeName="opacity" values="0;0;0.8;0.8;0" dur="6s" repeatCount="indefinite"/>
+        </circle>
+        
+        <!-- Solvent front line -->
+        <line x1="95" y1="80" x2="125" y2="80" stroke="#3b82f6" stroke-width="1" stroke-dasharray="3,2">
+          <animate attributeName="y1" values="145;80;145" dur="6s" repeatCount="indefinite"/>
+          <animate attributeName="y2" values="145;80;145" dur="6s" repeatCount="indefinite"/>
+        </line>
+        <text x="128" y="83" fill="#3b82f6" font-size="6">Solvent front</text>
+        
+        <!-- Result diagram (right side) -->
+        <rect x="195" y="50" width="50" height="90" fill="#fef3c7" stroke="#f59e0b" stroke-width="1"/>
+        <text x="220" y="45" fill="currentColor" font-size="7" text-anchor="middle">Result</text>
+        
+        <!-- Baseline on result -->
+        <line x1="197" y1="130" x2="243" y2="130" stroke="#78716c" stroke-width="1"/>
+        
+        <!-- Separated spots on result -->
+        <circle cx="220" cy="70" r="5" fill="#a855f7" opacity="0.8"/>
+        <circle cx="220" cy="95" r="5" fill="#3b82f6" opacity="0.8"/>
+        <circle cx="220" cy="120" r="5" fill="#ef4444" opacity="0.8"/>
+        
+        <!-- Rf measurement arrows -->
+        <line x1="230" y1="130" x2="230" y2="55" stroke="#22c55e" stroke-width="1"/>
+        <polygon points="230,55 227,62 233,62" fill="#22c55e"/>
+        <text x="240" y="93" fill="#22c55e" font-size="5">Rf values</text>
+        
+        <!-- Clip at top -->
+        <rect x="95" y="25" width="30" height="8" fill="#4a5568" rx="1"/>
+      </svg>
+    </div>
+    <p style="text-align: center; font-size: 0.8rem; color: var(--muted-foreground);">Solvent carries dyes at different rates • Higher Rf = more soluble</p>
   </div>
   <div class="warning-block">
     <h4>⚠️ Safety and Accuracy Notes</h4>
@@ -8944,16 +9212,71 @@ H—N—H</pre>
     <p>Exothermic reactions <strong>release energy</strong> to the surroundings. This released energy usually becomes heat → temperature of surroundings rises.</p>
   </div>
 
-  <div class="diagram-block">
-    <h4>📊 Exothermic Reaction Profile Diagram</h4>
-    <img src="/images/exothermic-reaction-profile.png" alt="Exothermic reaction profile showing reactants higher than products, activation energy peak, and negative ΔH" class="diagram-image" />
+  <div class="diagram-block anim-pause-hover">
+    <h4>📊 Exothermic Reaction Profile Diagram (hover to pause)</h4>
+    <div style="display: flex; justify-content: center; padding: 1rem; background: hsl(var(--muted)/0.3); border-radius: 12px;">
+      <svg width="400" height="280" viewBox="0 0 400 280">
+        <!-- Axes -->
+        <line x1="60" y1="240" x2="380" y2="240" stroke="currentColor" stroke-width="2"/>
+        <line x1="60" y1="240" x2="60" y2="30" stroke="currentColor" stroke-width="2"/>
+        
+        <!-- Axis arrows -->
+        <polygon points="380,240 370,235 370,245" fill="currentColor"/>
+        <polygon points="60,30 55,40 65,40" fill="currentColor"/>
+        
+        <!-- Axis labels -->
+        <text x="220" y="270" fill="currentColor" font-size="14" text-anchor="middle" font-weight="bold">Progress of Reaction</text>
+        <text x="25" y="140" fill="currentColor" font-size="14" text-anchor="middle" font-weight="bold" transform="rotate(-90 25 140)">Energy</text>
+        
+        <!-- Grid lines (subtle) -->
+        <line x1="60" y1="80" x2="380" y2="80" stroke="currentColor" stroke-width="0.5" opacity="0.2" stroke-dasharray="4,4"/>
+        <line x1="60" y1="140" x2="380" y2="140" stroke="currentColor" stroke-width="0.5" opacity="0.2" stroke-dasharray="4,4"/>
+        <line x1="60" y1="200" x2="380" y2="200" stroke="currentColor" stroke-width="0.5" opacity="0.2" stroke-dasharray="4,4"/>
+        
+        <!-- Reactants level line -->
+        <line x1="60" y1="100" x2="120" y2="100" stroke="#22c55e" stroke-width="3"/>
+        <text x="90" y="90" fill="#22c55e" font-size="12" text-anchor="middle" font-weight="bold">Reactants</text>
+        
+        <!-- Products level line -->
+        <line x1="300" y1="180" x2="360" y2="180" stroke="#3b82f6" stroke-width="3"/>
+        <text x="330" y="200" fill="#3b82f6" font-size="12" text-anchor="middle" font-weight="bold">Products</text>
+        
+        <!-- Energy curve path -->
+        <path d="M 120 100 Q 180 100, 210 60 Q 240 20, 270 80 Q 300 140, 300 180" 
+              fill="none" stroke="#f97316" stroke-width="3" class="anim-draw-infinite" style="stroke-dasharray: 300;"/>
+        
+        <!-- Activation energy peak marker -->
+        <circle cx="220" cy="50" r="6" fill="#ef4444" class="anim-pulse"/>
+        <text x="220" y="35" fill="#ef4444" font-size="11" text-anchor="middle" font-weight="bold">Eₐ (peak)</text>
+        
+        <!-- Activation energy arrow -->
+        <line x1="140" y1="100" x2="140" y2="50" stroke="#ef4444" stroke-width="2" stroke-dasharray="5,3"/>
+        <polygon points="140,50 135,60 145,60" fill="#ef4444"/>
+        <text x="155" y="75" fill="#ef4444" font-size="10" font-weight="bold">Eₐ</text>
+        
+        <!-- ΔH arrow (downward) -->
+        <line x1="340" y1="100" x2="340" y2="180" stroke="#a855f7" stroke-width="3"/>
+        <polygon points="340,180 335,170 345,170" fill="#a855f7"/>
+        <text x="365" y="145" fill="#a855f7" font-size="11" font-weight="bold">ΔH</text>
+        <text x="365" y="158" fill="#a855f7" font-size="9">(negative)</text>
+        
+        <!-- Energy released label -->
+        <rect x="250" y="210" width="120" height="24" fill="#22c55e" opacity="0.2" rx="4"/>
+        <text x="310" y="227" fill="#22c55e" font-size="11" text-anchor="middle" font-weight="bold">Energy RELEASED</text>
+        
+        <!-- Animated particle moving along curve -->
+        <circle r="8" fill="#f97316" class="anim-pulse-fast">
+          <animateMotion dur="4s" repeatCount="indefinite" path="M 120 100 Q 180 100, 210 60 Q 240 20, 270 80 Q 300 140, 300 180"/>
+        </circle>
+      </svg>
+    </div>
     <div class="diagram-annotations">
       <p><strong>Key features:</strong></p>
       <ul>
         <li>Reactants <strong>HIGHER</strong> than products</li>
         <li>Curve rises to Eₐ (activation energy peak), then drops</li>
-        <li>ΔH arrow points <strong>downward</strong></li>
-        <li>Label: "energy released"</li>
+        <li>ΔH arrow points <strong>downward</strong> (negative ΔH)</li>
+        <li>Energy is <strong>released</strong> to surroundings</li>
       </ul>
     </div>
   </div>
@@ -8985,16 +9308,71 @@ H—N—H</pre>
     <p>Endothermic reactions <strong>take in energy</strong> from the surroundings. This makes the surroundings cooler.</p>
   </div>
 
-  <div class="diagram-block">
-    <h4>📊 Endothermic Reaction Profile Diagram</h4>
-    <img src="/images/endothermic-reaction-profile.png" alt="Endothermic reaction profile showing reactants lower than products, activation energy peak, and positive ΔH" class="diagram-image" />
+  <div class="diagram-block anim-pause-hover">
+    <h4>📊 Endothermic Reaction Profile Diagram (hover to pause)</h4>
+    <div style="display: flex; justify-content: center; padding: 1rem; background: hsl(var(--muted)/0.3); border-radius: 12px;">
+      <svg width="400" height="280" viewBox="0 0 400 280">
+        <!-- Axes -->
+        <line x1="60" y1="240" x2="380" y2="240" stroke="currentColor" stroke-width="2"/>
+        <line x1="60" y1="240" x2="60" y2="30" stroke="currentColor" stroke-width="2"/>
+        
+        <!-- Axis arrows -->
+        <polygon points="380,240 370,235 370,245" fill="currentColor"/>
+        <polygon points="60,30 55,40 65,40" fill="currentColor"/>
+        
+        <!-- Axis labels -->
+        <text x="220" y="270" fill="currentColor" font-size="14" text-anchor="middle" font-weight="bold">Progress of Reaction</text>
+        <text x="25" y="140" fill="currentColor" font-size="14" text-anchor="middle" font-weight="bold" transform="rotate(-90 25 140)">Energy</text>
+        
+        <!-- Grid lines (subtle) -->
+        <line x1="60" y1="80" x2="380" y2="80" stroke="currentColor" stroke-width="0.5" opacity="0.2" stroke-dasharray="4,4"/>
+        <line x1="60" y1="140" x2="380" y2="140" stroke="currentColor" stroke-width="0.5" opacity="0.2" stroke-dasharray="4,4"/>
+        <line x1="60" y1="200" x2="380" y2="200" stroke="currentColor" stroke-width="0.5" opacity="0.2" stroke-dasharray="4,4"/>
+        
+        <!-- Reactants level line -->
+        <line x1="60" y1="180" x2="120" y2="180" stroke="#22c55e" stroke-width="3"/>
+        <text x="90" y="200" fill="#22c55e" font-size="12" text-anchor="middle" font-weight="bold">Reactants</text>
+        
+        <!-- Products level line -->
+        <line x1="300" y1="100" x2="360" y2="100" stroke="#3b82f6" stroke-width="3"/>
+        <text x="330" y="90" fill="#3b82f6" font-size="12" text-anchor="middle" font-weight="bold">Products</text>
+        
+        <!-- Energy curve path -->
+        <path d="M 120 180 Q 160 180, 190 120 Q 220 50, 250 70 Q 280 90, 300 100" 
+              fill="none" stroke="#06b6d4" stroke-width="3" class="anim-draw-infinite" style="stroke-dasharray: 300;"/>
+        
+        <!-- Activation energy peak marker -->
+        <circle cx="220" cy="50" r="6" fill="#ef4444" class="anim-pulse"/>
+        <text x="220" y="35" fill="#ef4444" font-size="11" text-anchor="middle" font-weight="bold">Eₐ (peak)</text>
+        
+        <!-- Activation energy arrow -->
+        <line x1="140" y1="180" x2="140" y2="50" stroke="#ef4444" stroke-width="2" stroke-dasharray="5,3"/>
+        <polygon points="140,50 135,60 145,60" fill="#ef4444"/>
+        <text x="155" y="115" fill="#ef4444" font-size="10" font-weight="bold">Eₐ</text>
+        
+        <!-- ΔH arrow (upward) -->
+        <line x1="340" y1="180" x2="340" y2="100" stroke="#a855f7" stroke-width="3"/>
+        <polygon points="340,100 335,110 345,110" fill="#a855f7"/>
+        <text x="365" y="135" fill="#a855f7" font-size="11" font-weight="bold">ΔH</text>
+        <text x="365" y="148" fill="#a855f7" font-size="9">(positive)</text>
+        
+        <!-- Energy absorbed label -->
+        <rect x="250" y="210" width="120" height="24" fill="#06b6d4" opacity="0.2" rx="4"/>
+        <text x="310" y="227" fill="#06b6d4" font-size="11" text-anchor="middle" font-weight="bold">Energy ABSORBED</text>
+        
+        <!-- Animated particle moving along curve -->
+        <circle r="8" fill="#06b6d4" class="anim-pulse-fast">
+          <animateMotion dur="4s" repeatCount="indefinite" path="M 120 180 Q 160 180, 190 120 Q 220 50, 250 70 Q 280 90, 300 100"/>
+        </circle>
+      </svg>
+    </div>
     <div class="diagram-annotations">
       <p><strong>Key features:</strong></p>
       <ul>
         <li>Reactants <strong>LOWER</strong> than products</li>
-        <li>Curve rises to Eₐ, then rises further to product level</li>
-        <li>ΔH arrow points <strong>upward</strong></li>
-        <li>Label: "energy absorbed"</li>
+        <li>Curve rises to Eₐ, then settles at higher product level</li>
+        <li>ΔH arrow points <strong>upward</strong> (positive ΔH)</li>
+        <li>Energy is <strong>absorbed</strong> from surroundings</li>
       </ul>
     </div>
   </div>
@@ -9021,9 +9399,97 @@ H—N—H</pre>
 <div class="subsection">
   <h3 class="subsection-heading">🔍 6️⃣ Using Reaction Profiles to Identify Reaction Type</h3>
   
-  <div class="diagram-block">
-    <h4>📊 Comparison of Exothermic and Endothermic Profiles</h4>
-    <img src="/images/reaction-profiles-comparison.png" alt="Side-by-side comparison of exothermic and endothermic reaction profiles" class="diagram-image" />
+  <div class="diagram-block anim-pause-hover">
+    <h4>📊 Comparison of Exothermic and Endothermic Profiles (hover to pause)</h4>
+    <div style="display: flex; justify-content: center; gap: 1rem; padding: 1rem; background: hsl(var(--muted)/0.3); border-radius: 12px; flex-wrap: wrap;">
+      <!-- Exothermic (left) -->
+      <svg width="280" height="220" viewBox="0 0 280 220">
+        <text x="140" y="20" fill="#f97316" font-size="14" text-anchor="middle" font-weight="bold">EXOTHERMIC</text>
+        
+        <!-- Axes -->
+        <line x1="40" y1="190" x2="260" y2="190" stroke="currentColor" stroke-width="1.5"/>
+        <line x1="40" y1="190" x2="40" y2="30" stroke="currentColor" stroke-width="1.5"/>
+        <polygon points="260,190 252,186 252,194" fill="currentColor"/>
+        <polygon points="40,30 36,38 44,38" fill="currentColor"/>
+        
+        <!-- Labels -->
+        <text x="150" y="210" fill="currentColor" font-size="10" text-anchor="middle">Progress of Reaction</text>
+        <text x="15" y="110" fill="currentColor" font-size="10" text-anchor="middle" transform="rotate(-90 15 110)">Energy</text>
+        
+        <!-- Reactants -->
+        <line x1="40" y1="70" x2="80" y2="70" stroke="#22c55e" stroke-width="2.5"/>
+        <text x="60" y="62" fill="#22c55e" font-size="9" text-anchor="middle" font-weight="bold">Reactants</text>
+        
+        <!-- Products (lower) -->
+        <line x1="200" y1="140" x2="240" y2="140" stroke="#3b82f6" stroke-width="2.5"/>
+        <text x="220" y="155" fill="#3b82f6" font-size="9" text-anchor="middle" font-weight="bold">Products</text>
+        
+        <!-- Curve -->
+        <path d="M 80 70 Q 120 70, 140 45 Q 160 20, 180 60 Q 200 100, 200 140" 
+              fill="none" stroke="#f97316" stroke-width="2.5"/>
+        
+        <!-- Ea peak -->
+        <circle cx="145" cy="40" r="4" fill="#ef4444" class="anim-pulse"/>
+        <text x="145" y="30" fill="#ef4444" font-size="8" text-anchor="middle">Eₐ</text>
+        
+        <!-- ΔH arrow down -->
+        <line x1="230" y1="70" x2="230" y2="140" stroke="#a855f7" stroke-width="2"/>
+        <polygon points="230,140 226,132 234,132" fill="#a855f7"/>
+        <text x="250" y="108" fill="#a855f7" font-size="8">−ΔH</text>
+        
+        <!-- Energy released -->
+        <text x="140" y="180" fill="#22c55e" font-size="9" text-anchor="middle" font-weight="bold">↓ Energy Released</text>
+        
+        <!-- Animated particle -->
+        <circle r="5" fill="#f97316" class="anim-pulse-fast">
+          <animateMotion dur="3s" repeatCount="indefinite" path="M 80 70 Q 120 70, 140 45 Q 160 20, 180 60 Q 200 100, 200 140"/>
+        </circle>
+      </svg>
+      
+      <!-- Endothermic (right) -->
+      <svg width="280" height="220" viewBox="0 0 280 220">
+        <text x="140" y="20" fill="#06b6d4" font-size="14" text-anchor="middle" font-weight="bold">ENDOTHERMIC</text>
+        
+        <!-- Axes -->
+        <line x1="40" y1="190" x2="260" y2="190" stroke="currentColor" stroke-width="1.5"/>
+        <line x1="40" y1="190" x2="40" y2="30" stroke="currentColor" stroke-width="1.5"/>
+        <polygon points="260,190 252,186 252,194" fill="currentColor"/>
+        <polygon points="40,30 36,38 44,38" fill="currentColor"/>
+        
+        <!-- Labels -->
+        <text x="150" y="210" fill="currentColor" font-size="10" text-anchor="middle">Progress of Reaction</text>
+        <text x="15" y="110" fill="currentColor" font-size="10" text-anchor="middle" transform="rotate(-90 15 110)">Energy</text>
+        
+        <!-- Reactants (lower) -->
+        <line x1="40" y1="140" x2="80" y2="140" stroke="#22c55e" stroke-width="2.5"/>
+        <text x="60" y="155" fill="#22c55e" font-size="9" text-anchor="middle" font-weight="bold">Reactants</text>
+        
+        <!-- Products (higher) -->
+        <line x1="200" y1="70" x2="240" y2="70" stroke="#3b82f6" stroke-width="2.5"/>
+        <text x="220" y="62" fill="#3b82f6" font-size="9" text-anchor="middle" font-weight="bold">Products</text>
+        
+        <!-- Curve -->
+        <path d="M 80 140 Q 110 140, 130 90 Q 150 40, 170 50 Q 190 60, 200 70" 
+              fill="none" stroke="#06b6d4" stroke-width="2.5"/>
+        
+        <!-- Ea peak -->
+        <circle cx="145" cy="45" r="4" fill="#ef4444" class="anim-pulse"/>
+        <text x="145" y="35" fill="#ef4444" font-size="8" text-anchor="middle">Eₐ</text>
+        
+        <!-- ΔH arrow up -->
+        <line x1="230" y1="140" x2="230" y2="70" stroke="#a855f7" stroke-width="2"/>
+        <polygon points="230,70 226,78 234,78" fill="#a855f7"/>
+        <text x="250" y="108" fill="#a855f7" font-size="8">+ΔH</text>
+        
+        <!-- Energy absorbed -->
+        <text x="140" y="180" fill="#06b6d4" font-size="9" text-anchor="middle" font-weight="bold">↑ Energy Absorbed</text>
+        
+        <!-- Animated particle -->
+        <circle r="5" fill="#06b6d4" class="anim-pulse-fast">
+          <animateMotion dur="3s" repeatCount="indefinite" path="M 80 140 Q 110 140, 130 90 Q 150 40, 170 50 Q 190 60, 200 70"/>
+        </circle>
+      </svg>
+    </div>
   </div>
 
   <div class="comparison-block">
