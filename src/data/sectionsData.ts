@@ -1541,6 +1541,62 @@ export const sectionsData: TopicSection[] = [
         content_html: `
 <div class="subsection">
   <h3 class="subsection-heading">Subsection 1 – The Three Subatomic Particles</h3>
+  
+  <div class="diagram-block hover-pause">
+    <h4>⚛️ Subatomic Particles</h4>
+    <svg viewBox="0 0 450 220" xmlns="http://www.w3.org/2000/svg" style="max-width: 100%; height: auto; background: linear-gradient(180deg, #0f172a 0%, #1e293b 100%); border-radius: 12px; padding: 10px;">
+      <!-- Proton -->
+      <g transform="translate(75, 100)">
+        <circle cx="0" cy="0" r="35" fill="#ef4444" opacity="0.3" stroke="#ef4444" stroke-width="2">
+          <animate attributeName="r" values="35;38;35" dur="2s" repeatCount="indefinite"/>
+        </circle>
+        <circle cx="0" cy="0" r="25" fill="#ef4444"/>
+        <text x="0" y="5" fill="white" font-size="16" font-weight="bold" text-anchor="middle">p⁺</text>
+        <text x="0" y="60" fill="#ef4444" font-size="11" text-anchor="middle" font-weight="bold">PROTON</text>
+        <text x="0" y="75" fill="#94a3b8" font-size="9" text-anchor="middle">Charge: +1</text>
+        <text x="0" y="88" fill="#94a3b8" font-size="9" text-anchor="middle">Mass: 1</text>
+        <text x="0" y="101" fill="#94a3b8" font-size="9" text-anchor="middle">In nucleus</text>
+      </g>
+      
+      <!-- Neutron -->
+      <g transform="translate(225, 100)">
+        <circle cx="0" cy="0" r="35" fill="#64748b" opacity="0.3" stroke="#64748b" stroke-width="2">
+          <animate attributeName="r" values="35;38;35" dur="2s" repeatCount="indefinite"/>
+        </circle>
+        <circle cx="0" cy="0" r="25" fill="#64748b"/>
+        <text x="0" y="5" fill="white" font-size="16" font-weight="bold" text-anchor="middle">n⁰</text>
+        <text x="0" y="60" fill="#64748b" font-size="11" text-anchor="middle" font-weight="bold">NEUTRON</text>
+        <text x="0" y="75" fill="#94a3b8" font-size="9" text-anchor="middle">Charge: 0</text>
+        <text x="0" y="88" fill="#94a3b8" font-size="9" text-anchor="middle">Mass: 1</text>
+        <text x="0" y="101" fill="#94a3b8" font-size="9" text-anchor="middle">In nucleus</text>
+      </g>
+      
+      <!-- Electron -->
+      <g transform="translate(375, 100)">
+        <circle cx="0" cy="0" r="35" fill="#fbbf24" opacity="0.2" stroke="#fbbf24" stroke-width="2">
+          <animate attributeName="r" values="35;40;35" dur="1.5s" repeatCount="indefinite"/>
+        </circle>
+        <circle cx="0" cy="0" r="12" fill="#fbbf24">
+          <animate attributeName="cx" values="0;5;0;-5;0" dur="1s" repeatCount="indefinite"/>
+        </circle>
+        <text x="0" y="4" fill="#0f172a" font-size="10" font-weight="bold" text-anchor="middle">e⁻</text>
+        <text x="0" y="60" fill="#fbbf24" font-size="11" text-anchor="middle" font-weight="bold">ELECTRON</text>
+        <text x="0" y="75" fill="#94a3b8" font-size="9" text-anchor="middle">Charge: -1</text>
+        <text x="0" y="88" fill="#94a3b8" font-size="9" text-anchor="middle">Mass: ≈0</text>
+        <text x="0" y="101" fill="#94a3b8" font-size="9" text-anchor="middle">In shells</text>
+      </g>
+      
+      <!-- Size comparison note -->
+      <text x="225" y="210" fill="#94a3b8" font-size="9" text-anchor="middle">Note: Electrons are ~1836× smaller in mass than protons/neutrons</text>
+    </svg>
+    
+    <div class="color-legend" style="display: flex; gap: 15px; flex-wrap: wrap; margin-top: 10px; font-size: 12px;">
+      <span style="display: flex; align-items: center; gap: 5px;"><span style="width: 12px; height: 12px; background: #ef4444; border-radius: 50%;"></span> Proton (+1)</span>
+      <span style="display: flex; align-items: center; gap: 5px;"><span style="width: 12px; height: 12px; background: #64748b; border-radius: 50%;"></span> Neutron (0)</span>
+      <span style="display: flex; align-items: center; gap: 5px;"><span style="width: 12px; height: 12px; background: #fbbf24; border-radius: 50%;"></span> Electron (-1)</span>
+    </div>
+  </div>
+
   <div class="example-block">
     <table class="data-table">
       <thead>
@@ -1745,6 +1801,60 @@ export const sectionsData: TopicSection[] = [
         content_html: `
 <div class="subsection">
   <h3 class="subsection-heading">Subsection 1 – What is Relative Atomic Mass?</h3>
+  
+  <div class="diagram-block hover-pause">
+    <h4>⚖️ Calculating Relative Atomic Mass (Aᵣ)</h4>
+    <svg viewBox="0 0 450 220" xmlns="http://www.w3.org/2000/svg" style="max-width: 100%; height: auto; background: linear-gradient(180deg, #0f172a 0%, #1e293b 100%); border-radius: 12px; padding: 10px;">
+      <!-- Title -->
+      <text x="225" y="25" fill="#94a3b8" font-size="11" text-anchor="middle">Example: Chlorine isotopes</text>
+      
+      <!-- Isotope 1: Cl-35 -->
+      <g transform="translate(100, 80)">
+        <circle cx="0" cy="0" r="40" fill="#22d3ee" opacity="0.3" stroke="#22d3ee" stroke-width="2">
+          <animate attributeName="r" values="40;43;40" dur="2s" repeatCount="indefinite"/>
+        </circle>
+        <text x="0" y="-5" fill="#22d3ee" font-size="18" font-weight="bold" text-anchor="middle">³⁵Cl</text>
+        <text x="0" y="15" fill="#94a3b8" font-size="10" text-anchor="middle">Mass: 35</text>
+        <text x="0" y="60" fill="#22d3ee" font-size="12" font-weight="bold" text-anchor="middle">75%</text>
+        <text x="0" y="75" fill="#64748b" font-size="9" text-anchor="middle">abundance</text>
+      </g>
+      
+      <!-- Isotope 2: Cl-37 -->
+      <g transform="translate(350, 80)">
+        <circle cx="0" cy="0" r="40" fill="#f59e0b" opacity="0.3" stroke="#f59e0b" stroke-width="2">
+          <animate attributeName="r" values="40;43;40" dur="2s" repeatCount="indefinite"/>
+        </circle>
+        <text x="0" y="-5" fill="#f59e0b" font-size="18" font-weight="bold" text-anchor="middle">³⁷Cl</text>
+        <text x="0" y="15" fill="#94a3b8" font-size="10" text-anchor="middle">Mass: 37</text>
+        <text x="0" y="60" fill="#f59e0b" font-size="12" font-weight="bold" text-anchor="middle">25%</text>
+        <text x="0" y="75" fill="#64748b" font-size="9" text-anchor="middle">abundance</text>
+      </g>
+      
+      <!-- Plus sign -->
+      <text x="225" y="85" fill="#94a3b8" font-size="24" text-anchor="middle">+</text>
+      
+      <!-- Calculation box -->
+      <rect x="80" y="160" width="290" height="50" fill="#475569" opacity="0.3" rx="8"/>
+      <text x="225" y="178" fill="#94a3b8" font-size="10" text-anchor="middle">Aᵣ = (35 × 75) + (37 × 25) ÷ 100</text>
+      <text x="225" y="195" fill="#94a3b8" font-size="10" text-anchor="middle">= (2625 + 925) ÷ 100 = <tspan fill="#10b981" font-weight="bold">35.5</tspan></text>
+      
+      <!-- Result arrow -->
+      <path d="M 225 135 L 225 155" stroke="#10b981" stroke-width="2" marker-end="url(#arrowGr)"/>
+      
+      <defs>
+        <marker id="arrowGr" markerWidth="8" markerHeight="8" refX="4" refY="4" orient="auto">
+          <path d="M0,0 L8,4 L0,8 z" fill="#10b981"/>
+        </marker>
+      </defs>
+    </svg>
+    
+    <div class="color-legend" style="display: flex; gap: 15px; flex-wrap: wrap; margin-top: 10px; font-size: 12px;">
+      <span style="display: flex; align-items: center; gap: 5px;"><span style="width: 12px; height: 12px; background: #22d3ee; border-radius: 50%;"></span> ³⁵Cl (75%)</span>
+      <span style="display: flex; align-items: center; gap: 5px;"><span style="width: 12px; height: 12px; background: #f59e0b; border-radius: 50%;"></span> ³⁷Cl (25%)</span>
+      <span style="display: flex; align-items: center; gap: 5px;"><span style="width: 12px; height: 12px; background: #10b981; border-radius: 2px;"></span> Weighted average = 35.5</span>
+    </div>
+  </div>
+  
   <div class="definition-block">
     <h4>🔵 Definition</h4>
     <p>The relative atomic mass (Aᵣ) of an element is the average mass of all its isotopes, weighted according to their abundance, compared with 1/12 of the mass of a carbon-12 atom.</p>
@@ -1960,6 +2070,138 @@ export const sectionsData: TopicSection[] = [
         content_html: `
 <div class="subsection">
   <h3 class="subsection-heading">Subsection 1 – Structure of the Periodic Table</h3>
+  
+  <div class="diagram-block hover-pause">
+    <h4>🧪 Periodic Table Layout</h4>
+    <svg viewBox="0 0 500 280" xmlns="http://www.w3.org/2000/svg" style="max-width: 100%; height: auto; background: linear-gradient(180deg, #0f172a 0%, #1e293b 100%); border-radius: 12px; padding: 10px;">
+      <!-- Group labels -->
+      <text x="35" y="25" fill="#f59e0b" font-size="8" text-anchor="middle">1</text>
+      <text x="55" y="25" fill="#94a3b8" font-size="8" text-anchor="middle">2</text>
+      <text x="165" y="25" fill="#94a3b8" font-size="7" text-anchor="middle">3-12</text>
+      <text x="275" y="25" fill="#94a3b8" font-size="8" text-anchor="middle">3</text>
+      <text x="295" y="25" fill="#94a3b8" font-size="8" text-anchor="middle">4</text>
+      <text x="315" y="25" fill="#94a3b8" font-size="8" text-anchor="middle">5</text>
+      <text x="335" y="25" fill="#94a3b8" font-size="8" text-anchor="middle">6</text>
+      <text x="355" y="25" fill="#22d3ee" font-size="8" text-anchor="middle">7</text>
+      <text x="375" y="25" fill="#a78bfa" font-size="8" text-anchor="middle">0</text>
+      
+      <!-- Period labels -->
+      <text x="15" y="50" fill="#94a3b8" font-size="8">1</text>
+      <text x="15" y="70" fill="#94a3b8" font-size="8">2</text>
+      <text x="15" y="90" fill="#94a3b8" font-size="8">3</text>
+      <text x="15" y="110" fill="#94a3b8" font-size="8">4</text>
+      <text x="15" y="130" fill="#94a3b8" font-size="8">5</text>
+      <text x="15" y="150" fill="#94a3b8" font-size="8">6</text>
+      <text x="15" y="170" fill="#94a3b8" font-size="8">7</text>
+      
+      <!-- Period 1 -->
+      <rect x="25" y="35" width="18" height="18" fill="#f59e0b" rx="2"/>
+      <text x="34" y="48" fill="#0f172a" font-size="8" font-weight="bold" text-anchor="middle">H</text>
+      <rect x="365" y="35" width="18" height="18" fill="#a78bfa" rx="2"/>
+      <text x="374" y="48" fill="white" font-size="8" font-weight="bold" text-anchor="middle">He</text>
+      
+      <!-- Period 2 -->
+      <rect x="25" y="55" width="18" height="18" fill="#f59e0b" rx="2"/>
+      <text x="34" y="68" fill="#0f172a" font-size="8" font-weight="bold" text-anchor="middle">Li</text>
+      <rect x="45" y="55" width="18" height="18" fill="#10b981" rx="2"/>
+      <text x="54" y="68" fill="white" font-size="8" font-weight="bold" text-anchor="middle">Be</text>
+      <rect x="265" y="55" width="18" height="18" fill="#6b7280" rx="2"/>
+      <text x="274" y="68" fill="white" font-size="7" font-weight="bold" text-anchor="middle">B</text>
+      <rect x="285" y="55" width="18" height="18" fill="#6b7280" rx="2"/>
+      <text x="294" y="68" fill="white" font-size="7" font-weight="bold" text-anchor="middle">C</text>
+      <rect x="305" y="55" width="18" height="18" fill="#6b7280" rx="2"/>
+      <text x="314" y="68" fill="white" font-size="7" font-weight="bold" text-anchor="middle">N</text>
+      <rect x="325" y="55" width="18" height="18" fill="#6b7280" rx="2"/>
+      <text x="334" y="68" fill="white" font-size="7" font-weight="bold" text-anchor="middle">O</text>
+      <rect x="345" y="55" width="18" height="18" fill="#22d3ee" rx="2"/>
+      <text x="354" y="68" fill="#0f172a" font-size="7" font-weight="bold" text-anchor="middle">F</text>
+      <rect x="365" y="55" width="18" height="18" fill="#a78bfa" rx="2"/>
+      <text x="374" y="68" fill="white" font-size="7" font-weight="bold" text-anchor="middle">Ne</text>
+      
+      <!-- Period 3 -->
+      <rect x="25" y="75" width="18" height="18" fill="#f59e0b" rx="2"/>
+      <text x="34" y="88" fill="#0f172a" font-size="7" font-weight="bold" text-anchor="middle">Na</text>
+      <rect x="45" y="75" width="18" height="18" fill="#10b981" rx="2"/>
+      <text x="54" y="88" fill="white" font-size="7" font-weight="bold" text-anchor="middle">Mg</text>
+      <rect x="265" y="75" width="18" height="18" fill="#3b82f6" rx="2"/>
+      <text x="274" y="88" fill="white" font-size="7" font-weight="bold" text-anchor="middle">Al</text>
+      <rect x="285" y="75" width="18" height="18" fill="#6b7280" rx="2"/>
+      <text x="294" y="88" fill="white" font-size="7" font-weight="bold" text-anchor="middle">Si</text>
+      <rect x="305" y="75" width="18" height="18" fill="#6b7280" rx="2"/>
+      <text x="314" y="88" fill="white" font-size="7" font-weight="bold" text-anchor="middle">P</text>
+      <rect x="325" y="75" width="18" height="18" fill="#6b7280" rx="2"/>
+      <text x="334" y="88" fill="white" font-size="7" font-weight="bold" text-anchor="middle">S</text>
+      <rect x="345" y="75" width="18" height="18" fill="#22d3ee" rx="2"/>
+      <text x="354" y="88" fill="#0f172a" font-size="7" font-weight="bold" text-anchor="middle">Cl</text>
+      <rect x="365" y="75" width="18" height="18" fill="#a78bfa" rx="2"/>
+      <text x="374" y="88" fill="white" font-size="7" font-weight="bold" text-anchor="middle">Ar</text>
+      
+      <!-- Period 4 (partial with transition metals) -->
+      <rect x="25" y="95" width="18" height="18" fill="#f59e0b" rx="2"/>
+      <text x="34" y="108" fill="#0f172a" font-size="8" font-weight="bold" text-anchor="middle">K</text>
+      <rect x="45" y="95" width="18" height="18" fill="#10b981" rx="2"/>
+      <text x="54" y="108" fill="white" font-size="7" font-weight="bold" text-anchor="middle">Ca</text>
+      
+      <!-- Transition metals block -->
+      <rect x="65" y="95" width="198" height="78" fill="#ef4444" opacity="0.2" rx="4" stroke="#ef4444" stroke-width="1" stroke-dasharray="4,2">
+        <animate attributeName="opacity" values="0.2;0.35;0.2" dur="3s" repeatCount="indefinite"/>
+      </rect>
+      <text x="164" y="138" fill="#ef4444" font-size="10" font-weight="bold" text-anchor="middle">TRANSITION METALS</text>
+      <text x="164" y="152" fill="#ef4444" font-size="8" text-anchor="middle">(Fe, Cu, Zn, etc.)</text>
+      
+      <rect x="345" y="95" width="18" height="18" fill="#22d3ee" rx="2"/>
+      <text x="354" y="108" fill="#0f172a" font-size="7" font-weight="bold" text-anchor="middle">Br</text>
+      <rect x="365" y="95" width="18" height="18" fill="#a78bfa" rx="2"/>
+      <text x="374" y="108" fill="white" font-size="7" font-weight="bold" text-anchor="middle">Kr</text>
+      
+      <!-- Group arrows -->
+      <path d="M 35 185 L 35 210" stroke="#f59e0b" stroke-width="2" marker-end="url(#arrowOrange)"/>
+      <text x="35" y="225" fill="#f59e0b" font-size="7" text-anchor="middle">Group 1</text>
+      <text x="35" y="235" fill="#f59e0b" font-size="6" text-anchor="middle">Alkali</text>
+      
+      <path d="M 355 185 L 355 210" stroke="#22d3ee" stroke-width="2" marker-end="url(#arrowCyan)"/>
+      <text x="355" y="225" fill="#22d3ee" font-size="7" text-anchor="middle">Group 7</text>
+      <text x="355" y="235" fill="#22d3ee" font-size="6" text-anchor="middle">Halogens</text>
+      
+      <path d="M 375 185 L 375 210" stroke="#a78bfa" stroke-width="2" marker-end="url(#arrowPurple)"/>
+      <text x="375" y="225" fill="#a78bfa" font-size="7" text-anchor="middle">Group 0</text>
+      <text x="375" y="235" fill="#a78bfa" font-size="6" text-anchor="middle">Noble</text>
+      
+      <!-- Period arrow -->
+      <path d="M 400 50 L 480 50" stroke="#94a3b8" stroke-width="2" marker-end="url(#arrowGray)"/>
+      <text x="440" y="40" fill="#94a3b8" font-size="8" text-anchor="middle">Period →</text>
+      
+      <path d="M 400 60 L 400 100" stroke="#94a3b8" stroke-width="2" marker-end="url(#arrowGray)"/>
+      <text x="440" y="85" fill="#94a3b8" font-size="8" text-anchor="middle">↓ Group</text>
+      
+      <defs>
+        <marker id="arrowOrange" markerWidth="8" markerHeight="8" refX="4" refY="4" orient="auto">
+          <path d="M0,0 L8,4 L0,8 z" fill="#f59e0b"/>
+        </marker>
+        <marker id="arrowCyan" markerWidth="8" markerHeight="8" refX="4" refY="4" orient="auto">
+          <path d="M0,0 L8,4 L0,8 z" fill="#22d3ee"/>
+        </marker>
+        <marker id="arrowPurple" markerWidth="8" markerHeight="8" refX="4" refY="4" orient="auto">
+          <path d="M0,0 L8,4 L0,8 z" fill="#a78bfa"/>
+        </marker>
+        <marker id="arrowGray" markerWidth="8" markerHeight="8" refX="4" refY="4" orient="auto">
+          <path d="M0,0 L8,4 L0,8 z" fill="#94a3b8"/>
+        </marker>
+      </defs>
+      
+      <!-- Labels -->
+      <text x="250" y="265" fill="#94a3b8" font-size="9" text-anchor="middle">Elements arranged by increasing atomic number</text>
+    </svg>
+    
+    <div class="color-legend" style="display: flex; gap: 12px; flex-wrap: wrap; margin-top: 10px; font-size: 11px;">
+      <span style="display: flex; align-items: center; gap: 4px;"><span style="width: 10px; height: 10px; background: #f59e0b; border-radius: 2px;"></span> Group 1 (Alkali metals)</span>
+      <span style="display: flex; align-items: center; gap: 4px;"><span style="width: 10px; height: 10px; background: #10b981; border-radius: 2px;"></span> Group 2</span>
+      <span style="display: flex; align-items: center; gap: 4px;"><span style="width: 10px; height: 10px; background: #ef4444; border-radius: 2px;"></span> Transition metals</span>
+      <span style="display: flex; align-items: center; gap: 4px;"><span style="width: 10px; height: 10px; background: #22d3ee; border-radius: 2px;"></span> Group 7 (Halogens)</span>
+      <span style="display: flex; align-items: center; gap: 4px;"><span style="width: 10px; height: 10px; background: #a78bfa; border-radius: 2px;"></span> Group 0 (Noble gases)</span>
+    </div>
+  </div>
+
   <div class="definition-block">
     <h4>🔵 Definition</h4>
     <p>The Periodic Table arranges all known elements in order of increasing atomic number.</p>
@@ -2033,6 +2275,81 @@ export const sectionsData: TopicSection[] = [
         content_html: `
 <div class="subsection">
   <h3 class="subsection-heading">Subsection 1 – Early Classification of Elements</h3>
+  
+  <div class="diagram-block hover-pause">
+    <h4>📜 Development of the Periodic Table Timeline</h4>
+    <svg viewBox="0 0 500 200" xmlns="http://www.w3.org/2000/svg" style="max-width: 100%; height: auto; background: linear-gradient(180deg, #0f172a 0%, #1e293b 100%); border-radius: 12px; padding: 10px;">
+      <!-- Timeline line -->
+      <line x1="50" y1="100" x2="450" y2="100" stroke="#475569" stroke-width="3"/>
+      
+      <!-- 1817 - Dobereiner -->
+      <g transform="translate(80, 100)">
+        <circle cx="0" cy="0" r="12" fill="#ef4444" stroke="#fca5a5" stroke-width="2">
+          <animate attributeName="r" values="12;14;12" dur="3s" repeatCount="indefinite"/>
+        </circle>
+        <text x="0" y="4" fill="white" font-size="8" font-weight="bold" text-anchor="middle">1</text>
+        <text x="0" y="-25" fill="#ef4444" font-size="10" font-weight="bold" text-anchor="middle">1817</text>
+        <text x="0" y="30" fill="#94a3b8" font-size="8" text-anchor="middle">Dobereiner</text>
+        <text x="0" y="42" fill="#64748b" font-size="7" text-anchor="middle">Triads</text>
+        <line x1="0" y1="-12" x2="0" y2="-18" stroke="#ef4444" stroke-width="2"/>
+      </g>
+      
+      <!-- 1864 - Newlands -->
+      <g transform="translate(180, 100)">
+        <circle cx="0" cy="0" r="12" fill="#f59e0b" stroke="#fcd34d" stroke-width="2">
+          <animate attributeName="r" values="12;14;12" dur="3s" repeatCount="indefinite" begin="0.5s"/>
+        </circle>
+        <text x="0" y="4" fill="white" font-size="8" font-weight="bold" text-anchor="middle">2</text>
+        <text x="0" y="-25" fill="#f59e0b" font-size="10" font-weight="bold" text-anchor="middle">1864</text>
+        <text x="0" y="30" fill="#94a3b8" font-size="8" text-anchor="middle">Newlands</text>
+        <text x="0" y="42" fill="#64748b" font-size="7" text-anchor="middle">Octaves</text>
+        <line x1="0" y1="-12" x2="0" y2="-18" stroke="#f59e0b" stroke-width="2"/>
+      </g>
+      
+      <!-- 1869 - Mendeleev -->
+      <g transform="translate(290, 100)">
+        <circle cx="0" cy="0" r="15" fill="#10b981" stroke="#6ee7b7" stroke-width="3">
+          <animate attributeName="r" values="15;18;15" dur="3s" repeatCount="indefinite" begin="1s"/>
+        </circle>
+        <text x="0" y="4" fill="white" font-size="8" font-weight="bold" text-anchor="middle">3</text>
+        <text x="0" y="-30" fill="#10b981" font-size="11" font-weight="bold" text-anchor="middle">1869</text>
+        <text x="0" y="35" fill="#10b981" font-size="9" font-weight="bold" text-anchor="middle">Mendeleev</text>
+        <text x="0" y="47" fill="#64748b" font-size="7" text-anchor="middle">Left gaps!</text>
+        <line x1="0" y1="-15" x2="0" y2="-22" stroke="#10b981" stroke-width="2"/>
+        
+        <!-- Star highlight -->
+        <text x="25" y="-15" fill="#fbbf24" font-size="12">★</text>
+      </g>
+      
+      <!-- 1913 - Moseley (Modern) -->
+      <g transform="translate(410, 100)">
+        <circle cx="0" cy="0" r="12" fill="#3b82f6" stroke="#93c5fd" stroke-width="2">
+          <animate attributeName="r" values="12;14;12" dur="3s" repeatCount="indefinite" begin="1.5s"/>
+        </circle>
+        <text x="0" y="4" fill="white" font-size="8" font-weight="bold" text-anchor="middle">4</text>
+        <text x="0" y="-25" fill="#3b82f6" font-size="10" font-weight="bold" text-anchor="middle">1913</text>
+        <text x="0" y="30" fill="#94a3b8" font-size="8" text-anchor="middle">Modern</text>
+        <text x="0" y="42" fill="#64748b" font-size="7" text-anchor="middle">Atomic No.</text>
+        <line x1="0" y1="-12" x2="0" y2="-18" stroke="#3b82f6" stroke-width="2"/>
+      </g>
+      
+      <!-- Progress arrow -->
+      <path d="M 50 100 L 30 95 L 30 105 Z" fill="#475569"/>
+      <path d="M 450 100 L 470 95 L 470 105 Z" fill="#10b981"/>
+      
+      <!-- Labels -->
+      <text x="250" y="180" fill="#64748b" font-size="9" text-anchor="middle">Arranged by atomic WEIGHT → Arranged by atomic NUMBER</text>
+      <text x="290" y="70" fill="#10b981" font-size="8" text-anchor="middle">Key breakthrough!</text>
+    </svg>
+    
+    <div class="color-legend" style="display: flex; gap: 12px; flex-wrap: wrap; margin-top: 10px; font-size: 11px;">
+      <span style="display: flex; align-items: center; gap: 4px;"><span style="width: 10px; height: 10px; background: #ef4444; border-radius: 50%;"></span> Triads (limited)</span>
+      <span style="display: flex; align-items: center; gap: 4px;"><span style="width: 10px; height: 10px; background: #f59e0b; border-radius: 50%;"></span> Octaves (flawed)</span>
+      <span style="display: flex; align-items: center; gap: 4px;"><span style="width: 10px; height: 10px; background: #10b981; border-radius: 50%;"></span> Mendeleev (breakthrough)</span>
+      <span style="display: flex; align-items: center; gap: 4px;"><span style="width: 10px; height: 10px; background: #3b82f6; border-radius: 50%;"></span> Modern (atomic number)</span>
+    </div>
+  </div>
+  
   <div class="key-facts-block">
     <h4>🧠 Early Attempts</h4>
     <ul>
@@ -2100,6 +2417,47 @@ export const sectionsData: TopicSection[] = [
         content_html: `
 <div class="subsection">
   <h3 class="subsection-heading">Subsection 1 – Where They Are Found</h3>
+  
+  <div class="diagram-block hover-pause">
+    <h4>⚡ Metals vs Non-Metals Location</h4>
+    <svg viewBox="0 0 400 200" xmlns="http://www.w3.org/2000/svg" style="max-width: 100%; height: auto; background: linear-gradient(180deg, #0f172a 0%, #1e293b 100%); border-radius: 12px; padding: 10px;">
+      <!-- Periodic table outline -->
+      <rect x="30" y="30" width="340" height="140" fill="none" stroke="#475569" stroke-width="2" rx="4"/>
+      
+      <!-- Metals region (left) -->
+      <path d="M 30 30 L 220 30 L 220 60 L 250 60 L 250 90 L 280 90 L 280 120 L 310 120 L 310 170 L 30 170 Z" fill="#3b82f6" opacity="0.3"/>
+      <text x="120" y="110" fill="#3b82f6" font-size="16" font-weight="bold" text-anchor="middle">METALS</text>
+      <text x="120" y="125" fill="#3b82f6" font-size="9" text-anchor="middle">~80% of elements</text>
+      
+      <!-- Non-metals region (right) -->
+      <path d="M 220 30 L 370 30 L 370 170 L 310 170 L 310 120 L 280 120 L 280 90 L 250 90 L 250 60 L 220 60 Z" fill="#10b981" opacity="0.3"/>
+      <text x="310" y="70" fill="#10b981" font-size="14" font-weight="bold" text-anchor="middle">NON-</text>
+      <text x="310" y="85" fill="#10b981" font-size="14" font-weight="bold" text-anchor="middle">METALS</text>
+      
+      <!-- Staircase line -->
+      <path d="M 220 30 L 220 60 L 250 60 L 250 90 L 280 90 L 280 120 L 310 120 L 310 170" fill="none" stroke="#f59e0b" stroke-width="3" stroke-dasharray="8,4">
+        <animate attributeName="stroke-dashoffset" values="0;24" dur="2s" repeatCount="indefinite"/>
+      </path>
+      
+      <!-- Labels -->
+      <text x="235" y="145" fill="#f59e0b" font-size="9" text-anchor="middle" transform="rotate(-45, 235, 145)">Staircase</text>
+      <text x="260" y="165" fill="#f59e0b" font-size="9" text-anchor="middle" transform="rotate(-45, 260, 165)">line</text>
+      
+      <!-- Properties arrows -->
+      <text x="60" y="145" fill="#3b82f6" font-size="8">• Shiny</text>
+      <text x="60" y="157" fill="#3b82f6" font-size="8">• Conduct</text>
+      
+      <text x="320" y="110" fill="#10b981" font-size="8">• Dull</text>
+      <text x="320" y="122" fill="#10b981" font-size="8">• Insulate</text>
+    </svg>
+    
+    <div class="color-legend" style="display: flex; gap: 15px; flex-wrap: wrap; margin-top: 10px; font-size: 12px;">
+      <span style="display: flex; align-items: center; gap: 5px;"><span style="width: 12px; height: 12px; background: #3b82f6; border-radius: 2px;"></span> Metals (left side)</span>
+      <span style="display: flex; align-items: center; gap: 5px;"><span style="width: 12px; height: 12px; background: #10b981; border-radius: 2px;"></span> Non-metals (right side)</span>
+      <span style="display: flex; align-items: center; gap: 5px;"><span style="width: 12px; height: 3px; background: #f59e0b;"></span> Dividing line</span>
+    </div>
+  </div>
+  
   <div class="definition-block">
     <h4>🔵 Key Idea</h4>
     <p>The Periodic Table is roughly divided by a diagonal "staircase line." Elements to the left and below this line are metals. Elements to the right and above are non-metals.</p>
@@ -2164,6 +2522,117 @@ export const sectionsData: TopicSection[] = [
         content_html: `
 <div class="subsection">
   <h3 class="subsection-heading">Subsection 1 – Introducing the Noble Gases</h3>
+  
+  <div class="diagram-block hover-pause">
+    <h4>💜 Noble Gas Electron Shells (Full Outer Shells)</h4>
+    <svg viewBox="0 0 450 180" xmlns="http://www.w3.org/2000/svg" style="max-width: 100%; height: auto; background: linear-gradient(180deg, #0f172a 0%, #1e293b 100%); border-radius: 12px; padding: 10px;">
+      <!-- Helium -->
+      <g transform="translate(75, 90)">
+        <circle cx="0" cy="0" r="35" fill="none" stroke="#a78bfa" stroke-width="2" opacity="0.5"/>
+        <circle cx="0" cy="0" r="12" fill="#a78bfa" opacity="0.6">
+          <animate attributeName="r" values="12;14;12" dur="2s" repeatCount="indefinite"/>
+        </circle>
+        <text x="0" y="4" fill="white" font-size="10" font-weight="bold" text-anchor="middle">He</text>
+        <!-- 2 electrons -->
+        <circle cx="-20" cy="0" r="4" fill="#fbbf24">
+          <animate attributeName="cx" values="-20;0;20;0;-20" dur="3s" repeatCount="indefinite"/>
+          <animate attributeName="cy" values="0;-20;0;20;0" dur="3s" repeatCount="indefinite"/>
+        </circle>
+        <circle cx="20" cy="0" r="4" fill="#fbbf24">
+          <animate attributeName="cx" values="20;0;-20;0;20" dur="3s" repeatCount="indefinite"/>
+          <animate attributeName="cy" values="0;20;0;-20;0" dur="3s" repeatCount="indefinite"/>
+        </circle>
+        <text x="0" y="55" fill="#a78bfa" font-size="10" font-weight="bold" text-anchor="middle">Helium</text>
+        <text x="0" y="68" fill="#94a3b8" font-size="8" text-anchor="middle">(2)</text>
+      </g>
+      
+      <!-- Neon -->
+      <g transform="translate(225, 90)">
+        <circle cx="0" cy="0" r="50" fill="none" stroke="#a78bfa" stroke-width="2" opacity="0.5"/>
+        <circle cx="0" cy="0" r="25" fill="none" stroke="#a78bfa" stroke-width="1" opacity="0.3"/>
+        <circle cx="0" cy="0" r="12" fill="#a78bfa" opacity="0.6">
+          <animate attributeName="r" values="12;14;12" dur="2s" repeatCount="indefinite"/>
+        </circle>
+        <text x="0" y="4" fill="white" font-size="10" font-weight="bold" text-anchor="middle">Ne</text>
+        <!-- Inner shell: 2 electrons -->
+        <circle cx="-15" cy="0" r="3" fill="#fbbf24" opacity="0.8"/>
+        <circle cx="15" cy="0" r="3" fill="#fbbf24" opacity="0.8"/>
+        <!-- Outer shell: 8 electrons -->
+        <g>
+          <circle cx="0" cy="-40" r="4" fill="#fbbf24">
+            <animateTransform attributeName="transform" type="rotate" from="0 0 0" to="360 0 0" dur="8s" repeatCount="indefinite"/>
+          </circle>
+          <circle cx="28" cy="-28" r="4" fill="#fbbf24">
+            <animateTransform attributeName="transform" type="rotate" from="0 0 0" to="360 0 0" dur="8s" repeatCount="indefinite"/>
+          </circle>
+          <circle cx="40" cy="0" r="4" fill="#fbbf24">
+            <animateTransform attributeName="transform" type="rotate" from="0 0 0" to="360 0 0" dur="8s" repeatCount="indefinite"/>
+          </circle>
+          <circle cx="28" cy="28" r="4" fill="#fbbf24">
+            <animateTransform attributeName="transform" type="rotate" from="0 0 0" to="360 0 0" dur="8s" repeatCount="indefinite"/>
+          </circle>
+          <circle cx="0" cy="40" r="4" fill="#fbbf24">
+            <animateTransform attributeName="transform" type="rotate" from="0 0 0" to="360 0 0" dur="8s" repeatCount="indefinite"/>
+          </circle>
+          <circle cx="-28" cy="28" r="4" fill="#fbbf24">
+            <animateTransform attributeName="transform" type="rotate" from="0 0 0" to="360 0 0" dur="8s" repeatCount="indefinite"/>
+          </circle>
+          <circle cx="-40" cy="0" r="4" fill="#fbbf24">
+            <animateTransform attributeName="transform" type="rotate" from="0 0 0" to="360 0 0" dur="8s" repeatCount="indefinite"/>
+          </circle>
+          <circle cx="-28" cy="-28" r="4" fill="#fbbf24">
+            <animateTransform attributeName="transform" type="rotate" from="0 0 0" to="360 0 0" dur="8s" repeatCount="indefinite"/>
+          </circle>
+        </g>
+        <text x="0" y="70" fill="#a78bfa" font-size="10" font-weight="bold" text-anchor="middle">Neon</text>
+        <text x="0" y="83" fill="#94a3b8" font-size="8" text-anchor="middle">(2, 8)</text>
+      </g>
+      
+      <!-- Argon -->
+      <g transform="translate(375, 90)">
+        <circle cx="0" cy="0" r="60" fill="none" stroke="#a78bfa" stroke-width="2" opacity="0.5"/>
+        <circle cx="0" cy="0" r="40" fill="none" stroke="#a78bfa" stroke-width="1" opacity="0.3"/>
+        <circle cx="0" cy="0" r="20" fill="none" stroke="#a78bfa" stroke-width="1" opacity="0.2"/>
+        <circle cx="0" cy="0" r="10" fill="#a78bfa" opacity="0.6">
+          <animate attributeName="r" values="10;12;10" dur="2s" repeatCount="indefinite"/>
+        </circle>
+        <text x="0" y="4" fill="white" font-size="8" font-weight="bold" text-anchor="middle">Ar</text>
+        <!-- First shell: 2 -->
+        <circle cx="-12" cy="0" r="2" fill="#fbbf24" opacity="0.6"/>
+        <circle cx="12" cy="0" r="2" fill="#fbbf24" opacity="0.6"/>
+        <!-- Second shell: 8 (simplified) -->
+        <circle cx="0" cy="-30" r="3" fill="#fbbf24" opacity="0.7"/>
+        <circle cx="21" cy="-21" r="3" fill="#fbbf24" opacity="0.7"/>
+        <circle cx="30" cy="0" r="3" fill="#fbbf24" opacity="0.7"/>
+        <circle cx="21" cy="21" r="3" fill="#fbbf24" opacity="0.7"/>
+        <circle cx="0" cy="30" r="3" fill="#fbbf24" opacity="0.7"/>
+        <circle cx="-21" cy="21" r="3" fill="#fbbf24" opacity="0.7"/>
+        <circle cx="-30" cy="0" r="3" fill="#fbbf24" opacity="0.7"/>
+        <circle cx="-21" cy="-21" r="3" fill="#fbbf24" opacity="0.7"/>
+        <!-- Third shell: 8 -->
+        <circle cx="0" cy="-50" r="4" fill="#fbbf24"/>
+        <circle cx="35" cy="-35" r="4" fill="#fbbf24"/>
+        <circle cx="50" cy="0" r="4" fill="#fbbf24"/>
+        <circle cx="35" cy="35" r="4" fill="#fbbf24"/>
+        <circle cx="0" cy="50" r="4" fill="#fbbf24"/>
+        <circle cx="-35" cy="35" r="4" fill="#fbbf24"/>
+        <circle cx="-50" cy="0" r="4" fill="#fbbf24"/>
+        <circle cx="-35" cy="-35" r="4" fill="#fbbf24"/>
+        <text x="0" y="80" fill="#a78bfa" font-size="10" font-weight="bold" text-anchor="middle">Argon</text>
+        <text x="0" y="93" fill="#94a3b8" font-size="8" text-anchor="middle">(2, 8, 8)</text>
+      </g>
+      
+      <!-- Key message -->
+      <rect x="130" y="155" width="190" height="20" fill="#a78bfa" opacity="0.2" rx="4"/>
+      <text x="225" y="169" fill="#a78bfa" font-size="10" font-weight="bold" text-anchor="middle">✓ Full outer shells = STABLE</text>
+    </svg>
+    
+    <div class="color-legend" style="display: flex; gap: 15px; flex-wrap: wrap; margin-top: 10px; font-size: 12px;">
+      <span style="display: flex; align-items: center; gap: 5px;"><span style="width: 12px; height: 12px; background: #a78bfa; border-radius: 50%;"></span> Noble gas nucleus</span>
+      <span style="display: flex; align-items: center; gap: 5px;"><span style="width: 12px; height: 12px; background: #fbbf24; border-radius: 50%;"></span> Electrons (full shells)</span>
+    </div>
+  </div>
+  
   <div class="definition-block">
     <h4>🔵 Definition</h4>
     <p>The noble gases are the elements in Group 0 (sometimes called Group 8) of the periodic table: Helium (He), Neon (Ne), Argon (Ar), Krypton (Kr), Xenon (Xe), Radon (Rn).</p>
@@ -2488,6 +2957,113 @@ export const sectionsData: TopicSection[] = [
 <div class="subsection">
   <h3 class="subsection-heading">🧩 Subsection 1 – Where They Are Found</h3>
   
+  <div class="diagram-block hover-pause">
+    <h4>🔬 Periodic Table Location: Group 1 vs Transition Metals</h4>
+    <svg viewBox="0 0 450 200" xmlns="http://www.w3.org/2000/svg" style="max-width: 100%; height: auto; background: linear-gradient(180deg, #0f172a 0%, #1e293b 100%); border-radius: 12px; padding: 10px;">
+      <!-- Periodic table outline -->
+      <rect x="30" y="40" width="390" height="120" fill="none" stroke="#475569" stroke-width="2" rx="4"/>
+      
+      <!-- Group 1 column highlighted -->
+      <rect x="35" y="45" width="30" height="110" fill="#f59e0b" opacity="0.4" rx="2">
+        <animate attributeName="opacity" values="0.4;0.6;0.4" dur="2s" repeatCount="indefinite"/>
+      </rect>
+      <rect x="35" y="45" width="30" height="110" fill="none" stroke="#f59e0b" stroke-width="2" rx="2"/>
+      
+      <!-- Group 1 elements -->
+      <rect x="40" y="50" width="20" height="15" fill="#f59e0b" rx="2"/>
+      <text x="50" y="61" fill="#0f172a" font-size="8" font-weight="bold" text-anchor="middle">Li</text>
+      <rect x="40" y="70" width="20" height="15" fill="#f59e0b" rx="2"/>
+      <text x="50" y="81" fill="#0f172a" font-size="8" font-weight="bold" text-anchor="middle">Na</text>
+      <rect x="40" y="90" width="20" height="15" fill="#f59e0b" rx="2"/>
+      <text x="50" y="101" fill="#0f172a" font-size="8" font-weight="bold" text-anchor="middle">K</text>
+      <rect x="40" y="110" width="20" height="15" fill="#f59e0b" rx="2"/>
+      <text x="50" y="121" fill="#0f172a" font-size="8" font-weight="bold" text-anchor="middle">Rb</text>
+      <rect x="40" y="130" width="20" height="15" fill="#f59e0b" rx="2"/>
+      <text x="50" y="141" fill="#0f172a" font-size="8" font-weight="bold" text-anchor="middle">Cs</text>
+      
+      <!-- Group 2 column -->
+      <rect x="70" y="70" width="20" height="15" fill="#64748b" opacity="0.5" rx="2"/>
+      <rect x="70" y="90" width="20" height="15" fill="#64748b" opacity="0.5" rx="2"/>
+      <rect x="70" y="110" width="20" height="15" fill="#64748b" opacity="0.5" rx="2"/>
+      
+      <!-- Transition metals block highlighted -->
+      <rect x="100" y="85" width="200" height="70" fill="#ef4444" opacity="0.3" rx="4">
+        <animate attributeName="opacity" values="0.3;0.5;0.3" dur="2s" repeatCount="indefinite"/>
+      </rect>
+      <rect x="100" y="85" width="200" height="70" fill="none" stroke="#ef4444" stroke-width="2" rx="4"/>
+      
+      <!-- Transition metal elements -->
+      <rect x="105" y="90" width="18" height="13" fill="#ef4444" rx="1"/>
+      <text x="114" y="100" fill="white" font-size="6" font-weight="bold" text-anchor="middle">Sc</text>
+      <rect x="125" y="90" width="18" height="13" fill="#ef4444" rx="1"/>
+      <text x="134" y="100" fill="white" font-size="6" font-weight="bold" text-anchor="middle">Ti</text>
+      <rect x="145" y="90" width="18" height="13" fill="#ef4444" rx="1"/>
+      <text x="154" y="100" fill="white" font-size="6" font-weight="bold" text-anchor="middle">V</text>
+      <rect x="165" y="90" width="18" height="13" fill="#ef4444" rx="1"/>
+      <text x="174" y="100" fill="white" font-size="6" font-weight="bold" text-anchor="middle">Cr</text>
+      <rect x="185" y="90" width="18" height="13" fill="#ef4444" rx="1"/>
+      <text x="194" y="100" fill="white" font-size="6" font-weight="bold" text-anchor="middle">Mn</text>
+      <rect x="205" y="90" width="18" height="13" fill="#ef4444" rx="1"/>
+      <text x="214" y="100" fill="white" font-size="6" font-weight="bold" text-anchor="middle">Fe</text>
+      <rect x="225" y="90" width="18" height="13" fill="#ef4444" rx="1"/>
+      <text x="234" y="100" fill="white" font-size="6" font-weight="bold" text-anchor="middle">Co</text>
+      <rect x="245" y="90" width="18" height="13" fill="#ef4444" rx="1"/>
+      <text x="254" y="100" fill="white" font-size="6" font-weight="bold" text-anchor="middle">Ni</text>
+      <rect x="265" y="90" width="18" height="13" fill="#ef4444" rx="1"/>
+      <text x="274" y="100" fill="white" font-size="6" font-weight="bold" text-anchor="middle">Cu</text>
+      <rect x="285" y="90" width="18" height="13" fill="#ef4444" rx="1"/>
+      <text x="294" y="100" fill="white" font-size="6" font-weight="bold" text-anchor="middle">Zn</text>
+      
+      <!-- Second row of transition metals -->
+      <rect x="105" y="107" width="18" height="13" fill="#ef4444" opacity="0.7" rx="1"/>
+      <rect x="125" y="107" width="18" height="13" fill="#ef4444" opacity="0.7" rx="1"/>
+      <rect x="145" y="107" width="18" height="13" fill="#ef4444" opacity="0.7" rx="1"/>
+      <rect x="165" y="107" width="18" height="13" fill="#ef4444" opacity="0.7" rx="1"/>
+      <rect x="185" y="107" width="18" height="13" fill="#ef4444" opacity="0.7" rx="1"/>
+      <rect x="205" y="107" width="18" height="13" fill="#ef4444" opacity="0.7" rx="1"/>
+      <rect x="225" y="107" width="18" height="13" fill="#ef4444" opacity="0.7" rx="1"/>
+      <rect x="245" y="107" width="18" height="13" fill="#ef4444" opacity="0.7" rx="1"/>
+      <rect x="265" y="107" width="18" height="13" fill="#ef4444" opacity="0.7" rx="1"/>
+      <rect x="285" y="107" width="18" height="13" fill="#ef4444" opacity="0.7" rx="1"/>
+      
+      <!-- Labels -->
+      <text x="50" y="175" fill="#f59e0b" font-size="10" font-weight="bold" text-anchor="middle">GROUP 1</text>
+      <text x="50" y="188" fill="#f59e0b" font-size="8" text-anchor="middle">(Alkali metals)</text>
+      
+      <text x="200" y="175" fill="#ef4444" font-size="10" font-weight="bold" text-anchor="middle">TRANSITION METALS</text>
+      <text x="200" y="188" fill="#ef4444" font-size="8" text-anchor="middle">(d-block, centre)</text>
+      
+      <!-- Right side non-metals -->
+      <rect x="310" y="50" width="20" height="15" fill="#475569" opacity="0.4" rx="2"/>
+      <rect x="330" y="50" width="20" height="15" fill="#475569" opacity="0.4" rx="2"/>
+      <rect x="350" y="50" width="20" height="15" fill="#475569" opacity="0.4" rx="2"/>
+      <rect x="370" y="50" width="20" height="15" fill="#a78bfa" rx="2"/>
+      <rect x="390" y="40" width="25" height="15" fill="#a78bfa" rx="2"/>
+      <text x="402" y="51" fill="white" font-size="7" text-anchor="middle">He</text>
+      
+      <!-- Arrows showing location -->
+      <path d="M 50 35 L 50 42" stroke="#f59e0b" stroke-width="2" marker-end="url(#arrowO)"/>
+      <text x="50" y="30" fill="#f59e0b" font-size="8" text-anchor="middle">Far left</text>
+      
+      <path d="M 200 75 L 200 82" stroke="#ef4444" stroke-width="2" marker-end="url(#arrowR)"/>
+      <text x="200" y="70" fill="#ef4444" font-size="8" text-anchor="middle">Centre block</text>
+      
+      <defs>
+        <marker id="arrowO" markerWidth="6" markerHeight="6" refX="3" refY="3" orient="auto">
+          <path d="M0,0 L6,3 L0,6 z" fill="#f59e0b"/>
+        </marker>
+        <marker id="arrowR" markerWidth="6" markerHeight="6" refX="3" refY="3" orient="auto">
+          <path d="M0,0 L6,3 L0,6 z" fill="#ef4444"/>
+        </marker>
+      </defs>
+    </svg>
+    
+    <div class="color-legend" style="display: flex; gap: 15px; flex-wrap: wrap; margin-top: 10px; font-size: 12px;">
+      <span style="display: flex; align-items: center; gap: 5px;"><span style="width: 12px; height: 12px; background: #f59e0b; border-radius: 2px;"></span> Group 1 (Alkali Metals)</span>
+      <span style="display: flex; align-items: center; gap: 5px;"><span style="width: 12px; height: 12px; background: #ef4444; border-radius: 2px;"></span> Transition Metals</span>
+    </div>
+  </div>
+  
   <div class="key-facts-block">
     <h4>🔵 Key Points</h4>
     <ul>
@@ -2731,6 +3307,87 @@ export const sectionsData: TopicSection[] = [
 
 <div class="subsection">
   <h3 class="subsection-heading">💥 Subsection 3 – Chemical Properties</h3>
+  
+  <div class="diagram-block hover-pause">
+    <h4>🎨 Coloured Transition Metal Compounds</h4>
+    <svg viewBox="0 0 500 200" xmlns="http://www.w3.org/2000/svg" style="max-width: 100%; height: auto; background: linear-gradient(180deg, #0f172a 0%, #1e293b 100%); border-radius: 12px; padding: 10px;">
+      <!-- Test tubes with colored solutions -->
+      
+      <!-- Tube 1: CuSO4 (blue) -->
+      <g transform="translate(50, 30)">
+        <rect x="0" y="60" width="40" height="90" fill="#3b82f6" opacity="0.8" rx="2"/>
+        <rect x="-2" y="50" width="44" height="10" fill="#475569" rx="2"/>
+        <path d="M 0 150 Q 20 160 40 150" fill="#3b82f6" opacity="0.8"/>
+        <circle cx="20" cy="100" r="3" fill="#60a5fa" opacity="0.6">
+          <animate attributeName="cy" values="100;80;100" dur="2s" repeatCount="indefinite"/>
+        </circle>
+        <circle cx="12" cy="120" r="2" fill="#60a5fa" opacity="0.5">
+          <animate attributeName="cy" values="120;90;120" dur="2.5s" repeatCount="indefinite"/>
+        </circle>
+        <text x="20" y="175" fill="#3b82f6" font-size="9" font-weight="bold" text-anchor="middle">CuSO₄</text>
+        <text x="20" y="188" fill="#94a3b8" font-size="8" text-anchor="middle">Cu²⁺ Blue</text>
+      </g>
+      
+      <!-- Tube 2: FeSO4 (pale green) -->
+      <g transform="translate(130, 30)">
+        <rect x="0" y="60" width="40" height="90" fill="#86efac" opacity="0.6" rx="2"/>
+        <rect x="-2" y="50" width="44" height="10" fill="#475569" rx="2"/>
+        <path d="M 0 150 Q 20 160 40 150" fill="#86efac" opacity="0.6"/>
+        <circle cx="25" cy="110" r="2" fill="#a7f3d0" opacity="0.5">
+          <animate attributeName="cy" values="110;85;110" dur="2.2s" repeatCount="indefinite"/>
+        </circle>
+        <text x="20" y="175" fill="#86efac" font-size="9" font-weight="bold" text-anchor="middle">FeSO₄</text>
+        <text x="20" y="188" fill="#94a3b8" font-size="8" text-anchor="middle">Fe²⁺ Green</text>
+      </g>
+      
+      <!-- Tube 3: FeCl3 (brown/orange) -->
+      <g transform="translate(210, 30)">
+        <rect x="0" y="60" width="40" height="90" fill="#c2410c" opacity="0.7" rx="2"/>
+        <rect x="-2" y="50" width="44" height="10" fill="#475569" rx="2"/>
+        <path d="M 0 150 Q 20 160 40 150" fill="#c2410c" opacity="0.7"/>
+        <circle cx="15" cy="95" r="2" fill="#ea580c" opacity="0.5">
+          <animate attributeName="cy" values="95;75;95" dur="1.8s" repeatCount="indefinite"/>
+        </circle>
+        <text x="20" y="175" fill="#ea580c" font-size="9" font-weight="bold" text-anchor="middle">FeCl₃</text>
+        <text x="20" y="188" fill="#94a3b8" font-size="8" text-anchor="middle">Fe³⁺ Brown</text>
+      </g>
+      
+      <!-- Tube 4: KMnO4 (purple) -->
+      <g transform="translate(290, 30)">
+        <rect x="0" y="60" width="40" height="90" fill="#a855f7" opacity="0.8" rx="2"/>
+        <rect x="-2" y="50" width="44" height="10" fill="#475569" rx="2"/>
+        <path d="M 0 150 Q 20 160 40 150" fill="#a855f7" opacity="0.8"/>
+        <circle cx="28" cy="105" r="3" fill="#c084fc" opacity="0.6">
+          <animate attributeName="cy" values="105;80;105" dur="2.3s" repeatCount="indefinite"/>
+        </circle>
+        <text x="20" y="175" fill="#a855f7" font-size="9" font-weight="bold" text-anchor="middle">KMnO₄</text>
+        <text x="20" y="188" fill="#94a3b8" font-size="8" text-anchor="middle">Mn⁷⁺ Purple</text>
+      </g>
+      
+      <!-- Tube 5: K2Cr2O7 (orange) -->
+      <g transform="translate(370, 30)">
+        <rect x="0" y="60" width="40" height="90" fill="#f97316" opacity="0.7" rx="2"/>
+        <rect x="-2" y="50" width="44" height="10" fill="#475569" rx="2"/>
+        <path d="M 0 150 Q 20 160 40 150" fill="#f97316" opacity="0.7"/>
+        <circle cx="18" cy="100" r="2" fill="#fb923c" opacity="0.5">
+          <animate attributeName="cy" values="100;78;100" dur="2.1s" repeatCount="indefinite"/>
+        </circle>
+        <text x="20" y="175" fill="#f97316" font-size="8" font-weight="bold" text-anchor="middle">K₂Cr₂O₇</text>
+        <text x="20" y="188" fill="#94a3b8" font-size="8" text-anchor="middle">Cr⁶⁺ Orange</text>
+      </g>
+      
+      <!-- Title annotation -->
+      <text x="250" y="20" fill="#94a3b8" font-size="10" text-anchor="middle">Different ions absorb different wavelengths of light → visible colours</text>
+    </svg>
+    
+    <div class="color-legend" style="display: flex; gap: 12px; flex-wrap: wrap; margin-top: 10px; font-size: 11px;">
+      <span style="display: flex; align-items: center; gap: 4px;"><span style="width: 10px; height: 10px; background: #3b82f6; border-radius: 2px;"></span> Cu²⁺ (Blue)</span>
+      <span style="display: flex; align-items: center; gap: 4px;"><span style="width: 10px; height: 10px; background: #86efac; border-radius: 2px;"></span> Fe²⁺ (Green)</span>
+      <span style="display: flex; align-items: center; gap: 4px;"><span style="width: 10px; height: 10px; background: #c2410c; border-radius: 2px;"></span> Fe³⁺ (Brown)</span>
+      <span style="display: flex; align-items: center; gap: 4px;"><span style="width: 10px; height: 10px; background: #a855f7; border-radius: 2px;"></span> Mn⁷⁺ (Purple)</span>
+      <span style="display: flex; align-items: center; gap: 4px;"><span style="width: 10px; height: 10px; background: #f97316; border-radius: 2px;"></span> Cr⁶⁺ (Orange)</span>
+    </div>
+  </div>
   
   <div class="example-block">
     <table class="data-table">
