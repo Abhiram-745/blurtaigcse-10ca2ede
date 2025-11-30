@@ -1217,5 +1217,656 @@ export const physicsData: TopicSection[] = [
     title: "Space Physics",
     status: "coming_soon",
     subsections: []
+  },
+  {
+    id: "required-practicals",
+    title: "Required Practicals",
+    status: "ready",
+    subsections: [],
+    modules: [
+      {
+        id: "rp-energy",
+        title: "Energy Practicals",
+        status: "ready",
+        subsections: [
+          {
+            id: "rp-specific-heat-capacity",
+            title: "RP1: Investigating Specific Heat Capacity",
+            type: "content",
+            study_group: 1,
+            content_html: `
+<div class="subsection">
+  <h3 class="subsection-heading">⚡ Required Practical 1: Investigating Specific Heat Capacity</h3>
+  
+  <div class="key-point" style="background: linear-gradient(135deg, hsl(var(--primary)/0.1), hsl(var(--accent)/0.1)); border-radius: 12px; padding: 1.5rem; margin: 1.5rem 0; border-left: 4px solid hsl(var(--primary));">
+    <h4 style="color: hsl(var(--primary)); margin-bottom: 0.5rem;">💠 Aim</h4>
+    <p>To determine the <strong>specific heat capacity (SHC)</strong> of a material (e.g., aluminium, copper, water) by measuring the temperature change produced by supplying a known amount of energy.</p>
+  </div>
+
+  <h4 class="subsection-subheading">💠 Key Equation</h4>
+  <div style="background: hsl(var(--muted)); border-radius: 8px; padding: 1rem; margin: 1rem 0; text-align: center;">
+    <p style="font-size: 1.25rem; font-weight: bold; color: hsl(var(--primary));">E = mcΔθ</p>
+    <p style="margin-top: 0.5rem;">Rearranged for SHC: <strong>c = E / (m × Δθ)</strong></p>
+  </div>
+
+  <table class="styled-table" style="width: 100%; margin: 1rem 0; border-collapse: collapse;">
+    <thead>
+      <tr style="background: hsl(var(--primary)); color: hsl(var(--primary-foreground));">
+        <th style="padding: 0.75rem; text-align: left;">Symbol</th>
+        <th style="padding: 0.75rem; text-align: left;">Meaning</th>
+        <th style="padding: 0.75rem; text-align: left;">Unit</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr style="background: hsl(var(--muted)/0.3);"><td style="padding: 0.75rem;">E</td><td style="padding: 0.75rem;">Energy supplied</td><td style="padding: 0.75rem;">J</td></tr>
+      <tr><td style="padding: 0.75rem;">m</td><td style="padding: 0.75rem;">Mass of block/liquid</td><td style="padding: 0.75rem;">kg</td></tr>
+      <tr style="background: hsl(var(--muted)/0.3);"><td style="padding: 0.75rem;">c</td><td style="padding: 0.75rem;">Specific heat capacity</td><td style="padding: 0.75rem;">J/kg°C</td></tr>
+      <tr><td style="padding: 0.75rem;">Δθ</td><td style="padding: 0.75rem;">Temperature change</td><td style="padding: 0.75rem;">°C</td></tr>
+    </tbody>
+  </table>
+
+  <h4 class="subsection-subheading">💠 Apparatus</h4>
+  
+  <!-- Animated Apparatus Diagram -->
+  <div style="display: flex; justify-content: center; margin: 2rem 0;">
+    <svg viewBox="0 0 400 320" style="max-width: 400px; width: 100%;">
+      <defs>
+        <linearGradient id="metalBlock" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" style="stop-color:#a8a8a8"/>
+          <stop offset="50%" style="stop-color:#808080"/>
+          <stop offset="100%" style="stop-color:#606060"/>
+        </linearGradient>
+        <linearGradient id="insulation" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" style="stop-color:#f5e6d3"/>
+          <stop offset="100%" style="stop-color:#d4c4b0"/>
+        </linearGradient>
+        <filter id="glow">
+          <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+          <feMerge><feMergeNode in="coloredBlur"/><feMergeNode in="SourceGraphic"/></feMerge>
+        </filter>
+      </defs>
+      
+      <!-- Insulation wrap -->
+      <rect x="80" y="120" width="140" height="120" rx="8" fill="url(#insulation)" stroke="#b8a896" stroke-width="2"/>
+      <text x="150" y="110" text-anchor="middle" font-size="10" fill="#666">Insulation</text>
+      
+      <!-- Metal block -->
+      <rect x="100" y="140" width="100" height="80" rx="4" fill="url(#metalBlock)" stroke="#505050" stroke-width="2"/>
+      <text x="150" y="185" text-anchor="middle" font-size="11" fill="#fff" font-weight="bold">Metal Block</text>
+      
+      <!-- Heater hole with heater -->
+      <rect x="130" y="145" width="40" height="30" fill="#333" rx="2"/>
+      <rect x="135" y="150" width="30" height="20" fill="#ff6b35" rx="2">
+        <animate attributeName="opacity" values="0.7;1;0.7" dur="1.5s" repeatCount="indefinite"/>
+      </rect>
+      <text x="150" y="163" text-anchor="middle" font-size="8" fill="#fff">Heater</text>
+      
+      <!-- Heat waves animation -->
+      <g opacity="0.6">
+        <path d="M145 148 Q148 142 151 148 Q154 154 157 148" stroke="#ff4444" stroke-width="2" fill="none">
+          <animate attributeName="d" values="M145 148 Q148 142 151 148 Q154 154 157 148;M145 145 Q148 139 151 145 Q154 151 157 145;M145 148 Q148 142 151 148 Q154 154 157 148" dur="0.8s" repeatCount="indefinite"/>
+          <animate attributeName="opacity" values="0.6;0.2;0.6" dur="0.8s" repeatCount="indefinite"/>
+        </path>
+      </g>
+      
+      <!-- Thermometer -->
+      <rect x="175" y="100" width="8" height="60" fill="#e8e8e8" stroke="#999" stroke-width="1" rx="4"/>
+      <rect x="177" y="140" width="4" height="18" fill="#ff3333" rx="2">
+        <animate attributeName="height" values="18;25;18" dur="3s" repeatCount="indefinite"/>
+        <animate attributeName="y" values="140;133;140" dur="3s" repeatCount="indefinite"/>
+      </rect>
+      <circle cx="179" cy="158" r="5" fill="#ff3333"/>
+      <text x="195" y="130" font-size="9" fill="#666">Thermometer</text>
+      
+      <!-- Power supply -->
+      <rect x="260" y="140" width="80" height="60" rx="4" fill="#2a5298" stroke="#1a3a7a" stroke-width="2"/>
+      <text x="300" y="165" text-anchor="middle" font-size="10" fill="#fff">Power</text>
+      <text x="300" y="180" text-anchor="middle" font-size="10" fill="#fff">Supply</text>
+      
+      <!-- Ammeter -->
+      <circle cx="300" cy="240" r="25" fill="#fff" stroke="#333" stroke-width="2"/>
+      <text x="300" y="244" text-anchor="middle" font-size="14" fill="#333" font-weight="bold">A</text>
+      <text x="300" y="280" text-anchor="middle" font-size="9" fill="#666">Ammeter</text>
+      
+      <!-- Voltmeter -->
+      <circle cx="370" cy="180" r="25" fill="#fff" stroke="#333" stroke-width="2"/>
+      <text x="370" y="184" text-anchor="middle" font-size="14" fill="#333" font-weight="bold">V</text>
+      <text x="370" y="220" text-anchor="middle" font-size="9" fill="#666">Voltmeter</text>
+      
+      <!-- Wires -->
+      <path d="M170 160 L260 160" stroke="#333" stroke-width="2" fill="none"/>
+      <path d="M300 200 L300 215" stroke="#333" stroke-width="2" fill="none"/>
+      <path d="M275 200 L275 240 L275 240" stroke="#333" stroke-width="2" fill="none"/>
+      <path d="M325 240 L350 240 L350 205" stroke="#333" stroke-width="2" fill="none"/>
+      <path d="M340 160 L345 160 L345 180" stroke="#333" stroke-width="2" fill="none"/>
+      
+      <!-- Labels -->
+      <text x="40" y="180" font-size="10" fill="#333" font-weight="bold">Setup:</text>
+      <text x="40" y="200" font-size="9" fill="#666">1. Weigh block</text>
+      <text x="40" y="215" font-size="9" fill="#666">2. Insert heater</text>
+      <text x="40" y="230" font-size="9" fill="#666">3. Add insulation</text>
+      <text x="40" y="245" font-size="9" fill="#666">4. Connect circuit</text>
+      
+      <!-- Title -->
+      <text x="200" y="30" text-anchor="middle" font-size="14" fill="#333" font-weight="bold">Specific Heat Capacity Apparatus</text>
+    </svg>
+  </div>
+
+  <table class="styled-table" style="width: 100%; margin: 1rem 0; border-collapse: collapse;">
+    <thead>
+      <tr style="background: hsl(var(--primary)); color: hsl(var(--primary-foreground));">
+        <th style="padding: 0.75rem; text-align: left;">Equipment</th>
+        <th style="padding: 0.75rem; text-align: left;">Purpose</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr style="background: hsl(var(--muted)/0.3);"><td style="padding: 0.75rem;">Metal block with heater hole</td><td style="padding: 0.75rem;">Test material</td></tr>
+      <tr><td style="padding: 0.75rem;">Immersion heater (12V)</td><td style="padding: 0.75rem;">Supply thermal energy</td></tr>
+      <tr style="background: hsl(var(--muted)/0.3);"><td style="padding: 0.75rem;">Power supply</td><td style="padding: 0.75rem;">Drives heater</td></tr>
+      <tr><td style="padding: 0.75rem;">Ammeter</td><td style="padding: 0.75rem;">Measure current (A)</td></tr>
+      <tr style="background: hsl(var(--muted)/0.3);"><td style="padding: 0.75rem;">Voltmeter</td><td style="padding: 0.75rem;">Measure voltage (V)</td></tr>
+      <tr><td style="padding: 0.75rem;">Stopwatch</td><td style="padding: 0.75rem;">Time energy input</td></tr>
+      <tr style="background: hsl(var(--muted)/0.3);"><td style="padding: 0.75rem;">Thermometer / temperature probe</td><td style="padding: 0.75rem;">Measure temperature change</td></tr>
+      <tr><td style="padding: 0.75rem;">Insulation (cotton wool)</td><td style="padding: 0.75rem;">Reduce heat losses</td></tr>
+      <tr style="background: hsl(var(--muted)/0.3);"><td style="padding: 0.75rem;">Balance</td><td style="padding: 0.75rem;">Measure mass of block</td></tr>
+    </tbody>
+  </table>
+
+  <h4 class="subsection-subheading">💠 Method (Step-by-Step)</h4>
+  
+  <div style="background: hsl(var(--accent)/0.1); border-radius: 12px; padding: 1.5rem; margin: 1rem 0;">
+    <h5 style="color: hsl(var(--primary)); margin-bottom: 1rem;">⭐ Setup</h5>
+    <ol style="margin-left: 1.5rem;">
+      <li>Measure the mass of the metal block using a balance (e.g., 1.00 kg)</li>
+      <li>Insert the immersion heater into the block</li>
+      <li>Wrap the block tightly in insulation (cotton wool) to reduce energy losses</li>
+      <li>Place a thermometer in the block's small hole or in thermal contact with the block</li>
+      <li>Connect the heater to a power supply with an ammeter in series and voltmeter in parallel</li>
+    </ol>
+  </div>
+
+  <div style="background: hsl(var(--accent)/0.1); border-radius: 12px; padding: 1.5rem; margin: 1rem 0;">
+    <h5 style="color: hsl(var(--primary)); margin-bottom: 1rem;">⭐ Heating Procedure</h5>
+    <ol style="margin-left: 1.5rem;">
+      <li>Record the <strong>initial temperature</strong> of the block</li>
+      <li>Switch on the heater and start the stopwatch simultaneously</li>
+      <li>Record voltage and current every 30 seconds (they should remain constant)</li>
+      <li>Continue heating for 10 minutes (or until temperature rises by ~10°C)</li>
+      <li>Switch off the heater and record the <strong>final temperature</strong></li>
+    </ol>
+  </div>
+
+  <div style="background: hsl(var(--accent)/0.1); border-radius: 12px; padding: 1.5rem; margin: 1rem 0;">
+    <h5 style="color: hsl(var(--primary)); margin-bottom: 1rem;">⭐ Energy Calculation</h5>
+    <div style="text-align: center; padding: 1rem; background: hsl(var(--muted)); border-radius: 8px;">
+      <p style="font-size: 1.1rem;"><strong>E = V × I × t</strong></p>
+      <p style="font-size: 0.9rem; color: hsl(var(--muted-foreground));">Where: V = voltage (volts), I = current (amps), t = time (seconds)</p>
+      <p style="margin-top: 1rem; font-size: 1.1rem;"><strong>c = (V × I × t) / (m × Δθ)</strong></p>
+    </div>
+  </div>
+
+  <h4 class="subsection-subheading">💠 Reducing Errors & Improving Accuracy</h4>
+  <table class="styled-table" style="width: 100%; margin: 1rem 0; border-collapse: collapse;">
+    <thead>
+      <tr style="background: hsl(var(--destructive)); color: hsl(var(--destructive-foreground));">
+        <th style="padding: 0.75rem; text-align: left;">Issue</th>
+        <th style="padding: 0.75rem; text-align: left;">Explanation</th>
+        <th style="padding: 0.75rem; text-align: left;">Solution</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr style="background: hsl(var(--muted)/0.3);"><td style="padding: 0.75rem;">Heat loss to air</td><td style="padding: 0.75rem;">Energy escapes instead of heating block</td><td style="padding: 0.75rem;">Add more insulation, use lid</td></tr>
+      <tr><td style="padding: 0.75rem;">Temperature lag</td><td style="padding: 0.75rem;">Thermometer reacts slowly</td><td style="padding: 0.75rem;">Use a digital probe</td></tr>
+      <tr style="background: hsl(var(--muted)/0.3);"><td style="padding: 0.75rem;">Uneven heating</td><td style="padding: 0.75rem;">Heater only warms part of block</td><td style="padding: 0.75rem;">Allow time for block to equalise</td></tr>
+      <tr><td style="padding: 0.75rem;">Inaccurate V/I</td><td style="padding: 0.75rem;">Causes energy calculation errors</td><td style="padding: 0.75rem;">Keep V & I constant; check meter zero</td></tr>
+    </tbody>
+  </table>
+
+  <h4 class="subsection-subheading">💠 Evaluation</h4>
+  <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin: 1rem 0;">
+    <div style="background: hsl(var(--destructive)/0.1); border-radius: 8px; padding: 1rem; border-left: 4px solid hsl(var(--destructive));">
+      <h5 style="color: hsl(var(--destructive));">Sources of Error</h5>
+      <ul style="margin-left: 1rem; font-size: 0.9rem;">
+        <li>Heat lost to surroundings → SHC appears larger</li>
+        <li>Inaccurate ΔT due to thermal inertia</li>
+        <li>Not all energy from heater enters the block</li>
+      </ul>
+    </div>
+    <div style="background: hsl(var(--chart-2)/0.1); border-radius: 8px; padding: 1rem; border-left: 4px solid hsl(var(--chart-2));">
+      <h5 style="color: hsl(var(--chart-2));">Improvements</h5>
+      <ul style="margin-left: 1rem; font-size: 0.9rem;">
+        <li>Use data logger</li>
+        <li>Use oil for better thermal contact</li>
+        <li>Insulate heater leads</li>
+        <li>Allow block to preheat slowly</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="key-point" style="background: linear-gradient(135deg, hsl(var(--chart-1)/0.1), hsl(var(--chart-2)/0.1)); border-radius: 12px; padding: 1.5rem; margin: 1.5rem 0; border-left: 4px solid hsl(var(--chart-1));">
+    <h4 style="color: hsl(var(--chart-1)); margin-bottom: 0.5rem;">💠 Conclusion</h4>
+    <p>Plotting <strong>temperature rise vs energy supplied</strong> gives a straight line. The gradient can also be used to calculate SHC.</p>
+  </div>
+</div>
+            `,
+            canonical_keywords: ["specific heat capacity", "energy", "temperature change", "E=mcΔθ", "immersion heater", "insulation", "joules", "mass", "thermal energy"],
+            practice_items: [
+              {
+                id: "shc-p1",
+                prompt_template: "Describe the method used to determine the specific heat capacity of a metal block.",
+                marks: 6,
+                type: "short-answer",
+                difficulty: "medium",
+                randomise: true,
+                expected_keywords: ["mass", "heater", "thermometer", "voltage", "current", "time", "insulation", "temperature change"]
+              },
+              {
+                id: "shc-p2",
+                prompt_template: "A 1 kg aluminium block is heated using a 12V, 4A heater for 5 minutes. The temperature rises from 20°C to 45°C. Calculate the specific heat capacity.",
+                marks: 4,
+                type: "short-answer",
+                difficulty: "medium",
+                randomise: false,
+                expected_keywords: ["E=VIt", "14400 J", "c=E/mΔθ", "576 J/kg°C"]
+              },
+              {
+                id: "shc-p3",
+                prompt_template: "Explain why the calculated value of specific heat capacity is often higher than the accepted value.",
+                marks: 3,
+                type: "short-answer",
+                difficulty: "medium",
+                randomise: true,
+                expected_keywords: ["heat loss", "surroundings", "insulation", "energy escapes"]
+              }
+            ]
+          },
+          {
+            id: "rp-insulation",
+            title: "RP2: Investigating Insulation",
+            type: "content",
+            study_group: 1,
+            content_html: `
+<div class="subsection">
+  <h3 class="subsection-heading">❄️ Required Practical 2: Investigating Insulation</h3>
+  <p style="color: hsl(var(--muted-foreground)); font-style: italic;">(Reducing Unwanted Energy Transfers)</p>
+  
+  <div class="key-point" style="background: linear-gradient(135deg, hsl(var(--chart-4)/0.1), hsl(var(--chart-5)/0.1)); border-radius: 12px; padding: 1.5rem; margin: 1.5rem 0; border-left: 4px solid hsl(var(--chart-4));">
+    <h4 style="color: hsl(var(--chart-4)); margin-bottom: 0.5rem;">💠 Aim</h4>
+    <p>To investigate how the <strong>rate of cooling</strong> of a beaker of hot water depends on:</p>
+    <ul style="margin-left: 1.5rem; margin-top: 0.5rem;">
+      <li>Type of insulation</li>
+      <li>Thickness of insulation</li>
+      <li>Use of a lid / shiny surface</li>
+    </ul>
+  </div>
+
+  <h4 class="subsection-subheading">💠 Apparatus</h4>
+  
+  <!-- Animated Insulation Setup Diagram -->
+  <div style="display: flex; justify-content: center; margin: 2rem 0;">
+    <svg viewBox="0 0 450 300" style="max-width: 450px; width: 100%;">
+      <defs>
+        <linearGradient id="waterGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+          <stop offset="0%" style="stop-color:#64b5f6"/>
+          <stop offset="100%" style="stop-color:#1976d2"/>
+        </linearGradient>
+        <linearGradient id="beakerGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+          <stop offset="0%" style="stop-color:#e0e0e0"/>
+          <stop offset="50%" style="stop-color:#f5f5f5"/>
+          <stop offset="100%" style="stop-color:#e0e0e0"/>
+        </linearGradient>
+        <linearGradient id="insulationGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" style="stop-color:#ffcc80"/>
+          <stop offset="100%" style="stop-color:#ff9800"/>
+        </linearGradient>
+      </defs>
+      
+      <!-- Title -->
+      <text x="225" y="25" text-anchor="middle" font-size="14" fill="#333" font-weight="bold">Insulation Investigation Setup</text>
+      
+      <!-- Beaker A - No Insulation (Control) -->
+      <g transform="translate(30, 50)">
+        <text x="40" y="0" text-anchor="middle" font-size="11" fill="#666" font-weight="bold">A: Control</text>
+        <path d="M15 20 L15 120 Q15 130 25 130 L55 130 Q65 130 65 120 L65 20" fill="url(#beakerGrad)" stroke="#999" stroke-width="2"/>
+        <rect x="20" y="40" width="40" height="85" fill="url(#waterGrad)" opacity="0.8"/>
+        <!-- Steam animation -->
+        <g opacity="0.5">
+          <path d="M30 35 Q33 25 30 15" stroke="#999" stroke-width="1.5" fill="none">
+            <animate attributeName="d" values="M30 35 Q33 25 30 15;M30 35 Q27 25 30 15;M30 35 Q33 25 30 15" dur="2s" repeatCount="indefinite"/>
+          </path>
+          <path d="M50 35 Q47 25 50 15" stroke="#999" stroke-width="1.5" fill="none">
+            <animate attributeName="d" values="M50 35 Q47 25 50 15;M50 35 Q53 25 50 15;M50 35 Q47 25 50 15" dur="2s" repeatCount="indefinite"/>
+          </path>
+        </g>
+        <!-- Thermometer -->
+        <rect x="35" y="10" width="6" height="50" fill="#fff" stroke="#666" rx="3"/>
+        <rect x="36.5" y="35" width="3" height="22" fill="#e53935" rx="1.5">
+          <animate attributeName="height" values="22;18;22" dur="4s" repeatCount="indefinite"/>
+        </rect>
+        <circle cx="38" cy="58" r="4" fill="#e53935"/>
+        <text x="40" y="150" text-anchor="middle" font-size="9" fill="#e53935">Fastest cooling</text>
+      </g>
+      
+      <!-- Beaker B - Cotton Wool -->
+      <g transform="translate(130, 50)">
+        <text x="45" y="0" text-anchor="middle" font-size="11" fill="#666" font-weight="bold">B: Cotton Wool</text>
+        <!-- Insulation layer -->
+        <ellipse cx="45" cy="75" rx="45" ry="60" fill="#f5f5dc" stroke="#d4c896" stroke-width="2" opacity="0.8"/>
+        <path d="M15 20 L15 120 Q15 130 25 130 L65 130 Q75 130 75 120 L75 20" fill="url(#beakerGrad)" stroke="#999" stroke-width="2"/>
+        <rect x="20" y="40" width="50" height="85" fill="url(#waterGrad)" opacity="0.8"/>
+        <!-- Lid -->
+        <rect x="10" y="15" width="70" height="8" fill="#8d6e63" rx="2"/>
+        <!-- Thermometer through lid -->
+        <rect x="42" y="5" width="6" height="55" fill="#fff" stroke="#666" rx="3"/>
+        <rect x="43.5" y="35" width="3" height="22" fill="#e53935" rx="1.5">
+          <animate attributeName="height" values="22;20;22" dur="6s" repeatCount="indefinite"/>
+        </rect>
+        <circle cx="45" cy="58" r="4" fill="#e53935"/>
+        <text x="45" y="150" text-anchor="middle" font-size="9" fill="#4caf50">Good insulation</text>
+      </g>
+      
+      <!-- Beaker C - Bubble Wrap -->
+      <g transform="translate(240, 50)">
+        <text x="45" y="0" text-anchor="middle" font-size="11" fill="#666" font-weight="bold">C: Bubble Wrap</text>
+        <!-- Bubble wrap pattern -->
+        <rect x="5" y="25" width="80" height="110" fill="none" stroke="#90caf9" stroke-width="10" rx="8" opacity="0.6"/>
+        <circle cx="15" cy="40" r="5" fill="#e3f2fd" stroke="#90caf9"/>
+        <circle cx="15" cy="55" r="5" fill="#e3f2fd" stroke="#90caf9"/>
+        <circle cx="15" cy="70" r="5" fill="#e3f2fd" stroke="#90caf9"/>
+        <circle cx="75" cy="40" r="5" fill="#e3f2fd" stroke="#90caf9"/>
+        <circle cx="75" cy="55" r="5" fill="#e3f2fd" stroke="#90caf9"/>
+        <circle cx="75" cy="70" r="5" fill="#e3f2fd" stroke="#90caf9"/>
+        <path d="M20 30 L20 115 Q20 125 30 125 L60 125 Q70 125 70 115 L70 30" fill="url(#beakerGrad)" stroke="#999" stroke-width="2"/>
+        <rect x="25" y="45" width="40" height="75" fill="url(#waterGrad)" opacity="0.8"/>
+        <!-- Lid -->
+        <rect x="10" y="25" width="70" height="8" fill="#8d6e63" rx="2"/>
+        <!-- Thermometer -->
+        <rect x="42" y="15" width="6" height="50" fill="#fff" stroke="#666" rx="3"/>
+        <rect x="43.5" y="40" width="3" height="22" fill="#e53935" rx="1.5">
+          <animate attributeName="height" values="22;21;22" dur="8s" repeatCount="indefinite"/>
+        </rect>
+        <circle cx="45" cy="63" r="4" fill="#e53935"/>
+        <text x="45" y="150" text-anchor="middle" font-size="9" fill="#2196f3">Better insulation</text>
+      </g>
+      
+      <!-- Beaker D - Foil -->
+      <g transform="translate(340, 50)">
+        <text x="45" y="0" text-anchor="middle" font-size="11" fill="#666" font-weight="bold">D: Foil</text>
+        <!-- Foil wrap -->
+        <rect x="8" y="25" width="74" height="110" fill="#c0c0c0" stroke="#a0a0a0" stroke-width="2" rx="4"/>
+        <rect x="12" y="28" width="66" height="104" fill="none" stroke="#e0e0e0" stroke-width="1" stroke-dasharray="4,2"/>
+        <path d="M18 30 L18 115 Q18 125 28 125 L62 125 Q72 125 72 115 L72 30" fill="url(#beakerGrad)" stroke="#999" stroke-width="2"/>
+        <rect x="23" y="45" width="44" height="75" fill="url(#waterGrad)" opacity="0.8"/>
+        <!-- Shiny reflection -->
+        <line x1="30" y1="50" x2="35" y2="90" stroke="#fff" stroke-width="2" opacity="0.5"/>
+        <line x1="55" y1="60" x2="60" y2="100" stroke="#fff" stroke-width="2" opacity="0.5"/>
+        <!-- Lid -->
+        <rect x="8" y="25" width="74" height="8" fill="#a0a0a0" rx="2"/>
+        <!-- Thermometer -->
+        <rect x="42" y="15" width="6" height="50" fill="#fff" stroke="#666" rx="3"/>
+        <rect x="43.5" y="40" width="3" height="22" fill="#e53935" rx="1.5">
+          <animate attributeName="height" values="22;21.5;22" dur="10s" repeatCount="indefinite"/>
+        </rect>
+        <circle cx="45" cy="63" r="4" fill="#e53935"/>
+        <text x="45" y="150" text-anchor="middle" font-size="9" fill="#9c27b0">Reflects radiation</text>
+      </g>
+      
+      <!-- Key at bottom -->
+      <g transform="translate(20, 260)">
+        <text x="0" y="0" font-size="10" fill="#333" font-weight="bold">Key:</text>
+        <rect x="40" y="-8" width="15" height="10" fill="url(#waterGrad)" opacity="0.8"/>
+        <text x="60" y="0" font-size="9" fill="#666">Hot water (200ml)</text>
+        <rect x="140" y="-8" width="15" height="10" fill="#8d6e63"/>
+        <text x="160" y="0" font-size="9" fill="#666">Cardboard lid</text>
+        <rect x="240" y="-6" width="8" height="15" fill="#fff" stroke="#666"/>
+        <rect x="241.5" y="2" width="5" height="6" fill="#e53935"/>
+        <text x="255" y="0" font-size="9" fill="#666">Thermometer</text>
+      </g>
+    </svg>
+  </div>
+
+  <table class="styled-table" style="width: 100%; margin: 1rem 0; border-collapse: collapse;">
+    <thead>
+      <tr style="background: hsl(var(--chart-4)); color: hsl(var(--primary-foreground));">
+        <th style="padding: 0.75rem; text-align: left;">Equipment</th>
+        <th style="padding: 0.75rem; text-align: left;">Purpose</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr style="background: hsl(var(--muted)/0.3);"><td style="padding: 0.75rem;">Beakers (identical)</td><td style="padding: 0.75rem;">Hold hot water</td></tr>
+      <tr><td style="padding: 0.75rem;">Thermometer / temperature probe</td><td style="padding: 0.75rem;">Measure cooling</td></tr>
+      <tr style="background: hsl(var(--muted)/0.3);"><td style="padding: 0.75rem;">Stopwatch</td><td style="padding: 0.75rem;">Timings</td></tr>
+      <tr><td style="padding: 0.75rem;">Kettle</td><td style="padding: 0.75rem;">Heat water</td></tr>
+      <tr style="background: hsl(var(--muted)/0.3);"><td style="padding: 0.75rem;">Insulation materials</td><td style="padding: 0.75rem;">Cotton wool, bubble wrap, foil, newspaper</td></tr>
+      <tr><td style="padding: 0.75rem;">Lids (cardboard discs)</td><td style="padding: 0.75rem;">Reduce convection</td></tr>
+      <tr style="background: hsl(var(--muted)/0.3);"><td style="padding: 0.75rem;">Elastic bands / tape</td><td style="padding: 0.75rem;">Hold insulation in place</td></tr>
+      <tr><td style="padding: 0.75rem;">Measuring cylinder</td><td style="padding: 0.75rem;">Accurately measure volume</td></tr>
+    </tbody>
+  </table>
+
+  <h4 class="subsection-subheading">💠 Method A: Comparing Different Materials</h4>
+  
+  <div style="background: hsl(var(--accent)/0.1); border-radius: 12px; padding: 1.5rem; margin: 1rem 0;">
+    <h5 style="color: hsl(var(--primary)); margin-bottom: 1rem;">⭐ Setup</h5>
+    <ol style="margin-left: 1.5rem;">
+      <li>Label beakers A, B, C, D</li>
+      <li>Wrap each beaker in a different insulating material</li>
+      <li>Leave one beaker uninsulated as a <strong>control</strong></li>
+      <li>Place identical cardboard lids on top (with thermometer hole)</li>
+    </ol>
+  </div>
+
+  <div style="background: hsl(var(--accent)/0.1); border-radius: 12px; padding: 1.5rem; margin: 1rem 0;">
+    <h5 style="color: hsl(var(--primary)); margin-bottom: 1rem;">⭐ Heating</h5>
+    <ol style="margin-left: 1.5rem;">
+      <li>Pour <strong>200 ml of boiled water</strong> into each beaker quickly</li>
+      <li>Insert thermometer and record <strong>initial temperature</strong></li>
+    </ol>
+  </div>
+
+  <div style="background: hsl(var(--accent)/0.1); border-radius: 12px; padding: 1.5rem; margin: 1rem 0;">
+    <h5 style="color: hsl(var(--primary)); margin-bottom: 1rem;">⭐ Recording Data</h5>
+    <ol style="margin-left: 1.5rem;">
+      <li>Start timer and record temperature every minute for 10 minutes</li>
+      <li>Plot cooling curves for each beaker</li>
+      <li>Compare which material reduced cooling the most</li>
+    </ol>
+  </div>
+
+  <h4 class="subsection-subheading">💠 Method B: Changing Thickness of Insulation</h4>
+  
+  <div style="background: hsl(var(--chart-2)/0.1); border-radius: 12px; padding: 1.5rem; margin: 1rem 0;">
+    <h5 style="color: hsl(var(--chart-2)); margin-bottom: 1rem;">⭐ Setup</h5>
+    <ol style="margin-left: 1.5rem;">
+      <li>Use one insulating material (e.g., bubble wrap)</li>
+      <li>Apply <strong>1 layer, 2 layers, 3 layers, 4 layers</strong> in different trials</li>
+      <li>Ensure layers fit tightly with no gaps</li>
+    </ol>
+  </div>
+
+  <div style="background: hsl(var(--chart-2)/0.1); border-radius: 12px; padding: 1.5rem; margin: 1rem 0;">
+    <h5 style="color: hsl(var(--chart-2)); margin-bottom: 1rem;">⭐ Measurement</h5>
+    <ol style="margin-left: 1.5rem;">
+      <li>Record temperature every minute for 10 minutes</li>
+      <li>Repeat for each thickness; keep all other variables the same</li>
+      <li>Plot cooling curves for each thickness</li>
+    </ol>
+  </div>
+
+  <!-- Animated Cooling Curve Graph -->
+  <div style="display: flex; justify-content: center; margin: 2rem 0;">
+    <svg viewBox="0 0 400 280" style="max-width: 400px; width: 100%;">
+      <defs>
+        <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+          <polygon points="0 0, 10 3.5, 0 7" fill="#333"/>
+        </marker>
+      </defs>
+      
+      <!-- Title -->
+      <text x="200" y="20" text-anchor="middle" font-size="13" fill="#333" font-weight="bold">Cooling Curves for Different Insulation</text>
+      
+      <!-- Axes -->
+      <line x1="60" y1="230" x2="380" y2="230" stroke="#333" stroke-width="2" marker-end="url(#arrowhead)"/>
+      <line x1="60" y1="230" x2="60" y2="40" stroke="#333" stroke-width="2" marker-end="url(#arrowhead)"/>
+      
+      <!-- Y-axis labels -->
+      <text x="25" y="140" font-size="11" fill="#333" transform="rotate(-90, 25, 140)">Temperature (°C)</text>
+      <text x="55" y="235" font-size="9" fill="#666" text-anchor="end">0</text>
+      <text x="55" y="180" font-size="9" fill="#666" text-anchor="end">40</text>
+      <text x="55" y="130" font-size="9" fill="#666" text-anchor="end">60</text>
+      <text x="55" y="80" font-size="9" fill="#666" text-anchor="end">80</text>
+      
+      <!-- X-axis labels -->
+      <text x="220" y="260" font-size="11" fill="#333" text-anchor="middle">Time (minutes)</text>
+      <text x="100" y="248" font-size="9" fill="#666" text-anchor="middle">2</text>
+      <text x="160" y="248" font-size="9" fill="#666" text-anchor="middle">4</text>
+      <text x="220" y="248" font-size="9" fill="#666" text-anchor="middle">6</text>
+      <text x="280" y="248" font-size="9" fill="#666" text-anchor="middle">8</text>
+      <text x="340" y="248" font-size="9" fill="#666" text-anchor="middle">10</text>
+      
+      <!-- Grid lines -->
+      <g stroke="#e0e0e0" stroke-width="1">
+        <line x1="60" y1="180" x2="370" y2="180"/>
+        <line x1="60" y1="130" x2="370" y2="130"/>
+        <line x1="60" y1="80" x2="370" y2="80"/>
+      </g>
+      
+      <!-- Cooling curve - No insulation (steep) -->
+      <path d="M60 60 Q150 100 220 160 Q280 200 370 210" stroke="#e53935" stroke-width="3" fill="none">
+        <animate attributeName="stroke-dashoffset" from="400" to="0" dur="2s" fill="freeze"/>
+      </path>
+      
+      <!-- Cooling curve - Cotton wool (medium) -->
+      <path d="M60 60 Q180 80 260 120 Q320 150 370 170" stroke="#ff9800" stroke-width="3" fill="none">
+        <animate attributeName="stroke-dashoffset" from="400" to="0" dur="2s" fill="freeze"/>
+      </path>
+      
+      <!-- Cooling curve - Bubble wrap (gentle) -->
+      <path d="M60 60 Q200 70 280 100 Q340 120 370 140" stroke="#2196f3" stroke-width="3" fill="none">
+        <animate attributeName="stroke-dashoffset" from="400" to="0" dur="2s" fill="freeze"/>
+      </path>
+      
+      <!-- Cooling curve - Foil (gentlest) -->
+      <path d="M60 60 Q220 65 300 85 Q350 100 370 115" stroke="#9c27b0" stroke-width="3" fill="none">
+        <animate attributeName="stroke-dashoffset" from="400" to="0" dur="2s" fill="freeze"/>
+      </path>
+      
+      <!-- Legend -->
+      <g transform="translate(240, 35)">
+        <line x1="0" y1="0" x2="20" y2="0" stroke="#e53935" stroke-width="3"/>
+        <text x="25" y="4" font-size="9" fill="#666">No insulation</text>
+        <line x1="0" y1="15" x2="20" y2="15" stroke="#ff9800" stroke-width="3"/>
+        <text x="25" y="19" font-size="9" fill="#666">Cotton wool</text>
+        <line x1="0" y1="30" x2="20" y2="30" stroke="#2196f3" stroke-width="3"/>
+        <text x="25" y="34" font-size="9" fill="#666">Bubble wrap</text>
+        <line x1="0" y1="45" x2="20" y2="45" stroke="#9c27b0" stroke-width="3"/>
+        <text x="25" y="49" font-size="9" fill="#666">Foil (shiny)</text>
+      </g>
+      
+      <!-- Annotation -->
+      <text x="370" y="205" font-size="8" fill="#e53935">Steeper = faster cooling</text>
+    </svg>
+  </div>
+
+  <h4 class="subsection-subheading">💠 Variables</h4>
+  <table class="styled-table" style="width: 100%; margin: 1rem 0; border-collapse: collapse;">
+    <thead>
+      <tr style="background: hsl(var(--primary)); color: hsl(var(--primary-foreground));">
+        <th style="padding: 0.75rem; text-align: left;">Type</th>
+        <th style="padding: 0.75rem; text-align: left;">Variable</th>
+        <th style="padding: 0.75rem; text-align: left;">Control Method</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr style="background: hsl(var(--muted)/0.3);"><td style="padding: 0.75rem;"><strong>Independent</strong></td><td style="padding: 0.75rem;">Material / Thickness</td><td style="padding: 0.75rem;">Change one only</td></tr>
+      <tr><td style="padding: 0.75rem;"><strong>Dependent</strong></td><td style="padding: 0.75rem;">Temperature drop</td><td style="padding: 0.75rem;">Measured with thermometer</td></tr>
+      <tr style="background: hsl(var(--muted)/0.3);"><td style="padding: 0.75rem;">Control</td><td style="padding: 0.75rem;">Volume of water</td><td style="padding: 0.75rem;">Use measuring cylinder</td></tr>
+      <tr><td style="padding: 0.75rem;">Control</td><td style="padding: 0.75rem;">Starting temperature</td><td style="padding: 0.75rem;">Adjust until identical (±1°C)</td></tr>
+      <tr style="background: hsl(var(--muted)/0.3);"><td style="padding: 0.75rem;">Control</td><td style="padding: 0.75rem;">Beaker type</td><td style="padding: 0.75rem;">Use identical beakers</td></tr>
+      <tr><td style="padding: 0.75rem;">Control</td><td style="padding: 0.75rem;">Environment</td><td style="padding: 0.75rem;">No drafts; same room</td></tr>
+    </tbody>
+  </table>
+
+  <h4 class="subsection-subheading">💠 Improving Accuracy</h4>
+  <table class="styled-table" style="width: 100%; margin: 1rem 0; border-collapse: collapse;">
+    <thead>
+      <tr style="background: hsl(var(--destructive)); color: hsl(var(--destructive-foreground));">
+        <th style="padding: 0.75rem; text-align: left;">Problem</th>
+        <th style="padding: 0.75rem; text-align: left;">Why It Happens</th>
+        <th style="padding: 0.75rem; text-align: left;">Solution</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr style="background: hsl(var(--muted)/0.3);"><td style="padding: 0.75rem;">Rapid cooling during setup</td><td style="padding: 0.75rem;">Water poured slowly</td><td style="padding: 0.75rem;">Pour quickly & measure immediately</td></tr>
+      <tr><td style="padding: 0.75rem;">Heat loss through top</td><td style="padding: 0.75rem;">Uncovered beaker</td><td style="padding: 0.75rem;">Use lids</td></tr>
+      <tr style="background: hsl(var(--muted)/0.3);"><td style="padding: 0.75rem;">Thermometer touches sides</td><td style="padding: 0.75rem;">Cooler at edges</td><td style="padding: 0.75rem;">Hold centrally</td></tr>
+      <tr><td style="padding: 0.75rem;">Background drafts</td><td style="padding: 0.75rem;">Increases convection</td><td style="padding: 0.75rem;">Close windows</td></tr>
+      <tr style="background: hsl(var(--muted)/0.3);"><td style="padding: 0.75rem;">Random error in reading</td><td style="padding: 0.75rem;">Parallax error</td><td style="padding: 0.75rem;">Eye level & digital probe</td></tr>
+    </tbody>
+  </table>
+
+  <div class="key-point" style="background: linear-gradient(135deg, hsl(var(--chart-4)/0.1), hsl(var(--chart-5)/0.1)); border-radius: 12px; padding: 1.5rem; margin: 1.5rem 0; border-left: 4px solid hsl(var(--chart-4));">
+    <h4 style="color: hsl(var(--chart-4)); margin-bottom: 0.5rem;">💠 Conclusion</h4>
+    <ul style="margin-left: 1.5rem;">
+      <li><strong>Best insulators</strong>: low thermal conductivity</li>
+      <li><strong>More layers = less energy transfer</strong></li>
+      <li><strong>Lids reduce convection</strong>, shiny foil reflects radiation</li>
+    </ul>
+    <div style="margin-top: 1rem; padding: 0.75rem; background: hsl(var(--muted)); border-radius: 8px;">
+      <p><strong>Cooling curve shape:</strong></p>
+      <ul style="margin-left: 1.5rem; margin-top: 0.5rem;">
+        <li>Steeper slope → faster energy loss</li>
+        <li>Shallow slope → good insulation</li>
+      </ul>
+    </div>
+  </div>
+</div>
+            `,
+            canonical_keywords: ["insulation", "thermal conductivity", "cooling curve", "heat loss", "conduction", "convection", "radiation", "temperature", "energy transfer"],
+            practice_items: [
+              {
+                id: "ins-p1",
+                prompt_template: "Describe how you would investigate which material is the best insulator.",
+                marks: 6,
+                type: "short-answer",
+                difficulty: "medium",
+                randomise: true,
+                expected_keywords: ["beakers", "hot water", "thermometer", "different materials", "measure temperature", "time", "control", "lid"]
+              },
+              {
+                id: "ins-p2",
+                prompt_template: "Explain why a shiny foil wrapper would be good at reducing heat loss from a hot object.",
+                marks: 3,
+                type: "short-answer",
+                difficulty: "medium",
+                randomise: true,
+                expected_keywords: ["reflects", "radiation", "infrared", "shiny surface"]
+              },
+              {
+                id: "ins-p3",
+                prompt_template: "State three control variables that must be kept the same when comparing different insulating materials.",
+                marks: 3,
+                type: "short-answer",
+                difficulty: "easy",
+                randomise: true,
+                expected_keywords: ["volume", "starting temperature", "beaker type", "room temperature", "lid"]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        id: "rp-forces",
+        title: "Forces Practicals",
+        status: "coming_soon",
+        subsections: []
+      },
+      {
+        id: "rp-waves",
+        title: "Waves Practicals",
+        status: "coming_soon",
+        subsections: []
+      }
+    ]
   }
 ];
