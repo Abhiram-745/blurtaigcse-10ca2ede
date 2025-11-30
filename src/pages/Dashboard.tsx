@@ -320,6 +320,40 @@ const Dashboard = () => {
           />
         </div>
 
+        {/* Choose Your Subject */}
+        <Card className="animate-fade-in border-border/50 bg-card/50 backdrop-blur-sm">
+          <CardHeader>
+            <CardTitle className="flex items-center gap-2">
+              <BookOpen className="h-5 w-5 text-primary" />
+              Choose Your Subject
+            </CardTitle>
+            <CardDescription>Select a subject to start revising</CardDescription>
+          </CardHeader>
+          <CardContent>
+            <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+              {[
+                { title: "Chemistry", desc: "AQA GCSE Chemistry", color: "from-blue-500 to-cyan-500", path: "/sections" },
+                { title: "Physics", desc: "AQA GCSE Physics", color: "from-purple-500 to-pink-500", path: "/physics" },
+                { title: "Economics", desc: "OCR GCSE Economics", color: "from-emerald-500 to-teal-500", path: "/economics/chapters" },
+                { title: "Product Design", desc: "AQA GCSE Product Design", color: "from-orange-500 to-amber-500", path: "/product-design/chapters" },
+              ].map((subject, idx) => (
+                <Card 
+                  key={subject.title}
+                  className="group hover:shadow-xl transition-all duration-300 cursor-pointer hover-lift border-border/50 overflow-hidden"
+                  style={{ animationDelay: `${idx * 50}ms` }}
+                  onClick={() => navigate(subject.path)}
+                >
+                  <div className={`h-2 bg-gradient-to-r ${subject.color}`} />
+                  <CardHeader className="pb-2">
+                    <CardTitle className="text-lg group-hover:text-primary transition-colors">{subject.title}</CardTitle>
+                    <CardDescription className="text-xs">{subject.desc}</CardDescription>
+                  </CardHeader>
+                </Card>
+              ))}
+            </div>
+          </CardContent>
+        </Card>
+
         {/* Quick Access Cards */}
         <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
           {[
