@@ -26,8 +26,8 @@ export interface EnergyTransfersModule {
 }
 
 export const energyTransfersModuleData: EnergyTransfersModule = {
-  id: "module-3-energy-transfers",
-  title: "Module 3: Energy Transfers",
+  id: "module-1-energy-transfers",
+  title: "Module 1: Energy Transfers",
   status: "ready",
   subsections: [
     {

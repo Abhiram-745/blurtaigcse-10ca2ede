@@ -1239,6 +1239,71 @@ export const sectionsData: TopicSection[] = [
     <h4>🟢 Key Principle</h4>
     <p>"Scientific models evolve as new evidence is gathered."</p>
   </div>
+
+  <!-- Animated Atomic Model Timeline Diagram -->
+  <div class="key-idea-block anim-pause-hover" style="padding: 1rem; margin: 1rem 0;">
+    <h4>📅 Development of Atomic Models Timeline (hover to pause)</h4>
+    <div style="display: flex; justify-content: center; padding: 0.5rem;">
+      <svg width="360" height="180" viewBox="0 0 360 180">
+        <!-- Timeline line -->
+        <line x1="30" y1="90" x2="330" y2="90" stroke="currentColor" stroke-width="2"/>
+        
+        <!-- Dalton 1803 -->
+        <g>
+          <circle cx="50" cy="90" r="6" fill="#78716c" class="anim-pulse"/>
+          <text x="50" y="70" fill="currentColor" font-size="8" text-anchor="middle" font-weight="bold">1803</text>
+          <circle cx="50" cy="130" r="15" fill="#78716c" stroke="#57534e" stroke-width="2"/>
+          <text x="50" y="160" fill="currentColor" font-size="7" text-anchor="middle">Dalton</text>
+          <text x="50" y="170" fill="currentColor" font-size="6" text-anchor="middle">Solid Sphere</text>
+        </g>
+        
+        <!-- Thomson 1897 -->
+        <g>
+          <circle cx="125" cy="90" r="6" fill="#22c55e" class="anim-pulse anim-delay-200"/>
+          <text x="125" y="70" fill="currentColor" font-size="8" text-anchor="middle" font-weight="bold">1897</text>
+          <circle cx="125" cy="130" r="15" fill="#22c55e" opacity="0.3" stroke="#16a34a" stroke-width="2"/>
+          <circle cx="118" cy="125" r="3" fill="#ef4444"/>
+          <circle cx="132" cy="128" r="3" fill="#ef4444"/>
+          <circle cx="125" cy="137" r="3" fill="#ef4444"/>
+          <text x="125" y="160" fill="currentColor" font-size="7" text-anchor="middle">Thomson</text>
+          <text x="125" y="170" fill="currentColor" font-size="6" text-anchor="middle">Plum Pudding</text>
+        </g>
+        
+        <!-- Rutherford 1909 -->
+        <g>
+          <circle cx="200" cy="90" r="6" fill="#3b82f6" class="anim-pulse anim-delay-400"/>
+          <text x="200" y="70" fill="currentColor" font-size="8" text-anchor="middle" font-weight="bold">1909</text>
+          <circle cx="200" cy="130" r="15" fill="none" stroke="currentColor" stroke-width="1" stroke-dasharray="2,2" opacity="0.4"/>
+          <circle cx="200" cy="130" r="5" fill="#ef4444"/>
+          <circle cx="200" cy="117" r="2" fill="#f59e0b" class="anim-rotate-cw" style="transform-origin: 200px 130px;"/>
+          <text x="200" y="160" fill="currentColor" font-size="7" text-anchor="middle">Rutherford</text>
+          <text x="200" y="170" fill="currentColor" font-size="6" text-anchor="middle">Nuclear Model</text>
+        </g>
+        
+        <!-- Bohr 1913 -->
+        <g>
+          <circle cx="275" cy="90" r="6" fill="#a855f7" class="anim-pulse anim-delay-600"/>
+          <text x="275" y="70" fill="currentColor" font-size="8" text-anchor="middle" font-weight="bold">1913</text>
+          <circle cx="275" cy="130" r="10" fill="none" stroke="currentColor" stroke-width="1" opacity="0.3"/>
+          <circle cx="275" cy="130" r="18" fill="none" stroke="currentColor" stroke-width="1" opacity="0.3"/>
+          <circle cx="275" cy="130" r="4" fill="#ef4444"/>
+          <circle cx="275" cy="120" r="2" fill="#f59e0b" class="anim-rotate-cw-fast" style="transform-origin: 275px 130px;"/>
+          <circle cx="275" cy="112" r="2" fill="#f59e0b" class="anim-rotate-ccw" style="transform-origin: 275px 130px;"/>
+          <text x="275" y="160" fill="currentColor" font-size="7" text-anchor="middle">Bohr</text>
+          <text x="275" y="170" fill="currentColor" font-size="6" text-anchor="middle">Energy Levels</text>
+        </g>
+        
+        <!-- Chadwick 1932 -->
+        <g>
+          <circle cx="330" cy="90" r="6" fill="#f59e0b" class="anim-pulse anim-delay-800"/>
+          <text x="325" y="70" fill="currentColor" font-size="8" text-anchor="middle" font-weight="bold">1932</text>
+          <text x="325" y="55" fill="currentColor" font-size="7" text-anchor="middle">Chadwick</text>
+          <text x="325" y="45" fill="currentColor" font-size="6" text-anchor="middle">+Neutrons</text>
+        </g>
+      </svg>
+    </div>
+    <p style="text-align: center; font-size: 0.8rem; color: var(--muted-foreground);">Each model improved as new evidence was discovered through experiments</p>
+  </div>
 </div>
 
 <div class="subsection">
@@ -1320,6 +1385,69 @@ export const sectionsData: TopicSection[] = [
   <div class="example-block">
     <h4>📘 Rutherford's Nuclear Model</h4>
     <p>Small, dense nucleus in the centre; electrons orbiting in space around it.</p>
+  </div>
+
+  <!-- Animated Alpha Scattering Experiment Diagram -->
+  <div class="key-idea-block anim-pause-hover" style="padding: 1rem; margin: 1rem 0;">
+    <h4>⚛️ Alpha Particle Scattering Experiment (hover to pause)</h4>
+    <div style="display: flex; justify-content: center; padding: 0.5rem;">
+      <svg width="320" height="200" viewBox="0 0 320 200">
+        <!-- Alpha source -->
+        <rect x="10" y="85" width="30" height="30" fill="#f59e0b" stroke="#d97706" stroke-width="2" rx="3"/>
+        <text x="25" y="130" fill="#f59e0b" font-size="8" text-anchor="middle">α source</text>
+        
+        <!-- Gold foil -->
+        <rect x="180" y="40" width="4" height="120" fill="#ffd700" stroke="#b8860b" stroke-width="1"/>
+        <text x="182" y="170" fill="#ffd700" font-size="8" text-anchor="middle">Gold foil</text>
+        
+        <!-- Gold atoms with nuclei -->
+        <circle cx="182" cy="60" r="15" fill="none" stroke="#ffd700" stroke-width="1" stroke-dasharray="2,2" opacity="0.5"/>
+        <circle cx="182" cy="60" r="3" fill="#ef4444"/>
+        <circle cx="182" cy="100" r="15" fill="none" stroke="#ffd700" stroke-width="1" stroke-dasharray="2,2" opacity="0.5"/>
+        <circle cx="182" cy="100" r="3" fill="#ef4444"/>
+        <circle cx="182" cy="140" r="15" fill="none" stroke="#ffd700" stroke-width="1" stroke-dasharray="2,2" opacity="0.5"/>
+        <circle cx="182" cy="140" r="3" fill="#ef4444"/>
+        
+        <!-- Alpha particles - most pass through -->
+        <circle r="4" fill="#f59e0b" class="anim-flow-right">
+          <animate attributeName="cx" from="50" to="290" dur="2s" repeatCount="indefinite"/>
+          <animate attributeName="cy" values="70;70;70" dur="2s" repeatCount="indefinite"/>
+        </circle>
+        <circle r="4" fill="#f59e0b" class="anim-flow-right">
+          <animate attributeName="cx" from="50" to="290" dur="2s" repeatCount="indefinite" begin="0.3s"/>
+          <animate attributeName="cy" values="85;85;85" dur="2s" repeatCount="indefinite" begin="0.3s"/>
+        </circle>
+        <circle r="4" fill="#f59e0b" class="anim-flow-right">
+          <animate attributeName="cx" from="50" to="290" dur="2s" repeatCount="indefinite" begin="0.6s"/>
+          <animate attributeName="cy" values="115;115;115" dur="2s" repeatCount="indefinite" begin="0.6s"/>
+        </circle>
+        
+        <!-- Alpha particle - slight deflection -->
+        <circle r="4" fill="#22c55e">
+          <animate attributeName="cx" from="50" to="280" dur="2.5s" repeatCount="indefinite" begin="0.5s"/>
+          <animate attributeName="cy" values="100;100;130" dur="2.5s" repeatCount="indefinite" begin="0.5s"/>
+        </circle>
+        
+        <!-- Alpha particle - bounces back -->
+        <circle r="4" fill="#ef4444">
+          <animate attributeName="cx" values="50;170;50" dur="3s" repeatCount="indefinite" begin="1s"/>
+          <animate attributeName="cy" values="60;60;40" dur="3s" repeatCount="indefinite" begin="1s"/>
+        </circle>
+        
+        <!-- Detector screen -->
+        <path d="M240 20 Q300 100 240 180" fill="none" stroke="currentColor" stroke-width="2" stroke-dasharray="5,3"/>
+        <text x="280" y="100" fill="currentColor" font-size="8" text-anchor="middle">Detector</text>
+        
+        <!-- Legend -->
+        <circle cx="20" cy="180" r="4" fill="#f59e0b"/>
+        <text x="30" y="183" fill="currentColor" font-size="7">Most pass through</text>
+        <circle cx="110" cy="180" r="4" fill="#22c55e"/>
+        <text x="120" y="183" fill="currentColor" font-size="7">Some deflect</text>
+        <circle cx="200" cy="180" r="4" fill="#ef4444"/>
+        <text x="210" y="183" fill="currentColor" font-size="7">Few bounce back</text>
+      </svg>
+    </div>
+    <p style="text-align: center; font-size: 0.8rem; color: var(--muted-foreground);">Most α particles pass through (empty space) • Few deflect or bounce (small dense nucleus)</p>
   </div>
 </div>
 
@@ -1538,6 +1666,54 @@ export const sectionsData: TopicSection[] = [
       </tbody>
     </table>
   </div>
+
+  <!-- Animated Isotopes Diagram -->
+  <div class="key-idea-block anim-pause-hover" style="padding: 1rem; margin: 1rem 0;">
+    <h4>⚛️ Hydrogen Isotopes Comparison (hover to pause)</h4>
+    <div style="display: flex; justify-content: center; padding: 0.5rem;">
+      <svg width="340" height="140" viewBox="0 0 340 140">
+        <!-- Hydrogen-1 (Protium) -->
+        <g>
+          <text x="55" y="15" fill="currentColor" font-size="10" text-anchor="middle" font-weight="bold">¹H</text>
+          <circle cx="55" cy="65" r="30" fill="none" stroke="currentColor" stroke-width="1" stroke-dasharray="3,2" opacity="0.5"/>
+          <circle cx="55" cy="65" r="8" fill="#ef4444" class="anim-pulse"/>
+          <text x="55" y="68" fill="white" font-size="6" text-anchor="middle">p⁺</text>
+          <circle cx="55" cy="35" r="5" fill="#f59e0b" class="anim-rotate-cw" style="transform-origin: 55px 65px;"/>
+          <text x="55" y="115" fill="currentColor" font-size="8" text-anchor="middle">Hydrogen-1</text>
+          <text x="55" y="125" fill="currentColor" font-size="7" text-anchor="middle">(1p, 0n, 1e)</text>
+        </g>
+        
+        <!-- Deuterium -->
+        <g>
+          <text x="170" y="15" fill="currentColor" font-size="10" text-anchor="middle" font-weight="bold">²H</text>
+          <circle cx="170" cy="65" r="30" fill="none" stroke="currentColor" stroke-width="1" stroke-dasharray="3,2" opacity="0.5"/>
+          <circle cx="165" cy="62" r="7" fill="#ef4444" class="anim-pulse"/>
+          <circle cx="175" cy="68" r="7" fill="#3b82f6" class="anim-pulse"/>
+          <text x="165" y="65" fill="white" font-size="5" text-anchor="middle">p⁺</text>
+          <text x="175" y="71" fill="white" font-size="5" text-anchor="middle">n</text>
+          <circle cx="170" cy="35" r="5" fill="#f59e0b" class="anim-rotate-cw" style="transform-origin: 170px 65px;"/>
+          <text x="170" y="115" fill="currentColor" font-size="8" text-anchor="middle">Deuterium</text>
+          <text x="170" y="125" fill="currentColor" font-size="7" text-anchor="middle">(1p, 1n, 1e)</text>
+        </g>
+        
+        <!-- Tritium -->
+        <g>
+          <text x="285" y="15" fill="currentColor" font-size="10" text-anchor="middle" font-weight="bold">³H</text>
+          <circle cx="285" cy="65" r="30" fill="none" stroke="currentColor" stroke-width="1" stroke-dasharray="3,2" opacity="0.5"/>
+          <circle cx="280" cy="60" r="6" fill="#ef4444" class="anim-pulse"/>
+          <circle cx="290" cy="60" r="6" fill="#3b82f6" class="anim-pulse"/>
+          <circle cx="285" cy="72" r="6" fill="#3b82f6" class="anim-pulse"/>
+          <text x="280" y="63" fill="white" font-size="4" text-anchor="middle">p⁺</text>
+          <text x="290" y="63" fill="white" font-size="4" text-anchor="middle">n</text>
+          <text x="285" y="75" fill="white" font-size="4" text-anchor="middle">n</text>
+          <circle cx="285" cy="35" r="5" fill="#f59e0b" class="anim-rotate-cw" style="transform-origin: 285px 65px;"/>
+          <text x="285" y="115" fill="currentColor" font-size="8" text-anchor="middle">Tritium</text>
+          <text x="285" y="125" fill="currentColor" font-size="7" text-anchor="middle">(1p, 2n, 1e)</text>
+        </g>
+      </svg>
+    </div>
+    <p style="text-align: center; font-size: 0.8rem; color: var(--muted-foreground);">Same protons (same element) • Different neutrons (different mass numbers) • Red = proton, Blue = neutron, Yellow = electron</p>
+  </div>
 </div>
         `,
         canonical_keywords: ["atomic radius", "nucleus", "10⁻¹⁰", "10⁻¹⁴", "isotopes", "neutrons", "mass", "empty space"],
@@ -1654,6 +1830,52 @@ export const sectionsData: TopicSection[] = [
     <h4>🧠 Key Rule</h4>
     <p>Electrons fill the lowest available energy level first, before moving to higher ones.</p>
     <p><strong>Example:</strong> Magnesium (atomic number 12) → 2,8,2</p>
+  </div>
+
+  <!-- Animated Electronic Shell Diagram -->
+  <div class="key-idea-block anim-pause-hover" style="padding: 1rem; margin: 1rem 0;">
+    <h4>⚛️ Electronic Configuration of Sodium (2,8,1) (hover to pause)</h4>
+    <div style="display: flex; justify-content: center; padding: 0.5rem;">
+      <svg width="240" height="160" viewBox="0 0 240 160">
+        <!-- Nucleus -->
+        <circle cx="120" cy="80" r="15" fill="#ef4444" opacity="0.3" stroke="#ef4444" stroke-width="2" class="anim-pulse"/>
+        <text x="120" y="84" fill="#ef4444" font-size="8" text-anchor="middle" font-weight="bold">11p⁺</text>
+        
+        <!-- Shell 1 (2 electrons) -->
+        <circle cx="120" cy="80" r="30" fill="none" stroke="currentColor" stroke-width="1" stroke-dasharray="3,2" opacity="0.5"/>
+        <g class="anim-rotate-cw-fast" style="transform-origin: 120px 80px;">
+          <circle cx="150" cy="80" r="5" fill="#f59e0b"/>
+          <circle cx="90" cy="80" r="5" fill="#f59e0b"/>
+        </g>
+        <text x="155" y="60" fill="currentColor" font-size="7">Shell 1: 2e⁻</text>
+        
+        <!-- Shell 2 (8 electrons) -->
+        <circle cx="120" cy="80" r="50" fill="none" stroke="currentColor" stroke-width="1" stroke-dasharray="3,2" opacity="0.5"/>
+        <g class="anim-rotate-ccw" style="transform-origin: 120px 80px;">
+          <circle cx="170" cy="80" r="4" fill="#22c55e"/>
+          <circle cx="70" cy="80" r="4" fill="#22c55e"/>
+          <circle cx="120" cy="30" r="4" fill="#22c55e"/>
+          <circle cx="120" cy="130" r="4" fill="#22c55e"/>
+          <circle cx="155" cy="45" r="4" fill="#22c55e"/>
+          <circle cx="85" cy="45" r="4" fill="#22c55e"/>
+          <circle cx="155" cy="115" r="4" fill="#22c55e"/>
+          <circle cx="85" cy="115" r="4" fill="#22c55e"/>
+        </g>
+        <text x="180" y="50" fill="currentColor" font-size="7">Shell 2: 8e⁻</text>
+        
+        <!-- Shell 3 (1 electron) -->
+        <circle cx="120" cy="80" r="70" fill="none" stroke="currentColor" stroke-width="1" stroke-dasharray="3,2" opacity="0.5"/>
+        <g class="anim-rotate-cw" style="transform-origin: 120px 80px;">
+          <circle cx="190" cy="80" r="5" fill="#3b82f6"/>
+        </g>
+        <text x="205" y="95" fill="#3b82f6" font-size="7" font-weight="bold">Shell 3: 1e⁻</text>
+        <text x="205" y="105" fill="#3b82f6" font-size="6">(outer electron)</text>
+        
+        <!-- Legend at bottom -->
+        <text x="120" y="155" fill="currentColor" font-size="8" text-anchor="middle">Na: 2,8,1 → Group 1 (1 outer electron)</text>
+      </svg>
+    </div>
+    <p style="text-align: center; font-size: 0.8rem; color: var(--muted-foreground);">Electrons fill inner shells first • Outer electrons determine reactivity</p>
   </div>
 </div>
 <div class="subsection">
@@ -2043,6 +2265,64 @@ export const sectionsData: TopicSection[] = [
       <li><strong>Potassium:</strong> Violent reaction, lilac flame, explodes</li>
     </ul>
   </div>
+
+  <!-- Animated Group 1 Reaction with Water Diagram -->
+  <div class="key-idea-block anim-pause-hover" style="padding: 1rem; margin: 1rem 0;">
+    <h4>🔥 Group 1 Metals Reacting with Water (hover to pause)</h4>
+    <div style="display: flex; justify-content: center; padding: 0.5rem;">
+      <svg width="340" height="160" viewBox="0 0 340 160">
+        <!-- Three beakers -->
+        <!-- Lithium beaker -->
+        <g>
+          <path d="M25 50 L25 130 L85 130 L85 50" fill="#e0f2fe" stroke="currentColor" stroke-width="2"/>
+          <rect x="27" y="80" width="56" height="48" fill="#bae6fd" opacity="0.5"/>
+          <circle cx="55" cy="85" r="8" fill="#a1a1aa" class="anim-vibrate-slow"/>
+          <circle cx="45" cy="70" r="3" fill="transparent" stroke="#94a3b8" class="anim-bubble-rise"/>
+          <circle cx="60" cy="75" r="2" fill="transparent" stroke="#94a3b8" class="anim-bubble-rise anim-delay-200"/>
+          <text x="55" y="145" fill="currentColor" font-size="9" text-anchor="middle">Lithium</text>
+          <text x="55" y="155" fill="#22c55e" font-size="7" text-anchor="middle">Gentle fizz</text>
+        </g>
+        
+        <!-- Sodium beaker -->
+        <g>
+          <path d="M135 50 L135 130 L195 130 L195 50" fill="#e0f2fe" stroke="currentColor" stroke-width="2"/>
+          <rect x="137" y="80" width="56" height="48" fill="#bae6fd" opacity="0.5"/>
+          <circle cx="165" cy="82" r="10" fill="#a1a1aa" class="anim-vibrate"/>
+          <circle cx="155" cy="65" r="4" fill="transparent" stroke="#94a3b8" class="anim-bubble-rise"/>
+          <circle cx="170" cy="68" r="3" fill="transparent" stroke="#94a3b8" class="anim-bubble-rise anim-delay-100"/>
+          <circle cx="160" cy="72" r="3" fill="transparent" stroke="#94a3b8" class="anim-bubble-rise anim-delay-300"/>
+          <circle cx="165" cy="60" r="8" fill="#fbbf24" opacity="0.6" class="anim-pulse"/>
+          <text x="165" y="145" fill="currentColor" font-size="9" text-anchor="middle">Sodium</text>
+          <text x="165" y="155" fill="#f59e0b" font-size="7" text-anchor="middle">Yellow flame</text>
+        </g>
+        
+        <!-- Potassium beaker -->
+        <g>
+          <path d="M245 50 L245 130 L305 130 L305 50" fill="#e0f2fe" stroke="currentColor" stroke-width="2"/>
+          <rect x="247" y="80" width="56" height="48" fill="#bae6fd" opacity="0.5"/>
+          <circle cx="275" cy="78" r="12" fill="#a1a1aa" class="anim-vibrate"/>
+          <circle cx="265" cy="55" r="5" fill="transparent" stroke="#94a3b8" class="anim-bubble-rise"/>
+          <circle cx="280" cy="58" r="4" fill="transparent" stroke="#94a3b8" class="anim-bubble-rise anim-delay-100"/>
+          <circle cx="270" cy="62" r="4" fill="transparent" stroke="#94a3b8" class="anim-bubble-rise anim-delay-200"/>
+          <circle cx="285" cy="65" r="3" fill="transparent" stroke="#94a3b8" class="anim-bubble-rise anim-delay-300"/>
+          <circle cx="275" cy="50" r="15" fill="#a855f7" opacity="0.5" class="anim-pulse-fast"/>
+          <text x="275" y="145" fill="currentColor" font-size="9" text-anchor="middle">Potassium</text>
+          <text x="275" y="155" fill="#a855f7" font-size="7" text-anchor="middle">Lilac flame!</text>
+        </g>
+        
+        <!-- Reactivity arrow -->
+        <path d="M55 35 L275 35" stroke="#ef4444" stroke-width="2" marker-end="url(#reactArrow)"/>
+        <text x="165" y="25" fill="#ef4444" font-size="9" text-anchor="middle">Reactivity increases →</text>
+        
+        <defs>
+          <marker id="reactArrow" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+            <polygon points="0 0, 10 3.5, 0 7" fill="#ef4444"/>
+          </marker>
+        </defs>
+      </svg>
+    </div>
+    <p style="text-align: center; font-size: 0.8rem; color: var(--muted-foreground);">Reactivity increases down Group 1 • Outer electron easier to lose in larger atoms</p>
+  </div>
 </div>
 <div class="subsection">
   <h3 class="subsection-heading">Subsection 3 – Trend in Reactivity</h3>
@@ -2118,6 +2398,53 @@ export const sectionsData: TopicSection[] = [
     <h4>🟢 Example</h4>
     <p>Cl₂ + 2NaBr → 2NaCl + Br₂</p>
     <p>Observation: Orange solution (bromine formed)</p>
+  </div>
+
+  <!-- Animated Halogen Displacement Diagram -->
+  <div class="key-idea-block anim-pause-hover" style="padding: 1rem; margin: 1rem 0;">
+    <h4>⚗️ Halogen Displacement Reaction (hover to pause)</h4>
+    <div style="display: flex; justify-content: center; padding: 0.5rem;">
+      <svg width="320" height="150" viewBox="0 0 320 150">
+        <!-- Before reaction beaker -->
+        <g>
+          <text x="80" y="15" fill="currentColor" font-size="9" text-anchor="middle" font-weight="bold">BEFORE</text>
+          <path d="M40 30 L40 100 L120 100 L120 30" fill="#fef3c7" stroke="currentColor" stroke-width="2"/>
+          <rect x="42" y="50" width="76" height="48" fill="#fde68a" opacity="0.5"/>
+          <text x="80" y="70" fill="#92400e" font-size="8" text-anchor="middle">NaBr solution</text>
+          <text x="80" y="82" fill="#92400e" font-size="7" text-anchor="middle">(colourless)</text>
+          
+          <!-- Chlorine gas bubbles -->
+          <circle cx="60" cy="45" r="4" fill="#22c55e" opacity="0.6" class="anim-flow-down"/>
+          <circle cx="75" cy="40" r="3" fill="#22c55e" opacity="0.6" class="anim-flow-down anim-delay-200"/>
+          <circle cx="90" cy="42" r="4" fill="#22c55e" opacity="0.6" class="anim-flow-down anim-delay-400"/>
+          <text x="80" y="115" fill="#22c55e" font-size="8" text-anchor="middle">+ Cl₂ gas</text>
+        </g>
+        
+        <!-- Arrow -->
+        <path d="M130 65 L170 65" stroke="currentColor" stroke-width="2" marker-end="url(#dispArrow)"/>
+        <text x="150" y="55" fill="currentColor" font-size="7" text-anchor="middle">Reaction</text>
+        
+        <!-- After reaction beaker -->
+        <g>
+          <text x="240" y="15" fill="currentColor" font-size="9" text-anchor="middle" font-weight="bold">AFTER</text>
+          <path d="M200 30 L200 100 L280 100 L280 30" fill="#fed7aa" stroke="currentColor" stroke-width="2"/>
+          <rect x="202" y="50" width="76" height="48" fill="#fdba74" opacity="0.7"/>
+          <text x="240" y="70" fill="#c2410c" font-size="8" text-anchor="middle">NaCl + Br₂</text>
+          <text x="240" y="82" fill="#c2410c" font-size="7" text-anchor="middle">(orange-brown)</text>
+          <text x="240" y="115" fill="currentColor" font-size="8" text-anchor="middle">Bromine displaced!</text>
+        </g>
+        
+        <!-- Equation -->
+        <text x="160" y="140" fill="currentColor" font-size="8" text-anchor="middle">Cl₂ + 2NaBr → 2NaCl + Br₂</text>
+        
+        <defs>
+          <marker id="dispArrow" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+            <polygon points="0 0, 10 3.5, 0 7" fill="currentColor"/>
+          </marker>
+        </defs>
+      </svg>
+    </div>
+    <p style="text-align: center; font-size: 0.8rem; color: var(--muted-foreground);">More reactive halogen (Cl₂) displaces less reactive halogen (Br⁻) • Solution turns orange</p>
   </div>
 </div>
         `,

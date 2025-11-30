@@ -14,6 +14,14 @@ const PhysicsSections = () => {
     section.title.toLowerCase().includes(searchQuery.toLowerCase())
   );
 
+  // Helper to get display count for modules vs subsections
+  const getModuleCount = (section: typeof physicsData[0]) => {
+    if (section.modules && section.modules.length > 0) {
+      return `${section.modules.length} module${section.modules.length !== 1 ? 's' : ''}`;
+    }
+    return `${section.subsections.length} subsection${section.subsections.length !== 1 ? 's' : ''} available`;
+  };
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-background via-primary/5 to-secondary/5">
       <div className="container mx-auto px-4 py-8">
@@ -70,8 +78,8 @@ const PhysicsSections = () => {
                   </div>
                   <CardDescription>
                     {section.status === "ready" 
-                      ? `${section.subsections.length} subsection${section.subsections.length !== 1 ? 's' : ''} available`
-                      : "Coming soon"}
+                      ? getModuleCount(section)
+                      : "Not Available"}
                   </CardDescription>
                 </CardHeader>
                 <CardContent>

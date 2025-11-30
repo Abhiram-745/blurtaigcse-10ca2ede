@@ -26,8 +26,8 @@ export interface MotionModule {
 }
 
 export const motionModuleData: MotionModule = {
-  id: "module-4-motion",
-  title: "Module 4: Motion",
+  id: "module-3-motion",
+  title: "Module 3: Motion",
   status: "ready",
   subsections: [
     {
