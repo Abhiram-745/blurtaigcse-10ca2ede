@@ -3068,6 +3068,84 @@ export const sectionsData: TopicSection[] = [
     </ol>
   </div>
 
+  <!-- Animated Ionic Bonding Diagram - NaCl Formation -->
+  <div class="key-idea-block anim-pause-hover" style="padding: 1rem; margin: 1rem 0;">
+    <h4>⚛️ Ionic Bond Formation: Na + Cl → NaCl (hover to pause)</h4>
+    <div style="display: flex; justify-content: center; padding: 0.5rem;">
+      <svg width="400" height="200" viewBox="0 0 400 200">
+        <!-- Sodium atom -->
+        <g>
+          <circle cx="80" cy="100" r="45" fill="none" stroke="#94a3b8" stroke-width="1" stroke-dasharray="3,2"/>
+          <circle cx="80" cy="100" r="30" fill="none" stroke="#94a3b8" stroke-width="1" stroke-dasharray="3,2"/>
+          <circle cx="80" cy="100" r="15" fill="none" stroke="#94a3b8" stroke-width="1"/>
+          <!-- Nucleus -->
+          <circle cx="80" cy="100" r="8" fill="#ef4444" class="anim-pulse"/>
+          <text x="80" y="103" fill="white" font-size="8" text-anchor="middle" font-weight="bold">11+</text>
+          <!-- Inner electrons -->
+          <circle cx="73" cy="88" r="3" fill="#3b82f6"/>
+          <circle cx="87" cy="88" r="3" fill="#3b82f6"/>
+          <!-- Second shell electrons -->
+          <circle cx="55" cy="100" r="3" fill="#3b82f6"/>
+          <circle cx="105" cy="100" r="3" fill="#3b82f6"/>
+          <circle cx="80" cy="75" r="3" fill="#3b82f6"/>
+          <circle cx="80" cy="125" r="3" fill="#3b82f6"/>
+          <circle cx="60" cy="82" r="3" fill="#3b82f6"/>
+          <circle cx="100" cy="82" r="3" fill="#3b82f6"/>
+          <circle cx="60" cy="118" r="3" fill="#3b82f6"/>
+          <circle cx="100" cy="118" r="3" fill="#3b82f6"/>
+          <!-- Outer electron (to be transferred) -->
+          <circle cx="80" cy="55" r="4" fill="#f59e0b" class="anim-electron-transfer"/>
+          <text x="80" y="170" fill="currentColor" font-size="11" text-anchor="middle" font-weight="bold">Na atom</text>
+        </g>
+        
+        <!-- Arrow showing electron transfer -->
+        <g class="anim-pulse">
+          <path d="M130 70 Q180 50 230 70" fill="none" stroke="#f59e0b" stroke-width="2" marker-end="url(#arrowhead)"/>
+          <text x="180" y="45" fill="#f59e0b" font-size="10" text-anchor="middle">e⁻ transferred</text>
+        </g>
+        <defs>
+          <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+            <polygon points="0 0, 10 3.5, 0 7" fill="#f59e0b"/>
+          </marker>
+        </defs>
+        
+        <!-- Chlorine atom -->
+        <g>
+          <circle cx="320" cy="100" r="50" fill="none" stroke="#94a3b8" stroke-width="1" stroke-dasharray="3,2"/>
+          <circle cx="320" cy="100" r="35" fill="none" stroke="#94a3b8" stroke-width="1" stroke-dasharray="3,2"/>
+          <circle cx="320" cy="100" r="18" fill="none" stroke="#94a3b8" stroke-width="1"/>
+          <!-- Nucleus -->
+          <circle cx="320" cy="100" r="10" fill="#22c55e" class="anim-pulse"/>
+          <text x="320" y="103" fill="white" font-size="8" text-anchor="middle" font-weight="bold">17+</text>
+          <!-- Inner electrons -->
+          <circle cx="313" cy="88" r="3" fill="#3b82f6"/>
+          <circle cx="327" cy="88" r="3" fill="#3b82f6"/>
+          <!-- Second shell electrons -->
+          <circle cx="293" cy="100" r="3" fill="#3b82f6"/>
+          <circle cx="347" cy="100" r="3" fill="#3b82f6"/>
+          <circle cx="320" cy="73" r="3" fill="#3b82f6"/>
+          <circle cx="320" cy="127" r="3" fill="#3b82f6"/>
+          <circle cx="298" cy="82" r="3" fill="#3b82f6"/>
+          <circle cx="342" cy="82" r="3" fill="#3b82f6"/>
+          <circle cx="298" cy="118" r="3" fill="#3b82f6"/>
+          <circle cx="342" cy="118" r="3" fill="#3b82f6"/>
+          <!-- Outer shell electrons (7) -->
+          <circle cx="275" cy="100" r="3" fill="#ec4899"/>
+          <circle cx="365" cy="100" r="3" fill="#ec4899"/>
+          <circle cx="290" cy="75" r="3" fill="#ec4899"/>
+          <circle cx="350" cy="75" r="3" fill="#ec4899"/>
+          <circle cx="290" cy="125" r="3" fill="#ec4899"/>
+          <circle cx="350" cy="125" r="3" fill="#ec4899"/>
+          <circle cx="320" cy="55" r="3" fill="#ec4899"/>
+          <!-- Incoming electron -->
+          <circle cx="320" cy="150" r="4" fill="#f59e0b" class="anim-pulse-fast"/>
+          <text x="320" y="175" fill="currentColor" font-size="11" text-anchor="middle" font-weight="bold">Cl atom → Cl⁻</text>
+        </g>
+      </svg>
+    </div>
+    <p style="text-align: center; font-size: 0.8rem; color: var(--muted-foreground);">Sodium loses 1 electron → Na⁺ • Chlorine gains 1 electron → Cl⁻ • Electrostatic attraction forms ionic bond</p>
+  </div>
+
   <div class="example-block">
     <h4>📝 Common Examples You Must Know:</h4>
     <table class="data-table">
@@ -3282,6 +3360,95 @@ export const sectionsData: TopicSection[] = [
       <li><strong>Bond type:</strong> Strong electrostatic attraction between Na⁺ and Cl⁻.</li>
     </ul>
   </div>
+
+  <!-- Animated Giant Ionic Lattice Diagram -->
+  <div class="key-idea-block anim-pause-hover" style="padding: 1rem; margin: 1rem 0;">
+    <h4>🧊 Giant Ionic Lattice - NaCl (hover to pause)</h4>
+    <div style="display: flex; justify-content: center; padding: 0.5rem;">
+      <svg width="300" height="220" viewBox="0 0 300 220">
+        <!-- 3D lattice representation -->
+        <!-- Front face - Layer 1 -->
+        <g class="anim-pulse">
+          <circle cx="80" cy="80" r="16" fill="#ef4444" opacity="0.8"/>
+          <text x="80" y="84" fill="white" font-size="9" text-anchor="middle" font-weight="bold">Na⁺</text>
+        </g>
+        <g class="anim-pulse anim-delay-200">
+          <circle cx="140" cy="80" r="20" fill="#22c55e" opacity="0.8"/>
+          <text x="140" y="84" fill="white" font-size="9" text-anchor="middle" font-weight="bold">Cl⁻</text>
+        </g>
+        <g class="anim-pulse anim-delay-100">
+          <circle cx="200" cy="80" r="16" fill="#ef4444" opacity="0.8"/>
+          <text x="200" y="84" fill="white" font-size="9" text-anchor="middle" font-weight="bold">Na⁺</text>
+        </g>
+        
+        <g class="anim-pulse anim-delay-300">
+          <circle cx="80" cy="140" r="20" fill="#22c55e" opacity="0.8"/>
+          <text x="80" y="144" fill="white" font-size="9" text-anchor="middle" font-weight="bold">Cl⁻</text>
+        </g>
+        <g class="anim-pulse anim-delay-400">
+          <circle cx="140" cy="140" r="16" fill="#ef4444" opacity="0.8"/>
+          <text x="140" y="144" fill="white" font-size="9" text-anchor="middle" font-weight="bold">Na⁺</text>
+        </g>
+        <g class="anim-pulse anim-delay-500">
+          <circle cx="200" cy="140" r="20" fill="#22c55e" opacity="0.8"/>
+          <text x="200" y="144" fill="white" font-size="9" text-anchor="middle" font-weight="bold">Cl⁻</text>
+        </g>
+        
+        <g class="anim-pulse anim-delay-200">
+          <circle cx="80" cy="200" r="16" fill="#ef4444" opacity="0.8"/>
+          <text x="80" y="204" fill="white" font-size="9" text-anchor="middle" font-weight="bold">Na⁺</text>
+        </g>
+        <g class="anim-pulse anim-delay-300">
+          <circle cx="140" cy="200" r="20" fill="#22c55e" opacity="0.8"/>
+          <text x="140" y="204" fill="white" font-size="9" text-anchor="middle" font-weight="bold">Cl⁻</text>
+        </g>
+        <g class="anim-pulse anim-delay-400">
+          <circle cx="200" cy="200" r="16" fill="#ef4444" opacity="0.8"/>
+          <text x="200" y="204" fill="white" font-size="9" text-anchor="middle" font-weight="bold">Na⁺</text>
+        </g>
+        
+        <!-- Back face (offset) - creates 3D effect -->
+        <g opacity="0.5">
+          <circle cx="110" cy="50" r="14" fill="#22c55e"/>
+          <circle cx="170" cy="50" r="12" fill="#ef4444"/>
+          <circle cx="230" cy="50" r="14" fill="#22c55e"/>
+          
+          <circle cx="110" cy="110" r="12" fill="#ef4444"/>
+          <circle cx="170" cy="110" r="14" fill="#22c55e"/>
+          <circle cx="230" cy="110" r="12" fill="#ef4444"/>
+          
+          <circle cx="110" cy="170" r="14" fill="#22c55e"/>
+          <circle cx="170" cy="170" r="12" fill="#ef4444"/>
+          <circle cx="230" cy="170" r="14" fill="#22c55e"/>
+        </g>
+        
+        <!-- Connection lines (electrostatic forces) -->
+        <g stroke="currentColor" stroke-width="1" opacity="0.3" stroke-dasharray="3,2">
+          <line x1="96" y1="80" x2="120" y2="80"/>
+          <line x1="160" y1="80" x2="184" y2="80"/>
+          <line x1="80" y1="96" x2="80" y2="120"/>
+          <line x1="140" y1="96" x2="140" y2="120"/>
+          <line x1="200" y1="96" x2="200" y2="120"/>
+          <line x1="100" y1="140" x2="120" y2="140"/>
+          <line x1="156" y1="140" x2="180" y2="140"/>
+          <line x1="80" y1="160" x2="80" y2="180"/>
+          <line x1="140" y1="156" x2="140" y2="180"/>
+          <line x1="200" y1="160" x2="200" y2="180"/>
+        </g>
+        
+        <!-- Legend -->
+        <rect x="230" y="30" width="65" height="55" fill="none" stroke="currentColor" stroke-width="1" rx="3" opacity="0.3"/>
+        <circle cx="245" cy="48" r="8" fill="#ef4444"/>
+        <text x="257" y="52" fill="currentColor" font-size="8">Na⁺ (small)</text>
+        <circle cx="245" cy="70" r="10" fill="#22c55e"/>
+        <text x="257" y="74" fill="currentColor" font-size="8">Cl⁻ (larger)</text>
+        
+        <!-- Label -->
+        <text x="150" y="18" fill="currentColor" font-size="11" text-anchor="middle" font-weight="bold">3D Cubic Lattice</text>
+      </svg>
+    </div>
+    <p style="text-align: center; font-size: 0.8rem; color: var(--muted-foreground);">Alternating Na⁺ and Cl⁻ ions • Each ion surrounded by 6 opposite ions • Strong electrostatic forces in all directions</p>
+  </div>
 </div>
 
 <div class="subsection">
@@ -3353,6 +3520,98 @@ export const sectionsData: TopicSection[] = [
       <li>Negative ions move to positive electrode (anode).</li>
     </ul>
     <p>This is why ionic compounds are used in electrolysis experiments.</p>
+  </div>
+
+  <!-- Animated Electrolysis Diagram -->
+  <div class="key-idea-block anim-pause-hover" style="padding: 1rem; margin: 1rem 0;">
+    <h4>⚡ Electrolysis Setup (hover to pause)</h4>
+    <div style="display: flex; justify-content: center; padding: 0.5rem;">
+      <svg width="360" height="280" viewBox="0 0 360 280">
+        <!-- Power supply -->
+        <rect x="130" y="10" width="100" height="40" fill="#374151" rx="5"/>
+        <text x="180" y="35" fill="white" font-size="10" text-anchor="middle" font-weight="bold">DC Power Supply</text>
+        <circle cx="150" cy="25" r="6" fill="#ef4444"/>
+        <text x="150" y="28" fill="white" font-size="8" text-anchor="middle">+</text>
+        <circle cx="210" cy="25" r="6" fill="#3b82f6"/>
+        <text x="210" y="28" fill="white" font-size="8" text-anchor="middle">−</text>
+        
+        <!-- Wires -->
+        <line x1="150" y1="50" x2="150" y2="80" stroke="#ef4444" stroke-width="2"/>
+        <line x1="150" y1="80" x2="90" y2="80" stroke="#ef4444" stroke-width="2"/>
+        <line x1="90" y1="80" x2="90" y2="120" stroke="#ef4444" stroke-width="2"/>
+        
+        <line x1="210" y1="50" x2="210" y2="80" stroke="#3b82f6" stroke-width="2"/>
+        <line x1="210" y1="80" x2="270" y2="80" stroke="#3b82f6" stroke-width="2"/>
+        <line x1="270" y1="80" x2="270" y2="120" stroke="#3b82f6" stroke-width="2"/>
+        
+        <!-- Container/Beaker -->
+        <rect x="60" y="120" width="240" height="130" fill="#e0f2fe" opacity="0.3" stroke="#94a3b8" stroke-width="2"/>
+        
+        <!-- Electrolyte solution -->
+        <rect x="62" y="140" width="236" height="108" fill="#bfdbfe" opacity="0.4"/>
+        
+        <!-- Anode (positive electrode) -->
+        <rect x="80" y="120" width="20" height="100" fill="#4b5563"/>
+        <text x="90" y="240" fill="#ef4444" font-size="10" text-anchor="middle" font-weight="bold">Anode (+)</text>
+        
+        <!-- Cathode (negative electrode) -->
+        <rect x="260" y="120" width="20" height="100" fill="#4b5563"/>
+        <text x="270" y="240" fill="#3b82f6" font-size="10" text-anchor="middle" font-weight="bold">Cathode (−)</text>
+        
+        <!-- Moving cations (positive ions) to cathode -->
+        <g class="anim-flow-right">
+          <circle cx="140" cy="160" r="8" fill="#ef4444" opacity="0.8"/>
+          <text x="140" y="163" fill="white" font-size="7" text-anchor="middle">+</text>
+        </g>
+        <g class="anim-flow-right anim-delay-300">
+          <circle cx="160" cy="180" r="8" fill="#ef4444" opacity="0.8"/>
+          <text x="160" y="183" fill="white" font-size="7" text-anchor="middle">+</text>
+        </g>
+        <g class="anim-flow-right anim-delay-500">
+          <circle cx="150" cy="200" r="8" fill="#ef4444" opacity="0.8"/>
+          <text x="150" y="203" fill="white" font-size="7" text-anchor="middle">+</text>
+        </g>
+        
+        <!-- Moving anions (negative ions) to anode -->
+        <g class="anim-flow-left">
+          <circle cx="220" cy="165" r="8" fill="#3b82f6" opacity="0.8"/>
+          <text x="220" y="168" fill="white" font-size="7" text-anchor="middle">−</text>
+        </g>
+        <g class="anim-flow-left anim-delay-400">
+          <circle cx="200" cy="185" r="8" fill="#3b82f6" opacity="0.8"/>
+          <text x="200" y="188" fill="white" font-size="7" text-anchor="middle">−</text>
+        </g>
+        <g class="anim-flow-left anim-delay-200">
+          <circle cx="210" cy="205" r="8" fill="#3b82f6" opacity="0.8"/>
+          <text x="210" y="208" fill="white" font-size="7" text-anchor="middle">−</text>
+        </g>
+        
+        <!-- Bubbles at electrodes -->
+        <g class="anim-bubble-rise">
+          <circle cx="85" cy="150" r="3" fill="none" stroke="#6b7280" stroke-width="1" opacity="0.6"/>
+        </g>
+        <g class="anim-bubble-rise anim-delay-300">
+          <circle cx="92" cy="155" r="2" fill="none" stroke="#6b7280" stroke-width="1" opacity="0.6"/>
+        </g>
+        <g class="anim-bubble-rise anim-delay-500">
+          <circle cx="275" cy="150" r="3" fill="none" stroke="#6b7280" stroke-width="1" opacity="0.6"/>
+        </g>
+        <g class="anim-bubble-rise anim-delay-200">
+          <circle cx="268" cy="155" r="2" fill="none" stroke="#6b7280" stroke-width="1" opacity="0.6"/>
+        </g>
+        
+        <!-- Labels -->
+        <text x="180" y="270" fill="currentColor" font-size="10" text-anchor="middle">Molten or dissolved ionic compound</text>
+        
+        <!-- Legend -->
+        <rect x="285" y="130" width="70" height="50" fill="none" stroke="currentColor" stroke-width="1" rx="3" opacity="0.3"/>
+        <circle cx="295" cy="145" r="5" fill="#ef4444"/>
+        <text x="305" y="148" fill="currentColor" font-size="8">Cation (+)</text>
+        <circle cx="295" cy="165" r="5" fill="#3b82f6"/>
+        <text x="305" y="168" fill="currentColor" font-size="8">Anion (−)</text>
+      </svg>
+    </div>
+    <p style="text-align: center; font-size: 0.8rem; color: var(--muted-foreground);">Cations move to cathode (−) • Anions move to anode (+) • Reduction at cathode, oxidation at anode</p>
   </div>
 </div>
 
@@ -3579,6 +3838,58 @@ export const sectionsData: TopicSection[] = [
       <li><strong>Displayed formula:</strong> H–O–H</li>
       <li><strong>Dot-and-cross:</strong> Oxygen overlaps twice — one with each hydrogen.</li>
     </ul>
+  </div>
+
+  <!-- Animated Water Molecule Diagram -->
+  <div class="key-idea-block anim-pause-hover" style="padding: 1rem; margin: 1rem 0;">
+    <h4>💧 Water Molecule - Covalent Bonding (hover to pause)</h4>
+    <div style="display: flex; justify-content: center; padding: 0.5rem;">
+      <svg width="280" height="200" viewBox="0 0 280 200">
+        <!-- Oxygen atom (center) -->
+        <circle cx="140" cy="100" r="35" fill="#ef4444" opacity="0.2"/>
+        <circle cx="140" cy="100" r="25" fill="#ef4444" opacity="0.4" class="anim-pulse"/>
+        <text x="140" y="105" fill="white" font-size="14" text-anchor="middle" font-weight="bold">O</text>
+        
+        <!-- Hydrogen atom (left) -->
+        <circle cx="75" cy="140" r="20" fill="#3b82f6" opacity="0.3"/>
+        <circle cx="75" cy="140" r="14" fill="#3b82f6" opacity="0.5" class="anim-pulse"/>
+        <text x="75" y="145" fill="white" font-size="12" text-anchor="middle" font-weight="bold">H</text>
+        
+        <!-- Hydrogen atom (right) -->
+        <circle cx="205" cy="140" r="20" fill="#3b82f6" opacity="0.3"/>
+        <circle cx="205" cy="140" r="14" fill="#3b82f6" opacity="0.5" class="anim-pulse"/>
+        <text x="205" y="145" fill="white" font-size="12" text-anchor="middle" font-weight="bold">H</text>
+        
+        <!-- Covalent bonds -->
+        <line x1="115" y1="115" x2="90" y2="130" stroke="#22c55e" stroke-width="4" stroke-linecap="round"/>
+        <line x1="165" y1="115" x2="190" y2="130" stroke="#22c55e" stroke-width="4" stroke-linecap="round"/>
+        
+        <!-- Shared electron pairs -->
+        <g class="anim-oscillate-x">
+          <circle cx="100" cy="122" r="4" fill="#f59e0b"/>
+          <circle cx="106" cy="118" r="4" fill="#ec4899"/>
+        </g>
+        <g class="anim-oscillate-x" style="animation-delay: 0.5s;">
+          <circle cx="174" cy="118" r="4" fill="#f59e0b"/>
+          <circle cx="180" cy="122" r="4" fill="#ec4899"/>
+        </g>
+        
+        <!-- Lone pairs on oxygen -->
+        <circle cx="125" cy="72" r="3" fill="#f59e0b"/>
+        <circle cx="132" cy="68" r="3" fill="#f59e0b"/>
+        <circle cx="148" cy="68" r="3" fill="#f59e0b"/>
+        <circle cx="155" cy="72" r="3" fill="#f59e0b"/>
+        
+        <!-- Bond angle indicator -->
+        <path d="M100 120 Q140 90 180 120" fill="none" stroke="currentColor" stroke-width="1" stroke-dasharray="3,2" opacity="0.5"/>
+        <text x="140" y="80" fill="currentColor" font-size="10" text-anchor="middle">104.5°</text>
+        
+        <!-- Labels -->
+        <text x="100" y="175" fill="#22c55e" font-size="10" text-anchor="middle">Shared pair</text>
+        <text x="140" y="45" fill="currentColor" font-size="10" text-anchor="middle">Lone pairs</text>
+      </svg>
+    </div>
+    <p style="text-align: center; font-size: 0.8rem; color: var(--muted-foreground);">Two O–H covalent bonds formed by sharing electrons • Oxygen has 2 lone pairs • Bond angle 104.5°</p>
   </div>
 
   <div class="example-block">
@@ -3885,6 +4196,103 @@ H—N—H</pre>
 <div class="subsection">
   <h3 class="subsection-heading">Subsection 4 – Explanation of Metallic Bond Strength</h3>
   
+  <!-- Animated Metallic Bonding Diagram -->
+  <div class="key-idea-block anim-pause-hover" style="padding: 1rem; margin: 1rem 0;">
+    <h4>🔩 Metallic Bonding Structure (hover to pause)</h4>
+    <div style="display: flex; justify-content: center; padding: 0.5rem;">
+      <svg width="320" height="200" viewBox="0 0 320 200">
+        <!-- Metal cation lattice -->
+        <g>
+          <!-- Row 1 -->
+          <circle cx="60" cy="50" r="18" fill="#6366f1" opacity="0.8"/>
+          <text x="60" y="54" fill="white" font-size="10" text-anchor="middle" font-weight="bold">M⁺</text>
+          <circle cx="120" cy="50" r="18" fill="#6366f1" opacity="0.8"/>
+          <text x="120" y="54" fill="white" font-size="10" text-anchor="middle" font-weight="bold">M⁺</text>
+          <circle cx="180" cy="50" r="18" fill="#6366f1" opacity="0.8"/>
+          <text x="180" y="54" fill="white" font-size="10" text-anchor="middle" font-weight="bold">M⁺</text>
+          <circle cx="240" cy="50" r="18" fill="#6366f1" opacity="0.8"/>
+          <text x="240" y="54" fill="white" font-size="10" text-anchor="middle" font-weight="bold">M⁺</text>
+          
+          <!-- Row 2 (offset) -->
+          <circle cx="90" cy="100" r="18" fill="#6366f1" opacity="0.8"/>
+          <text x="90" y="104" fill="white" font-size="10" text-anchor="middle" font-weight="bold">M⁺</text>
+          <circle cx="150" cy="100" r="18" fill="#6366f1" opacity="0.8"/>
+          <text x="150" y="104" fill="white" font-size="10" text-anchor="middle" font-weight="bold">M⁺</text>
+          <circle cx="210" cy="100" r="18" fill="#6366f1" opacity="0.8"/>
+          <text x="210" y="104" fill="white" font-size="10" text-anchor="middle" font-weight="bold">M⁺</text>
+          
+          <!-- Row 3 -->
+          <circle cx="60" cy="150" r="18" fill="#6366f1" opacity="0.8"/>
+          <text x="60" y="154" fill="white" font-size="10" text-anchor="middle" font-weight="bold">M⁺</text>
+          <circle cx="120" cy="150" r="18" fill="#6366f1" opacity="0.8"/>
+          <text x="120" y="154" fill="white" font-size="10" text-anchor="middle" font-weight="bold">M⁺</text>
+          <circle cx="180" cy="150" r="18" fill="#6366f1" opacity="0.8"/>
+          <text x="180" y="154" fill="white" font-size="10" text-anchor="middle" font-weight="bold">M⁺</text>
+          <circle cx="240" cy="150" r="18" fill="#6366f1" opacity="0.8"/>
+          <text x="240" y="154" fill="white" font-size="10" text-anchor="middle" font-weight="bold">M⁺</text>
+        </g>
+        
+        <!-- Sea of delocalised electrons - animated -->
+        <g class="anim-brownian">
+          <circle cx="45" cy="75" r="4" fill="#f59e0b"/>
+        </g>
+        <g class="anim-brownian-2">
+          <circle cx="75" cy="65" r="4" fill="#f59e0b"/>
+        </g>
+        <g class="anim-brownian-3">
+          <circle cx="105" cy="78" r="4" fill="#f59e0b"/>
+        </g>
+        <g class="anim-brownian">
+          <circle cx="135" cy="70" r="4" fill="#f59e0b"/>
+        </g>
+        <g class="anim-brownian-2">
+          <circle cx="165" cy="80" r="4" fill="#f59e0b"/>
+        </g>
+        <g class="anim-brownian-3">
+          <circle cx="195" cy="68" r="4" fill="#f59e0b"/>
+        </g>
+        <g class="anim-brownian">
+          <circle cx="225" cy="75" r="4" fill="#f59e0b"/>
+        </g>
+        <g class="anim-brownian-2">
+          <circle cx="255" cy="82" r="4" fill="#f59e0b"/>
+        </g>
+        <g class="anim-brownian-3">
+          <circle cx="55" cy="125" r="4" fill="#f59e0b"/>
+        </g>
+        <g class="anim-brownian">
+          <circle cx="85" cy="130" r="4" fill="#f59e0b"/>
+        </g>
+        <g class="anim-brownian-2">
+          <circle cx="115" cy="120" r="4" fill="#f59e0b"/>
+        </g>
+        <g class="anim-brownian-3">
+          <circle cx="145" cy="128" r="4" fill="#f59e0b"/>
+        </g>
+        <g class="anim-brownian">
+          <circle cx="175" cy="122" r="4" fill="#f59e0b"/>
+        </g>
+        <g class="anim-brownian-2">
+          <circle cx="205" cy="132" r="4" fill="#f59e0b"/>
+        </g>
+        <g class="anim-brownian-3">
+          <circle cx="235" cy="118" r="4" fill="#f59e0b"/>
+        </g>
+        <g class="anim-brownian">
+          <circle cx="265" cy="128" r="4" fill="#f59e0b"/>
+        </g>
+        
+        <!-- Legend -->
+        <rect x="260" y="10" width="55" height="55" fill="none" stroke="currentColor" stroke-width="1" rx="4" opacity="0.3"/>
+        <circle cx="275" cy="25" r="6" fill="#6366f1"/>
+        <text x="285" y="28" fill="currentColor" font-size="8">Metal ion</text>
+        <circle cx="275" cy="45" r="4" fill="#f59e0b"/>
+        <text x="285" y="48" fill="currentColor" font-size="8">Free e⁻</text>
+      </svg>
+    </div>
+    <p style="text-align: center; font-size: 0.8rem; color: var(--muted-foreground);">Metal cations (M⁺) in a lattice with delocalised electrons moving freely between them</p>
+  </div>
+
   <div class="key-facts-block">
     <p>The strength of metallic bonds depends on:</p>
     <ul>
@@ -8412,14 +8820,96 @@ H—N—H</pre>
     <p><strong>🧠 Use only these two indicators for strong acid + strong base titrations.</strong></p>
   </div>
 
-  <div class="example-block">
-    <h4>💡 Example Setup</h4>
-    <ul>
-      <li>🔬 Burette → acid (known concentration)</li>
-      <li>🔬 Pipette → alkali (unknown concentration)</li>
-      <li>🔬 Conical flask → indicator + alkali</li>
-      <li>🔬 White tile → easier to see colour change</li>
-    </ul>
+  <!-- Animated Titration Setup Diagram -->
+  <div class="key-idea-block anim-pause-hover" style="padding: 1rem; margin: 1rem 0;">
+    <h4>🧪 Titration Apparatus Setup (hover to pause)</h4>
+    <div style="display: flex; justify-content: center; padding: 0.5rem;">
+      <svg width="320" height="380" viewBox="0 0 320 380">
+        <!-- Clamp stand -->
+        <rect x="30" y="340" width="120" height="10" fill="#6b7280" rx="2"/>
+        <rect x="85" y="40" width="8" height="300" fill="#6b7280"/>
+        <rect x="60" y="340" width="16" height="30" fill="#6b7280"/>
+        
+        <!-- Burette clamp -->
+        <rect x="93" y="55" width="50" height="8" fill="#6b7280"/>
+        <rect x="143" y="50" width="24" height="18" fill="#4b5563" rx="3"/>
+        
+        <!-- Burette -->
+        <rect x="150" y="68" width="18" height="180" fill="none" stroke="#94a3b8" stroke-width="2"/>
+        <rect x="152" y="70" width="14" height="176" fill="#fecaca" opacity="0.4"/>
+        
+        <!-- Burette graduations -->
+        <g fill="none" stroke="#64748b" stroke-width="0.5">
+          <line x1="150" y1="80" x2="155" y2="80"/>
+          <line x1="150" y1="100" x2="155" y2="100"/>
+          <line x1="150" y1="120" x2="155" y2="120"/>
+          <line x1="150" y1="140" x2="155" y2="140"/>
+          <line x1="150" y1="160" x2="155" y2="160"/>
+          <line x1="150" y1="180" x2="155" y2="180"/>
+          <line x1="150" y1="200" x2="155" y2="200"/>
+          <line x1="150" y1="220" x2="155" y2="220"/>
+        </g>
+        <text x="145" y="84" fill="currentColor" font-size="7" text-anchor="end">0</text>
+        <text x="145" y="124" fill="currentColor" font-size="7" text-anchor="end">10</text>
+        <text x="145" y="164" fill="currentColor" font-size="7" text-anchor="end">20</text>
+        <text x="145" y="204" fill="currentColor" font-size="7" text-anchor="end">30</text>
+        
+        <!-- Burette tap -->
+        <rect x="155" y="248" width="8" height="12" fill="#4b5563"/>
+        <rect x="163" y="250" width="12" height="8" fill="#22c55e" rx="2"/>
+        
+        <!-- Burette tip -->
+        <line x1="159" y1="260" x2="159" y2="280" stroke="#94a3b8" stroke-width="2"/>
+        
+        <!-- Acid drops falling - animated -->
+        <g class="anim-flow-down">
+          <circle cx="159" cy="285" r="3" fill="#ef4444" opacity="0.8"/>
+        </g>
+        <g class="anim-flow-down anim-delay-300">
+          <circle cx="159" cy="295" r="2" fill="#ef4444" opacity="0.6"/>
+        </g>
+        
+        <!-- White tile -->
+        <rect x="120" y="355" width="80" height="8" fill="#f8fafc" stroke="#e2e8f0"/>
+        
+        <!-- Conical flask -->
+        <path d="M140 350 L130 310 L130 305 L190 305 L190 310 L180 350 Z" 
+              fill="none" stroke="#94a3b8" stroke-width="2"/>
+        <path d="M132 310 L132 305 L188 305 L188 310" fill="none" stroke="#94a3b8" stroke-width="2"/>
+        
+        <!-- Alkali solution in flask with indicator (pink) -->
+        <path d="M142 348 L134 318 L186 318 L178 348 Z" fill="#f9a8d4" opacity="0.5"/>
+        
+        <!-- Swirling motion indicator -->
+        <g class="anim-rotate-cw-slow" style="transform-origin: 160px 333px;">
+          <path d="M145 333 Q160 325 175 333 Q160 341 145 333" 
+                fill="none" stroke="#ec4899" stroke-width="1" opacity="0.6"/>
+        </g>
+        
+        <!-- Labels -->
+        <text x="180" y="130" fill="#ef4444" font-size="9" font-weight="bold">Acid (HCl)</text>
+        <text x="180" y="142" fill="currentColor" font-size="8">Known conc.</text>
+        <text x="180" y="256" fill="currentColor" font-size="8">Tap</text>
+        <text x="200" y="330" fill="#ec4899" font-size="9" font-weight="bold">Alkali (NaOH)</text>
+        <text x="200" y="342" fill="currentColor" font-size="8">+ Indicator</text>
+        <text x="120" y="375" fill="currentColor" font-size="8">White tile</text>
+        
+        <!-- Burette label -->
+        <text x="159" y="58" fill="currentColor" font-size="9" text-anchor="middle" font-weight="bold">Burette</text>
+        
+        <!-- Flask label -->
+        <text x="160" y="298" fill="currentColor" font-size="9" text-anchor="middle" font-weight="bold">Conical Flask</text>
+        
+        <!-- Colour legend -->
+        <rect x="230" y="60" width="80" height="70" fill="none" stroke="currentColor" stroke-width="1" rx="4" opacity="0.3"/>
+        <text x="240" y="75" fill="currentColor" font-size="8" font-weight="bold">Colour Change:</text>
+        <circle cx="245" cy="90" r="5" fill="#f9a8d4"/>
+        <text x="255" y="93" fill="currentColor" font-size="7">Pink (alkaline)</text>
+        <circle cx="245" cy="110" r="5" fill="#f5f5f5" stroke="#d4d4d4"/>
+        <text x="255" y="113" fill="currentColor" font-size="7">Colourless (endpoint)</text>
+      </svg>
+    </div>
+    <p style="text-align: center; font-size: 0.8rem; color: var(--muted-foreground);">Titration setup showing burette with acid, conical flask with alkali + indicator, and white tile</p>
   </div>
 </div>
 

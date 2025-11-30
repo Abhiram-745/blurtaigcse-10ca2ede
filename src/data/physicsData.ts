@@ -311,6 +311,55 @@ export const physicsData: TopicSection[] = [
     <h4>💡 Example:</h4>
     <p>🌊 Ripples on a water surface are transverse waves. The water particles move up and down, but the wave itself travels outward across the surface.</p>
   </div>
+
+  <!-- Animated Transverse Wave Diagram -->
+  <div class="key-idea-block anim-pause-hover" style="padding: 1rem; margin: 1rem 0;">
+    <h4>🌊 Transverse Wave (hover to pause)</h4>
+    <div style="display: flex; justify-content: center; padding: 0.5rem;">
+      <svg width="360" height="160" viewBox="0 0 360 160">
+        <!-- Wave path -->
+        <path d="M20 80 Q50 30, 80 80 T140 80 T200 80 T260 80 T320 80 T380 80" 
+              fill="none" stroke="#3b82f6" stroke-width="3" class="anim-wave"/>
+        
+        <!-- Crest and trough labels -->
+        <text x="50" y="25" fill="#22c55e" font-size="10" text-anchor="middle">Crest</text>
+        <line x1="50" y1="30" x2="50" y2="50" stroke="#22c55e" stroke-width="1" stroke-dasharray="2,2"/>
+        
+        <text x="110" y="145" fill="#ef4444" font-size="10" text-anchor="middle">Trough</text>
+        <line x1="110" y1="110" x2="110" y2="135" stroke="#ef4444" stroke-width="1" stroke-dasharray="2,2"/>
+        
+        <!-- Amplitude marker -->
+        <line x1="50" y1="50" x2="50" y2="80" stroke="#f59e0b" stroke-width="2"/>
+        <line x1="45" y1="50" x2="55" y2="50" stroke="#f59e0b" stroke-width="2"/>
+        <line x1="45" y1="80" x2="55" y2="80" stroke="#f59e0b" stroke-width="2"/>
+        <text x="70" y="68" fill="#f59e0b" font-size="9">Amplitude</text>
+        
+        <!-- Wavelength marker -->
+        <line x1="50" y1="95" x2="170" y2="95" stroke="#ec4899" stroke-width="2"/>
+        <line x1="50" y1="90" x2="50" y2="100" stroke="#ec4899" stroke-width="2"/>
+        <line x1="170" y1="90" x2="170" y2="100" stroke="#ec4899" stroke-width="2"/>
+        <text x="110" y="108" fill="#ec4899" font-size="9" text-anchor="middle">Wavelength (λ)</text>
+        
+        <!-- Direction arrows -->
+        <path d="M280 80 L320 80" stroke="currentColor" stroke-width="2" marker-end="url(#arrowWave)"/>
+        <text x="300" y="70" fill="currentColor" font-size="9" text-anchor="middle">Wave direction →</text>
+        
+        <!-- Particle motion indicator -->
+        <line x1="200" y1="50" x2="200" y2="110" stroke="#6366f1" stroke-width="1" stroke-dasharray="3,2"/>
+        <path d="M200 55 L195 65 M200 55 L205 65" stroke="#6366f1" stroke-width="2"/>
+        <path d="M200 105 L195 95 M200 105 L205 95" stroke="#6366f1" stroke-width="2"/>
+        <text x="235" y="60" fill="#6366f1" font-size="8">Particle</text>
+        <text x="235" y="70" fill="#6366f1" font-size="8">motion ↕</text>
+        
+        <defs>
+          <marker id="arrowWave" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+            <polygon points="0 0, 10 3.5, 0 7" fill="currentColor"/>
+          </marker>
+        </defs>
+      </svg>
+    </div>
+    <p style="text-align: center; font-size: 0.8rem; color: var(--muted-foreground);">Particles vibrate perpendicular (⟂) to wave direction • Examples: water waves, light, electromagnetic waves</p>
+  </div>
 </div>
 
 <div class="subsection">
@@ -332,6 +381,77 @@ export const physicsData: TopicSection[] = [
   <div class="example-block">
     <h4>💡 Example:</h4>
     <p>🔊 Sound waves in air are longitudinal. The air particles vibrate backwards and forwards in the same direction the sound travels.</p>
+  </div>
+
+  <!-- Animated Longitudinal Wave Diagram -->
+  <div class="key-idea-block anim-pause-hover" style="padding: 1rem; margin: 1rem 0;">
+    <h4>🔊 Longitudinal Wave (hover to pause)</h4>
+    <div style="display: flex; justify-content: center; padding: 0.5rem;">
+      <svg width="360" height="140" viewBox="0 0 360 140">
+        <!-- Particle representation -->
+        <g>
+          <!-- Compression zone -->
+          <g class="anim-oscillate-x">
+            <circle cx="40" cy="70" r="5" fill="#3b82f6"/>
+            <circle cx="52" cy="70" r="5" fill="#3b82f6"/>
+            <circle cx="64" cy="70" r="5" fill="#3b82f6"/>
+            <circle cx="76" cy="70" r="5" fill="#3b82f6"/>
+          </g>
+          
+          <!-- Rarefaction zone -->
+          <g class="anim-oscillate-x" style="animation-delay: 0.5s;">
+            <circle cx="100" cy="70" r="5" fill="#3b82f6" opacity="0.6"/>
+            <circle cx="130" cy="70" r="5" fill="#3b82f6" opacity="0.6"/>
+            <circle cx="160" cy="70" r="5" fill="#3b82f6" opacity="0.6"/>
+          </g>
+          
+          <!-- Compression zone 2 -->
+          <g class="anim-oscillate-x">
+            <circle cx="185" cy="70" r="5" fill="#3b82f6"/>
+            <circle cx="197" cy="70" r="5" fill="#3b82f6"/>
+            <circle cx="209" cy="70" r="5" fill="#3b82f6"/>
+            <circle cx="221" cy="70" r="5" fill="#3b82f6"/>
+          </g>
+          
+          <!-- Rarefaction zone 2 -->
+          <g class="anim-oscillate-x" style="animation-delay: 0.5s;">
+            <circle cx="245" cy="70" r="5" fill="#3b82f6" opacity="0.6"/>
+            <circle cx="275" cy="70" r="5" fill="#3b82f6" opacity="0.6"/>
+            <circle cx="305" cy="70" r="5" fill="#3b82f6" opacity="0.6"/>
+          </g>
+        </g>
+        
+        <!-- Labels -->
+        <text x="58" y="45" fill="#22c55e" font-size="10" text-anchor="middle" font-weight="bold">Compression</text>
+        <text x="58" y="55" fill="#22c55e" font-size="8" text-anchor="middle">(particles close)</text>
+        
+        <text x="130" y="105" fill="#ef4444" font-size="10" text-anchor="middle" font-weight="bold">Rarefaction</text>
+        <text x="130" y="115" fill="#ef4444" font-size="8" text-anchor="middle">(particles spread)</text>
+        
+        <!-- Wavelength marker -->
+        <line x1="40" y1="20" x2="185" y2="20" stroke="#ec4899" stroke-width="2"/>
+        <line x1="40" y1="15" x2="40" y2="25" stroke="#ec4899" stroke-width="2"/>
+        <line x1="185" y1="15" x2="185" y2="25" stroke="#ec4899" stroke-width="2"/>
+        <text x="112" y="15" fill="#ec4899" font-size="9" text-anchor="middle">Wavelength (λ)</text>
+        
+        <!-- Direction arrows -->
+        <path d="M320 70 L345 70" stroke="currentColor" stroke-width="2" marker-end="url(#arrowLong)"/>
+        <text x="332" y="60" fill="currentColor" font-size="8" text-anchor="middle">Wave →</text>
+        
+        <!-- Particle motion indicator -->
+        <path d="M320 95 L340 95" stroke="#6366f1" stroke-width="2"/>
+        <path d="M335 90 L340 95 L335 100" stroke="#6366f1" stroke-width="2" fill="none"/>
+        <path d="M320 95 L315 90 M320 95 L315 100" stroke="#6366f1" stroke-width="2"/>
+        <text x="330" y="125" fill="#6366f1" font-size="8" text-anchor="middle">Particle ↔</text>
+        
+        <defs>
+          <marker id="arrowLong" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+            <polygon points="0 0, 10 3.5, 0 7" fill="currentColor"/>
+          </marker>
+        </defs>
+      </svg>
+    </div>
+    <p style="text-align: center; font-size: 0.8rem; color: var(--muted-foreground);">Particles vibrate parallel (∥) to wave direction • Examples: sound waves, ultrasound, P-waves (earthquakes)</p>
   </div>
 </div>
         `,
