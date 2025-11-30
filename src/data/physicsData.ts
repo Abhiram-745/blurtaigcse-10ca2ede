@@ -78,58 +78,13 @@ export const physicsData: TopicSection[] = [
     id: "energy",
     title: "Energy",
     status: "ready",
-    subsections: [
-      {
-        id: "4-1-1-energy-stores-systems",
-        title: "4.1.1 Energy Stores and Systems",
-        type: "content",
-        study_group: 1,
-        content_html: `
-<div class="subsection">
-  <h3 class="subsection-heading">Energy Stores</h3>
-  <ul>
-    <li>Thermal, Kinetic, Gravitational potential, Elastic potential</li>
-    <li>Chemical, Magnetic, Electrostatic, Nuclear</li>
-  </ul>
-</div>
-<div class="subsection">
-  <h3 class="subsection-heading">Systems and Changes</h3>
-  <p>Energy is transferred by heating, waves, electrical work, or mechanical work.</p>
-</div>
-        `,
-        canonical_keywords: ["energy stores","thermal","kinetic","gpe","elastic","chemical","magnetic","electrostatic","nuclear","systems","energy transfer"],
-        practice_items: [
-          { id:"p1", prompt_template:"List four energy stores and give one example for any store.", marks:3, type:"short-answer", difficulty:"easy", randomise:true, expected_keywords:["thermal","kinetic","gravitational potential","elastic","chemical","magnetic","electrostatic","nuclear","example"]},
-          { id:"p2", prompt_template:"Name two pathways by which energy can be transferred and describe a simple example.", marks:3, type:"short-answer", difficulty:"easy", randomise:true, expected_keywords:["heating","mechanical work","electrical work","waves","transfer"]}
-        ]
-      },
-      {
-        id: "4-1-2-work-and-energy-calculations",
-        title: "4.1.2 Changes in Energy and Work Done",
-        type: "content",
-        study_group: 1,
-        content_html: `
-<div class="subsection">
-  <h3 class="subsection-heading">Key Equations</h3>
-  <ul>
-    <li>Work done: W = F s</li>
-    <li>Kinetic: E_k = 1/2 m v^2</li>
-    <li>Gravitational: E_p = m g h</li>
-  </ul>
-</div>
-        `,
-        canonical_keywords:["work done","W=Fs","kinetic energy","1/2 m v^2","gravitational potential","mgh","energy change"],
-        practice_items:[
-          { id:"p3", prompt_template:"A 10 N force moves a box 3 m. Calculate the work done.", marks:2, type:"short-answer", difficulty:"easy", randomise:true, expected_keywords:["W=Fs","30 J"]},
-          { id:"p4", prompt_template:"A 0.5 kg ball moves at 6 m/s. Calculate its kinetic energy.", marks:3, type:"short-answer", difficulty:"medium", randomise:true, expected_keywords:["Ek=1/2mv^2","9 J","0.5*36=18*0.5=9"]}
-        ]
-      }
-    ]
+    subsections: [],
+    modules: [energyTransfersModule]
   },
   {
     id: "electricity",
     title: "Electricity",
-    status: "ready",
+    status: "coming_soon",
     subsections: [
       {
         id: "4-2-1-current-vpd-resistance",
@@ -177,7 +132,7 @@ export const physicsData: TopicSection[] = [
   {
     id: "particle-model",
     title: "Particle Model of Matter",
-    status: "ready",
+    status: "coming_soon",
     subsections: [
       {
         id: "4-3-1-density",
@@ -217,7 +172,7 @@ export const physicsData: TopicSection[] = [
   {
     id: "atomic-structure",
     title: "Atomic Structure",
-    status: "ready",
+    status: "coming_soon",
     subsections: [
       {
         id: "4-4-1-atom-and-isotopes",
@@ -258,7 +213,7 @@ export const physicsData: TopicSection[] = [
     title: "Forces",
     status: "ready",
     subsections: [], // No direct subsections - all content is in modules
-    modules: [forcesModule, energyModule, energyTransfersModule, motionModule]
+    modules: [forcesModule, energyModule, motionModule]
   },
   {
     id: "waves",
@@ -524,7 +479,7 @@ export const physicsData: TopicSection[] = [
   {
     id: "magnetism",
     title: "Magnetism and Electromagnetism",
-    status: "ready",
+    status: "coming_soon",
     subsections: [
       {
         id: "4-7-1-permanent-induced-magnets",
