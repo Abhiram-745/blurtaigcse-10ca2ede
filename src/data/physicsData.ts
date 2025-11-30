@@ -2497,6 +2497,151 @@ export const physicsData: TopicSection[] = [
     </tbody>
   </table>
 
+  <!-- Cross-section diagram showing how lamp projects shadows -->
+  <h4 class="subsection-subheading">💡 How the Lamp Creates Wave Shadows</h4>
+  <div class="diagram-container">
+    <svg viewBox="0 0 480 340" style="max-width: 480px; width: 100%;">
+      <defs>
+        <linearGradient id="lampBulb" x1="0%" y1="0%" x2="0%" y2="100%">
+          <stop offset="0%" style="stop-color:#fff59d"/>
+          <stop offset="100%" style="stop-color:#ffeb3b"/>
+        </linearGradient>
+        <radialGradient id="lightGlow" cx="50%" cy="50%" r="50%">
+          <stop offset="0%" style="stop-color:#fff59d;stop-opacity:0.8"/>
+          <stop offset="70%" style="stop-color:#ffeb3b;stop-opacity:0.2"/>
+          <stop offset="100%" style="stop-color:transparent"/>
+        </radialGradient>
+        <linearGradient id="waterCross" x1="0%" y1="0%" x2="0%" y2="100%">
+          <stop offset="0%" style="stop-color:#81d4fa"/>
+          <stop offset="100%" style="stop-color:#29b6f6"/>
+        </linearGradient>
+      </defs>
+      
+      <!-- Title -->
+      <text x="240" y="20" text-anchor="middle" font-size="13" fill="#333" font-weight="bold">Cross-Section: How Light Creates Wave Shadows</text>
+      
+      <!-- Lamp housing -->
+      <rect x="200" y="35" width="80" height="30" fill="#424242" rx="5"/>
+      <ellipse cx="240" cy="65" rx="30" ry="15" fill="url(#lampBulb)" stroke="#fbc02d" stroke-width="2"/>
+      
+      <!-- Light glow effect -->
+      <ellipse cx="240" cy="65" rx="50" ry="25" fill="url(#lightGlow)">
+        <animate attributeName="opacity" values="0.6;0.9;0.6" dur="2s" repeatCount="indefinite"/>
+      </ellipse>
+      
+      <!-- Light rays from lamp -->
+      <g stroke="#fdd835" stroke-width="2" opacity="0.6">
+        <!-- Left rays -->
+        <line x1="210" y1="75" x2="100" y2="150">
+          <animate attributeName="opacity" values="0.4;0.8;0.4" dur="1.5s" repeatCount="indefinite"/>
+        </line>
+        <line x1="220" y1="78" x2="140" y2="150"/>
+        <line x1="230" y1="80" x2="180" y2="150"/>
+        <!-- Center rays -->
+        <line x1="240" y1="80" x2="240" y2="150"/>
+        <!-- Right rays -->
+        <line x1="250" y1="80" x2="300" y2="150"/>
+        <line x1="260" y1="78" x2="340" y2="150"/>
+        <line x1="270" y1="75" x2="380" y2="150">
+          <animate attributeName="opacity" values="0.4;0.8;0.4" dur="1.5s" repeatCount="indefinite"/>
+        </line>
+      </g>
+      
+      <!-- Tank (cross-section) -->
+      <rect x="80" y="150" width="320" height="80" fill="url(#waterCross)" stroke="#0288d1" stroke-width="3"/>
+      
+      <!-- Water surface with animated waves -->
+      <path d="M80 155 Q120 145 160 155 Q200 165 240 155 Q280 145 320 155 Q360 165 400 155" stroke="#29b6f6" stroke-width="3" fill="none">
+        <animate attributeName="d" values="M80 155 Q120 145 160 155 Q200 165 240 155 Q280 145 320 155 Q360 165 400 155;M80 155 Q120 165 160 155 Q200 145 240 155 Q280 165 320 155 Q360 145 400 155;M80 155 Q120 145 160 155 Q200 165 240 155 Q280 145 320 155 Q360 165 400 155" dur="1s" repeatCount="indefinite"/>
+      </path>
+      
+      <!-- Wave crests (thick parts - refract light) -->
+      <g fill="#0277bd" opacity="0.5">
+        <ellipse cx="120" cy="165" rx="15" ry="25">
+          <animate attributeName="cx" values="120;160;120" dur="1s" repeatCount="indefinite"/>
+        </ellipse>
+        <ellipse cx="200" cy="165" rx="15" ry="25">
+          <animate attributeName="cx" values="200;240;200" dur="1s" repeatCount="indefinite"/>
+        </ellipse>
+        <ellipse cx="280" cy="165" rx="15" ry="25">
+          <animate attributeName="cx" values="280;320;280" dur="1s" repeatCount="indefinite"/>
+        </ellipse>
+        <ellipse cx="360" cy="165" rx="15" ry="25">
+          <animate attributeName="cx" values="360;400;360" dur="1s" repeatCount="indefinite"/>
+        </ellipse>
+      </g>
+      
+      <!-- Transparent base label -->
+      <text x="240" y="218" text-anchor="middle" font-size="9" fill="#fff" font-weight="bold">Transparent Base</text>
+      
+      <!-- Light continues through (refracted at crests) -->
+      <g stroke="#fdd835" stroke-width="1.5" opacity="0.5">
+        <line x1="120" y1="230" x2="120" y2="270">
+          <animate attributeName="x1" values="120;160;120" dur="1s" repeatCount="indefinite"/>
+          <animate attributeName="x2" values="115;155;115" dur="1s" repeatCount="indefinite"/>
+        </line>
+        <line x1="200" y1="230" x2="200" y2="270">
+          <animate attributeName="x1" values="200;240;200" dur="1s" repeatCount="indefinite"/>
+          <animate attributeName="x2" values="195;235;195" dur="1s" repeatCount="indefinite"/>
+        </line>
+        <line x1="280" y1="230" x2="280" y2="270">
+          <animate attributeName="x1" values="280;320;280" dur="1s" repeatCount="indefinite"/>
+          <animate attributeName="x2" values="275;315;275" dur="1s" repeatCount="indefinite"/>
+        </line>
+        <line x1="360" y1="230" x2="360" y2="270">
+          <animate attributeName="x1" values="360;400;360" dur="1s" repeatCount="indefinite"/>
+          <animate attributeName="x2" values="355;395;355" dur="1s" repeatCount="indefinite"/>
+        </line>
+      </g>
+      
+      <!-- White screen -->
+      <rect x="60" y="275" width="360" height="35" fill="#fafafa" stroke="#333" stroke-width="2" rx="3"/>
+      
+      <!-- Shadow pattern on screen -->
+      <g fill="#1565c0" opacity="0.5">
+        <rect x="110" y="280" width="20" height="25" rx="2">
+          <animate attributeName="x" values="110;150;110" dur="1s" repeatCount="indefinite"/>
+        </rect>
+        <rect x="190" y="280" width="20" height="25" rx="2">
+          <animate attributeName="x" values="190;230;190" dur="1s" repeatCount="indefinite"/>
+        </rect>
+        <rect x="270" y="280" width="20" height="25" rx="2">
+          <animate attributeName="x" values="270;310;270" dur="1s" repeatCount="indefinite"/>
+        </rect>
+        <rect x="350" y="280" width="20" height="25" rx="2">
+          <animate attributeName="x" values="350;390;350" dur="1s" repeatCount="indefinite"/>
+        </rect>
+      </g>
+      
+      <!-- Labels -->
+      <g font-size="9" fill="#333">
+        <text x="30" y="55">Lamp</text>
+        <path d="M50 50 L195 50" stroke="#333" stroke-width="1" marker-end="url(#arrowhead)"/>
+        
+        <text x="420" y="175" fill="#0277bd">Water</text>
+        <text x="420" y="188" fill="#0277bd">(5-10mm)</text>
+        
+        <text x="440" y="295">Screen</text>
+      </g>
+      
+      <!-- Explanation annotations -->
+      <rect x="60" y="315" width="170" height="20" fill="#e3f2fd" rx="3"/>
+      <text x="145" y="328" text-anchor="middle" font-size="8" fill="#1565c0">Crests focus light → bright bands</text>
+      
+      <rect x="250" y="315" width="170" height="20" fill="#ffebee" rx="3"/>
+      <text x="335" y="328" text-anchor="middle" font-size="8" fill="#c62828">Troughs spread light → dark bands</text>
+    </svg>
+  </div>
+  
+  <div class="key-idea-block">
+    <h4>How It Works</h4>
+    <ul>
+      <li><strong>Wave crests</strong> act like converging lenses → focus light → create <strong>bright lines</strong></li>
+      <li><strong>Wave troughs</strong> spread light out → create <strong>dark lines</strong></li>
+      <li>The pattern of bright/dark lines on the screen shows the <strong>wavefronts</strong></li>
+    </ul>
+  </div>
+
   <h4 class="subsection-subheading">💠 Setting Up the Ripple Tank</h4>
   <div class="method-step">
     <ol>
@@ -2510,6 +2655,96 @@ export const physicsData: TopicSection[] = [
 
   <h4 class="subsection-subheading">💠 Method Part A: Measuring Wavelength (λ)</h4>
   
+  <!-- Animated Wavelength Measurement Diagram -->
+  <div class="diagram-container">
+    <svg viewBox="0 0 500 280" style="max-width: 500px; width: 100%;">
+      <defs>
+        <linearGradient id="screenGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+          <stop offset="0%" style="stop-color:#fafafa"/>
+          <stop offset="100%" style="stop-color:#e0e0e0"/>
+        </linearGradient>
+        <filter id="shadowBlur">
+          <feGaussianBlur stdDeviation="2"/>
+        </filter>
+      </defs>
+      
+      <!-- Title -->
+      <text x="250" y="20" text-anchor="middle" font-size="13" fill="#333" font-weight="bold">Measuring Wavelength from Wave Shadows</text>
+      
+      <!-- White screen/paper -->
+      <rect x="40" y="50" width="420" height="150" fill="url(#screenGrad)" stroke="#999" stroke-width="2" rx="5"/>
+      <text x="250" y="45" text-anchor="middle" font-size="10" fill="#666">White Screen (Wave Shadows Projected)</text>
+      
+      <!-- Wave shadow lines (crests) - stationary for measurement -->
+      <g stroke="#1565c0" stroke-width="4" opacity="0.6" filter="url(#shadowBlur)">
+        <line x1="80" y1="70" x2="80" y2="180"/>
+        <line x1="140" y1="70" x2="140" y2="180"/>
+        <line x1="200" y1="70" x2="200" y2="180"/>
+        <line x1="260" y1="70" x2="260" y2="180"/>
+        <line x1="320" y1="70" x2="320" y2="180"/>
+        <line x1="380" y1="70" x2="380" y2="180"/>
+      </g>
+      
+      <!-- Ruler overlay -->
+      <rect x="60" y="185" width="340" height="25" fill="#fff8e1" stroke="#795548" stroke-width="2" rx="2"/>
+      <!-- Ruler markings -->
+      <g stroke="#333" font-size="8" fill="#333">
+        <line x1="80" y1="185" x2="80" y2="195" stroke-width="1.5"/>
+        <text x="80" y="207" text-anchor="middle">0</text>
+        <line x1="140" y1="185" x2="140" y2="195" stroke-width="1.5"/>
+        <text x="140" y="207" text-anchor="middle">3</text>
+        <line x1="200" y1="185" x2="200" y2="195" stroke-width="1.5"/>
+        <text x="200" y="207" text-anchor="middle">6</text>
+        <line x1="260" y1="185" x2="260" y2="195" stroke-width="1.5"/>
+        <text x="260" y="207" text-anchor="middle">9</text>
+        <line x1="320" y1="185" x2="320" y2="195" stroke-width="1.5"/>
+        <text x="320" y="207" text-anchor="middle">12</text>
+        <line x1="380" y1="185" x2="380" y2="195" stroke-width="1.5"/>
+        <text x="380" y="207" text-anchor="middle">15</text>
+        <!-- Small mm marks -->
+        <line x1="92" y1="185" x2="92" y2="190" stroke-width="0.5"/>
+        <line x1="104" y1="185" x2="104" y2="190" stroke-width="0.5"/>
+        <line x1="116" y1="185" x2="116" y2="190" stroke-width="0.5"/>
+        <line x1="128" y1="185" x2="128" y2="190" stroke-width="0.5"/>
+        <line x1="152" y1="185" x2="152" y2="190" stroke-width="0.5"/>
+        <line x1="164" y1="185" x2="164" y2="190" stroke-width="0.5"/>
+        <line x1="176" y1="185" x2="176" y2="190" stroke-width="0.5"/>
+        <line x1="188" y1="185" x2="188" y2="190" stroke-width="0.5"/>
+      </g>
+      <text x="230" y="225" text-anchor="middle" font-size="9" fill="#795548">Ruler (cm)</text>
+      
+      <!-- Counting labels on crests -->
+      <g font-size="11" fill="#e53935" font-weight="bold">
+        <circle cx="80" cy="125" r="12" fill="#ffcdd2" stroke="#e53935" stroke-width="2"/>
+        <text x="80" y="129" text-anchor="middle">1</text>
+        <circle cx="140" cy="125" r="12" fill="#ffcdd2" stroke="#e53935" stroke-width="2"/>
+        <text x="140" y="129" text-anchor="middle">2</text>
+        <circle cx="200" cy="125" r="12" fill="#ffcdd2" stroke="#e53935" stroke-width="2"/>
+        <text x="200" y="129" text-anchor="middle">3</text>
+        <circle cx="260" cy="125" r="12" fill="#ffcdd2" stroke="#e53935" stroke-width="2"/>
+        <text x="260" y="129" text-anchor="middle">4</text>
+        <circle cx="320" cy="125" r="12" fill="#ffcdd2" stroke="#e53935" stroke-width="2"/>
+        <text x="320" y="129" text-anchor="middle">5</text>
+        <circle cx="380" cy="125" r="12" fill="#ffcdd2" stroke="#e53935" stroke-width="2"/>
+        <text x="380" y="129" text-anchor="middle">6</text>
+      </g>
+      
+      <!-- Measurement arrow showing total distance -->
+      <g>
+        <line x1="80" y1="165" x2="380" y2="165" stroke="#4caf50" stroke-width="2"/>
+        <polygon points="80,165 90,160 90,170" fill="#4caf50"/>
+        <polygon points="380,165 370,160 370,170" fill="#4caf50"/>
+        <rect x="190" y="155" width="80" height="18" fill="#fff" stroke="#4caf50" rx="3"/>
+        <text x="230" y="168" text-anchor="middle" font-size="10" fill="#4caf50" font-weight="bold">15 cm total</text>
+      </g>
+      
+      <!-- Calculation box -->
+      <rect x="40" y="235" width="420" height="40" fill="#e8f5e9" stroke="#4caf50" stroke-width="2" rx="5"/>
+      <text x="250" y="252" text-anchor="middle" font-size="11" fill="#2e7d32" font-weight="bold">Calculation: 6 crests = 5 wavelengths</text>
+      <text x="250" y="268" text-anchor="middle" font-size="12" fill="#1b5e20" font-weight="bold">λ = 15 cm ÷ 5 = 3 cm = 0.03 m</text>
+    </svg>
+  </div>
+
   <div class="definition-block">
     <h4>⭐ Method A – Direct Measurement from Projected Wavefronts</h4>
     <ol>
@@ -2524,6 +2759,92 @@ export const physicsData: TopicSection[] = [
     <p><strong>Why this is good:</strong> Reduces percentage error by using multiple wavelengths</p>
   </div>
 
+  <!-- Animated Strobe Light Diagram -->
+  <div class="diagram-container">
+    <svg viewBox="0 0 500 300" style="max-width: 500px; width: 100%;">
+      <defs>
+        <linearGradient id="strobeLight" x1="0%" y1="0%" x2="0%" y2="100%">
+          <stop offset="0%" style="stop-color:#ffeb3b"/>
+          <stop offset="100%" style="stop-color:#ffc107"/>
+        </linearGradient>
+        <radialGradient id="flashGlow" cx="50%" cy="50%" r="50%">
+          <stop offset="0%" style="stop-color:#fff59d"/>
+          <stop offset="100%" style="stop-color:transparent"/>
+        </radialGradient>
+      </defs>
+      
+      <!-- Title -->
+      <text x="250" y="20" text-anchor="middle" font-size="13" fill="#333" font-weight="bold">Strobe Light Method - "Freezing" Waves</text>
+      
+      <!-- Split view labels -->
+      <text x="125" y="45" text-anchor="middle" font-size="11" fill="#e53935" font-weight="bold">Without Strobe (Blurred)</text>
+      <text x="375" y="45" text-anchor="middle" font-size="11" fill="#4caf50" font-weight="bold">With Strobe (Frozen)</text>
+      
+      <!-- Divider -->
+      <line x1="250" y1="55" x2="250" y2="280" stroke="#999" stroke-width="2" stroke-dasharray="5,5"/>
+      
+      <!-- Left side - Without Strobe (moving waves, blurred) -->
+      <rect x="30" y="60" width="190" height="130" fill="#e3f2fd" stroke="#1976d2" stroke-width="2" rx="5"/>
+      
+      <!-- Blurred moving waves -->
+      <g opacity="0.4">
+        <rect x="50" y="80" width="15" height="90" fill="#1565c0" rx="2">
+          <animate attributeName="x" values="50;200;50" dur="1s" repeatCount="indefinite"/>
+          <animate attributeName="opacity" values="0.4;0.1;0.4" dur="1s" repeatCount="indefinite"/>
+        </rect>
+        <rect x="90" y="80" width="15" height="90" fill="#1565c0" rx="2">
+          <animate attributeName="x" values="90;240;90" dur="1s" repeatCount="indefinite"/>
+          <animate attributeName="opacity" values="0.4;0.1;0.4" dur="1s" repeatCount="indefinite"/>
+        </rect>
+        <rect x="130" y="80" width="15" height="90" fill="#1565c0" rx="2">
+          <animate attributeName="x" values="130;280;130" dur="1s" repeatCount="indefinite"/>
+          <animate attributeName="opacity" values="0.4;0.1;0.4" dur="1s" repeatCount="indefinite"/>
+        </rect>
+      </g>
+      
+      <!-- Motion blur effect text -->
+      <text x="125" y="205" text-anchor="middle" font-size="10" fill="#c62828">❌ Hard to measure - waves are moving!</text>
+      
+      <!-- Right side - With Strobe (stationary waves, clear) -->
+      <rect x="280" y="60" width="190" height="130" fill="#e8f5e9" stroke="#4caf50" stroke-width="2" rx="5"/>
+      
+      <!-- Clear stationary waves -->
+      <g fill="#1565c0">
+        <rect x="300" y="80" width="8" height="90" rx="2"/>
+        <rect x="340" y="80" width="8" height="90" rx="2"/>
+        <rect x="380" y="80" width="8" height="90" rx="2"/>
+        <rect x="420" y="80" width="8" height="90" rx="2"/>
+      </g>
+      
+      <!-- Wavelength measurement arrows -->
+      <g stroke="#e53935" stroke-width="2">
+        <line x1="304" y1="175" x2="344" y2="175"/>
+        <polygon points="304,175 310,172 310,178" fill="#e53935"/>
+        <polygon points="344,175 338,172 338,178" fill="#e53935"/>
+        <text x="324" y="188" text-anchor="middle" font-size="9" fill="#e53935" font-weight="bold">λ</text>
+      </g>
+      
+      <!-- Strobe light icon -->
+      <g transform="translate(375, 220)">
+        <rect x="-25" y="-10" width="50" height="25" fill="#424242" rx="5"/>
+        <ellipse cx="0" cy="2" rx="15" ry="8" fill="url(#strobeLight)"/>
+        <!-- Flashing effect -->
+        <ellipse cx="0" cy="2" rx="25" ry="15" fill="url(#flashGlow)">
+          <animate attributeName="opacity" values="0;1;0" dur="0.3s" repeatCount="indefinite"/>
+        </ellipse>
+        <text x="0" y="30" text-anchor="middle" font-size="9" fill="#333">Strobe Light</text>
+      </g>
+      
+      <!-- Checkmark -->
+      <text x="375" y="205" text-anchor="middle" font-size="10" fill="#2e7d32">✓ Clear crests - easy to measure!</text>
+      
+      <!-- Explanation box -->
+      <rect x="30" y="250" width="440" height="40" fill="#fff3e0" stroke="#ff9800" stroke-width="2" rx="5"/>
+      <text x="250" y="267" text-anchor="middle" font-size="10" fill="#e65100" font-weight="bold">When strobe frequency = wave frequency, waves appear stationary</text>
+      <text x="250" y="282" text-anchor="middle" font-size="9" fill="#bf360c">Adjust strobe until waves "freeze" → measure spacing between crests</text>
+    </svg>
+  </div>
+
   <div class="spec-point-block">
     <h4>⭐ Method B – Using a Strobe Light (Higher Accuracy)</h4>
     <ol>
@@ -2535,6 +2856,86 @@ export const physicsData: TopicSection[] = [
   </div>
 
   <h4 class="subsection-subheading">💠 Method Part B: Measuring Frequency (f)</h4>
+  
+  <!-- Animated Frequency Counting Diagram -->
+  <div class="diagram-container">
+    <svg viewBox="0 0 480 250" style="max-width: 480px; width: 100%;">
+      <defs>
+        <linearGradient id="tankWaterFreq" x1="0%" y1="0%" x2="0%" y2="100%">
+          <stop offset="0%" style="stop-color:#4fc3f7"/>
+          <stop offset="100%" style="stop-color:#0288d1"/>
+        </linearGradient>
+      </defs>
+      
+      <!-- Title -->
+      <text x="240" y="20" text-anchor="middle" font-size="13" fill="#333" font-weight="bold">Counting Waves to Find Frequency</text>
+      
+      <!-- Tank view from above -->
+      <rect x="40" y="50" width="300" height="120" fill="url(#tankWaterFreq)" stroke="#01579b" stroke-width="3" rx="5"/>
+      
+      <!-- Animated wavefronts moving across -->
+      <g stroke="#fff" stroke-width="3" opacity="0.8">
+        <line x1="60" y1="60" x2="60" y2="160">
+          <animate attributeName="x1" values="60;340;60" dur="5s" repeatCount="indefinite"/>
+          <animate attributeName="x2" values="60;340;60" dur="5s" repeatCount="indefinite"/>
+        </line>
+        <line x1="100" y1="60" x2="100" y2="160">
+          <animate attributeName="x1" values="100;380;100" dur="5s" repeatCount="indefinite"/>
+          <animate attributeName="x2" values="100;380;100" dur="5s" repeatCount="indefinite"/>
+        </line>
+        <line x1="140" y1="60" x2="140" y2="160">
+          <animate attributeName="x1" values="140;420;140" dur="5s" repeatCount="indefinite"/>
+          <animate attributeName="x2" values="140;420;140" dur="5s" repeatCount="indefinite"/>
+        </line>
+        <line x1="180" y1="60" x2="180" y2="160">
+          <animate attributeName="x1" values="180;460;180" dur="5s" repeatCount="indefinite"/>
+          <animate attributeName="x2" values="180;460;180" dur="5s" repeatCount="indefinite"/>
+        </line>
+        <line x1="220" y1="60" x2="220" y2="160">
+          <animate attributeName="x1" values="220;500;220" dur="5s" repeatCount="indefinite"/>
+          <animate attributeName="x2" values="220;500;220" dur="5s" repeatCount="indefinite"/>
+        </line>
+      </g>
+      
+      <!-- Fixed counting point marker -->
+      <g>
+        <line x1="200" y1="45" x2="200" y2="175" stroke="#e53935" stroke-width="3" stroke-dasharray="5,3"/>
+        <polygon points="200,45 195,55 205,55" fill="#e53935"/>
+        <circle cx="200" cy="110" r="8" fill="#e53935" stroke="#fff" stroke-width="2">
+          <animate attributeName="r" values="8;12;8" dur="1s" repeatCount="indefinite"/>
+        </circle>
+        <text x="200" y="185" text-anchor="middle" font-size="10" fill="#e53935" font-weight="bold">Fixed Point</text>
+      </g>
+      
+      <!-- Stopwatch -->
+      <g transform="translate(380, 70)">
+        <circle cx="40" cy="40" r="38" fill="#fafafa" stroke="#333" stroke-width="3"/>
+        <circle cx="40" cy="40" r="32" fill="#fff" stroke="#999" stroke-width="1"/>
+        <!-- Clock hands -->
+        <line x1="40" y1="40" x2="40" y2="15" stroke="#333" stroke-width="2"/>
+        <line x1="40" y1="40" x2="55" y2="40" stroke="#e53935" stroke-width="1.5">
+          <animateTransform attributeName="transform" type="rotate" from="0 40 40" to="360 40 40" dur="10s" repeatCount="indefinite"/>
+        </line>
+        <circle cx="40" cy="40" r="3" fill="#333"/>
+        <!-- Button -->
+        <rect x="35" y="0" width="10" height="8" fill="#666" rx="2"/>
+        <text x="40" y="95" text-anchor="middle" font-size="10" fill="#333" font-weight="bold">10 seconds</text>
+      </g>
+      
+      <!-- Counter display -->
+      <rect x="365" y="140" width="90" height="50" fill="#263238" stroke="#37474f" stroke-width="2" rx="5"/>
+      <text x="410" y="160" text-anchor="middle" font-size="10" fill="#4caf50">Waves counted:</text>
+      <text x="410" y="180" text-anchor="middle" font-size="18" fill="#4caf50" font-weight="bold">
+        <animate attributeName="textContent" values="1;2;3;4;5;6;7;8;9;10;11;12;13;14;15;16;17;18;19;20;1" dur="10s" repeatCount="indefinite"/>
+        20
+      </text>
+      
+      <!-- Calculation box -->
+      <rect x="40" y="200" width="420" height="45" fill="#e8f5e9" stroke="#4caf50" stroke-width="2" rx="5"/>
+      <text x="250" y="218" text-anchor="middle" font-size="11" fill="#2e7d32" font-weight="bold">Calculation: 20 waves pass the fixed point in 10 seconds</text>
+      <text x="250" y="238" text-anchor="middle" font-size="14" fill="#1b5e20" font-weight="bold">f = 20 ÷ 10 = 2 Hz (2 waves per second)</text>
+    </svg>
+  </div>
   
   <div class="info-grid">
     <div class="definition-block">
