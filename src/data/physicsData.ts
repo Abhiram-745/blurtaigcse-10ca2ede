@@ -2329,8 +2329,440 @@ export const physicsData: TopicSection[] = [
       {
         id: "rp-waves",
         title: "Waves Practicals",
-        status: "coming_soon",
-        subsections: []
+        status: "ready",
+        subsections: [
+          {
+            id: "rp-ripple-tank",
+            title: "RP: Ripple Tank - Investigating Wave Properties",
+            type: "content",
+            study_group: 1,
+            content_html: `
+<div class="subsection">
+  <h3 class="subsection-heading">🌊 Required Practical: Ripple Tank – Investigating Wave Properties</h3>
+  
+  <div class="key-point">
+    <h4>💠 Aim</h4>
+    <p>To investigate the properties of water waves in a ripple tank by:</p>
+    <ul>
+      <li>Measuring <strong>wavelength, frequency, and wave speed</strong></li>
+      <li>Observing and explaining <strong>wavefront patterns</strong></li>
+      <li>Understanding how waves behave when passing into deeper or shallower water (change in speed)</li>
+    </ul>
+  </div>
+
+  <h4 class="subsection-subheading">💠 Apparatus</h4>
+  
+  <!-- Animated Ripple Tank Diagram -->
+  <div class="diagram-container">
+    <svg viewBox="0 0 500 400" style="max-width: 500px; width: 100%;">
+      <defs>
+        <linearGradient id="waterSurface" x1="0%" y1="0%" x2="0%" y2="100%">
+          <stop offset="0%" style="stop-color:#81d4fa"/>
+          <stop offset="100%" style="stop-color:#0288d1"/>
+        </linearGradient>
+        <linearGradient id="tankEdge" x1="0%" y1="0%" x2="100%" y2="0%">
+          <stop offset="0%" style="stop-color:#757575"/>
+          <stop offset="100%" style="stop-color:#9e9e9e"/>
+        </linearGradient>
+        <pattern id="wavePattern" x="0" y="0" width="40" height="10" patternUnits="userSpaceOnUse">
+          <path d="M0 5 Q10 0 20 5 Q30 10 40 5" stroke="#fff" stroke-width="1.5" fill="none" opacity="0.6">
+            <animate attributeName="d" values="M0 5 Q10 0 20 5 Q30 10 40 5;M0 5 Q10 10 20 5 Q30 0 40 5;M0 5 Q10 0 20 5 Q30 10 40 5" dur="1s" repeatCount="indefinite"/>
+          </path>
+        </pattern>
+      </defs>
+      
+      <!-- Title -->
+      <text x="250" y="25" text-anchor="middle" font-size="14" fill="#333" font-weight="bold">Ripple Tank Apparatus</text>
+      
+      <!-- Lamp above -->
+      <ellipse cx="250" cy="55" rx="35" ry="15" fill="#ffeb3b" stroke="#f9a825" stroke-width="2"/>
+      <rect x="235" y="40" width="30" height="15" fill="#424242"/>
+      <text x="250" y="52" text-anchor="middle" font-size="9" fill="#333">Lamp</text>
+      <!-- Light rays -->
+      <g stroke="#ffeb3b" stroke-width="1" opacity="0.5">
+        <line x1="230" y1="70" x2="180" y2="130"/>
+        <line x1="250" y1="70" x2="250" y2="130"/>
+        <line x1="270" y1="70" x2="320" y2="130"/>
+      </g>
+      
+      <!-- Tank frame (3D effect) -->
+      <rect x="100" y="130" width="300" height="180" fill="url(#tankEdge)" rx="5"/>
+      <rect x="110" y="140" width="280" height="160" fill="url(#waterSurface)" rx="3"/>
+      
+      <!-- Wave pattern overlay -->
+      <rect x="110" y="140" width="280" height="160" fill="url(#wavePattern)" rx="3"/>
+      
+      <!-- Animated wavefronts -->
+      <g stroke="#fff" stroke-width="2" fill="none" opacity="0.8">
+        <line x1="130" y1="160" x2="130" y2="280">
+          <animate attributeName="x1" values="130;370;130" dur="3s" repeatCount="indefinite"/>
+          <animate attributeName="x2" values="130;370;130" dur="3s" repeatCount="indefinite"/>
+          <animate attributeName="opacity" values="0.8;0;0.8" dur="3s" repeatCount="indefinite"/>
+        </line>
+        <line x1="160" y1="160" x2="160" y2="280">
+          <animate attributeName="x1" values="160;400;160" dur="3s" repeatCount="indefinite"/>
+          <animate attributeName="x2" values="160;400;160" dur="3s" repeatCount="indefinite"/>
+          <animate attributeName="opacity" values="0.8;0;0.8" dur="3s" repeatCount="indefinite"/>
+        </line>
+        <line x1="190" y1="160" x2="190" y2="280">
+          <animate attributeName="x1" values="190;430;190" dur="3s" repeatCount="indefinite"/>
+          <animate attributeName="x2" values="190;430;190" dur="3s" repeatCount="indefinite"/>
+          <animate attributeName="opacity" values="0.8;0;0.8" dur="3s" repeatCount="indefinite"/>
+        </line>
+      </g>
+      
+      <!-- Vibrating bar -->
+      <rect x="105" y="150" width="8" height="130" fill="#795548" rx="2">
+        <animate attributeName="x" values="105;107;105;103;105" dur="0.2s" repeatCount="indefinite"/>
+      </rect>
+      <text x="95" y="145" font-size="8" fill="#333" text-anchor="end">Vibrating</text>
+      <text x="95" y="155" font-size="8" fill="#333" text-anchor="end">Bar</text>
+      
+      <!-- Motor -->
+      <rect x="85" y="200" width="25" height="40" fill="#424242" rx="3"/>
+      <circle cx="97" cy="220" r="8" fill="#666"/>
+      <text x="75" y="255" font-size="8" fill="#333" text-anchor="middle">Motor</text>
+      
+      <!-- Ruler -->
+      <rect x="400" y="140" width="20" height="160" fill="#fff8e1" stroke="#333" stroke-width="1"/>
+      <g font-size="7" fill="#333">
+        <line x1="400" y1="150" x2="410" y2="150" stroke="#333"/>
+        <text x="412" y="153">0</text>
+        <line x1="400" y1="180" x2="410" y2="180" stroke="#333"/>
+        <text x="412" y="183">3</text>
+        <line x1="400" y1="210" x2="410" y2="210" stroke="#333"/>
+        <text x="412" y="213">6</text>
+        <line x1="400" y1="240" x2="410" y2="240" stroke="#333"/>
+        <text x="412" y="243">9</text>
+        <line x1="400" y1="270" x2="410" y2="270" stroke="#333"/>
+        <text x="412" y="273">12</text>
+      </g>
+      <text x="410" y="310" font-size="8" fill="#333" text-anchor="middle">Ruler (cm)</text>
+      
+      <!-- Screen below -->
+      <rect x="100" y="320" width="300" height="40" fill="#fff" stroke="#333" stroke-width="2" rx="3"/>
+      <text x="250" y="345" text-anchor="middle" font-size="10" fill="#333">White Screen (shows wave shadows)</text>
+      
+      <!-- Projected wave shadows on screen -->
+      <g stroke="#1976d2" stroke-width="3" opacity="0.4">
+        <line x1="150" y1="330" x2="150" y2="350">
+          <animate attributeName="x1" values="150;350;150" dur="3s" repeatCount="indefinite"/>
+          <animate attributeName="x2" values="150;350;150" dur="3s" repeatCount="indefinite"/>
+        </line>
+        <line x1="180" y1="330" x2="180" y2="350">
+          <animate attributeName="x1" values="180;380;180" dur="3s" repeatCount="indefinite"/>
+          <animate attributeName="x2" values="180;380;180" dur="3s" repeatCount="indefinite"/>
+        </line>
+        <line x1="210" y1="330" x2="210" y2="350">
+          <animate attributeName="x1" values="210;410;210" dur="3s" repeatCount="indefinite"/>
+          <animate attributeName="x2" values="210;410;210" dur="3s" repeatCount="indefinite"/>
+        </line>
+      </g>
+      
+      <!-- Labels -->
+      <text x="250" y="230" text-anchor="middle" font-size="10" fill="#fff" font-weight="bold">Water (5-10mm deep)</text>
+      
+      <!-- Wavelength indicator -->
+      <g transform="translate(280, 180)">
+        <line x1="0" y1="0" x2="30" y2="0" stroke="#e53935" stroke-width="2"/>
+        <line x1="0" y1="-5" x2="0" y2="5" stroke="#e53935" stroke-width="2"/>
+        <line x1="30" y1="-5" x2="30" y2="5" stroke="#e53935" stroke-width="2"/>
+        <text x="15" y="-8" text-anchor="middle" font-size="9" fill="#e53935">λ</text>
+      </g>
+      
+      <!-- Power pack -->
+      <rect x="50" y="330" width="40" height="30" fill="#1976d2" rx="3"/>
+      <text x="70" y="350" text-anchor="middle" font-size="8" fill="#fff">Power</text>
+      <line x1="75" y1="345" x2="85" y2="220" stroke="#333" stroke-width="1.5"/>
+    </svg>
+  </div>
+
+  <table class="styled-table">
+    <thead>
+      <tr>
+        <th>Equipment</th>
+        <th>Purpose</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td>Ripple tank with transparent base</td><td>To produce water waves</td></tr>
+      <tr><td>Oscillating bar (vibrator motor)</td><td>Creates regular wavefronts</td></tr>
+      <tr><td>Power pack</td><td>Controls wave frequency</td></tr>
+      <tr><td>Lamp above tank</td><td>Casts shadow/wave pattern onto screen</td></tr>
+      <tr><td>White screen / paper</td><td>To observe wavefronts clearly</td></tr>
+      <tr><td>Ruler (preferably metal)</td><td>Measure wavelength</td></tr>
+      <tr><td>Stopwatch</td><td>Measure frequency/time</td></tr>
+      <tr><td>Strobe light (optional)</td><td>"Freeze" the waves for clearer measurement</td></tr>
+      <tr><td>Wooden blocks</td><td>Adjust water depth if needed</td></tr>
+    </tbody>
+  </table>
+
+  <h4 class="subsection-subheading">💠 Setting Up the Ripple Tank</h4>
+  <div class="method-step">
+    <ol>
+      <li>Fill the tank with <strong>shallow water (5–10 mm depth)</strong> — produces clearer, slower-moving waves</li>
+      <li>Position the <strong>lamp directly above</strong> the tank — ensure screen below is evenly illuminated</li>
+      <li>Attach the <strong>vibrating bar</strong> to the motor — it should lightly touch the water surface</li>
+      <li>Switch on the motor and adjust until waves are <strong>evenly spaced and parallel</strong> to the bar</li>
+      <li>Use a <strong>set square</strong> to check the ruler is correctly aligned for measuring wavelengths</li>
+    </ol>
+  </div>
+
+  <h4 class="subsection-subheading">💠 Method Part A: Measuring Wavelength (λ)</h4>
+  
+  <div class="definition-block">
+    <h4>⭐ Method A – Direct Measurement from Projected Wavefronts</h4>
+    <ol>
+      <li>Switch on the lamp so wave shadows appear clearly on the screen</li>
+      <li>Identify <strong>5–10 consecutive wave crests</strong> (bright lines)</li>
+      <li>Measure the distance from the first crest to the last crest using a ruler</li>
+      <li>Divide by the number of wavelengths between them:</li>
+    </ol>
+    <div class="formula-box">
+      <p>λ = distance across many waves ÷ number of waves</p>
+    </div>
+    <p><strong>Why this is good:</strong> Reduces percentage error by using multiple wavelengths</p>
+  </div>
+
+  <div class="spec-point-block">
+    <h4>⭐ Method B – Using a Strobe Light (Higher Accuracy)</h4>
+    <ol>
+      <li>Set the strobe frequency close to the wave frequency</li>
+      <li>Adjust until the waves appear <strong>stationary ("frozen")</strong></li>
+      <li>Measure the spacing between stationary crests — this = wavelength</li>
+    </ol>
+    <p><strong>Why this is good:</strong> Removes motion blur and makes crests sharper</p>
+  </div>
+
+  <h4 class="subsection-subheading">💠 Method Part B: Measuring Frequency (f)</h4>
+  
+  <div class="info-grid">
+    <div class="definition-block">
+      <h4>⭐ Method A – Using the Power Pack</h4>
+      <p>If the vibrator is connected to a calibrated power supply, read frequency directly (e.g., 15 Hz)</p>
+    </div>
+    <div class="key-facts-block">
+      <h4>⭐ Method B – Counting Waves Manually</h4>
+      <ol>
+        <li>Choose a fixed point on the tank</li>
+        <li>Count how many crests pass it in <strong>10 seconds</strong></li>
+        <li>Use: <strong>f = number of waves ÷ time</strong></li>
+      </ol>
+      <p><em>Why 10 seconds? Minimises reaction-time error</em></p>
+    </div>
+  </div>
+
+  <h4 class="subsection-subheading">💠 Method Part C: Calculating Wave Speed (v)</h4>
+  
+  <div class="key-point">
+    <h4>The Wave Equation</h4>
+    <div class="formula-box">
+      <p style="font-size: 1.5rem;">v = f × λ</p>
+      <p class="formula-note">wave speed = frequency × wavelength</p>
+    </div>
+    <p>Once both <strong>frequency (f)</strong> and <strong>wavelength (λ)</strong> are known, calculate wave speed.</p>
+  </div>
+
+  <div class="example-block">
+    <h4>⭐ Direct Speed Method (Alternative)</h4>
+    <ol>
+      <li>Track a single crest with your eye</li>
+      <li>Measure the time it takes to travel a measured distance</li>
+      <li>Use: <strong>v = d ÷ t</strong></li>
+    </ol>
+    <p><em>Less accurate but acceptable</em></p>
+  </div>
+
+  <h4 class="subsection-subheading">💠 Extension: Depth & Wave Speed</h4>
+  
+  <!-- Animated Depth Comparison Diagram -->
+  <div class="diagram-container">
+    <svg viewBox="0 0 450 220" style="max-width: 450px; width: 100%;">
+      <defs>
+        <linearGradient id="deepWater" x1="0%" y1="0%" x2="0%" y2="100%">
+          <stop offset="0%" style="stop-color:#4fc3f7"/>
+          <stop offset="100%" style="stop-color:#0277bd"/>
+        </linearGradient>
+        <linearGradient id="shallowWater" x1="0%" y1="0%" x2="0%" y2="100%">
+          <stop offset="0%" style="stop-color:#b3e5fc"/>
+          <stop offset="100%" style="stop-color:#4fc3f7"/>
+        </linearGradient>
+      </defs>
+      
+      <!-- Title -->
+      <text x="225" y="20" text-anchor="middle" font-size="13" fill="#333" font-weight="bold">Wave Behaviour in Different Depths</text>
+      
+      <!-- Deep water section -->
+      <rect x="30" y="50" width="180" height="100" fill="url(#deepWater)" rx="5"/>
+      <text x="120" y="45" text-anchor="middle" font-size="11" fill="#333" font-weight="bold">Deep Water</text>
+      
+      <!-- Deep water waves (wider spacing) -->
+      <g stroke="#fff" stroke-width="2" opacity="0.8">
+        <line x1="50" y1="60" x2="50" y2="140">
+          <animate attributeName="x1" values="50;200;50" dur="2s" repeatCount="indefinite"/>
+          <animate attributeName="x2" values="50;200;50" dur="2s" repeatCount="indefinite"/>
+        </line>
+        <line x1="90" y1="60" x2="90" y2="140">
+          <animate attributeName="x1" values="90;240;90" dur="2s" repeatCount="indefinite"/>
+          <animate attributeName="x2" values="90;240;90" dur="2s" repeatCount="indefinite"/>
+        </line>
+        <line x1="130" y1="60" x2="130" y2="140">
+          <animate attributeName="x1" values="130;280;130" dur="2s" repeatCount="indefinite"/>
+          <animate attributeName="x2" values="130;280;130" dur="2s" repeatCount="indefinite"/>
+        </line>
+      </g>
+      
+      <!-- Shallow water section -->
+      <rect x="240" y="80" width="180" height="70" fill="url(#shallowWater)" rx="5"/>
+      <rect x="240" y="120" width="180" height="30" fill="#8d6e63" rx="0 0 5 5"/>
+      <text x="330" y="45" text-anchor="middle" font-size="11" fill="#333" font-weight="bold">Shallow Water</text>
+      
+      <!-- Shallow water waves (closer spacing) -->
+      <g stroke="#0277bd" stroke-width="2" opacity="0.8">
+        <line x1="260" y1="90" x2="260" y2="115">
+          <animate attributeName="x1" values="260;400;260" dur="2.5s" repeatCount="indefinite"/>
+          <animate attributeName="x2" values="260;400;260" dur="2.5s" repeatCount="indefinite"/>
+        </line>
+        <line x1="285" y1="90" x2="285" y2="115">
+          <animate attributeName="x1" values="285;425;285" dur="2.5s" repeatCount="indefinite"/>
+          <animate attributeName="x2" values="285;425;285" dur="2.5s" repeatCount="indefinite"/>
+        </line>
+        <line x1="310" y1="90" x2="310" y2="115">
+          <animate attributeName="x1" values="310;450;310" dur="2.5s" repeatCount="indefinite"/>
+          <animate attributeName="x2" values="310;450;310" dur="2.5s" repeatCount="indefinite"/>
+        </line>
+        <line x1="335" y1="90" x2="335" y2="115">
+          <animate attributeName="x1" values="335;475;335" dur="2.5s" repeatCount="indefinite"/>
+          <animate attributeName="x2" values="335;475;335" dur="2.5s" repeatCount="indefinite"/>
+        </line>
+      </g>
+      
+      <!-- Labels -->
+      <text x="120" y="165" text-anchor="middle" font-size="10" fill="#0277bd" font-weight="bold">Faster waves</text>
+      <text x="120" y="178" text-anchor="middle" font-size="10" fill="#0277bd">Longer wavelength (λ)</text>
+      
+      <text x="330" y="165" text-anchor="middle" font-size="10" fill="#e65100" font-weight="bold">Slower waves</text>
+      <text x="330" y="178" text-anchor="middle" font-size="10" fill="#e65100">Shorter wavelength (λ)</text>
+      
+      <!-- Arrow showing transition -->
+      <path d="M215 100 L235 100" stroke="#333" stroke-width="2" marker-end="url(#arrowEnd)"/>
+      
+      <!-- Key equation -->
+      <text x="225" y="205" text-anchor="middle" font-size="11" fill="#333">v ∝ λ (frequency stays constant)</text>
+    </svg>
+  </div>
+
+  <div class="key-idea-block">
+    <h4>Key Concept</h4>
+    <ul>
+      <li><strong>Deeper water</strong> → waves travel faster, wavelengths spread out</li>
+      <li><strong>Shallower water</strong> → waves slow down, wavefronts get closer together</li>
+      <li><strong>Frequency remains unchanged</strong> when waves enter a new medium</li>
+      <li>This mirrors the behaviour of <strong>light waves entering a denser medium</strong></li>
+    </ul>
+  </div>
+
+  <h4 class="subsection-subheading">💠 Expected Results & Interpretation</h4>
+  
+  <table class="styled-table">
+    <thead>
+      <tr>
+        <th>Quantity</th>
+        <th>When Increased</th>
+        <th>What You Observe</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td>Frequency (f)</td><td>Higher vibrator setting</td><td>Waves closer together in time</td></tr>
+      <tr><td>Wavelength (λ)</td><td>Lower frequency</td><td>Crests further apart</td></tr>
+      <tr><td>Depth</td><td>Increased</td><td>Wavefronts spread out (speed ↑)</td></tr>
+    </tbody>
+  </table>
+
+  <h4 class="subsection-subheading">💠 Sources of Error & How to Reduce Them</h4>
+  
+  <table class="styled-table">
+    <thead>
+      <tr>
+        <th>Error</th>
+        <th>Cause</th>
+        <th>Reduction</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td>Blurred crests</td><td>Fast-moving waves</td><td>Use strobe or reduce depth</td></tr>
+      <tr><td>Parallax error</td><td>Ruler viewed at angle</td><td>Align eye directly above ruler</td></tr>
+      <tr><td>Uneven waves</td><td>Vibrator too strong</td><td>Lower power supply voltage</td></tr>
+      <tr><td>Reflections from edges</td><td>Waves bounce off sides</td><td>Use foam pieces at edges to absorb waves</td></tr>
+      <tr><td>Water depth uneven</td><td>Tilted tank</td><td>Level tank using spirit level</td></tr>
+    </tbody>
+  </table>
+
+  <h4 class="subsection-subheading">💠 Safety Precautions</h4>
+  <div class="safety-block">
+    <h4>⚠️ Safety</h4>
+    <ul>
+      <li>Keep electrical equipment <strong>away from water spills</strong></li>
+      <li><strong>Dry hands</strong> before handling power pack</li>
+      <li>Do not overfill the tank (risk of overflow near cables)</li>
+      <li><strong>Clean water spills immediately</strong> to avoid slipping</li>
+    </ul>
+  </div>
+
+  <div class="conclusion-block">
+    <h4>💠 Conclusion</h4>
+    <p>This practical demonstrates:</p>
+    <ul>
+      <li>How to measure <strong>wavelength, frequency, and wave speed</strong> precisely</li>
+      <li>That <strong>wave speed = frequency × wavelength</strong></li>
+      <li>That wave speed changes when waves move into different depths</li>
+      <li>That wavefronts bend when wave speed changes (basis for <strong>refraction</strong>)</li>
+    </ul>
+    <p style="margin-top: 1rem;"><em>This practical is essential for understanding wave behaviour, refraction, and the wave equation.</em></p>
+  </div>
+</div>
+            `,
+            canonical_keywords: ["ripple tank", "wavelength", "frequency", "wave speed", "v=fλ", "wavefronts", "refraction", "depth", "strobe", "oscillation"],
+            practice_items: [
+              {
+                id: "rt-p1",
+                prompt_template: "Describe how you would measure the wavelength of water waves using a ripple tank.",
+                marks: 4,
+                type: "short-answer",
+                difficulty: "medium",
+                randomise: true,
+                expected_keywords: ["lamp", "screen", "measure", "multiple waves", "divide", "ruler"]
+              },
+              {
+                id: "rt-p2",
+                prompt_template: "A student counts 20 waves passing a point in 10 seconds. The wavelength is 0.03 m. Calculate the wave speed.",
+                marks: 4,
+                type: "short-answer",
+                difficulty: "medium",
+                randomise: false,
+                expected_keywords: ["f = 20/10 = 2 Hz", "v = f × λ", "v = 2 × 0.03", "0.06 m/s"]
+              },
+              {
+                id: "rt-p3",
+                prompt_template: "Explain what happens to the wavelength of water waves when they travel from deep water into shallow water.",
+                marks: 3,
+                type: "short-answer",
+                difficulty: "medium",
+                randomise: true,
+                expected_keywords: ["wavelength decreases", "speed decreases", "frequency constant", "closer together"]
+              },
+              {
+                id: "rt-p4",
+                prompt_template: "State two ways to reduce errors when measuring wavelength in a ripple tank.",
+                marks: 2,
+                type: "short-answer",
+                difficulty: "easy",
+                randomise: true,
+                expected_keywords: ["strobe light", "measure multiple waves", "eye level", "level tank"]
+              }
+            ]
+          }
+        ]
       }
     ]
   }
