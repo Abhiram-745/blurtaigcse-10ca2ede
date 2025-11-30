@@ -38,6 +38,9 @@ import Terms from "./pages/Terms";
 import Contact from "./pages/Contact";
 import NotFound from "./pages/NotFound";
 import QuestionBank from "./pages/QuestionBank";
+import EconomicsChapters from "./pages/EconomicsChapters";
+import EconomicsSections from "./pages/EconomicsSections";
+import EconomicsTopicView from "./pages/EconomicsTopicView";
 
 const queryClient = new QueryClient();
 
@@ -77,6 +80,9 @@ const App = () => (
             <Route path="/geography/:chapterId/sections" element={<GeographyLivingWorldSections />} />
             <Route path="/geography/living-world/topic/:id" element={<GeographyTopicView />} />
             <Route path="/geography/living-world/blurt/:id" element={<GeographyBlurtPractice />} />
+            <Route path="/economics/chapters" element={<EconomicsChapters />} />
+            <Route path="/economics/sections/:chapterId" element={<EconomicsSections />} />
+            <Route path="/economics/topic/:chapterId/:moduleId/:subsectionId" element={<EconomicsTopicView />} />
             <Route path="/blur-practice/:topicId/:subsectionId" element={<BlurPractice />} />
             <Route path="/section/:id" element={<SectionReader />} />
             <Route path="/blur/:id" element={<BlurExercise />} />

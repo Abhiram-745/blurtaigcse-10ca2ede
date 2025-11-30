@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { Beaker, Calculator, Dna, Zap, Palette, BookOpen, Globe } from "lucide-react";
+import { Beaker, Calculator, Dna, Zap, Palette, BookOpen, Globe, TrendingUp } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { toast } from "sonner";
 import { useEffect } from "react";
@@ -62,9 +62,16 @@ const SubjectSelection = () => {
       route: "/geography"
     },
     {
+      name: "Economics",
+      icon: TrendingUp,
+      color: "from-emerald-500 to-teal-600",
+      available: true,
+      route: "/economics/chapters"
+    },
+    {
       name: "Biology",
       icon: Dna,
-      color: "from-emerald-500 to-lime-500",
+      color: "from-lime-500 to-green-500",
       available: false,
       route: null
     },

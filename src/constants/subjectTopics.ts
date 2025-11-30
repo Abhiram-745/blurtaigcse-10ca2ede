@@ -46,6 +46,15 @@ export const ENGLISH_TOPICS = [
   "english-literature",
 ];
 
+export const ECONOMICS_TOPICS = [
+  "economic-groups-fop",
+  "basic-economic-problem",
+  "role-of-markets",
+  "demand",
+  "supply",
+  "price",
+];
+
 export const getTopicsForSubject = (subject: string): string[] => {
   switch (subject) {
     case "chemistry":
@@ -58,6 +67,8 @@ export const getTopicsForSubject = (subject: string): string[] => {
       return GEOGRAPHY_TOPICS;
     case "english":
       return ENGLISH_TOPICS;
+    case "economics":
+      return ECONOMICS_TOPICS;
     default:
       return [];
   }
