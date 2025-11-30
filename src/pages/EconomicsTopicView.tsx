@@ -6,7 +6,7 @@ import { ArrowLeft, BookOpen, HelpCircle, ChevronLeft, ChevronRight } from "luci
 import { getEconomicsChapterById, getEconomicsModuleById, getEconomicsSubsectionById } from "@/data/economicsData";
 import SectionContent from "@/components/SectionContent";
 import PracticeExamQuestions from "@/components/PracticeExamQuestions";
-import { AIChatbot } from "@/components/AIChatbot";
+import { AIChatbot } from "../components/AIChatbot";
 
 const EconomicsTopicView = () => {
   const navigate = useNavigate();
