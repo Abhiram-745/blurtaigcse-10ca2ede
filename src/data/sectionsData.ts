@@ -11770,5 +11770,686 @@ H—N—H</pre>
     title: "Chemical analysis, the atmosphere & using resources",
     status: "coming_soon",
     subsections: []
+  },
+  {
+    id: "required-practicals",
+    title: "Required Practicals",
+    status: "ready",
+    subsections: [
+      {
+        id: "rp-neutralisation-titration",
+        title: "Required Practical: Neutralisation Titration",
+        type: "content",
+        study_group: 1,
+        content_html: `
+<div class="subsection">
+  <h3 class="subsection-heading">Subsection 1 — Purpose of the Practical</h3>
+  <div class="definition-block">
+    <h4>🎯 Aims:</h4>
+    <ul>
+      <li>To accurately measure how much acid neutralises a known volume of alkali (or vice versa)</li>
+      <li>To use the results to calculate concentration (mol/dm³) using titration maths</li>
+      <li>To identify the exact neutralisation point using a suitable indicator (single colour change)</li>
+    </ul>
+  </div>
+  <div class="key-facts-block">
+    <h4>📋 AQA Specification:</h4>
+    <p>This practical uses <strong>strong acids only</strong>: HCl, H₂SO₄, HNO₃</p>
+  </div>
+</div>
+
+<div class="subsection">
+  <h3 class="subsection-heading">Subsection 2 — Required Apparatus</h3>
+  
+  <div class="key-idea-block" style="padding: 1rem; margin: 1rem 0;">
+    <h4>🔬 Titration Apparatus Setup</h4>
+    <div style="display: flex; justify-content: center; padding: 0.5rem;">
+      <svg width="420" height="380" viewBox="0 0 420 380">
+        <!-- Clamp Stand -->
+        <rect x="50" y="350" width="320" height="15" fill="#64748b"/>
+        <rect x="60" y="30" width="15" height="320" fill="#64748b"/>
+        <rect x="60" y="60" width="80" height="10" fill="#64748b"/>
+        
+        <!-- Burette Clamp -->
+        <rect x="130" y="55" width="60" height="15" fill="#94a3b8"/>
+        
+        <!-- Burette -->
+        <rect x="155" y="70" width="16" height="180" fill="none" stroke="#3b82f6" stroke-width="2"/>
+        <rect x="155" y="70" width="16" height="180" fill="#3b82f6" opacity="0.3"/>
+        
+        <!-- Burette tap -->
+        <rect x="158" y="250" width="10" height="15" fill="#ef4444"/>
+        <line x1="163" y1="265" x2="163" y2="290" stroke="#3b82f6" stroke-width="2"/>
+        
+        <!-- Acid drops animation -->
+        <g class="anim-flow-down">
+          <circle cx="163" cy="295" r="3" fill="#3b82f6"/>
+          <circle cx="163" cy="310" r="2" fill="#3b82f6" opacity="0.6"/>
+        </g>
+        
+        <!-- Scale markings on burette -->
+        <text x="175" y="85" fill="currentColor" font-size="8">0</text>
+        <text x="175" y="130" fill="currentColor" font-size="8">10</text>
+        <text x="175" y="175" fill="currentColor" font-size="8">25</text>
+        <text x="175" y="220" fill="currentColor" font-size="8">40</text>
+        <text x="175" y="245" fill="currentColor" font-size="8">50</text>
+        
+        <!-- Conical Flask -->
+        <path d="M120 320 L145 340 L145 355 L200 355 L200 340 L225 320 L173 320 Z" fill="none" stroke="currentColor" stroke-width="2"/>
+        <ellipse cx="173" cy="320" rx="52" ry="8" fill="none" stroke="currentColor" stroke-width="2"/>
+        
+        <!-- Solution in flask with indicator -->
+        <path d="M148 340 L148 352 L198 352 L198 340 Z" fill="#ec4899" opacity="0.6"/>
+        
+        <!-- White Tile -->
+        <rect x="110" y="355" width="130" height="12" fill="#f8fafc" stroke="#e2e8f0" stroke-width="1"/>
+        <text x="175" y="364" fill="#64748b" font-size="8" text-anchor="middle">White Tile</text>
+        
+        <!-- Labels -->
+        <text x="200" y="150" fill="#3b82f6" font-size="10" font-weight="bold">Burette</text>
+        <text x="200" y="162" fill="#3b82f6" font-size="8">(contains acid)</text>
+        
+        <text x="250" y="335" fill="#ec4899" font-size="10" font-weight="bold">Conical Flask</text>
+        <text x="250" y="347" fill="#ec4899" font-size="8">(alkali + indicator)</text>
+        
+        <!-- Pipette illustration -->
+        <rect x="280" y="100" width="8" height="100" fill="none" stroke="#22c55e" stroke-width="2"/>
+        <ellipse cx="284" cy="200" rx="12" ry="6" fill="none" stroke="#22c55e" stroke-width="2"/>
+        <text x="310" y="150" fill="#22c55e" font-size="10" font-weight="bold">25 cm³ Pipette</text>
+        <text x="310" y="162" fill="#22c55e" font-size="8">(measures alkali)</text>
+        
+        <!-- Funnel note -->
+        <path d="M320 220 L340 220 L350 250 L330 250 Z" fill="none" stroke="#f59e0b" stroke-width="2"/>
+        <text x="355" y="240" fill="#f59e0b" font-size="9">Funnel</text>
+        <text x="355" y="252" fill="#f59e0b" font-size="7">(for filling)</text>
+      </svg>
+    </div>
+  </div>
+  
+  <table class="data-table" style="margin: 1rem 0;">
+    <thead><tr><th>Apparatus</th><th>Purpose</th><th>Accuracy</th></tr></thead>
+    <tbody>
+      <tr><td>Burette</td><td>Delivers variable, precise volumes</td><td>±0.05 cm³</td></tr>
+      <tr><td>25 cm³ Pipette + Filler</td><td>Measures fixed accurate volume</td><td>±0.06 cm³</td></tr>
+      <tr><td>Conical Flask</td><td>Reaction vessel</td><td>—</td></tr>
+      <tr><td>Clamp Stand</td><td>Holds burette securely</td><td>—</td></tr>
+      <tr><td>Funnel</td><td>Safer burette filling</td><td>—</td></tr>
+      <tr><td>White Tile</td><td>Makes colour change easier to see</td><td>—</td></tr>
+    </tbody>
+  </table>
+  
+  <div class="key-facts-block">
+    <h4>🧪 Indicators (ONLY for strong acid + strong alkali):</h4>
+    <ul>
+      <li><strong>Phenolphthalein:</strong> pink → colourless</li>
+      <li><strong>Methyl orange:</strong> red → yellow</li>
+    </ul>
+  </div>
+</div>
+
+<div class="subsection">
+  <h3 class="subsection-heading">Subsection 3 — Step-by-Step Method</h3>
+  
+  <div class="key-facts-block">
+    <h4>1️⃣ Prepare the Alkali</h4>
+    <ul>
+      <li>Use a pipette to measure <strong>25.0 cm³</strong> of alkali (e.g., NaOH)</li>
+      <li>Transfer it into a conical flask</li>
+      <li>Add <strong>2–3 drops</strong> of indicator</li>
+    </ul>
+  </div>
+  
+  <div class="key-facts-block">
+    <h4>2️⃣ Prepare the Acid</h4>
+    <ul>
+      <li>Fill a burette with the acid (HCl / H₂SO₄ / HNO₃)</li>
+      <li><strong>Remove funnel</strong> before titrating</li>
+      <li>Record the initial burette reading (to <strong>2 decimal places</strong>)</li>
+    </ul>
+  </div>
+  
+  <div class="key-facts-block">
+    <h4>3️⃣ Titrate</h4>
+    <ul>
+      <li>Slowly add the acid while <strong>swirling</strong> the conical flask</li>
+      <li>Near end-point, add the acid <strong>dropwise</strong></li>
+      <li>Stop when the <strong>first permanent colour change</strong> occurs</li>
+    </ul>
+  </div>
+  
+  <div class="key-facts-block">
+    <h4>4️⃣ Record Results</h4>
+    <ul>
+      <li>Record the final burette reading</li>
+      <li>Calculate the titre:</li>
+    </ul>
+  </div>
+  
+  <div class="equation-block" style="background: linear-gradient(135deg, hsl(var(--primary)/0.1), hsl(var(--secondary)/0.1)); padding: 1rem; border-radius: 12px; margin: 1rem 0; text-align: center;">
+    <p style="font-size: 1.2rem; font-weight: bold; color: hsl(var(--primary));">Titre (cm³) = Final reading − Initial reading</p>
+  </div>
+  
+  <div class="key-facts-block">
+    <h4>5️⃣ Repeat</h4>
+    <ul>
+      <li>Repeat until two <strong>concordant titres</strong> are within <strong>±0.10 cm³</strong></li>
+      <li>Use <strong>ONLY concordant titres</strong> to calculate the mean</li>
+    </ul>
+  </div>
+  
+  <!-- Results Table Example -->
+  <div class="key-idea-block" style="padding: 1rem; margin: 1rem 0;">
+    <h4>📊 Example Results Table</h4>
+    <table class="data-table" style="margin: 0.5rem 0;">
+      <thead><tr><th>Trial</th><th>Initial (cm³)</th><th>Final (cm³)</th><th>Titre (cm³)</th></tr></thead>
+      <tbody>
+        <tr><td>Rough</td><td>0.00</td><td>24.80</td><td style="color: #ef4444;">24.80 ✗</td></tr>
+        <tr><td>1</td><td>0.00</td><td>24.35</td><td style="color: #22c55e;">24.35 ✓</td></tr>
+        <tr><td>2</td><td>0.00</td><td>24.40</td><td style="color: #22c55e;">24.40 ✓</td></tr>
+        <tr><td>3</td><td>0.00</td><td>24.30</td><td style="color: #22c55e;">24.30 ✓</td></tr>
+      </tbody>
+    </table>
+    <p style="text-align: center; font-size: 0.9rem;"><strong>Mean titre = (24.35 + 24.40 + 24.30) ÷ 3 = 24.35 cm³</strong></p>
+  </div>
+</div>
+
+<div class="subsection">
+  <h3 class="subsection-heading">Subsection 4 — Choosing the Right Indicator</h3>
+  
+  <div class="key-idea-block" style="padding: 1rem; margin: 1rem 0;">
+    <h4>🎨 Indicator Colour Changes</h4>
+    <div style="display: flex; justify-content: center; padding: 0.5rem;">
+      <svg width="400" height="150" viewBox="0 0 400 150">
+        <!-- Phenolphthalein -->
+        <text x="100" y="25" fill="currentColor" font-size="11" text-anchor="middle" font-weight="bold">Phenolphthalein</text>
+        <circle cx="50" cy="60" r="25" fill="#ec4899"/>
+        <text x="50" y="65" fill="white" font-size="9" text-anchor="middle">Pink</text>
+        <text x="50" y="100" fill="currentColor" font-size="8" text-anchor="middle">Alkali</text>
+        <path d="M80 60 L120 60" stroke="currentColor" stroke-width="2" marker-end="url(#arrowInd)"/>
+        <circle cx="150" cy="60" r="25" fill="transparent" stroke="currentColor" stroke-width="2"/>
+        <text x="150" y="65" fill="currentColor" font-size="8" text-anchor="middle">Colourless</text>
+        <text x="150" y="100" fill="currentColor" font-size="8" text-anchor="middle">Neutral/Acid</text>
+        
+        <!-- Methyl Orange -->
+        <text x="300" y="25" fill="currentColor" font-size="11" text-anchor="middle" font-weight="bold">Methyl Orange</text>
+        <circle cx="250" cy="60" r="25" fill="#ef4444"/>
+        <text x="250" y="65" fill="white" font-size="9" text-anchor="middle">Red</text>
+        <text x="250" y="100" fill="currentColor" font-size="8" text-anchor="middle">Acid</text>
+        <path d="M280 60 L320 60" stroke="currentColor" stroke-width="2" marker-end="url(#arrowInd)"/>
+        <circle cx="350" cy="60" r="25" fill="#fbbf24"/>
+        <text x="350" y="65" fill="white" font-size="9" text-anchor="middle">Yellow</text>
+        <text x="350" y="100" fill="currentColor" font-size="8" text-anchor="middle">Alkali</text>
+        
+        <!-- Warning -->
+        <rect x="100" y="115" width="200" height="25" fill="#fef3c7" stroke="#f59e0b" stroke-width="1" rx="5"/>
+        <text x="200" y="132" fill="#92400e" font-size="9" text-anchor="middle" font-weight="bold">⚠️ Do NOT use universal indicator!</text>
+        
+        <defs>
+          <marker id="arrowInd" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+            <polygon points="0 0, 10 3.5, 0 7" fill="currentColor"/>
+          </marker>
+        </defs>
+      </svg>
+    </div>
+  </div>
+  
+  <table class="data-table" style="margin: 1rem 0;">
+    <thead><tr><th>Reaction Type</th><th>Indicator</th><th>Colour Change</th></tr></thead>
+    <tbody>
+      <tr><td>Strong Acid + Strong Alkali</td><td>Phenolphthalein</td><td>Pink → Colourless</td></tr>
+      <tr><td>Strong Acid + Strong Alkali</td><td>Methyl Orange</td><td>Red → Yellow</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<div class="subsection">
+  <h3 class="subsection-heading">Subsection 5 — Calculations You MUST Know</h3>
+  
+  <div class="equation-block" style="background: linear-gradient(135deg, hsl(var(--primary)/0.1), hsl(var(--secondary)/0.1)); padding: 1.5rem; border-radius: 12px; margin: 1rem 0; text-align: center;">
+    <h4>1️⃣ Moles of Known Substance</h4>
+    <p style="font-size: 1.4rem; font-weight: bold; color: hsl(var(--primary));">moles = concentration (mol/dm³) × volume (dm³)</p>
+  </div>
+  
+  <div class="key-facts-block">
+    <h4>2️⃣ Use the Balanced Equation</h4>
+    <p>Example: <strong>NaOH + HCl → NaCl + H₂O</strong></p>
+    <p>Ratio = <strong>1 : 1</strong></p>
+  </div>
+  
+  <div class="equation-block" style="background: linear-gradient(135deg, hsl(var(--primary)/0.1), hsl(var(--secondary)/0.1)); padding: 1.5rem; border-radius: 12px; margin: 1rem 0; text-align: center;">
+    <h4>3️⃣ Find Unknown Concentration</h4>
+    <p style="font-size: 1.4rem; font-weight: bold; color: hsl(var(--primary));">concentration = moles ÷ volume (dm³)</p>
+  </div>
+  
+  <div class="exam-tip-block">
+    <h4>💡 Remember:</h4>
+    <p>Convert cm³ to dm³ by dividing by 1000</p>
+    <p>Example: 25.0 cm³ = 0.025 dm³</p>
+  </div>
+</div>
+
+<div class="subsection">
+  <h3 class="subsection-heading">Subsection 6 — Sources of Error & Improvements</h3>
+  
+  <table class="data-table" style="margin: 1rem 0;">
+    <thead><tr><th>Error</th><th>Improvement</th></tr></thead>
+    <tbody>
+      <tr><td>Parallax error when reading burette</td><td>Keep eye level with meniscus</td></tr>
+      <tr><td>Overshooting end point</td><td>Add dropwise near end</td></tr>
+      <tr><td>Contamination</td><td>Rinse pipette, burette, flask correctly</td></tr>
+      <tr><td>Wrong indicator</td><td>Use correct one for strong acid + strong alkali</td></tr>
+      <tr><td>Temperature changes</td><td>Titration at room temperature</td></tr>
+    </tbody>
+  </table>
+  
+  <!-- Parallax error diagram -->
+  <div class="key-idea-block" style="padding: 1rem; margin: 1rem 0;">
+    <h4>👁️ Avoiding Parallax Error</h4>
+    <div style="display: flex; justify-content: center; padding: 0.5rem;">
+      <svg width="300" height="120" viewBox="0 0 300 120">
+        <!-- Burette section -->
+        <rect x="130" y="20" width="40" height="80" fill="none" stroke="currentColor" stroke-width="2"/>
+        <rect x="130" y="50" width="40" height="30" fill="#3b82f6" opacity="0.3"/>
+        
+        <!-- Meniscus -->
+        <path d="M132 50 Q150 55, 168 50" fill="none" stroke="#3b82f6" stroke-width="2"/>
+        
+        <!-- Correct eye position -->
+        <circle cx="80" cy="52" r="8" fill="#22c55e"/>
+        <circle cx="78" cy="50" r="2" fill="white"/>
+        <line x1="88" y1="52" x2="130" y2="52" stroke="#22c55e" stroke-width="1" stroke-dasharray="3,3"/>
+        <text x="50" y="75" fill="#22c55e" font-size="9" text-anchor="middle">Correct ✓</text>
+        
+        <!-- Wrong eye position -->
+        <circle cx="80" cy="25" r="8" fill="#ef4444"/>
+        <circle cx="78" cy="23" r="2" fill="white"/>
+        <line x1="88" y1="25" x2="130" y2="45" stroke="#ef4444" stroke-width="1" stroke-dasharray="3,3"/>
+        <text x="50" y="15" fill="#ef4444" font-size="9" text-anchor="middle">Wrong ✗</text>
+        
+        <!-- Scale markings -->
+        <line x1="170" y1="40" x2="180" y2="40" stroke="currentColor" stroke-width="1"/>
+        <line x1="170" y1="50" x2="180" y2="50" stroke="currentColor" stroke-width="1"/>
+        <line x1="170" y1="60" x2="180" y2="60" stroke="currentColor" stroke-width="1"/>
+        
+        <text x="230" y="55" fill="currentColor" font-size="9">Read at bottom</text>
+        <text x="230" y="68" fill="currentColor" font-size="9">of meniscus</text>
+      </svg>
+    </div>
+  </div>
+</div>
+        `,
+        canonical_keywords: ["titration", "neutralisation", "burette", "pipette", "indicator", "phenolphthalein", "methyl orange", "concordant", "titre", "concentration"],
+        practice_items: [
+          {
+            id: "p1",
+            prompt_template: "Describe the method for carrying out a titration to find the concentration of an acid.",
+            marks: 6,
+            type: "short-answer",
+            difficulty: "medium",
+            randomise: true,
+            expected_keywords: ["pipette", "25 cm3", "alkali", "burette", "acid", "indicator", "swirl", "dropwise", "colour change", "concordant"]
+          },
+          {
+            id: "p2",
+            prompt_template: "Explain why universal indicator is not suitable for titrations.",
+            marks: 2,
+            type: "short-answer",
+            difficulty: "easy",
+            randomise: true,
+            expected_keywords: ["gradual", "colour change", "not sharp", "end point"]
+          },
+          {
+            id: "p3",
+            prompt_template: "What does concordant mean in the context of titrations?",
+            marks: 2,
+            type: "short-answer",
+            difficulty: "easy",
+            randomise: true,
+            expected_keywords: ["within", "0.10", "similar", "results"]
+          }
+        ]
+      },
+      {
+        id: "rp-temperature-changes",
+        title: "Required Practical: Temperature Changes (Calorimetry)",
+        type: "content",
+        study_group: 2,
+        content_html: `
+<div class="subsection">
+  <h3 class="subsection-heading">Subsection 1 — Aim</h3>
+  <div class="definition-block">
+    <h4>🎯 Purpose:</h4>
+    <p>To measure the temperature change during a chemical reaction (usually neutralisation: HCl + NaOH).</p>
+  </div>
+  <div class="key-facts-block">
+    <h4>📋 Investigate how variables affect ΔT:</h4>
+    <ul>
+      <li>Volume of reactants</li>
+      <li>Concentration</li>
+      <li>Type of reaction (neutralisation, dissolving, displacement)</li>
+    </ul>
+  </div>
+</div>
+
+<div class="subsection">
+  <h3 class="subsection-heading">Subsection 2 — Apparatus</h3>
+  
+  <div class="key-idea-block" style="padding: 1rem; margin: 1rem 0;">
+    <h4>🔬 Calorimetry Setup</h4>
+    <div style="display: flex; justify-content: center; padding: 0.5rem;">
+      <svg width="350" height="320" viewBox="0 0 350 320">
+        <!-- Outer beaker (support) -->
+        <path d="M100 280 L100 150 Q100 140, 110 140 L240 140 Q250 140, 250 150 L250 280" fill="none" stroke="#94a3b8" stroke-width="2"/>
+        <ellipse cx="175" cy="280" rx="75" ry="12" fill="none" stroke="#94a3b8" stroke-width="2"/>
+        <text x="280" y="220" fill="#94a3b8" font-size="9">Beaker</text>
+        <text x="280" y="232" fill="#94a3b8" font-size="8">(support)</text>
+        
+        <!-- Polystyrene cup -->
+        <path d="M120 270 L120 170 Q120 160, 135 160 L215 160 Q230 160, 230 170 L230 270" fill="#f8fafc" stroke="currentColor" stroke-width="2"/>
+        <ellipse cx="175" cy="270" rx="55" ry="8" fill="#f8fafc" stroke="currentColor" stroke-width="2"/>
+        
+        <!-- Solution in cup -->
+        <ellipse cx="175" cy="240" rx="50" ry="6" fill="#3b82f6" opacity="0.3"/>
+        <path d="M125 240 L125 265 Q125 268, 175 268 Q225 268, 225 265 L225 240" fill="#3b82f6" opacity="0.3"/>
+        
+        <!-- Lid with hole -->
+        <ellipse cx="175" cy="160" rx="58" ry="10" fill="#e2e8f0" stroke="currentColor" stroke-width="2"/>
+        <circle cx="175" cy="160" r="8" fill="white" stroke="currentColor" stroke-width="1"/>
+        
+        <!-- Thermometer -->
+        <rect x="170" y="60" width="10" height="180" fill="none" stroke="#ef4444" stroke-width="2" rx="5"/>
+        <rect x="172" y="200" width="6" height="30" fill="#ef4444"/>
+        <circle cx="175" cy="235" r="8" fill="#ef4444"/>
+        
+        <!-- Temperature scale -->
+        <line x1="180" y1="80" x2="190" y2="80" stroke="currentColor" stroke-width="1"/>
+        <line x1="180" y1="110" x2="190" y2="110" stroke="currentColor" stroke-width="1"/>
+        <line x1="180" y1="140" x2="190" y2="140" stroke="currentColor" stroke-width="1"/>
+        <text x="195" y="85" fill="currentColor" font-size="8">100°C</text>
+        <text x="195" y="115" fill="currentColor" font-size="8">50°C</text>
+        <text x="195" y="145" fill="currentColor" font-size="8">0°C</text>
+        
+        <!-- Stirrer -->
+        <rect x="205" y="100" width="6" height="140" fill="#22c55e" rx="2"/>
+        <rect x="200" y="235" width="16" height="25" fill="#22c55e" rx="3"/>
+        
+        <!-- Labels -->
+        <text x="50" y="165" fill="currentColor" font-size="9" font-weight="bold">Polystyrene</text>
+        <text x="50" y="177" fill="currentColor" font-size="9" font-weight="bold">Cup</text>
+        <text x="50" y="192" fill="currentColor" font-size="8">(reduces heat loss)</text>
+        
+        <text x="230" y="75" fill="#ef4444" font-size="9" font-weight="bold">Thermometer</text>
+        
+        <text x="245" y="130" fill="#22c55e" font-size="9" font-weight="bold">Stirrer</text>
+        
+        <text x="175" y="255" fill="#3b82f6" font-size="9" text-anchor="middle" font-weight="bold">Solution</text>
+        
+        <!-- Lid label -->
+        <line x1="100" y1="160" x2="117" y2="160" stroke="currentColor" stroke-width="1"/>
+        <text x="60" y="150" fill="currentColor" font-size="8">Lid with</text>
+        <text x="60" y="162" fill="currentColor" font-size="8">hole</text>
+      </svg>
+    </div>
+  </div>
+  
+  <table class="data-table" style="margin: 1rem 0;">
+    <thead><tr><th>Apparatus</th><th>Purpose</th></tr></thead>
+    <tbody>
+      <tr><td>Polystyrene cup</td><td>Reduces heat loss (insulation)</td></tr>
+      <tr><td>Lid with hole</td><td>Further reduces heat loss</td></tr>
+      <tr><td>Thermometer</td><td>Measures temperature (°C)</td></tr>
+      <tr><td>Measuring cylinders</td><td>Measure volumes accurately</td></tr>
+      <tr><td>Stirrer</td><td>Ensures even mixing</td></tr>
+      <tr><td>Beaker</td><td>Supports the cup</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<div class="subsection">
+  <h3 class="subsection-heading">Subsection 3 — Full Required Method</h3>
+  
+  <div class="key-facts-block">
+    <h4>1️⃣ Preparation</h4>
+    <ul>
+      <li>Place the polystyrene cup inside a beaker</li>
+      <li>Add <strong>25.0 cm³</strong> of hydrochloric acid to the cup</li>
+      <li>Record <strong>initial temperature</strong></li>
+    </ul>
+  </div>
+  
+  <div class="key-facts-block">
+    <h4>2️⃣ Reaction</h4>
+    <ul>
+      <li>Add <strong>5.0 cm³</strong> of sodium hydroxide (measured with cylinder)</li>
+      <li>Stir gently</li>
+      <li>Record <strong>maximum temperature</strong> reached</li>
+    </ul>
+  </div>
+  
+  <div class="key-facts-block">
+    <h4>3️⃣ Repeating</h4>
+    <ul>
+      <li>Repeat the experiment, adding <strong>+5.0 cm³</strong> of NaOH each time (up to 40 cm³ total)</li>
+      <li>Record two trials → calculate mean</li>
+    </ul>
+  </div>
+  
+  <div class="key-facts-block">
+    <h4>4️⃣ Plotting Graph</h4>
+    <ul>
+      <li><strong>X-axis:</strong> Total volume of NaOH added (cm³)</li>
+      <li><strong>Y-axis:</strong> Mean maximum temperature (°C)</li>
+    </ul>
+  </div>
+  
+  <!-- Example Results Table -->
+  <div class="key-idea-block" style="padding: 1rem; margin: 1rem 0;">
+    <h4>📊 Example Results Table</h4>
+    <table class="data-table" style="margin: 0.5rem 0; font-size: 0.9rem;">
+      <thead><tr><th>Vol NaOH (cm³)</th><th>Trial 1 (°C)</th><th>Trial 2 (°C)</th><th>Mean (°C)</th></tr></thead>
+      <tbody>
+        <tr><td>0</td><td>20.0</td><td>20.0</td><td>20.0</td></tr>
+        <tr><td>5</td><td>23.5</td><td>23.0</td><td>23.3</td></tr>
+        <tr><td>10</td><td>27.0</td><td>27.5</td><td>27.3</td></tr>
+        <tr><td>15</td><td>31.0</td><td>30.5</td><td>30.8</td></tr>
+        <tr><td>20</td><td>34.5</td><td>35.0</td><td style="color: #ef4444; font-weight: bold;">34.8</td></tr>
+        <tr><td>25</td><td>35.0</td><td>35.5</td><td style="color: #ef4444; font-weight: bold;">35.3 ← Peak</td></tr>
+        <tr><td>30</td><td>33.0</td><td>33.5</td><td>33.3</td></tr>
+        <tr><td>35</td><td>31.0</td><td>31.0</td><td>31.0</td></tr>
+        <tr><td>40</td><td>29.0</td><td>29.5</td><td>29.3</td></tr>
+      </tbody>
+    </table>
+  </div>
+  
+  <!-- Graph -->
+  <div class="key-idea-block" style="padding: 1rem; margin: 1rem 0;">
+    <h4>📈 Temperature vs Volume Graph</h4>
+    <div style="display: flex; justify-content: center; padding: 0.5rem;">
+      <svg width="380" height="280" viewBox="0 0 380 280">
+        <!-- Axes -->
+        <line x1="60" y1="240" x2="360" y2="240" stroke="currentColor" stroke-width="2"/>
+        <line x1="60" y1="240" x2="60" y2="40" stroke="currentColor" stroke-width="2"/>
+        
+        <!-- X-axis labels -->
+        <text x="210" y="270" fill="currentColor" font-size="10" text-anchor="middle">Volume of NaOH added (cm³)</text>
+        <text x="80" y="255" fill="currentColor" font-size="8">0</text>
+        <text x="120" y="255" fill="currentColor" font-size="8">10</text>
+        <text x="170" y="255" fill="currentColor" font-size="8">20</text>
+        <text x="220" y="255" fill="currentColor" font-size="8">30</text>
+        <text x="270" y="255" fill="currentColor" font-size="8">40</text>
+        
+        <!-- Y-axis labels -->
+        <text x="30" y="150" fill="currentColor" font-size="10" text-anchor="middle" transform="rotate(-90 30 150)">Temperature (°C)</text>
+        <text x="50" y="243" fill="currentColor" font-size="8">20</text>
+        <text x="50" y="193" fill="currentColor" font-size="8">25</text>
+        <text x="50" y="143" fill="currentColor" font-size="8">30</text>
+        <text x="50" y="93" fill="currentColor" font-size="8">35</text>
+        <text x="50" y="53" fill="currentColor" font-size="8">40</text>
+        
+        <!-- Grid lines -->
+        <g opacity="0.2">
+          <line x1="60" y1="190" x2="350" y2="190" stroke="currentColor" stroke-width="1"/>
+          <line x1="60" y1="140" x2="350" y2="140" stroke="currentColor" stroke-width="1"/>
+          <line x1="60" y1="90" x2="350" y2="90" stroke="currentColor" stroke-width="1"/>
+        </g>
+        
+        <!-- Rising line (best fit) -->
+        <line x1="80" y1="240" x2="195" y2="75" stroke="#3b82f6" stroke-width="3"/>
+        
+        <!-- Falling line (best fit) -->
+        <line x1="195" y1="75" x2="320" y2="180" stroke="#ef4444" stroke-width="3"/>
+        
+        <!-- Data points -->
+        <circle cx="80" cy="240" r="5" fill="#22c55e"/>
+        <circle cx="100" cy="207" r="5" fill="#22c55e"/>
+        <circle cx="120" cy="167" r="5" fill="#22c55e"/>
+        <circle cx="145" cy="123" r="5" fill="#22c55e"/>
+        <circle cx="170" cy="92" r="5" fill="#22c55e"/>
+        <circle cx="195" cy="75" r="7" fill="#ec4899" stroke="white" stroke-width="2"/>
+        <circle cx="220" cy="107" r="5" fill="#22c55e"/>
+        <circle cx="250" cy="130" r="5" fill="#22c55e"/>
+        <circle cx="280" cy="147" r="5" fill="#22c55e"/>
+        
+        <!-- Peak annotation -->
+        <line x1="195" y1="75" x2="195" y2="240" stroke="#ec4899" stroke-width="1" stroke-dasharray="5,5"/>
+        <text x="195" y="30" fill="#ec4899" font-size="10" text-anchor="middle" font-weight="bold">Neutralisation point</text>
+        <text x="195" y="42" fill="#ec4899" font-size="9" text-anchor="middle">(exact volume)</text>
+        
+        <!-- Line labels -->
+        <text x="110" y="130" fill="#3b82f6" font-size="9" font-weight="bold">Temperature</text>
+        <text x="110" y="142" fill="#3b82f6" font-size="9" font-weight="bold">rising</text>
+        <text x="260" y="100" fill="#ef4444" font-size="9" font-weight="bold">Temperature</text>
+        <text x="260" y="112" fill="#ef4444" font-size="9" font-weight="bold">falling</text>
+      </svg>
+    </div>
+    <p style="text-align: center; font-size: 0.9rem; color: var(--muted-foreground);">The crossing point of the two best-fit lines = exact neutralisation volume</p>
+  </div>
+</div>
+
+<div class="subsection">
+  <h3 class="subsection-heading">Subsection 4 — Explanation of Results</h3>
+  
+  <div class="key-facts-block">
+    <h4>🔺 Why Temperature RISES at First (Exothermic Neutralisation)</h4>
+    <ul>
+      <li>H⁺ ions react with OH⁻ ions to form water</li>
+      <li>This reaction <strong>releases energy</strong></li>
+      <li>Temperature <strong>increases</strong></li>
+    </ul>
+  </div>
+  
+  <div class="equation-block" style="background: linear-gradient(135deg, hsl(var(--primary)/0.1), hsl(var(--secondary)/0.1)); padding: 1rem; border-radius: 12px; margin: 1rem 0; text-align: center;">
+    <p style="font-size: 1.2rem; font-weight: bold; color: hsl(var(--primary));">H⁺(aq) + OH⁻(aq) → H₂O(l) + ENERGY</p>
+  </div>
+  
+  <div class="key-facts-block">
+    <h4>🔻 Why Temperature FALLS After the Peak</h4>
+    <ul>
+      <li>One reactant becomes <strong>in excess</strong></li>
+      <li>Addition of excess reactant <strong>dilutes</strong> the mixture</li>
+      <li>No more neutralisation occurs → temperature <strong>drops</strong></li>
+    </ul>
+  </div>
+  
+  <!-- Energy diagram -->
+  <div class="key-idea-block anim-pause-hover" style="padding: 1rem; margin: 1rem 0;">
+    <h4>⚡ Exothermic Neutralisation (hover to pause)</h4>
+    <div style="display: flex; justify-content: center; padding: 0.5rem;">
+      <svg width="300" height="150" viewBox="0 0 300 150">
+        <!-- Beaker -->
+        <path d="M80 130 L80 60 Q80 50, 95 50 L205 50 Q220 50, 220 60 L220 130" fill="none" stroke="currentColor" stroke-width="2"/>
+        <ellipse cx="150" cy="130" rx="70" ry="10" fill="none" stroke="currentColor" stroke-width="2"/>
+        
+        <!-- Solution -->
+        <ellipse cx="150" cy="100" rx="65" ry="8" fill="#3b82f6" opacity="0.3"/>
+        <path d="M85 100 L85 125 Q85 128, 150 128 Q215 128, 215 125 L215 100" fill="#3b82f6" opacity="0.3"/>
+        
+        <!-- Heat waves -->
+        <g class="anim-fade-in-out">
+          <path d="M100 45 Q105 35, 110 45" fill="none" stroke="#ef4444" stroke-width="2"/>
+          <path d="M145 40 Q150 28, 155 40" fill="none" stroke="#ef4444" stroke-width="2"/>
+          <path d="M190 45 Q195 35, 200 45" fill="none" stroke="#ef4444" stroke-width="2"/>
+        </g>
+        
+        <!-- Thermometer -->
+        <rect x="135" y="20" width="8" height="90" fill="none" stroke="#ef4444" stroke-width="2" rx="4"/>
+        <rect x="137" y="70" width="4" height="35" fill="#ef4444" class="anim-stretch"/>
+        <circle cx="139" cy="105" r="6" fill="#ef4444"/>
+        
+        <!-- Labels -->
+        <text x="250" y="40" fill="#ef4444" font-size="10" font-weight="bold">Heat</text>
+        <text x="250" y="52" fill="#ef4444" font-size="10" font-weight="bold">released</text>
+        <text x="250" y="70" fill="currentColor" font-size="9">Temperature</text>
+        <text x="250" y="82" fill="currentColor" font-size="9">increases</text>
+      </svg>
+    </div>
+  </div>
+</div>
+
+<div class="subsection">
+  <h3 class="subsection-heading">Subsection 5 — Variables</h3>
+  
+  <table class="data-table" style="margin: 1rem 0;">
+    <thead><tr><th>Variable Type</th><th>Examples</th></tr></thead>
+    <tbody>
+      <tr><td><strong>Independent</strong> (you change)</td><td>Volume of alkali, concentration, type of reaction</td></tr>
+      <tr><td><strong>Dependent</strong> (you measure)</td><td>Maximum temperature change (ΔT)</td></tr>
+      <tr><td><strong>Control</strong> (keep constant)</td><td>Initial temperature, volume of acid, same equipment</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<div class="subsection">
+  <h3 class="subsection-heading">Subsection 6 — Sources of Error & Improvements</h3>
+  
+  <table class="data-table" style="margin: 1rem 0;">
+    <thead><tr><th>Error</th><th>Improvement</th></tr></thead>
+    <tbody>
+      <tr><td>Heat loss to surroundings</td><td>Use lid, better insulation</td></tr>
+      <tr><td>Thermometer resolution</td><td>Read to nearest 0.5°C</td></tr>
+      <tr><td>Inconsistent stirring</td><td>Stir at same speed each trial</td></tr>
+      <tr><td>Not reaching true max temp</td><td>Keep thermometer in solution continuously</td></tr>
+      <tr><td>Starting temperatures differ</td><td>Ensure all reactants at same initial temperature</td></tr>
+    </tbody>
+  </table>
+  
+  <div class="exam-tip-block">
+    <h4>💡 Exam Tip:</h4>
+    <p>When asked to improve accuracy, always mention: <strong>repeat readings and calculate mean</strong>, <strong>use lid to reduce heat loss</strong>, and <strong>use same equipment throughout</strong>.</p>
+  </div>
+</div>
+        `,
+        canonical_keywords: ["calorimetry", "temperature change", "neutralisation", "exothermic", "polystyrene cup", "heat loss", "variables", "graph", "maximum temperature"],
+        practice_items: [
+          {
+            id: "p1",
+            prompt_template: "Describe how you would investigate the temperature change when hydrochloric acid is neutralised by sodium hydroxide.",
+            marks: 6,
+            type: "short-answer",
+            difficulty: "medium",
+            randomise: true,
+            expected_keywords: ["polystyrene cup", "measure acid", "initial temperature", "add alkali", "stir", "maximum temperature", "repeat"]
+          },
+          {
+            id: "p2",
+            prompt_template: "Explain why the temperature rises at first and then falls after adding excess alkali.",
+            marks: 4,
+            type: "short-answer",
+            difficulty: "medium",
+            randomise: true,
+            expected_keywords: ["exothermic", "neutralisation", "energy released", "excess", "dilutes", "no reaction"]
+          },
+          {
+            id: "p3",
+            prompt_template: "Give two ways to improve the accuracy of a calorimetry experiment.",
+            marks: 2,
+            type: "short-answer",
+            difficulty: "easy",
+            randomise: true,
+            expected_keywords: ["lid", "insulation", "repeat", "mean", "stir"]
+          }
+        ]
+      }
+    ]
   }
 ];
