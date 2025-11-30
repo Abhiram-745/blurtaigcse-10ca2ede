@@ -122,7 +122,7 @@ const SubjectSelection = () => {
                   </div>
                   <CardTitle className="text-center">{subject.name}</CardTitle>
                   <CardDescription className="text-center">
-                    {subject.available ? 'Available now' : 'Coming soon'}
+                    {subject.available ? 'Start learning' : 'Coming soon'}
                   </CardDescription>
                 </CardHeader>
                 <CardContent>
@@ -131,7 +131,7 @@ const SubjectSelection = () => {
                     variant={subject.available ? "default" : "outline"}
                     disabled={!subject.available}
                   >
-                    {subject.available ? 'Start Learning' : 'Not Available'}
+                    {subject.available ? 'Open Subject' : 'Not Available'}
                   </Button>
                 </CardContent>
               </Card>
