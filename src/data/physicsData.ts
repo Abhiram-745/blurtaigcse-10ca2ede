@@ -1858,8 +1858,473 @@ export const physicsData: TopicSection[] = [
       {
         id: "rp-forces",
         title: "Forces Practicals",
-        status: "coming_soon",
-        subsections: []
+        status: "ready",
+        subsections: [
+          {
+            id: "rp-force-extension",
+            title: "RP: Investigating Force & Extension",
+            type: "content",
+            study_group: 1,
+            content_html: `
+<div class="subsection">
+  <h3 class="subsection-heading">🔩 Required Practical: Investigating Force & Extension</h3>
+  <p style="color: hsl(var(--muted-foreground)); font-style: italic;">(Linked to Hooke's Law in the Forces Module)</p>
+  
+  <div class="key-point" style="background: linear-gradient(135deg, hsl(var(--primary)/0.1), hsl(var(--accent)/0.1)); border-radius: 12px; padding: 1.5rem; margin: 1.5rem 0; border-left: 4px solid hsl(var(--primary));">
+    <h4 style="color: hsl(var(--primary)); margin-bottom: 0.5rem;">💠 Aim</h4>
+    <p>To investigate the relationship between <strong>force and extension</strong> for a spring, and to determine the <strong>spring constant (k)</strong>.</p>
+  </div>
+
+  <h4 class="subsection-subheading">💠 Key Scientific Background</h4>
+  
+  <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin: 1rem 0;">
+    <div style="background: hsl(var(--chart-1)/0.1); border-radius: 12px; padding: 1.5rem; border-left: 4px solid hsl(var(--chart-1));">
+      <h5 style="color: hsl(var(--chart-1)); margin-bottom: 0.5rem;">✔️ Hooke's Law</h5>
+      <p>For a spring within its <strong>elastic (linear) limit</strong>:</p>
+      <div style="text-align: center; padding: 1rem; background: hsl(var(--muted)); border-radius: 8px; margin-top: 0.5rem;">
+        <p style="font-size: 1.5rem; font-weight: bold; color: hsl(var(--primary));">F = k × e</p>
+      </div>
+      <ul style="margin-top: 0.75rem; margin-left: 1rem; font-size: 0.9rem;">
+        <li><strong>F</strong> = force applied (N)</li>
+        <li><strong>e</strong> = extension (m)</li>
+        <li><strong>k</strong> = spring constant (N/m)</li>
+      </ul>
+    </div>
+    <div style="background: hsl(var(--chart-2)/0.1); border-radius: 12px; padding: 1.5rem; border-left: 4px solid hsl(var(--chart-2));">
+      <h5 style="color: hsl(var(--chart-2)); margin-bottom: 0.5rem;">✔️ Linear vs Non-Linear</h5>
+      <ul style="margin-left: 1rem;">
+        <li>Spring obeys Hooke's Law only in the <strong>linear region</strong></li>
+        <li>Beyond the <strong>limit of proportionality</strong>, extension is no longer directly proportional to force</li>
+      </ul>
+    </div>
+  </div>
+
+  <h4 class="subsection-subheading">💠 Apparatus</h4>
+  
+  <!-- Animated Apparatus Diagram -->
+  <div style="display: flex; justify-content: center; margin: 2rem 0;">
+    <svg viewBox="0 0 420 380" style="max-width: 420px; width: 100%;">
+      <defs>
+        <linearGradient id="springGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+          <stop offset="0%" style="stop-color:#607d8b"/>
+          <stop offset="50%" style="stop-color:#90a4ae"/>
+          <stop offset="100%" style="stop-color:#607d8b"/>
+        </linearGradient>
+        <linearGradient id="massGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+          <stop offset="0%" style="stop-color:#ffd54f"/>
+          <stop offset="100%" style="stop-color:#ff8f00"/>
+        </linearGradient>
+        <linearGradient id="clampGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+          <stop offset="0%" style="stop-color:#424242"/>
+          <stop offset="100%" style="stop-color:#616161"/>
+        </linearGradient>
+      </defs>
+      
+      <!-- Title -->
+      <text x="210" y="25" text-anchor="middle" font-size="14" fill="#333" font-weight="bold">Force & Extension Apparatus</text>
+      
+      <!-- Bench/Table -->
+      <rect x="20" y="340" width="380" height="20" fill="#8d6e63" rx="2"/>
+      <rect x="20" y="355" width="380" height="10" fill="#6d4c41"/>
+      
+      <!-- Clamp stand base -->
+      <rect x="30" y="320" width="100" height="20" fill="url(#clampGrad)" rx="2"/>
+      
+      <!-- Clamp stand pole -->
+      <rect x="75" y="50" width="12" height="270" fill="url(#clampGrad)" rx="2"/>
+      
+      <!-- Top clamp/boss -->
+      <rect x="82" y="55" width="50" height="15" fill="#424242" rx="2"/>
+      <circle cx="107" cy="62" r="6" fill="#333"/>
+      
+      <!-- Spring attachment point -->
+      <rect x="125" y="65" width="20" height="10" fill="#555"/>
+      
+      <!-- Animated Spring -->
+      <g>
+        <path d="M135 75 
+                 L145 85 L125 95 L145 105 L125 115 
+                 L145 125 L125 135 L145 145 L125 155 
+                 L145 165 L125 175 L145 185 L135 195" 
+              stroke="url(#springGrad)" stroke-width="4" fill="none" stroke-linecap="round">
+          <animate attributeName="d" 
+                   values="M135 75 L145 85 L125 95 L145 105 L125 115 L145 125 L125 135 L145 145 L125 155 L145 165 L125 175 L145 185 L135 195;
+                           M135 75 L145 90 L125 105 L145 120 L125 135 L145 150 L125 165 L145 180 L125 195 L145 210 L125 225 L145 240 L135 255;
+                           M135 75 L145 85 L125 95 L145 105 L125 115 L145 125 L125 135 L145 145 L125 155 L145 165 L125 175 L145 185 L135 195" 
+                   dur="4s" repeatCount="indefinite"/>
+        </path>
+      </g>
+      
+      <!-- Pointer/marker on spring -->
+      <g>
+        <polygon points="145,195 165,195 155,205" fill="#e53935">
+          <animate attributeName="points" 
+                   values="145,195 165,195 155,205;145,255 165,255 155,265;145,195 165,195 155,205" 
+                   dur="4s" repeatCount="indefinite"/>
+        </polygon>
+      </g>
+      
+      <!-- Mass hanger with slotted masses -->
+      <g>
+        <rect x="127" y="200" width="16" height="8" fill="#666" rx="1">
+          <animate attributeName="y" values="200;260;200" dur="4s" repeatCount="indefinite"/>
+        </rect>
+        <!-- Mass 1 -->
+        <rect x="120" y="210" width="30" height="15" fill="url(#massGrad)" rx="2" stroke="#e65100" stroke-width="1">
+          <animate attributeName="y" values="210;270;210" dur="4s" repeatCount="indefinite"/>
+        </rect>
+        <text x="135" y="222" text-anchor="middle" font-size="8" fill="#333" font-weight="bold">
+          <animate attributeName="y" values="222;282;222" dur="4s" repeatCount="indefinite"/>
+          100g
+        </text>
+        <!-- Mass 2 -->
+        <rect x="120" y="227" width="30" height="15" fill="url(#massGrad)" rx="2" stroke="#e65100" stroke-width="1">
+          <animate attributeName="y" values="227;287;227" dur="4s" repeatCount="indefinite"/>
+        </rect>
+      </g>
+      
+      <!-- Meter ruler -->
+      <rect x="180" y="70" width="25" height="250" fill="#fff8e1" stroke="#333" stroke-width="1"/>
+      <g fill="#333" font-size="8">
+        <line x1="180" y1="80" x2="195" y2="80" stroke="#333" stroke-width="1"/>
+        <text x="200" y="83">0</text>
+        <line x1="180" y1="100" x2="190" y2="100" stroke="#333" stroke-width="0.5"/>
+        <line x1="180" y1="120" x2="195" y2="120" stroke="#333" stroke-width="1"/>
+        <text x="200" y="123">4</text>
+        <line x1="180" y1="140" x2="190" y2="140" stroke="#333" stroke-width="0.5"/>
+        <line x1="180" y1="160" x2="195" y2="160" stroke="#333" stroke-width="1"/>
+        <text x="200" y="163">8</text>
+        <line x1="180" y1="180" x2="190" y2="180" stroke="#333" stroke-width="0.5"/>
+        <line x1="180" y1="200" x2="195" y2="200" stroke="#333" stroke-width="1"/>
+        <text x="200" y="203">12</text>
+        <line x1="180" y1="220" x2="190" y2="220" stroke="#333" stroke-width="0.5"/>
+        <line x1="180" y1="240" x2="195" y2="240" stroke="#333" stroke-width="1"/>
+        <text x="200" y="243">16</text>
+        <line x1="180" y1="260" x2="190" y2="260" stroke="#333" stroke-width="0.5"/>
+        <line x1="180" y1="280" x2="195" y2="280" stroke="#333" stroke-width="1"/>
+        <text x="200" y="283">20</text>
+        <line x1="180" y1="300" x2="190" y2="300" stroke="#333" stroke-width="0.5"/>
+      </g>
+      <text x="192" y="330" text-anchor="middle" font-size="8" fill="#666">cm</text>
+      
+      <!-- Safety goggles icon -->
+      <g transform="translate(280, 80)">
+        <ellipse cx="15" cy="15" rx="12" ry="10" fill="none" stroke="#1976d2" stroke-width="2"/>
+        <ellipse cx="45" cy="15" rx="12" ry="10" fill="none" stroke="#1976d2" stroke-width="2"/>
+        <line x1="27" y1="15" x2="33" y2="15" stroke="#1976d2" stroke-width="2"/>
+        <line x1="3" y1="12" x2="0" y2="8" stroke="#1976d2" stroke-width="2"/>
+        <line x1="57" y1="12" x2="60" y2="8" stroke="#1976d2" stroke-width="2"/>
+        <text x="30" y="40" text-anchor="middle" font-size="9" fill="#1976d2">Safety Goggles</text>
+      </g>
+      
+      <!-- Set square -->
+      <g transform="translate(280, 150)">
+        <polygon points="0,60 60,60 0,0" fill="none" stroke="#4caf50" stroke-width="2"/>
+        <rect x="0" y="50" width="10" height="10" fill="none" stroke="#4caf50" stroke-width="1"/>
+        <text x="20" y="80" font-size="9" fill="#4caf50">Set Square</text>
+      </g>
+      
+      <!-- Labels -->
+      <g font-size="10" fill="#333">
+        <text x="50" y="45">Clamp Stand</text>
+        <text x="100" y="145" fill="#607d8b">Spring</text>
+        <text x="90" y="280" fill="#ff8f00">Masses</text>
+        <text x="220" y="180">Ruler</text>
+      </g>
+      
+      <!-- Extension indicator -->
+      <g opacity="0.8">
+        <line x1="165" y1="195" x2="175" y2="195" stroke="#e53935" stroke-width="1" stroke-dasharray="3,2">
+          <animate attributeName="y1" values="195;255;195" dur="4s" repeatCount="indefinite"/>
+          <animate attributeName="y2" values="195;255;195" dur="4s" repeatCount="indefinite"/>
+        </line>
+        <text x="230" y="230" font-size="9" fill="#e53935">Extension (e)</text>
+        <path d="M220 220 L175 205" stroke="#e53935" stroke-width="1" fill="none" marker-end="url(#arrowhead)">
+          <animate attributeName="d" values="M220 220 L175 205;M220 260 L175 260;M220 220 L175 205" dur="4s" repeatCount="indefinite"/>
+        </path>
+      </g>
+    </svg>
+  </div>
+
+  <table class="styled-table" style="width: 100%; margin: 1rem 0; border-collapse: collapse;">
+    <thead>
+      <tr style="background: hsl(var(--primary)); color: hsl(var(--primary-foreground));">
+        <th style="padding: 0.75rem; text-align: left;">Equipment</th>
+        <th style="padding: 0.75rem; text-align: left;">Purpose</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr style="background: hsl(var(--muted)/0.3);"><td style="padding: 0.75rem;">Clamp stand, boss & clamp</td><td style="padding: 0.75rem;">Hold spring safely</td></tr>
+      <tr><td style="padding: 0.75rem;">Metal spring</td><td style="padding: 0.75rem;">Object being tested</td></tr>
+      <tr style="background: hsl(var(--muted)/0.3);"><td style="padding: 0.75rem;">Meter ruler (clamped vertically)</td><td style="padding: 0.75rem;">Measure extension</td></tr>
+      <tr><td style="padding: 0.75rem;">Slotted masses (10g – 100g)</td><td style="padding: 0.75rem;">Generate force (weights)</td></tr>
+      <tr style="background: hsl(var(--muted)/0.3);"><td style="padding: 0.75rem;">Pointer indicator / marker</td><td style="padding: 0.75rem;">More accurate extension readings</td></tr>
+      <tr><td style="padding: 0.75rem;">Safety goggles</td><td style="padding: 0.75rem;">Protection in case spring snaps</td></tr>
+      <tr style="background: hsl(var(--muted)/0.3);"><td style="padding: 0.75rem;">Set square</td><td style="padding: 0.75rem;">Ensure ruler is vertical</td></tr>
+    </tbody>
+  </table>
+
+  <h4 class="subsection-subheading">💠 Setup (Detailed)</h4>
+  <div style="background: hsl(var(--muted)/0.3); border-radius: 12px; padding: 1.5rem; margin: 1rem 0;">
+    <ol style="margin-left: 1.5rem;">
+      <li><strong>Secure the clamp stand</strong> to the bench with a large clamp or heavy mass at its base</li>
+      <li><strong>Attach the spring</strong> to the top of the clamp</li>
+      <li><strong>Hang a pointer</strong> from the bottom of the spring (paper arrow taped to the hook)</li>
+      <li><strong>Position the meter ruler</strong> directly next to the spring, zero mark level with pointer</li>
+      <li>Use a <strong>set square</strong> to ensure ruler is vertical (avoids parallax error)</li>
+      <li>Record the spring's <strong>natural length</strong> (unstretched length)</li>
+    </ol>
+  </div>
+
+  <h4 class="subsection-subheading">💠 Method (Step-by-Step)</h4>
+  
+  <div style="background: hsl(var(--accent)/0.1); border-radius: 12px; padding: 1.5rem; margin: 1rem 0;">
+    <h5 style="color: hsl(var(--primary)); margin-bottom: 1rem;">⭐ 1. Measure Initial Length</h5>
+    <p>Record the starting length of the spring with <strong>0 N</strong> added.</p>
+  </div>
+
+  <div style="background: hsl(var(--accent)/0.1); border-radius: 12px; padding: 1.5rem; margin: 1rem 0;">
+    <h5 style="color: hsl(var(--primary)); margin-bottom: 1rem;">⭐ 2. Add Masses Carefully</h5>
+    <ol style="margin-left: 1.5rem;">
+      <li>Add a 10g mass (≈ 0.1 N weight)</li>
+      <li>Wait for the spring to stop oscillating</li>
+      <li>Record the new length</li>
+    </ol>
+  </div>
+
+  <div style="background: hsl(var(--accent)/0.1); border-radius: 12px; padding: 1.5rem; margin: 1rem 0;">
+    <h5 style="color: hsl(var(--primary)); margin-bottom: 1rem;">⭐ 3. Increase the Force</h5>
+    <p>Add masses in <strong>regular equal steps</strong> (e.g., 0.1 N increments using 10g masses, up to 1 N).</p>
+    <p>For each force value, measure the <strong>total length</strong> of the spring.</p>
+  </div>
+
+  <div style="background: hsl(var(--accent)/0.1); border-radius: 12px; padding: 1.5rem; margin: 1rem 0;">
+    <h5 style="color: hsl(var(--primary)); margin-bottom: 1rem;">⭐ 4. Calculate Extension</h5>
+    <div style="text-align: center; padding: 1rem; background: hsl(var(--muted)); border-radius: 8px;">
+      <p style="font-size: 1.1rem;"><strong>Extension = Stretched Length − Original Length</strong></p>
+    </div>
+  </div>
+
+  <div style="background: hsl(var(--accent)/0.1); border-radius: 12px; padding: 1.5rem; margin: 1rem 0;">
+    <h5 style="color: hsl(var(--primary)); margin-bottom: 1rem;">⭐ 5. Repeat Measurements</h5>
+    <ol style="margin-left: 1.5rem;">
+      <li>Remove all masses</li>
+      <li>Allow spring to return to normal</li>
+      <li>Repeat the entire experiment two more times</li>
+      <li><strong>Average</strong> the extension values</li>
+    </ol>
+  </div>
+
+  <div style="background: hsl(var(--accent)/0.1); border-radius: 12px; padding: 1.5rem; margin: 1rem 0;">
+    <h5 style="color: hsl(var(--primary)); margin-bottom: 1rem;">⭐ 6. Identify if Hooke's Law is Obeyed</h5>
+    <p>Plot a graph of <strong>Force (N)</strong> on the y-axis vs <strong>Extension (m)</strong> on the x-axis.</p>
+    <p style="margin-top: 0.5rem;">A <strong>straight-line graph through the origin</strong> indicates Hooke's Law holds.</p>
+  </div>
+
+  <h4 class="subsection-subheading">💠 Results Table (Structure)</h4>
+  <table class="styled-table" style="width: 100%; margin: 1rem 0; border-collapse: collapse;">
+    <thead>
+      <tr style="background: hsl(var(--primary)); color: hsl(var(--primary-foreground));">
+        <th style="padding: 0.75rem; text-align: center;">Mass (g)</th>
+        <th style="padding: 0.75rem; text-align: center;">Weight F (N)</th>
+        <th style="padding: 0.75rem; text-align: center;">Length (cm)</th>
+        <th style="padding: 0.75rem; text-align: center;">Extension (cm)</th>
+        <th style="padding: 0.75rem; text-align: center;">Extension (m)</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr style="background: hsl(var(--muted)/0.3);"><td style="padding: 0.75rem; text-align: center;">0</td><td style="padding: 0.75rem; text-align: center;">0.00</td><td style="padding: 0.75rem; text-align: center;">5.0</td><td style="padding: 0.75rem; text-align: center;">0.0</td><td style="padding: 0.75rem; text-align: center;">0.000</td></tr>
+      <tr><td style="padding: 0.75rem; text-align: center;">50</td><td style="padding: 0.75rem; text-align: center;">0.49</td><td style="padding: 0.75rem; text-align: center;">6.5</td><td style="padding: 0.75rem; text-align: center;">1.5</td><td style="padding: 0.75rem; text-align: center;">0.015</td></tr>
+      <tr style="background: hsl(var(--muted)/0.3);"><td style="padding: 0.75rem; text-align: center;">100</td><td style="padding: 0.75rem; text-align: center;">0.98</td><td style="padding: 0.75rem; text-align: center;">8.0</td><td style="padding: 0.75rem; text-align: center;">3.0</td><td style="padding: 0.75rem; text-align: center;">0.030</td></tr>
+      <tr><td style="padding: 0.75rem; text-align: center;">150</td><td style="padding: 0.75rem; text-align: center;">1.47</td><td style="padding: 0.75rem; text-align: center;">9.5</td><td style="padding: 0.75rem; text-align: center;">4.5</td><td style="padding: 0.75rem; text-align: center;">0.045</td></tr>
+      <tr style="background: hsl(var(--muted)/0.3);"><td style="padding: 0.75rem; text-align: center;">200</td><td style="padding: 0.75rem; text-align: center;">1.96</td><td style="padding: 0.75rem; text-align: center;">11.0</td><td style="padding: 0.75rem; text-align: center;">6.0</td><td style="padding: 0.75rem; text-align: center;">0.060</td></tr>
+    </tbody>
+  </table>
+
+  <h4 class="subsection-subheading">💠 Determining the Spring Constant (k)</h4>
+  
+  <!-- Animated Force-Extension Graph -->
+  <div style="display: flex; justify-content: center; margin: 2rem 0;">
+    <svg viewBox="0 0 400 320" style="max-width: 400px; width: 100%;">
+      <defs>
+        <marker id="arrowEnd" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+          <polygon points="0 0, 10 3.5, 0 7" fill="#333"/>
+        </marker>
+      </defs>
+      
+      <!-- Title -->
+      <text x="200" y="20" text-anchor="middle" font-size="13" fill="#333" font-weight="bold">Force vs Extension Graph</text>
+      
+      <!-- Axes -->
+      <line x1="60" y1="260" x2="370" y2="260" stroke="#333" stroke-width="2" marker-end="url(#arrowEnd)"/>
+      <line x1="60" y1="260" x2="60" y2="40" stroke="#333" stroke-width="2" marker-end="url(#arrowEnd)"/>
+      
+      <!-- Y-axis label -->
+      <text x="25" y="150" font-size="11" fill="#333" transform="rotate(-90, 25, 150)">Force F (N)</text>
+      <text x="55" y="265" font-size="9" fill="#666" text-anchor="end">0</text>
+      <text x="55" y="210" font-size="9" fill="#666" text-anchor="end">1</text>
+      <text x="55" y="160" font-size="9" fill="#666" text-anchor="end">2</text>
+      <text x="55" y="110" font-size="9" fill="#666" text-anchor="end">3</text>
+      <text x="55" y="60" font-size="9" fill="#666" text-anchor="end">4</text>
+      
+      <!-- X-axis label -->
+      <text x="215" y="295" font-size="11" fill="#333" text-anchor="middle">Extension e (m)</text>
+      <text x="110" y="278" font-size="9" fill="#666" text-anchor="middle">0.02</text>
+      <text x="160" y="278" font-size="9" fill="#666" text-anchor="middle">0.04</text>
+      <text x="210" y="278" font-size="9" fill="#666" text-anchor="middle">0.06</text>
+      <text x="260" y="278" font-size="9" fill="#666" text-anchor="middle">0.08</text>
+      <text x="310" y="278" font-size="9" fill="#666" text-anchor="middle">0.10</text>
+      
+      <!-- Grid lines -->
+      <g stroke="#e0e0e0" stroke-width="1">
+        <line x1="60" y1="210" x2="360" y2="210"/>
+        <line x1="60" y1="160" x2="360" y2="160"/>
+        <line x1="60" y1="110" x2="360" y2="110"/>
+        <line x1="60" y1="60" x2="360" y2="60"/>
+        <line x1="110" y1="260" x2="110" y2="50"/>
+        <line x1="160" y1="260" x2="160" y2="50"/>
+        <line x1="210" y1="260" x2="210" y2="50"/>
+        <line x1="260" y1="260" x2="260" y2="50"/>
+        <line x1="310" y1="260" x2="310" y2="50"/>
+      </g>
+      
+      <!-- Linear region (Hooke's Law obeyed) -->
+      <line x1="60" y1="260" x2="260" y2="60" stroke="#4caf50" stroke-width="3">
+        <animate attributeName="x2" values="60;260;260" dur="2s" fill="freeze"/>
+        <animate attributeName="y2" values="260;60;60" dur="2s" fill="freeze"/>
+      </line>
+      
+      <!-- Non-linear region (beyond limit of proportionality) -->
+      <path d="M260 60 Q290 55 320 52 Q340 51 360 50" stroke="#e53935" stroke-width="3" fill="none" stroke-dasharray="8,4">
+        <animate attributeName="stroke-dashoffset" from="100" to="0" dur="3s" fill="freeze"/>
+      </path>
+      
+      <!-- Data points -->
+      <g fill="#1976d2">
+        <circle cx="60" cy="260" r="5"><animate attributeName="opacity" from="0" to="1" dur="0.5s" fill="freeze"/></circle>
+        <circle cx="110" cy="210" r="5"><animate attributeName="opacity" from="0" to="1" dur="0.7s" fill="freeze"/></circle>
+        <circle cx="160" cy="160" r="5"><animate attributeName="opacity" from="0" to="1" dur="0.9s" fill="freeze"/></circle>
+        <circle cx="210" cy="110" r="5"><animate attributeName="opacity" from="0" to="1" dur="1.1s" fill="freeze"/></circle>
+        <circle cx="260" cy="60" r="5"><animate attributeName="opacity" from="0" to="1" dur="1.3s" fill="freeze"/></circle>
+        <circle cx="300" cy="53" r="5" fill="#e53935"><animate attributeName="opacity" from="0" to="1" dur="1.5s" fill="freeze"/></circle>
+        <circle cx="340" cy="51" r="5" fill="#e53935"><animate attributeName="opacity" from="0" to="1" dur="1.7s" fill="freeze"/></circle>
+      </g>
+      
+      <!-- Limit of proportionality marker -->
+      <line x1="260" y1="260" x2="260" y2="60" stroke="#ff9800" stroke-width="1" stroke-dasharray="5,3"/>
+      <text x="265" y="165" font-size="9" fill="#ff9800" transform="rotate(90, 265, 165)">Limit of proportionality</text>
+      
+      <!-- Legend -->
+      <g transform="translate(80, 35)">
+        <line x1="0" y1="0" x2="25" y2="0" stroke="#4caf50" stroke-width="3"/>
+        <text x="30" y="4" font-size="9" fill="#666">Linear region (Hooke's Law)</text>
+        <line x1="0" y1="15" x2="25" y2="15" stroke="#e53935" stroke-width="3" stroke-dasharray="8,4"/>
+        <text x="30" y="19" font-size="9" fill="#666">Non-linear (beyond limit)</text>
+      </g>
+      
+      <!-- Gradient annotation -->
+      <g transform="translate(100, 180)">
+        <text x="0" y="0" font-size="10" fill="#4caf50" font-weight="bold">Gradient = k</text>
+        <text x="0" y="14" font-size="9" fill="#666">(spring constant)</text>
+      </g>
+    </svg>
+  </div>
+
+  <div style="background: hsl(var(--chart-1)/0.1); border-radius: 12px; padding: 1.5rem; margin: 1rem 0; border-left: 4px solid hsl(var(--chart-1));">
+    <h5 style="color: hsl(var(--chart-1)); margin-bottom: 0.5rem;">⭐ Using the Graph</h5>
+    <p>The <strong>gradient</strong> of the straight-line portion = spring constant <strong>k</strong></p>
+    <div style="text-align: center; padding: 1rem; background: hsl(var(--muted)); border-radius: 8px; margin-top: 0.5rem;">
+      <p style="font-size: 1.2rem;"><strong>k = F / e</strong> &nbsp;&nbsp; (Units: N/m)</p>
+    </div>
+    <ul style="margin-top: 1rem; margin-left: 1rem;">
+      <li>Only use the <strong>linear region</strong> before the limit of proportionality</li>
+      <li>The steeper the line → the <strong>stiffer</strong> the spring</li>
+    </ul>
+  </div>
+
+  <h4 class="subsection-subheading">💠 Evaluating & Improving Accuracy</h4>
+  <table class="styled-table" style="width: 100%; margin: 1rem 0; border-collapse: collapse;">
+    <thead>
+      <tr style="background: hsl(var(--destructive)); color: hsl(var(--destructive-foreground));">
+        <th style="padding: 0.75rem; text-align: left;">Source of Error</th>
+        <th style="padding: 0.75rem; text-align: left;">Why It Happens</th>
+        <th style="padding: 0.75rem; text-align: left;">Improvement</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr style="background: hsl(var(--muted)/0.3);"><td style="padding: 0.75rem;">Parallax error</td><td style="padding: 0.75rem;">Reading ruler from angle</td><td style="padding: 0.75rem;">Eye level with pointer</td></tr>
+      <tr><td style="padding: 0.75rem;">Spring oscillates</td><td style="padding: 0.75rem;">Hard to read exact length</td><td style="padding: 0.75rem;">Wait until still / use damping</td></tr>
+      <tr style="background: hsl(var(--muted)/0.3);"><td style="padding: 0.75rem;">Mass not centred</td><td style="padding: 0.75rem;">Causes sideways motion</td><td style="padding: 0.75rem;">Ensure masses hang freely</td></tr>
+      <tr><td style="padding: 0.75rem;">Zero error on ruler</td><td style="padding: 0.75rem;">Ruler misalignment</td><td style="padding: 0.75rem;">Set ruler zero at pointer before starting</td></tr>
+      <tr style="background: hsl(var(--muted)/0.3);"><td style="padding: 0.75rem;">Spring not uniform</td><td style="padding: 0.75rem;">Manufacturing variations</td><td style="padding: 0.75rem;">Repeat with multiple springs</td></tr>
+    </tbody>
+  </table>
+
+  <h4 class="subsection-subheading">💠 Safety Precautions</h4>
+  <div style="background: hsl(var(--destructive)/0.1); border-radius: 12px; padding: 1.5rem; margin: 1rem 0; border-left: 4px solid hsl(var(--destructive));">
+    <ul style="margin-left: 1.5rem;">
+      <li><strong>Wear goggles</strong>: spring may snap</li>
+      <li>Ensure <strong>clamp stand is securely weighted</strong></li>
+      <li>Do <strong>not overload</strong> spring beyond limit of proportionality or elastic limit</li>
+    </ul>
+  </div>
+
+  <div class="key-point" style="background: linear-gradient(135deg, hsl(var(--chart-1)/0.1), hsl(var(--chart-2)/0.1)); border-radius: 12px; padding: 1.5rem; margin: 1.5rem 0; border-left: 4px solid hsl(var(--chart-1));">
+    <h4 style="color: hsl(var(--chart-1)); margin-bottom: 0.5rem;">💠 Conclusion</h4>
+    <ul style="margin-left: 1.5rem;">
+      <li>In the <strong>linear region</strong>, extension increases proportionally with force</li>
+      <li>Beyond the <strong>limit of proportionality</strong>, the graph curves → Hooke's Law no longer applies</li>
+      <li>The spring constant <strong>k</strong> quantifies how stiff the spring is:
+        <ul style="margin-left: 1rem; margin-top: 0.5rem;">
+          <li><strong>Large k</strong> → stiff spring</li>
+          <li><strong>Small k</strong> → easily stretched spring</li>
+        </ul>
+      </li>
+    </ul>
+  </div>
+</div>
+            `,
+            canonical_keywords: ["Hooke's Law", "force", "extension", "spring constant", "elastic limit", "proportionality", "F=ke", "stiffness", "newton", "meter"],
+            practice_items: [
+              {
+                id: "fe-p1",
+                prompt_template: "Describe the method used to investigate the relationship between force and extension for a spring.",
+                marks: 6,
+                type: "short-answer",
+                difficulty: "medium",
+                randomise: true,
+                expected_keywords: ["clamp stand", "spring", "ruler", "masses", "measure length", "extension", "repeat", "average"]
+              },
+              {
+                id: "fe-p2",
+                prompt_template: "A spring extends by 0.04 m when a force of 2 N is applied. Calculate the spring constant.",
+                marks: 3,
+                type: "short-answer",
+                difficulty: "medium",
+                randomise: false,
+                expected_keywords: ["k = F/e", "k = 2/0.04", "50 N/m"]
+              },
+              {
+                id: "fe-p3",
+                prompt_template: "Explain what happens to a spring when it is stretched beyond its limit of proportionality.",
+                marks: 3,
+                type: "short-answer",
+                difficulty: "medium",
+                randomise: true,
+                expected_keywords: ["no longer proportional", "curve", "permanent deformation", "does not return"]
+              },
+              {
+                id: "fe-p4",
+                prompt_template: "State two safety precautions when investigating force and extension.",
+                marks: 2,
+                type: "short-answer",
+                difficulty: "easy",
+                randomise: true,
+                expected_keywords: ["goggles", "spring snap", "secure clamp", "do not overload"]
+              }
+            ]
+          }
+        ]
       },
       {
         id: "rp-waves",
