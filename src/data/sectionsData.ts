@@ -5663,6 +5663,65 @@ H—N—H</pre>
 <div class="subsection">
   <h3 class="subsection-heading">Subsection 2 – Diamond (Carbon)</h3>
   
+  <div class="diagram-block hover-pause">
+    <h4>💎 Diamond Structure</h4>
+    <svg viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg" style="max-width: 100%; height: auto; background: linear-gradient(180deg, #0f172a 0%, #1e293b 100%); border-radius: 12px; padding: 10px;">
+      <!-- Tetrahedral Diamond Lattice -->
+      <!-- Central Carbon -->
+      <circle cx="200" cy="150" r="18" fill="#22d3ee" stroke="#67e8f9" stroke-width="2">
+        <animate attributeName="r" values="18;20;18" dur="2s" repeatCount="indefinite"/>
+      </circle>
+      <text x="200" y="155" fill="#0f172a" font-size="12" font-weight="bold" text-anchor="middle">C</text>
+      
+      <!-- Top Carbon -->
+      <circle cx="200" cy="60" r="16" fill="#22d3ee" stroke="#67e8f9" stroke-width="2"/>
+      <text x="200" y="65" fill="#0f172a" font-size="11" font-weight="bold" text-anchor="middle">C</text>
+      <line x1="200" y1="132" x2="200" y2="76" stroke="#a5b4fc" stroke-width="4"/>
+      
+      <!-- Bottom Left Carbon -->
+      <circle cx="120" cy="220" r="16" fill="#22d3ee" stroke="#67e8f9" stroke-width="2"/>
+      <text x="120" y="225" fill="#0f172a" font-size="11" font-weight="bold" text-anchor="middle">C</text>
+      <line x1="187" y1="163" x2="133" y2="207" stroke="#a5b4fc" stroke-width="4"/>
+      
+      <!-- Bottom Right Carbon -->
+      <circle cx="280" cy="220" r="16" fill="#22d3ee" stroke="#67e8f9" stroke-width="2"/>
+      <text x="280" y="225" fill="#0f172a" font-size="11" font-weight="bold" text-anchor="middle">C</text>
+      <line x1="213" y1="163" x2="267" y2="207" stroke="#a5b4fc" stroke-width="4"/>
+      
+      <!-- Front Carbon -->
+      <circle cx="280" cy="100" r="16" fill="#22d3ee" stroke="#67e8f9" stroke-width="2"/>
+      <text x="280" y="105" fill="#0f172a" font-size="11" font-weight="bold" text-anchor="middle">C</text>
+      <line x1="216" y1="140" x2="264" y2="112" stroke="#a5b4fc" stroke-width="4"/>
+      
+      <!-- Back Carbon (slightly faded for 3D effect) -->
+      <circle cx="120" cy="100" r="16" fill="#22d3ee" opacity="0.7" stroke="#67e8f9" stroke-width="2"/>
+      <text x="120" y="105" fill="#0f172a" font-size="11" font-weight="bold" text-anchor="middle" opacity="0.7">C</text>
+      <line x1="184" y1="140" x2="136" y2="112" stroke="#a5b4fc" stroke-width="4" opacity="0.7"/>
+      
+      <!-- Extended network hints -->
+      <circle cx="200" cy="10" r="10" fill="#22d3ee" opacity="0.4"/>
+      <line x1="200" y1="44" x2="200" y2="20" stroke="#a5b4fc" stroke-width="3" opacity="0.4"/>
+      
+      <circle cx="70" cy="260" r="10" fill="#22d3ee" opacity="0.4"/>
+      <line x1="107" y1="232" x2="80" y2="252" stroke="#a5b4fc" stroke-width="3" opacity="0.4"/>
+      
+      <circle cx="330" cy="260" r="10" fill="#22d3ee" opacity="0.4"/>
+      <line x1="293" y1="232" x2="320" y2="252" stroke="#a5b4fc" stroke-width="3" opacity="0.4"/>
+      
+      <!-- Labels -->
+      <text x="320" y="30" fill="#94a3b8" font-size="10">Each C bonded</text>
+      <text x="320" y="45" fill="#94a3b8" font-size="10">to 4 others</text>
+      
+      <text x="30" y="270" fill="#67e8f9" font-size="10">Tetrahedral</text>
+      <text x="30" y="285" fill="#67e8f9" font-size="10">arrangement</text>
+    </svg>
+    
+    <div class="color-legend" style="display: flex; gap: 15px; flex-wrap: wrap; margin-top: 10px; font-size: 12px;">
+      <span style="display: flex; align-items: center; gap: 5px;"><span style="width: 12px; height: 12px; background: #22d3ee; border-radius: 50%;"></span> Carbon atom</span>
+      <span style="display: flex; align-items: center; gap: 5px;"><span style="width: 12px; height: 3px; background: #a5b4fc;"></span> Strong covalent bond</span>
+    </div>
+  </div>
+  
   <div class="key-facts-block">
     <h4>🔬 Structure</h4>
     <ul>
@@ -5706,6 +5765,106 @@ H—N—H</pre>
 
 <div class="subsection">
   <h3 class="subsection-heading">Subsection 3 – Graphite (Carbon)</h3>
+  
+  <div class="diagram-block hover-pause">
+    <h4>✏️ Graphite Structure</h4>
+    <svg viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg" style="max-width: 100%; height: auto; background: linear-gradient(180deg, #0f172a 0%, #1e293b 100%); border-radius: 12px; padding: 10px;">
+      <!-- Top Layer -->
+      <g transform="translate(50, 40)">
+        <!-- Hexagonal layer 1 -->
+        <polygon points="60,0 120,0 150,35 120,70 60,70 30,35" fill="none" stroke="#64748b" stroke-width="2"/>
+        <polygon points="120,0 180,0 210,35 180,70 120,70 90,35" fill="none" stroke="#64748b" stroke-width="2"/>
+        <polygon points="60,70 120,70 150,105 120,140 60,140 30,105" fill="none" stroke="#64748b" stroke-width="2"/>
+        <polygon points="120,70 180,70 210,105 180,140 120,140 90,105" fill="none" stroke="#64748b" stroke-width="2"/>
+        
+        <!-- Carbon atoms layer 1 -->
+        <circle cx="60" cy="0" r="8" fill="#64748b"/>
+        <circle cx="120" cy="0" r="8" fill="#64748b"/>
+        <circle cx="180" cy="0" r="8" fill="#64748b"/>
+        <circle cx="30" cy="35" r="8" fill="#64748b"/>
+        <circle cx="90" cy="35" r="8" fill="#64748b"/>
+        <circle cx="150" cy="35" r="8" fill="#64748b"/>
+        <circle cx="210" cy="35" r="8" fill="#64748b"/>
+        <circle cx="60" cy="70" r="8" fill="#64748b"/>
+        <circle cx="120" cy="70" r="8" fill="#64748b"/>
+        <circle cx="180" cy="70" r="8" fill="#64748b"/>
+      </g>
+      
+      <!-- Middle Layer (main) -->
+      <g transform="translate(70, 100)">
+        <!-- Hexagonal layer 2 -->
+        <polygon points="60,0 120,0 150,35 120,70 60,70 30,35" fill="none" stroke="#22d3ee" stroke-width="3"/>
+        <polygon points="120,0 180,0 210,35 180,70 120,70 90,35" fill="none" stroke="#22d3ee" stroke-width="3"/>
+        <polygon points="60,70 120,70 150,105 120,140 60,140 30,105" fill="none" stroke="#22d3ee" stroke-width="3"/>
+        <polygon points="120,70 180,70 210,105 180,140 120,140 90,105" fill="none" stroke="#22d3ee" stroke-width="3"/>
+        
+        <!-- Carbon atoms layer 2 -->
+        <circle cx="60" cy="0" r="10" fill="#22d3ee"/>
+        <circle cx="120" cy="0" r="10" fill="#22d3ee"/>
+        <circle cx="180" cy="0" r="10" fill="#22d3ee"/>
+        <circle cx="30" cy="35" r="10" fill="#22d3ee"/>
+        <circle cx="90" cy="35" r="10" fill="#22d3ee"/>
+        <circle cx="150" cy="35" r="10" fill="#22d3ee"/>
+        <circle cx="210" cy="35" r="10" fill="#22d3ee"/>
+        <circle cx="60" cy="70" r="10" fill="#22d3ee"/>
+        <circle cx="120" cy="70" r="10" fill="#22d3ee"/>
+        <circle cx="180" cy="70" r="10" fill="#22d3ee"/>
+        
+        <!-- Delocalised electrons -->
+        <circle cx="90" cy="25" r="3" fill="#fbbf24">
+          <animate attributeName="cx" values="90;150;210;150;90" dur="3s" repeatCount="indefinite"/>
+          <animate attributeName="cy" values="25;35;25;35;25" dur="3s" repeatCount="indefinite"/>
+        </circle>
+        <circle cx="120" cy="50" r="3" fill="#fbbf24">
+          <animate attributeName="cx" values="120;60;30;60;120" dur="2.5s" repeatCount="indefinite"/>
+          <animate attributeName="cy" values="50;70;105;70;50" dur="2.5s" repeatCount="indefinite"/>
+        </circle>
+      </g>
+      
+      <!-- Bottom Layer -->
+      <g transform="translate(90, 160)">
+        <!-- Hexagonal layer 3 -->
+        <polygon points="60,0 120,0 150,35 120,70 60,70 30,35" fill="none" stroke="#475569" stroke-width="2"/>
+        <polygon points="120,0 180,0 210,35 180,70 120,70 90,35" fill="none" stroke="#475569" stroke-width="2"/>
+        
+        <!-- Carbon atoms layer 3 -->
+        <circle cx="60" cy="0" r="8" fill="#475569"/>
+        <circle cx="120" cy="0" r="8" fill="#475569"/>
+        <circle cx="180" cy="0" r="8" fill="#475569"/>
+        <circle cx="30" cy="35" r="8" fill="#475569"/>
+        <circle cx="90" cy="35" r="8" fill="#475569"/>
+        <circle cx="150" cy="35" r="8" fill="#475569"/>
+        <circle cx="210" cy="35" r="8" fill="#475569"/>
+      </g>
+      
+      <!-- Sliding arrow -->
+      <path d="M 340 120 L 360 120 L 360 180 L 340 180" fill="none" stroke="#ef4444" stroke-width="2" marker-end="url(#slideArrow)">
+        <animate attributeName="d" values="M 340 120 L 360 120 L 360 180 L 340 180;M 340 125 L 360 125 L 360 185 L 340 185;M 340 120 L 360 120 L 360 180 L 340 180" dur="2s" repeatCount="indefinite"/>
+      </path>
+      <text x="345" y="155" fill="#ef4444" font-size="9">Layers</text>
+      <text x="350" y="168" fill="#ef4444" font-size="9">slide</text>
+      
+      <defs>
+        <marker id="slideArrow" markerWidth="8" markerHeight="8" refX="4" refY="4" orient="auto">
+          <path d="M0,0 L0,8 L8,4 z" fill="#ef4444"/>
+        </marker>
+      </defs>
+      
+      <!-- Labels -->
+      <text x="20" y="60" fill="#64748b" font-size="9">Layer 1</text>
+      <text x="20" y="140" fill="#22d3ee" font-size="9">Layer 2</text>
+      <text x="20" y="200" fill="#475569" font-size="9">Layer 3</text>
+      
+      <text x="20" y="270" fill="#fbbf24" font-size="9">e⁻ = delocalised</text>
+      <text x="20" y="285" fill="#fbbf24" font-size="9">electrons</text>
+    </svg>
+    
+    <div class="color-legend" style="display: flex; gap: 15px; flex-wrap: wrap; margin-top: 10px; font-size: 12px;">
+      <span style="display: flex; align-items: center; gap: 5px;"><span style="width: 12px; height: 12px; background: #22d3ee; border-radius: 50%;"></span> Carbon atoms</span>
+      <span style="display: flex; align-items: center; gap: 5px;"><span style="width: 12px; height: 12px; background: #fbbf24; border-radius: 50%;"></span> Delocalised electrons</span>
+      <span style="display: flex; align-items: center; gap: 5px;"><span style="width: 12px; height: 3px; background: #ef4444;"></span> Layers can slide</span>
+    </div>
+  </div>
   
   <div class="key-facts-block">
     <h4>🔬 Structure</h4>
@@ -5762,6 +5921,86 @@ H—N—H</pre>
 
 <div class="subsection">
   <h3 class="subsection-heading">Subsection 4 – Graphene (Single Layer of Graphite)</h3>
+  
+  <div class="diagram-block hover-pause">
+    <h4>🔬 Graphene Structure</h4>
+    <svg viewBox="0 0 400 250" xmlns="http://www.w3.org/2000/svg" style="max-width: 100%; height: auto; background: linear-gradient(180deg, #0f172a 0%, #1e293b 100%); border-radius: 12px; padding: 10px;">
+      <!-- Single hexagonal layer -->
+      <g transform="translate(50, 50)">
+        <!-- Row 1 -->
+        <polygon points="30,0 60,0 75,26 60,52 30,52 15,26" fill="none" stroke="#10b981" stroke-width="3"/>
+        <polygon points="60,0 90,0 105,26 90,52 60,52 45,26" fill="none" stroke="#10b981" stroke-width="3"/>
+        <polygon points="90,0 120,0 135,26 120,52 90,52 75,26" fill="none" stroke="#10b981" stroke-width="3"/>
+        <polygon points="120,0 150,0 165,26 150,52 120,52 105,26" fill="none" stroke="#10b981" stroke-width="3"/>
+        <polygon points="150,0 180,0 195,26 180,52 150,52 135,26" fill="none" stroke="#10b981" stroke-width="3"/>
+        <polygon points="180,0 210,0 225,26 210,52 180,52 165,26" fill="none" stroke="#10b981" stroke-width="3"/>
+        <polygon points="210,0 240,0 255,26 240,52 210,52 195,26" fill="none" stroke="#10b981" stroke-width="3"/>
+        
+        <!-- Row 2 -->
+        <polygon points="45,52 75,52 90,78 75,104 45,104 30,78" fill="none" stroke="#10b981" stroke-width="3"/>
+        <polygon points="75,52 105,52 120,78 105,104 75,104 60,78" fill="none" stroke="#10b981" stroke-width="3"/>
+        <polygon points="105,52 135,52 150,78 135,104 105,104 90,78" fill="none" stroke="#10b981" stroke-width="3"/>
+        <polygon points="135,52 165,52 180,78 165,104 135,104 120,78" fill="none" stroke="#10b981" stroke-width="3"/>
+        <polygon points="165,52 195,52 210,78 195,104 165,104 150,78" fill="none" stroke="#10b981" stroke-width="3"/>
+        <polygon points="195,52 225,52 240,78 225,104 195,104 180,78" fill="none" stroke="#10b981" stroke-width="3"/>
+        
+        <!-- Row 3 -->
+        <polygon points="30,104 60,104 75,130 60,156 30,156 15,130" fill="none" stroke="#10b981" stroke-width="3"/>
+        <polygon points="60,104 90,104 105,130 90,156 60,156 45,130" fill="none" stroke="#10b981" stroke-width="3"/>
+        <polygon points="90,104 120,104 135,130 120,156 90,156 75,130" fill="none" stroke="#10b981" stroke-width="3"/>
+        <polygon points="120,104 150,104 165,130 150,156 120,156 105,130" fill="none" stroke="#10b981" stroke-width="3"/>
+        <polygon points="150,104 180,104 195,130 180,156 150,156 135,130" fill="none" stroke="#10b981" stroke-width="3"/>
+        <polygon points="180,104 210,104 225,130 210,156 180,156 165,130" fill="none" stroke="#10b981" stroke-width="3"/>
+        <polygon points="210,104 240,104 255,130 240,156 210,156 195,130" fill="none" stroke="#10b981" stroke-width="3"/>
+        
+        <!-- Carbon atoms at vertices -->
+        <circle cx="30" cy="0" r="6" fill="#10b981"/>
+        <circle cx="60" cy="0" r="6" fill="#10b981"/>
+        <circle cx="90" cy="0" r="6" fill="#10b981"/>
+        <circle cx="120" cy="0" r="6" fill="#10b981"/>
+        <circle cx="150" cy="0" r="6" fill="#10b981"/>
+        <circle cx="180" cy="0" r="6" fill="#10b981"/>
+        <circle cx="210" cy="0" r="6" fill="#10b981"/>
+        <circle cx="240" cy="0" r="6" fill="#10b981"/>
+        
+        <circle cx="15" cy="26" r="6" fill="#10b981"/>
+        <circle cx="45" cy="26" r="6" fill="#10b981"/>
+        <circle cx="75" cy="26" r="6" fill="#10b981"/>
+        <circle cx="105" cy="26" r="6" fill="#10b981"/>
+        <circle cx="135" cy="26" r="6" fill="#10b981"/>
+        <circle cx="165" cy="26" r="6" fill="#10b981"/>
+        <circle cx="195" cy="26" r="6" fill="#10b981"/>
+        <circle cx="225" cy="26" r="6" fill="#10b981"/>
+        <circle cx="255" cy="26" r="6" fill="#10b981"/>
+        
+        <!-- Delocalised electrons moving across -->
+        <circle cx="60" cy="30" r="4" fill="#fbbf24">
+          <animate attributeName="cx" values="60;120;180;240;180;120;60" dur="4s" repeatCount="indefinite"/>
+        </circle>
+        <circle cx="150" cy="80" r="4" fill="#fbbf24">
+          <animate attributeName="cx" values="150;90;30;90;150;210;150" dur="3.5s" repeatCount="indefinite"/>
+        </circle>
+        <circle cx="100" cy="130" r="4" fill="#fbbf24">
+          <animate attributeName="cx" values="100;160;220;160;100;40;100" dur="4.5s" repeatCount="indefinite"/>
+        </circle>
+      </g>
+      
+      <!-- Thickness indicator -->
+      <line x1="340" y1="70" x2="340" y2="180" stroke="#94a3b8" stroke-width="1" stroke-dasharray="3,3"/>
+      <line x1="335" y1="125" x2="345" y2="125" stroke="#f472b6" stroke-width="3"/>
+      <text x="350" y="128" fill="#f472b6" font-size="9">1 atom thick!</text>
+      
+      <!-- Labels -->
+      <text x="20" y="230" fill="#10b981" font-size="10">Hexagonal honeycomb pattern</text>
+      <text x="250" y="230" fill="#fbbf24" font-size="10">e⁻ move freely</text>
+    </svg>
+    
+    <div class="color-legend" style="display: flex; gap: 15px; flex-wrap: wrap; margin-top: 10px; font-size: 12px;">
+      <span style="display: flex; align-items: center; gap: 5px;"><span style="width: 12px; height: 12px; background: #10b981; border-radius: 50%;"></span> Carbon atoms</span>
+      <span style="display: flex; align-items: center; gap: 5px;"><span style="width: 12px; height: 3px; background: #10b981;"></span> Covalent bonds</span>
+      <span style="display: flex; align-items: center; gap: 5px;"><span style="width: 12px; height: 12px; background: #fbbf24; border-radius: 50%;"></span> Delocalised electrons</span>
+    </div>
+  </div>
   
   <div class="key-facts-block">
     <h4>🔬 Structure</h4>
@@ -6570,6 +6809,78 @@ H—N—H</pre>
 <div class="subsection">
   <h3 class="subsection-heading">Subsection 5 – Buckminsterfullerene (C₆₀)</h3>
   
+  <div class="diagram-block hover-pause">
+    <h4>⚽ Buckminsterfullerene (C₆₀) Structure</h4>
+    <svg viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg" style="max-width: 100%; height: auto; background: linear-gradient(180deg, #0f172a 0%, #1e293b 100%); border-radius: 12px; padding: 10px;">
+      <!-- Outer sphere outline -->
+      <ellipse cx="200" cy="150" rx="100" ry="100" fill="none" stroke="#8b5cf6" stroke-width="1" opacity="0.3"/>
+      
+      <!-- Front-facing hexagons and pentagons -->
+      <!-- Top pentagon -->
+      <polygon points="200,60 230,85 220,120 180,120 170,85" fill="none" stroke="#8b5cf6" stroke-width="2"/>
+      
+      <!-- Middle hexagons ring -->
+      <polygon points="170,85 180,120 150,140 120,120 130,85 150,70" fill="none" stroke="#a78bfa" stroke-width="2"/>
+      <polygon points="230,85 270,70 280,100 260,130 220,120" fill="none" stroke="#a78bfa" stroke-width="2"/>
+      <polygon points="180,120 220,120 240,150 220,180 180,180 160,150" fill="none" stroke="#8b5cf6" stroke-width="2"/>
+      <polygon points="120,120 150,140 140,175 100,175 85,145 100,115" fill="none" stroke="#a78bfa" stroke-width="2" opacity="0.7"/>
+      <polygon points="260,130 300,135 305,170 280,190 240,175 240,150" fill="none" stroke="#a78bfa" stroke-width="2" opacity="0.7"/>
+      
+      <!-- Bottom pentagon -->
+      <polygon points="180,180 220,180 230,215 200,240 170,215" fill="none" stroke="#8b5cf6" stroke-width="2"/>
+      
+      <!-- Side hexagons (faded for 3D effect) -->
+      <polygon points="140,175 180,180 170,215 140,225 110,200 110,175" fill="none" stroke="#a78bfa" stroke-width="2" opacity="0.5"/>
+      <polygon points="220,180 260,175 270,200 260,225 230,215" fill="none" stroke="#a78bfa" stroke-width="2" opacity="0.5"/>
+      
+      <!-- Carbon atoms at key vertices -->
+      <circle cx="200" cy="60" r="5" fill="#8b5cf6">
+        <animate attributeName="r" values="5;6;5" dur="2s" repeatCount="indefinite"/>
+      </circle>
+      <circle cx="170" cy="85" r="5" fill="#8b5cf6"/>
+      <circle cx="230" cy="85" r="5" fill="#8b5cf6"/>
+      <circle cx="180" cy="120" r="5" fill="#8b5cf6"/>
+      <circle cx="220" cy="120" r="5" fill="#8b5cf6"/>
+      <circle cx="150" cy="140" r="5" fill="#8b5cf6" opacity="0.7"/>
+      <circle cx="260" cy="130" r="5" fill="#8b5cf6" opacity="0.7"/>
+      <circle cx="160" cy="150" r="5" fill="#8b5cf6"/>
+      <circle cx="240" cy="150" r="5" fill="#8b5cf6"/>
+      <circle cx="180" cy="180" r="5" fill="#8b5cf6"/>
+      <circle cx="220" cy="180" r="5" fill="#8b5cf6"/>
+      <circle cx="170" cy="215" r="5" fill="#8b5cf6"/>
+      <circle cx="230" cy="215" r="5" fill="#8b5cf6"/>
+      <circle cx="200" cy="240" r="5" fill="#8b5cf6">
+        <animate attributeName="r" values="5;6;5" dur="2s" repeatCount="indefinite"/>
+      </circle>
+      
+      <!-- Rotation animation hint -->
+      <g transform="translate(200, 150)">
+        <circle cx="0" cy="0" r="2" fill="#fbbf24" opacity="0.8">
+          <animateTransform attributeName="transform" type="rotate" from="0" to="360" dur="8s" repeatCount="indefinite"/>
+          <animate attributeName="cx" values="0;80;0;-80;0" dur="8s" repeatCount="indefinite"/>
+          <animate attributeName="cy" values="-80;0;80;0;-80" dur="8s" repeatCount="indefinite"/>
+        </circle>
+      </g>
+      
+      <!-- Labels -->
+      <text x="320" y="60" fill="#94a3b8" font-size="10">60 carbon atoms</text>
+      <text x="320" y="80" fill="#8b5cf6" font-size="10">⬠ = pentagon (12)</text>
+      <text x="320" y="100" fill="#a78bfa" font-size="10">⬡ = hexagon (20)</text>
+      
+      <text x="20" y="270" fill="#94a3b8" font-size="10">Hollow centre can</text>
+      <text x="20" y="285" fill="#94a3b8" font-size="10">trap molecules</text>
+      
+      <!-- Football comparison -->
+      <text x="300" y="260" fill="#fbbf24" font-size="9">Like a football! ⚽</text>
+    </svg>
+    
+    <div class="color-legend" style="display: flex; gap: 15px; flex-wrap: wrap; margin-top: 10px; font-size: 12px;">
+      <span style="display: flex; align-items: center; gap: 5px;"><span style="width: 12px; height: 12px; background: #8b5cf6; border-radius: 50%;"></span> Carbon atoms</span>
+      <span style="display: flex; align-items: center; gap: 5px;"><span style="width: 12px; height: 3px; background: #8b5cf6;"></span> Pentagon rings (12)</span>
+      <span style="display: flex; align-items: center; gap: 5px;"><span style="width: 12px; height: 3px; background: #a78bfa;"></span> Hexagon rings (20)</span>
+    </div>
+  </div>
+  
   <div class="key-facts-block">
     <h4>🔬 Structure</h4>
     <ul>
@@ -6622,6 +6933,107 @@ H—N—H</pre>
 
 <div class="subsection">
   <h3 class="subsection-heading">Subsection 6 – Carbon Nanotubes</h3>
+  
+  <div class="diagram-block hover-pause">
+    <h4>🔬 Carbon Nanotube Structure</h4>
+    <svg viewBox="0 0 500 280" xmlns="http://www.w3.org/2000/svg" style="max-width: 100%; height: auto; background: linear-gradient(180deg, #0f172a 0%, #1e293b 100%); border-radius: 12px; padding: 10px;">
+      <!-- Nanotube cylinder -->
+      <!-- Top ellipse -->
+      <ellipse cx="250" cy="50" rx="80" ry="20" fill="none" stroke="#06b6d4" stroke-width="2"/>
+      
+      <!-- Bottom ellipse (front half visible) -->
+      <ellipse cx="250" cy="230" rx="80" ry="20" fill="none" stroke="#06b6d4" stroke-width="2"/>
+      
+      <!-- Side lines -->
+      <line x1="170" y1="50" x2="170" y2="230" stroke="#06b6d4" stroke-width="2"/>
+      <line x1="330" y1="50" x2="330" y2="230" stroke="#06b6d4" stroke-width="2"/>
+      
+      <!-- Hexagonal pattern on tube surface -->
+      <g stroke="#22d3ee" stroke-width="1.5" fill="none">
+        <!-- Row 1 -->
+        <polygon points="200,60 215,60 222,72 215,84 200,84 193,72"/>
+        <polygon points="230,60 245,60 252,72 245,84 230,84 223,72"/>
+        <polygon points="260,60 275,60 282,72 275,84 260,84 253,72"/>
+        <polygon points="290,60 305,60 312,72 305,84 290,84 283,72"/>
+        
+        <!-- Row 2 -->
+        <polygon points="185,84 200,84 207,96 200,108 185,108 178,96"/>
+        <polygon points="215,84 230,84 237,96 230,108 215,108 208,96"/>
+        <polygon points="245,84 260,84 267,96 260,108 245,108 238,96"/>
+        <polygon points="275,84 290,84 297,96 290,108 275,108 268,96"/>
+        <polygon points="305,84 320,84 327,96 320,108 305,108 298,96"/>
+        
+        <!-- Row 3 -->
+        <polygon points="200,108 215,108 222,120 215,132 200,132 193,120"/>
+        <polygon points="230,108 245,108 252,120 245,132 230,132 223,120"/>
+        <polygon points="260,108 275,108 282,120 275,132 260,132 253,120"/>
+        <polygon points="290,108 305,108 312,120 305,132 290,132 283,120"/>
+        
+        <!-- Row 4 -->
+        <polygon points="185,132 200,132 207,144 200,156 185,156 178,144"/>
+        <polygon points="215,132 230,132 237,144 230,156 215,156 208,144"/>
+        <polygon points="245,132 260,132 267,144 260,156 245,156 238,144"/>
+        <polygon points="275,132 290,132 297,144 290,156 275,156 268,144"/>
+        <polygon points="305,132 320,132 327,144 320,156 305,156 298,144"/>
+        
+        <!-- Row 5 -->
+        <polygon points="200,156 215,156 222,168 215,180 200,180 193,168"/>
+        <polygon points="230,156 245,156 252,168 245,180 230,180 223,168"/>
+        <polygon points="260,156 275,156 282,168 275,180 260,180 253,168"/>
+        <polygon points="290,156 305,156 312,168 305,180 290,180 283,168"/>
+        
+        <!-- Row 6 -->
+        <polygon points="185,180 200,180 207,192 200,204 185,204 178,192"/>
+        <polygon points="215,180 230,180 237,192 230,204 215,204 208,192"/>
+        <polygon points="245,180 260,180 267,192 260,204 245,204 238,192"/>
+        <polygon points="275,180 290,180 297,192 290,204 275,204 268,192"/>
+        <polygon points="305,180 320,180 327,192 320,204 305,204 298,192"/>
+      </g>
+      
+      <!-- Delocalised electrons flowing through tube -->
+      <circle cx="200" cy="80" r="4" fill="#fbbf24">
+        <animate attributeName="cy" values="60;230;60" dur="2s" repeatCount="indefinite"/>
+      </circle>
+      <circle cx="250" cy="150" r="4" fill="#fbbf24">
+        <animate attributeName="cy" values="150;230;60;150" dur="2.5s" repeatCount="indefinite"/>
+      </circle>
+      <circle cx="300" cy="100" r="4" fill="#fbbf24">
+        <animate attributeName="cy" values="100;60;230;100" dur="3s" repeatCount="indefinite"/>
+      </circle>
+      
+      <!-- Labels -->
+      <text x="360" y="50" fill="#94a3b8" font-size="10">Rolled-up</text>
+      <text x="360" y="65" fill="#94a3b8" font-size="10">graphene sheet</text>
+      
+      <text x="30" y="100" fill="#22d3ee" font-size="10">Hexagonal</text>
+      <text x="30" y="115" fill="#22d3ee" font-size="10">carbon rings</text>
+      
+      <text x="30" y="180" fill="#fbbf24" font-size="10">Electrons flow</text>
+      <text x="30" y="195" fill="#fbbf24" font-size="10">along tube</text>
+      
+      <!-- Hollow indicator -->
+      <text x="220" y="145" fill="#64748b" font-size="10">HOLLOW</text>
+      
+      <!-- Length indicator -->
+      <line x1="430" y1="50" x2="430" y2="230" stroke="#f472b6" stroke-width="2" marker-start="url(#arrowUp)" marker-end="url(#arrowDown)"/>
+      <text x="440" y="145" fill="#f472b6" font-size="9">Very long</text>
+      
+      <defs>
+        <marker id="arrowUp" markerWidth="8" markerHeight="8" refX="4" refY="8" orient="auto">
+          <path d="M0,8 L4,0 L8,8" fill="none" stroke="#f472b6" stroke-width="1"/>
+        </marker>
+        <marker id="arrowDown" markerWidth="8" markerHeight="8" refX="4" refY="0" orient="auto">
+          <path d="M0,0 L4,8 L8,0" fill="none" stroke="#f472b6" stroke-width="1"/>
+        </marker>
+      </defs>
+    </svg>
+    
+    <div class="color-legend" style="display: flex; gap: 15px; flex-wrap: wrap; margin-top: 10px; font-size: 12px;">
+      <span style="display: flex; align-items: center; gap: 5px;"><span style="width: 12px; height: 3px; background: #22d3ee;"></span> Covalent bonds (hexagons)</span>
+      <span style="display: flex; align-items: center; gap: 5px;"><span style="width: 12px; height: 12px; background: #fbbf24; border-radius: 50%;"></span> Delocalised electrons</span>
+      <span style="display: flex; align-items: center; gap: 5px;"><span style="width: 12px; height: 3px; background: #06b6d4;"></span> Tube structure</span>
+    </div>
+  </div>
   
   <div class="key-facts-block">
     <h4>🔬 Structure</h4>
@@ -9837,6 +10249,102 @@ H—N—H</pre>
 <div class="subsection">
   <h3 class="subsection-heading">⚖️ 4️⃣ Comparing Exothermic and Endothermic Reactions</h3>
   
+  <div class="diagram-block hover-pause">
+    <h4>📊 Reaction Profile Diagrams</h4>
+    <svg viewBox="0 0 700 320" xmlns="http://www.w3.org/2000/svg" style="max-width: 100%; height: auto; background: linear-gradient(180deg, #0f172a 0%, #1e293b 100%); border-radius: 12px; padding: 10px;">
+      <!-- Exothermic Side -->
+      <text x="130" y="25" fill="#22d3ee" font-size="14" font-weight="bold" text-anchor="middle">EXOTHERMIC</text>
+      
+      <!-- Exothermic Axes -->
+      <line x1="40" y1="280" x2="260" y2="280" stroke="#64748b" stroke-width="2"/>
+      <line x1="40" y1="280" x2="40" y2="50" stroke="#64748b" stroke-width="2"/>
+      <text x="150" y="300" fill="#94a3b8" font-size="10" text-anchor="middle">Progress of Reaction</text>
+      <text x="20" y="165" fill="#94a3b8" font-size="10" text-anchor="middle" transform="rotate(-90, 20, 165)">Energy</text>
+      
+      <!-- Exothermic Curve -->
+      <path d="M 50 120 Q 80 120 100 110 Q 130 60 150 60 Q 170 60 200 110 Q 220 220 250 220" fill="none" stroke="#22d3ee" stroke-width="3">
+        <animate attributeName="stroke-dasharray" values="0 500;500 0" dur="2s" fill="freeze"/>
+      </path>
+      
+      <!-- Exothermic Energy Levels -->
+      <line x1="45" y1="120" x2="90" y2="120" stroke="#22d3ee" stroke-width="2" stroke-dasharray="5,3"/>
+      <line x1="210" y1="220" x2="255" y2="220" stroke="#22d3ee" stroke-width="2" stroke-dasharray="5,3"/>
+      <text x="60" y="110" fill="#22d3ee" font-size="9">Reactants</text>
+      <text x="215" y="240" fill="#22d3ee" font-size="9">Products</text>
+      
+      <!-- Activation Energy Arrow -->
+      <line x1="150" y1="120" x2="150" y2="60" stroke="#f59e0b" stroke-width="2" marker-end="url(#arrowYellow)"/>
+      <text x="165" y="90" fill="#f59e0b" font-size="8">Ea</text>
+      
+      <!-- Energy Released Arrow -->
+      <line x1="180" y1="120" x2="180" y2="220" stroke="#ef4444" stroke-width="2" marker-end="url(#arrowRed)"/>
+      <text x="195" y="175" fill="#ef4444" font-size="8">ΔH &lt; 0</text>
+      
+      <!-- Energy Release Animation -->
+      <circle cx="180" cy="180" r="4" fill="#ef4444">
+        <animate attributeName="opacity" values="1;0.3;1" dur="1s" repeatCount="indefinite"/>
+        <animate attributeName="r" values="4;8;4" dur="1s" repeatCount="indefinite"/>
+      </circle>
+      
+      <!-- Endothermic Side -->
+      <text x="500" y="25" fill="#fb923c" font-size="14" font-weight="bold" text-anchor="middle">ENDOTHERMIC</text>
+      
+      <!-- Endothermic Axes -->
+      <line x1="380" y1="280" x2="600" y2="280" stroke="#64748b" stroke-width="2"/>
+      <line x1="380" y1="280" x2="380" y2="50" stroke="#64748b" stroke-width="2"/>
+      <text x="490" y="300" fill="#94a3b8" font-size="10" text-anchor="middle">Progress of Reaction</text>
+      
+      <!-- Endothermic Curve -->
+      <path d="M 390 200 Q 420 200 440 190 Q 470 80 490 80 Q 510 80 540 130 Q 560 140 590 140" fill="none" stroke="#fb923c" stroke-width="3">
+        <animate attributeName="stroke-dasharray" values="0 500;500 0" dur="2s" fill="freeze"/>
+      </path>
+      
+      <!-- Endothermic Energy Levels -->
+      <line x1="385" y1="200" x2="430" y2="200" stroke="#fb923c" stroke-width="2" stroke-dasharray="5,3"/>
+      <line x1="550" y1="140" x2="595" y2="140" stroke="#fb923c" stroke-width="2" stroke-dasharray="5,3"/>
+      <text x="400" y="190" fill="#fb923c" font-size="9">Reactants</text>
+      <text x="555" y="130" fill="#fb923c" font-size="9">Products</text>
+      
+      <!-- Activation Energy Arrow -->
+      <line x1="490" y1="200" x2="490" y2="80" stroke="#f59e0b" stroke-width="2" marker-end="url(#arrowYellow)"/>
+      <text x="505" y="140" fill="#f59e0b" font-size="8">Ea</text>
+      
+      <!-- Energy Absorbed Arrow -->
+      <line x1="520" y1="200" x2="520" y2="140" stroke="#22c55e" stroke-width="2" marker-end="url(#arrowGreen)"/>
+      <text x="535" y="175" fill="#22c55e" font-size="8">ΔH &gt; 0</text>
+      
+      <!-- Energy Absorption Animation -->
+      <circle cx="520" cy="170" r="4" fill="#22c55e">
+        <animate attributeName="opacity" values="1;0.3;1" dur="1s" repeatCount="indefinite"/>
+        <animate attributeName="r" values="4;8;4" dur="1s" repeatCount="indefinite"/>
+      </circle>
+      
+      <!-- Arrow Markers -->
+      <defs>
+        <marker id="arrowYellow" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
+          <path d="M0,0 L0,6 L9,3 z" fill="#f59e0b"/>
+        </marker>
+        <marker id="arrowRed" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
+          <path d="M0,0 L0,6 L9,3 z" fill="#ef4444"/>
+        </marker>
+        <marker id="arrowGreen" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
+          <path d="M0,0 L0,6 L9,3 z" fill="#22c55e"/>
+        </marker>
+      </defs>
+      
+      <!-- Divider -->
+      <line x1="330" y1="40" x2="330" y2="280" stroke="#475569" stroke-width="1" stroke-dasharray="5,5"/>
+    </svg>
+    
+    <div class="color-legend" style="display: flex; gap: 15px; flex-wrap: wrap; margin-top: 10px; font-size: 12px;">
+      <span style="display: flex; align-items: center; gap: 5px;"><span style="width: 12px; height: 12px; background: #22d3ee; border-radius: 2px;"></span> Exothermic profile</span>
+      <span style="display: flex; align-items: center; gap: 5px;"><span style="width: 12px; height: 12px; background: #fb923c; border-radius: 2px;"></span> Endothermic profile</span>
+      <span style="display: flex; align-items: center; gap: 5px;"><span style="width: 12px; height: 12px; background: #f59e0b; border-radius: 2px;"></span> Activation energy (Ea)</span>
+      <span style="display: flex; align-items: center; gap: 5px;"><span style="width: 12px; height: 12px; background: #ef4444; border-radius: 2px;"></span> Energy released (–ΔH)</span>
+      <span style="display: flex; align-items: center; gap: 5px;"><span style="width: 12px; height: 12px; background: #22c55e; border-radius: 2px;"></span> Energy absorbed (+ΔH)</span>
+    </div>
+  </div>
+
   <div class="table-block">
     <table>
       <thead>
