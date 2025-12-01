@@ -113,6 +113,7 @@ const EconomicsTopicView = () => {
               sectionContent={practiceContent}
               sectionTitle={subsection.title}
               subject="economics"
+              moduleId={moduleId}
             />
           </TabsContent>
         </Tabs>

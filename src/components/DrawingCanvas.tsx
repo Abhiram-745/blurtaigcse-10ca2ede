@@ -15,7 +15,8 @@ interface DrawingCanvasProps {
   subsectionTitle: string;
   questionType: "blurt" | "exam";
   marks: number;
-  subject?: "physics" | "product-design" | "chemistry";
+  subject?: "physics" | "product-design" | "chemistry" | "economics";
+  moduleId?: string;
 }
 
 export const DrawingCanvas = ({ 
@@ -27,7 +28,8 @@ export const DrawingCanvas = ({
   subsectionTitle, 
   questionType, 
   marks,
-  subject
+  subject,
+  moduleId
 }: DrawingCanvasProps) => {
   const navigate = useNavigate();
   const canvasRef = useRef<HTMLCanvasElement>(null);
@@ -140,6 +142,7 @@ export const DrawingCanvas = ({
           questionType,
           photoImage: imageBase64,
           subject,
+          moduleId,
           markingBreakdown: data.markingBreakdown
         }
       });
