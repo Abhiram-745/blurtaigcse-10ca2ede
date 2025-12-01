@@ -8,6 +8,7 @@ import { Badge } from "@/components/ui/badge";
 import { sectionsData, PracticeItem } from "@/data/sectionsData";
 import { physicsData } from "@/data/physicsData";
 import { productDesignData } from "@/data/productDesignData";
+import { getEconomicsChapterById, getEconomicsModuleById, getEconomicsSubsectionById } from "@/data/economicsData";
 import { useToast } from "@/hooks/use-toast";
 import { Progress } from "@/components/ui/progress";
 import SectionContent from "@/components/SectionContent";
@@ -243,65 +244,104 @@ const BlurPractice = () => {
     // Determine dataset: URL path is the authoritative source
     const urlSaysPhysics = location.pathname.includes('/physics/');
     const urlSaysProductDesign = location.pathname.includes('/product-design/');
+    const urlSaysEconomics = location.pathname.includes('/economics/');
     
-    let dataSource = sectionsData; // Default to chemistry
-    if (urlSaysPhysics) {
-      dataSource = physicsData;
-    } else if (urlSaysProductDesign) {
-      dataSource = productDesignData;
-    }
+    let targetSubsection: any = null;
     
-    console.log('BlurPractice - Looking for:', { 
-      topicId, 
-      moduleId,
-      subsectionId, 
-      urlSaysPhysics,
-      urlSaysProductDesign,
-      pathname: location.pathname,
-      availableTopics: dataSource.map(t => t.id)
-    });
-    
-    const topic = dataSource.find((t) => t.id === topicId);
-    if (!topic) {
-      console.error('Topic not found:', topicId);
-      toast({
-        title: "Topic Not Found",
-        description: `Could not find topic: ${topicId}`,
-        variant: "destructive"
-      });
-      return;
-    }
-
-    // Check if topic has modules and look for subsection there first
-    let targetSubsection = null;
-    
-    // If moduleId is provided, look in the specific module
-    if (moduleId && 'modules' in topic && topic.modules) {
-      const modules = topic.modules as any[];
-      const targetModule = modules.find((m) => m.id === moduleId);
-      if (targetModule) {
-        targetSubsection = targetModule.subsections.find((s: any) => s.id === subsectionId);
-        console.log('Found module:', targetModule.title, 'Looking for subsection:', subsectionId);
+    // Handle economics data separately due to different structure
+    if (urlSaysEconomics) {
+      // For economics, topicId is chapterId
+      const chapter = getEconomicsChapterById(topicId || "");
+      const module = getEconomicsModuleById(topicId || "", moduleId || "");
+      const subsection = getEconomicsSubsectionById(topicId || "", moduleId || "", subsectionId || "");
+      
+      if (!chapter || !module || !subsection) {
+        console.error('Economics subsection not found:', { topicId, moduleId, subsectionId });
+        toast({
+          title: "Subsection Not Found",
+          description: `Could not find economics subsection`,
+          variant: "destructive"
+        });
+        return;
       }
-    }
-    
-    // If not found in modules, check direct subsections
-    if (!targetSubsection) {
-      targetSubsection = topic.subsections.find((s) => s.id === subsectionId);
-    }
-    
-    // Also check all modules if subsection wasn't found directly
-    if (!targetSubsection && 'modules' in topic && topic.modules) {
-      for (const mod of topic.modules as any[]) {
-        const found = mod.subsections.find((s: any) => s.id === subsectionId);
-        if (found) {
-          targetSubsection = found;
-          break;
+      
+      // Adapt economics data to match expected structure
+      targetSubsection = {
+        id: subsection.id,
+        title: subsection.title,
+        content_html: subsection.content,
+        practice_items: (subsection.practiceItems || []).map((item: any, idx: number) => ({
+          id: `econ-${subsection.id}-${idx}`,
+          prompt_template: item.question,
+          marks: item.marks || 2,
+          type: "open" as const,
+          difficulty: "medium" as const,
+          randomise: false,
+          expected_keywords: []
+        })),
+        canonical_keywords: []
+      };
+      
+      console.log('BlurPractice - Found economics subsection:', targetSubsection.title);
+    } else {
+      // Original logic for chemistry, physics, product design
+      let dataSource = sectionsData;
+      if (urlSaysPhysics) {
+        dataSource = physicsData;
+      } else if (urlSaysProductDesign) {
+        dataSource = productDesignData;
+      }
+      
+      console.log('BlurPractice - Looking for:', { 
+        topicId, 
+        moduleId,
+        subsectionId, 
+        urlSaysPhysics,
+        urlSaysProductDesign,
+        pathname: location.pathname,
+        availableTopics: dataSource.map(t => t.id)
+      });
+      
+      const topic = dataSource.find((t) => t.id === topicId);
+      if (!topic) {
+        console.error('Topic not found:', topicId);
+        toast({
+          title: "Topic Not Found",
+          description: `Could not find topic: ${topicId}`,
+          variant: "destructive"
+        });
+        return;
+      }
+
+      // Check if topic has modules and look for subsection there first
+      // If moduleId is provided, look in the specific module
+      if (moduleId && 'modules' in topic && topic.modules) {
+        const modules = topic.modules as any[];
+        const targetModule = modules.find((m) => m.id === moduleId);
+        if (targetModule) {
+          targetSubsection = targetModule.subsections.find((s: any) => s.id === subsectionId);
+          console.log('Found module:', targetModule.title, 'Looking for subsection:', subsectionId);
         }
       }
-    }
+      
+      // If not found in modules, check direct subsections
+      if (!targetSubsection) {
+        targetSubsection = topic.subsections.find((s) => s.id === subsectionId);
+      }
+      
+      // Also check all modules if subsection wasn't found directly
+      if (!targetSubsection && 'modules' in topic && topic.modules) {
+        for (const mod of topic.modules as any[]) {
+          const found = mod.subsections.find((s: any) => s.id === subsectionId);
+          if (found) {
+            targetSubsection = found;
+            break;
+          }
+        }
+      }
 
-    console.log('Found topic:', topic.title, 'Available subsections:', topic.subsections.map(s => s.id));
+      console.log('Found topic:', topic.title, 'Available subsections:', topic.subsections.map(s => s.id));
+    }
 
     if (!targetSubsection) {
       console.error('Subsection not found:', subsectionId);
@@ -314,7 +354,7 @@ const BlurPractice = () => {
     }
 
     setSubsectionTitle(targetSubsection.title);
-    setCanonicalKeywords(targetSubsection.canonical_keywords);
+    setCanonicalKeywords(targetSubsection.canonical_keywords || []);
 
     // Parse internal subsections from HTML
     const parsed = parseInternalSubsections(targetSubsection.content_html);

@@ -83,6 +83,7 @@ const App = () => (
             <Route path="/economics/chapters" element={<EconomicsChapters />} />
             <Route path="/economics/sections/:chapterId" element={<EconomicsSections />} />
             <Route path="/economics/topic/:chapterId/:moduleId/:subsectionId" element={<EconomicsTopicView />} />
+            <Route path="/economics/blur-practice/:topicId/:moduleId/:subsectionId" element={<BlurPractice />} />
             <Route path="/blur-practice/:topicId/:subsectionId" element={<BlurPractice />} />
             <Route path="/section/:id" element={<SectionReader />} />
             <Route path="/blur/:id" element={<BlurExercise />} />
