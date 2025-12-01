@@ -30,7 +30,8 @@ interface FeedbackState {
   photoImage?: string;
   currentPairIndex?: number;
   previousQuestionResults?: any[];
-  subject?: "physics" | "product-design" | "chemistry";
+  subject?: "physics" | "product-design" | "chemistry" | "economics";
+  moduleId?: string;
   markingBreakdown?: MarkingPoint[];
 }
 
@@ -44,15 +45,24 @@ const Results = () => {
     return null;
   }
 
-  const { question, answer, keyIdeasCovered, keyIdeasMissed, score, maxMarks, topicId, subsectionId, subsectionTitle, questionType, photoImage, feedbackText, currentPairIndex, previousQuestionResults, subject, markingBreakdown } = feedbackData;
+  const { question, answer, keyIdeasCovered, keyIdeasMissed, score, maxMarks, topicId, subsectionId, subsectionTitle, questionType, photoImage, feedbackText, currentPairIndex, previousQuestionResults, subject, moduleId, markingBreakdown } = feedbackData;
   const percentage = Math.round((score / maxMarks) * 100);
 
   console.log("Results page - received currentPairIndex:", currentPairIndex);
 
   // Determine the correct base path based on subject from state
   const basePath = subject === 'physics' ? '/physics/blur-practice' : 
-                   subject === 'product-design' ? '/product-design/blur-practice' : 
+                   subject === 'product-design' ? '/product-design/blur-practice' :
+                   subject === 'economics' ? '/economics/blur-practice' :
                    '/blur-practice';
+  
+  // Build the full navigation path
+  const getNavigationPath = () => {
+    if (subject === 'economics' && moduleId) {
+      return `${basePath}/${topicId}/${moduleId}/${subsectionId}`;
+    }
+    return `${basePath}/${topicId}/${subsectionId}`;
+  };
 
   // Save practice session to database
   useEffect(() => {
@@ -91,7 +101,7 @@ const Results = () => {
       <div className="container mx-auto max-w-4xl">
         <Button 
           variant="ghost" 
-          onClick={() => navigate(`${basePath}/${topicId}/${subsectionId}`)} 
+          onClick={() => navigate(getNavigationPath())} 
           className="mb-4"
         >
           <ArrowLeft className="mr-2 h-4 w-4" />
@@ -202,7 +212,7 @@ const Results = () => {
             className="w-full"
             onClick={() => {
               console.log("Move to Next clicked - passing currentPairIndex:", currentPairIndex);
-              navigate(`${basePath}/${topicId}/${subsectionId}`, { 
+              navigate(getNavigationPath(), { 
                 state: { moveToNext: true, keepType: questionType, currentPairIndex } 
               });
             }}
@@ -214,7 +224,7 @@ const Results = () => {
             variant="outline"
             size="lg"
             className="w-full"
-            onClick={() => navigate(`${basePath}/${topicId}/${subsectionId}`, { 
+            onClick={() => navigate(getNavigationPath(), { 
               state: { generateQuestion: "blurt", previousQuestionResults, currentPairIndex } 
             })}
           >
@@ -225,7 +235,7 @@ const Results = () => {
             variant="outline"
             size="lg"
             className="w-full"
-            onClick={() => navigate(`${basePath}/${topicId}/${subsectionId}`, { 
+            onClick={() => navigate(getNavigationPath(), { 
               state: { generateQuestion: "exam", previousQuestionResults, currentPairIndex } 
             })}
           >
@@ -237,7 +247,8 @@ const Results = () => {
             className="w-full bg-gradient-to-r from-primary to-secondary"
             onClick={() => {
               const sectionsPath = subject === 'physics' ? '/physics/sections' : 
-                                   subject === 'product-design' ? '/product-design/sections' : 
+                                   subject === 'product-design' ? '/product-design/sections' :
+                                   subject === 'economics' ? '/economics/chapters' :
                                    '/sections';
               navigate(sectionsPath);
             }}

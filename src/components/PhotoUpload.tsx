@@ -15,10 +15,11 @@ interface PhotoUploadProps {
   subsectionTitle: string;
   questionType: "blurt" | "exam";
   marks: number;
-  subject?: "physics" | "product-design" | "chemistry";
+  subject?: "physics" | "product-design" | "chemistry" | "economics";
+  moduleId?: string;
 }
 
-export const PhotoUpload = ({ studyContent, questions, currentQuestion, topicId, subsectionId, subsectionTitle, questionType, marks, subject }: PhotoUploadProps) => {
+export const PhotoUpload = ({ studyContent, questions, currentQuestion, topicId, subsectionId, subsectionTitle, questionType, marks, subject, moduleId }: PhotoUploadProps) => {
   const navigate = useNavigate();
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
   const [previewUrl, setPreviewUrl] = useState<string | null>(null);
@@ -136,6 +137,7 @@ export const PhotoUpload = ({ studyContent, questions, currentQuestion, topicId,
           questionType,
           photoImage: previewUrl,
           subject,
+          moduleId,
           markingBreakdown: data.markingBreakdown
         }
       });

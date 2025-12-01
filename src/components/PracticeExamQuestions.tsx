@@ -20,6 +20,7 @@ interface PracticeExamQuestionsProps {
   sectionTitle: string;
   subsections?: Array<{ title: string; content: string }>;
   subject?: string; // Add subject prop
+  moduleId?: string; // Add moduleId for economics 3-level structure
 }
 
 interface GeneratedQuestion {
@@ -49,7 +50,7 @@ interface AnswerFeedback {
   markingBreakdown?: MarkingPoint[];
 }
 
-const PracticeExamQuestions = ({ sectionContent, sectionTitle, subsections, subject }: PracticeExamQuestionsProps) => {
+const PracticeExamQuestions = ({ sectionContent, sectionTitle, subsections, subject, moduleId }: PracticeExamQuestionsProps) => {
   const { toast } = useToast();
   const navigate = useNavigate();
   const [selectedTopics, setSelectedTopics] = useState<string[]>([]);
@@ -312,7 +313,10 @@ const PracticeExamQuestions = ({ sectionContent, sectionTitle, subsections, subj
   };
 
   const handleFinishSession = () => {
-    const basePath = subject === 'physics' ? '/physics' : subject === 'product-design' ? '/product-design' : '';
+    const basePath = subject === 'physics' ? '/physics' : 
+                     subject === 'product-design' ? '/product-design' : 
+                     subject === 'economics' ? '/economics' : 
+                     '';
     navigate(`${basePath}/sections`);
   };
 

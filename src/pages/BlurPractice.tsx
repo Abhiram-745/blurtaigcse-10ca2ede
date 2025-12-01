@@ -1606,7 +1606,11 @@ const BlurPractice = () => {
                   {showPhotoUpload && currentGeneratedQuestion && (() => {
                     const urlSaysPhysics = location.pathname.includes('/physics/');
                     const urlSaysProductDesign = location.pathname.includes('/product-design/');
-                    const subject = urlSaysPhysics ? 'physics' as const : urlSaysProductDesign ? 'product-design' as const : 'chemistry' as const;
+                    const urlSaysEconomics = location.pathname.includes('/economics/');
+                    const subject = urlSaysPhysics ? 'physics' as const : 
+                                   urlSaysProductDesign ? 'product-design' as const : 
+                                   urlSaysEconomics ? 'economics' as const :
+                                   'chemistry' as const;
                     return (
                       <PhotoUpload
                         studyContent={buildPairContent()}
@@ -1618,6 +1622,7 @@ const BlurPractice = () => {
                         questionType={questionType}
                         marks={currentGeneratedQuestion.marks}
                         subject={subject}
+                        moduleId={moduleId}
                       />
                     );
                   })()}
@@ -1625,7 +1630,11 @@ const BlurPractice = () => {
                   {showDrawingCanvas && currentGeneratedQuestion && (() => {
                     const urlSaysPhysics = location.pathname.includes('/physics/');
                     const urlSaysProductDesign = location.pathname.includes('/product-design/');
-                    const subject = urlSaysPhysics ? 'physics' as const : urlSaysProductDesign ? 'product-design' as const : 'chemistry' as const;
+                    const urlSaysEconomics = location.pathname.includes('/economics/');
+                    const subject = urlSaysPhysics ? 'physics' as const : 
+                                   urlSaysProductDesign ? 'product-design' as const : 
+                                   urlSaysEconomics ? 'economics' as const :
+                                   'chemistry' as const;
                     return (
                       <DrawingCanvas
                         studyContent={buildPairContent()}
@@ -1637,6 +1646,7 @@ const BlurPractice = () => {
                         questionType={questionType}
                         marks={currentGeneratedQuestion.marks}
                         subject={subject}
+                        moduleId={moduleId}
                       />
                     );
                   })()}
