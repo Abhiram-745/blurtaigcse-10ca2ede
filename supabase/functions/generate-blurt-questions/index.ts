@@ -21,9 +21,9 @@ serve(async (req) => {
       );
     }
 
-    const LOVABLE_API_KEY = Deno.env.get("LOVABLE_API_KEY");
-    if (!LOVABLE_API_KEY) {
-      throw new Error("LOVABLE_API_KEY is not configured");
+    const BYTEZ_API_KEY_FLASH = Deno.env.get("BYTEZ_API_KEY_FLASH");
+    if (!BYTEZ_API_KEY_FLASH) {
+      throw new Error("BYTEZ_API_KEY_FLASH is not configured");
     }
 
     const timestamp = Date.now();
@@ -38,12 +38,33 @@ AQA FLASHCARD PRINCIPLES:
 4. Focus on key terminology, definitions, properties, examples, and processes
 5. Questions should be instantly answerable from memory after studying
 
+QUESTION VARIETY (use different styles):
+- Definitions: "Define [term]"
+- Factual recall: "State the purpose of..."
+- Examples: "Name an example of..."
+- Properties: "Give two characteristics of..."
+- Processes: "What happens during..."
+
+BASED ON PREVIOUSLY TESTED CONTENT:
+- Each new set should test DIFFERENT aspects of the topic
+- Avoid asking the same concept in different words
+- Progress from basic recall to slightly deeper understanding
+- Cover a range of subtopics when possible
+
 CRITICAL REQUIREMENTS:
-1. Base ALL content ONLY on the topic notes provided
-2. Keep everything GCSE AQA level - clear, accessible
-3. Generate EXACTLY 5 questions labeled Q1, Q2, Q3, Q4, Q5
+1. Base ALL content ONLY on the topic notes provided - DO NOT introduce concepts not covered in the study material
+2. Keep everything GCSE AQA level - clear, accessible, and not too difficult
+3. NO specialist jargon unless it appears in the study content
+4. Each question should be short, clear and direct, suitable for flashcard use
+5. Each answer should be factual, concise and correct
+6. Focus on key terms, processes, tools, definitions, properties or examples from the topic
+7. Avoid vague or open-ended questions - make sure there is one clear answer
+8. Cover a range of subtopics from the section where possible
+9. Do not repeat questions or ask trick questions
+10. Generate EXACTLY 5 questions labeled Q1, Q2, Q3, Q4, Q5
 
 RANDOMIZATION SEED: ${randomSeed}
+Use this seed to ensure different topic selection each generation.
 
 Return ONLY valid JSON in this exact format:
 {
@@ -57,12 +78,22 @@ Return ONLY valid JSON in this exact format:
   ]
 }`;
 
-    const userPrompt = `Study Content:\n\n${studyContent}\n\n🎲 RANDOMIZATION TASK (Seed: ${randomSeed}, Time: ${timestamp}):\n\nGenerate 5 blurt questions NOW in the exact format specified.`;
+    const userPrompt = `Study Content:\n\n${studyContent}\n\n🎲 RANDOMIZATION TASK (Seed: ${randomSeed}, Time: ${timestamp}):\n\n1. Carefully read the study content above
+2. List out ALL topics/concepts explicitly mentioned
+3. Randomly select 5 DIFFERENT topics/subtopics from what's actually covered
+4. Generate 5 flashcard-style questions (Q1 through Q5)
+5. Each question should focus on a different aspect: definitions, tools, processes, examples, properties
+6. Ensure each question is based ONLY on content from the study material
+7. Keep questions short, clear, and direct with one clear answer
 
-    const response = await fetch("https://ai.gateway.lovable.dev/v1/chat/completions", {
+IMPORTANT: Do NOT introduce concepts or technical terms unless they appear in the study content above.
+
+Generate 5 blurt questions NOW in the exact format specified.`;
+
+    const response = await fetch("https://api.bytez.com/models/v2/openai/v1/chat/completions", {
       method: "POST",
       headers: {
-        "Authorization": `Bearer ${LOVABLE_API_KEY}`,
+        "Authorization": `Bearer ${BYTEZ_API_KEY_FLASH}`,
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
@@ -83,7 +114,7 @@ Return ONLY valid JSON in this exact format:
       }
       if (response.status === 402) {
         return new Response(
-          JSON.stringify({ error: "Payment required, please add funds to your Lovable AI workspace." }),
+          JSON.stringify({ error: "Payment required, please check your Bytez API credits." }),
           { status: 402, headers: { ...corsHeaders, "Content-Type": "application/json" } }
         );
       }
@@ -100,6 +131,7 @@ Return ONLY valid JSON in this exact format:
     
     console.log("[generate-blurt-questions] AI Response:", aiResponse.substring(0, 300));
     
+    // Parse the JSON response from AI
     const jsonMatch = aiResponse.match(/\{[\s\S]*\}/);
     if (!jsonMatch) {
       console.error("Could not parse AI response:", aiResponse);
