@@ -37,6 +37,7 @@ const subjects = [
   { name: "Product Design", icon: Palette, route: "/dashboard?subject=product-design" },
   { name: "English", icon: BookOpen, route: "/dashboard?subject=english" },
   { name: "Geography", icon: Globe, route: "/dashboard?subject=geography" },
+  { name: "Economics", icon: TrendingUp, route: "/dashboard?subject=economics" },
 ];
 
 const navigation = [
