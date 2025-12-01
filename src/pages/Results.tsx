@@ -12,6 +12,7 @@ interface MarkingPoint {
   studentText: string | null;
   awarded: boolean;
   marks: number;
+  explanation?: string;
 }
 
 interface FeedbackState {

@@ -93,12 +93,13 @@ Return your response as JSON with this exact structure:
       "markPoint": "The specific marking point from the markscheme",
       "studentText": "The exact phrase from the student's answer that matches this point (or null if not found)",
       "awarded": true or false,
-      "marks": number of marks for this point
+      "marks": number of marks for this point,
+      "explanation": "A brief 1-2 sentence explanation for why this mark was awarded/not awarded. If awarded: explain what the student did well. If not awarded: explain what was missing or incorrect."
     }
   ]
 }
 
-CRITICAL: The markingBreakdown array should break down each marking point individually and match it to specific text from the student's answer. This allows precise highlighting of which parts earned marks. If a student didn't mention something, set studentText to null.
+CRITICAL: The markingBreakdown array should break down each marking point individually and match it to specific text from the student's answer. This allows precise highlighting of which parts earned marks. If a student didn't mention something, set studentText to null. Always include a helpful explanation for each marking point.
 
 IMPORTANT: Be generous with marks. Students should get high scores for correct answers.`;
 

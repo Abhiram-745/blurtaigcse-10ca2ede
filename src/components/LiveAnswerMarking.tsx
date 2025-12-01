@@ -2,12 +2,14 @@ import { useState, useEffect } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Sparkles, Check, X } from "lucide-react";
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
 
 interface MarkingPoint {
   markPoint: string;
   studentText: string | null;
   awarded: boolean;
   marks: number;
+  explanation?: string;
 }
 
 interface LiveAnswerMarkingProps {
@@ -314,30 +316,44 @@ export const LiveAnswerMarking = ({
         {hasStarted && visiblePoints.length > 0 && !isPhotoAnswer && (
           <div className="mt-4 space-y-2">
             <p className="text-xs text-muted-foreground font-medium">Mark scheme points found:</p>
-            <div className="flex flex-wrap gap-2">
-              {effectiveBreakdown.map((point, idx) => {
-                if (!visiblePoints.includes(idx)) return null;
-                const color = colorPalette[idx % colorPalette.length];
-                return (
-                  <div
-                    key={idx}
-                    className={`
-                      flex items-center gap-1.5 px-2 py-1 rounded-full text-xs
-                      ${color.bg} ${color.text} ${color.border} border
-                      animate-fade-in
-                    `}
-                    style={{ animationDelay: `${idx * 100}ms` }}
-                  >
-                    {point.awarded ? (
-                      <Check className="w-3 h-3 text-green-600" />
-                    ) : (
-                      <X className="w-3 h-3 text-amber-600" />
-                    )}
-                    <span className="max-w-[150px] truncate">{point.markPoint}</span>
-                  </div>
-                );
-              })}
-            </div>
+            <TooltipProvider delayDuration={200}>
+              <div className="flex flex-wrap gap-2">
+                {effectiveBreakdown.map((point, idx) => {
+                  if (!visiblePoints.includes(idx)) return null;
+                  const color = colorPalette[idx % colorPalette.length];
+                  return (
+                    <Tooltip key={idx}>
+                      <TooltipTrigger asChild>
+                        <div
+                          className={`
+                            flex items-center gap-1.5 px-2 py-1 rounded-full text-xs cursor-help
+                            ${color.bg} ${color.text} ${color.border} border
+                            animate-fade-in hover:shadow-md transition-shadow
+                          `}
+                          style={{ animationDelay: `${idx * 100}ms` }}
+                        >
+                          {point.awarded ? (
+                            <Check className="w-3 h-3 text-green-600" />
+                          ) : (
+                            <X className="w-3 h-3 text-amber-600" />
+                          )}
+                          <span className="max-w-[150px] truncate">{point.markPoint}</span>
+                        </div>
+                      </TooltipTrigger>
+                      <TooltipContent side="top" className="max-w-xs">
+                        <p className="text-sm">
+                          {point.explanation || (
+                            point.awarded 
+                              ? "You demonstrated this concept correctly in your answer."
+                              : "This key concept was missing or incomplete in your answer."
+                          )}
+                        </p>
+                      </TooltipContent>
+                    </Tooltip>
+                  );
+                })}
+              </div>
+            </TooltipProvider>
           </div>
         )}
 
