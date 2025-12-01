@@ -56,7 +56,7 @@ serve(async (req) => {
   }
 
   try {
-    const { studyContent, numQuestions = 4, previousQuestions = [], subject } = await req.json();
+    const { studyContent, numQuestions = 4, previousQuestions = [], subject, marks = 4, questionType = "general" } = await req.json();
     
     if (!studyContent || typeof studyContent !== "string") {
       return new Response(
@@ -104,6 +104,16 @@ QUESTION TYPES TO GENERATE:
 1. Multiple Choice (1 mark) - 4 options, one correct
 2. Short Answer (2-3 marks) - State two/Describe
 3. Extended (4 marks) - Explain with reasons
+4. Analysis (6 marks) - Diagram analysis or case study with detailed explanation
+5. Evaluation (8 marks) - Extended response with judgement
+
+6 MARK QUESTIONS:
+- **Diagram Analysis**: "Using a diagram, analyse..." - requires student to draw/label diagram and analyse
+- **Case Study Analysis**: Provide realistic case study (e.g., business scenario) then ask analysis question
+
+8 MARK QUESTIONS:
+- Extended response requiring analysis + evaluation + judgement
+- Structure: Define → Explain → Analyse → Evaluate → Conclude
 
 🚨 CRITICAL CONSTRAINTS:
 ✓ Questions must be DIRECTLY answerable from study content
@@ -118,17 +128,42 @@ Output ONLY valid JSON format.`;
 
 ${studyContent}
 
-🎯 Create exactly ${numQuestions} GCSE AQA exam questions about ONLY the content above.
+🎯 Create exactly ${numQuestions} GCSE AQA exam questions with EXACTLY ${marks} marks.
 
 ⚠️ CRITICAL CONSTRAINTS:
+✓ Question MUST be worth EXACTLY ${marks} marks
 ✓ Every word of your question must relate to concepts in the study content above
 ✓ Do NOT introduce new topics, materials, or processes not mentioned above
-✓ If the study content is about "forces", ask about forces - NOT about chemistry, biology, or unrelated topics
 ✓ Questions must be DIRECTLY answerable using ONLY the information provided
-✓ Choose from: Multiple Choice (1 mark), Short Answer (2-3 marks), Extended (4 marks)
 ✓ Use clear, simple language
-✓ NO complex application questions
-✓ Include questionType field: "Multiple Choice", "Short Answer", or "Extended"
+✓ Include questionType field matching question style
+
+${marks === 6 && questionType === "diagram" ? `
+📊 DIAGRAM ANALYSIS QUESTION (6 marks):
+- Start with "Using a diagram, analyse..."
+- Student must DRAW and LABEL a diagram (supply/demand curves, factors diagram, etc.)
+- Then ANALYSE the diagram's implications
+- Example: "Using a diagram, analyse how a rise in consumer income could affect the market price and quantity of [product from study content]."
+` : ''}
+
+${marks === 6 && questionType === "case-study" ? `
+📋 CASE STUDY ANALYSIS QUESTION (6 marks):
+- Create a realistic business/economic scenario (150-200 words) based on study content
+- Include specific data/context (prices, quantities, percentages, real business names if possible)
+- Example structure:
+  **Case Study: [Business Name]**
+  [Business Name] is a [size] [industry] firm specialising in [products/services]. [Describe current situation with economic concepts from study content]. Recent [economic change] has affected [aspect of business]. [Include specific data and consequences].
+  
+  Question: "Analyse how [economic concept from study content] has affected [specific aspect from case study]." [6 marks]
+` : ''}
+
+${marks === 8 ? `
+📝 EVALUATION QUESTION (8 marks):
+- Requires extended response with analysis AND evaluation
+- Use command words: "Evaluate", "To what extent", "Discuss"
+- Student must: analyse multiple factors, consider pros/cons, make judgement
+- Example: "Evaluate the view that [proposition related to study content]." [8 marks]
+` : ''}
 
 ${previousQuestions.length > 0 ? `AVOID repeating these previous questions:
 ${previousQuestions.map((q: string, i: number) => `${i + 1}. ${q}`).join("\n")}` : ''}
@@ -153,8 +188,17 @@ For SHORT ANSWER (3 marks):
 For EXTENDED (4 marks):
 "**Mark Scheme:**\n\n1 mark: [First point]\n1 mark: [Second point]\n1 mark: [Third point]\n1 mark: [Fourth point]\n\n✅ **Maximum: 4 marks**\n❌ No credit for [unacceptable answers]"
 
+For DIAGRAM ANALYSIS (6 marks):
+"**Mark Scheme:**\n\n**Diagram (3 marks):**\n1 mark: Correctly drawn axes/structure\n1 mark: Correct labelling of key elements\n1 mark: Accurate representation of change/relationship\n\n**Analysis (3 marks):**\n1 mark: [First analytical point]\n1 mark: [Second analytical point]\n1 mark: [Third analytical point with link to diagram]\n\n✅ **Maximum: 6 marks**"
+
+For CASE STUDY ANALYSIS (6 marks):
+"**Mark Scheme:**\n\n1 mark: [First analytical point with case study reference]\n1 mark: [Second analytical point with data]\n1 mark: [Third analytical point]\n1 mark: [Fourth analytical point showing chain of reasoning]\n1 mark: [Fifth analytical point]\n1 mark: [Sixth analytical point with conclusion]\n\n✅ **Maximum: 6 marks**\n❌ Award marks only for points that reference the case study context"
+
+For EVALUATION (8 marks):
+"**Mark Scheme:**\n\nLevel 3 (7-8 marks): Detailed analysis of multiple factors + well-reasoned evaluation with clear judgement\nLevel 2 (4-6 marks): Some analysis + limited evaluation\nLevel 1 (1-3 marks): Basic knowledge shown, minimal analysis\n\n**Specific points:**\n1 mark: [Point 1]\n1 mark: [Point 2]\n1 mark: [Point 3]\n1 mark: [Point 4]\n1 mark: [Point 5]\n1 mark: [Point 6]\n1 mark: [Point 7]\n1 mark: [Point 8 - evaluation/judgement]\n\n✅ **Maximum: 8 marks**"
+
 Return ONLY this JSON structure:
-{ "questions": [ { "question": string, "questionType": string, "marks": number (1-4), "expectedKeyPoints": string[], "markscheme": string } ] }`;
+{ "questions": [ { "question": string, "questionType": string, "marks": number, "expectedKeyPoints": string[], "markscheme": string, "caseStudy"?: string } ] }`;
 
     console.log("[generate-simple-questions] Calling Bytez AI...");
     
