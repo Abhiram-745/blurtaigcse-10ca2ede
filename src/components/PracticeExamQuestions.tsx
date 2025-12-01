@@ -27,6 +27,8 @@ interface GeneratedQuestion {
   marks: number;
   expectedKeyPoints: string[];
   markscheme?: string;
+  caseStudy?: string;
+  questionType?: string;
 }
 
 interface MarkingPoint {
@@ -62,6 +64,8 @@ const PracticeExamQuestions = ({ sectionContent, sectionTitle, subsections, subj
   const [selfAssessedScore, setSelfAssessedScore] = useState("");
   const [showNavigation, setShowNavigation] = useState(false);
   const [isQuestionStarred, setIsQuestionStarred] = useState(false);
+  const [selectedMarks, setSelectedMarks] = useState<number>(4);
+  const [selectedQuestionType, setSelectedQuestionType] = useState<string>("general");
 
   // Sanitize poorly formatted AI output (e.g., line breaks before state symbols like (g))
   const sanitizeQuestionText = (text: string) => {
@@ -119,7 +123,9 @@ const PracticeExamQuestions = ({ sectionContent, sectionTitle, subsections, subj
           studyContent: focusedContent,
           numQuestions: 1,
           previousQuestions: previousQuestions,
-          subject: subject || 'general' // Pass subject parameter
+          subject: subject || 'general',
+          marks: selectedMarks, // Pass selected marks
+          questionType: selectedQuestionType // Pass question type
         }
       });
 
@@ -160,10 +166,12 @@ const PracticeExamQuestions = ({ sectionContent, sectionTitle, subsections, subj
       const { data, error } = await supabase.functions.invoke('mark-answer', {
         body: {
           question: currentQuestion.question,
-          answer: userAnswer,
-          expectedKeyPoints: currentQuestion.expectedKeyPoints,
-          maxMarks: currentQuestion.marks,
-          markscheme: currentQuestion.markscheme
+          studentAnswer: userAnswer,
+          expectedContent: currentQuestion.expectedKeyPoints.join('\n'),
+          marks: currentQuestion.marks,
+          markscheme: currentQuestion.markscheme,
+          questionType: selectedQuestionType,
+          hasImage: submissionMethod === 'photo' || submissionMethod === 'whiteboard'
         }
       });
 
@@ -174,7 +182,7 @@ const PracticeExamQuestions = ({ sectionContent, sectionTitle, subsections, subj
         maxMarks: currentQuestion.marks,
         keyIdeasCovered: data.keyIdeasCovered || [],
         keyIdeasMissed: data.keyIdeasMissed || [],
-        feedbackText: data.feedbackText || "Answer submitted.",
+        feedbackText: data.feedback || data.feedbackText || "Answer submitted.",
         modelAnswer: data.modelAnswer,
         markscheme: data.markscheme || currentQuestion.markscheme,
         markingBreakdown: data.markingBreakdown || []
@@ -320,6 +328,64 @@ const PracticeExamQuestions = ({ sectionContent, sectionTitle, subsections, subj
         </CardDescription>
       </CardHeader>
       <CardContent className="space-y-6">
+        {/* Marks Selection */}
+        <div>
+          <h3 className="font-semibold mb-3">Select Question Length:</h3>
+          <div className="flex gap-3 flex-wrap">
+            <Button
+              variant={selectedMarks === 3 ? "default" : "outline"}
+              onClick={() => setSelectedMarks(3)}
+              className="btn-press"
+            >
+              3-4 Marks
+            </Button>
+            <Button
+              variant={selectedMarks === 6 ? "default" : "outline"}
+              onClick={() => setSelectedMarks(6)}
+              className="btn-press"
+            >
+              6 Marks
+            </Button>
+            <Button
+              variant={selectedMarks === 8 ? "default" : "outline"}
+              onClick={() => setSelectedMarks(8)}
+              className="btn-press"
+            >
+              8 Marks
+            </Button>
+          </div>
+        </div>
+
+        {/* Question Type Selection for 6-mark questions */}
+        {selectedMarks === 6 && (
+          <div className="animate-fade-in">
+            <h3 className="font-semibold mb-3">Select Question Type:</h3>
+            <div className="flex gap-3 flex-wrap">
+              <Button
+                variant={selectedQuestionType === "general" ? "default" : "outline"}
+                onClick={() => setSelectedQuestionType("general")}
+                className="btn-press"
+              >
+                General Analysis
+              </Button>
+              <Button
+                variant={selectedQuestionType === "diagram" ? "default" : "outline"}
+                onClick={() => setSelectedQuestionType("diagram")}
+                className="btn-press"
+              >
+                Diagram Analysis
+              </Button>
+              <Button
+                variant={selectedQuestionType === "case-study" ? "default" : "outline"}
+                onClick={() => setSelectedQuestionType("case-study")}
+                className="btn-press"
+              >
+                Case Study Analysis
+              </Button>
+            </div>
+          </div>
+        )}
+
         {/* Topic Selection */}
         <div>
           <h3 className="font-semibold mb-3">Select Topics:</h3>
@@ -389,6 +455,16 @@ const PracticeExamQuestions = ({ sectionContent, sectionTitle, subsections, subj
               </div>
             </CardHeader>
             <CardContent className="space-y-4">
+              {/* Case Study Display */}
+              {currentQuestion.caseStudy && (
+                <div className="bg-primary/5 border border-primary/20 rounded-lg p-4 mb-4 animate-fade-in">
+                  <h4 className="font-semibold text-primary mb-2">📋 Case Study</h4>
+                  <div className="prose prose-sm max-w-none dark:prose-invert">
+                    <MarkdownRenderer content={currentQuestion.caseStudy} />
+                  </div>
+                </div>
+              )}
+              
               <div className="prose prose-sm max-w-none dark:prose-invert">
                 {/* Format question with parts (a), (b), (c) on separate lines */}
                 {(() => {

@@ -11,30 +11,47 @@ serve(async (req) => {
   }
 
   try {
-    const { question, studentAnswer, expectedContent, marks, markscheme } = await req.json();
+    const { question, studentAnswer, expectedContent, marks, markscheme, questionType, hasImage } = await req.json();
     
     const BYTEZ_API_KEY_PRO = Deno.env.get("BYTEZ_API_KEY_PRO");
     if (!BYTEZ_API_KEY_PRO) {
       throw new Error("BYTEZ_API_KEY_PRO is not configured");
     }
 
-    const systemPrompt = `You are an expert chemistry examiner marking GCSE exam answers with LENIENT marking criteria.
+    const isDiagramQuestion = questionType === "diagram" || /using a diagram|draw.*diagram|sketch.*diagram/i.test(question);
+    
+    const systemPrompt = `You are an expert GCSE examiner marking exam answers with LENIENT marking criteria.
 
 CRITICAL MARKING RULES:
 1. For calculation questions: Award FULL marks if the numerical answer is correct, even if working/units are slightly different
 2. For multi-part questions: Mark each part separately and award partial credit generously
-3. Accept equivalent expressions (e.g., "0.01 mol" = "1 × 10⁻² mol" = "ten millimoles")
-4. Accept correct chemical formulae with minor notation differences (e.g., "H2O" = "H₂O")
-5. Award marks for correct reasoning even if final answer has minor errors
-6. Be GENEROUS with marks - if the student shows understanding, give them credit
-7. For balanced equations: Accept any correctly balanced form (coefficients may vary but ratios must be correct)
+3. Accept equivalent expressions and notation differences
+4. Award marks for correct reasoning even if final answer has minor errors
+5. Be GENEROUS with marks - if the student shows understanding, give them credit
+6. For balanced equations: Accept any correctly balanced form (coefficients may vary but ratios must be correct)
+${isDiagramQuestion ? `
+7. **DIAGRAM QUESTIONS**: When the question asks to "use a diagram" or "draw a diagram":
+   - If student describes diagram without drawing: Award marks for correct description of what diagram should show
+   - If photo/whiteboard submitted: Analyze the diagram carefully - look for labeled axes, curves, shifts, equilibrium points
+   - Award diagram marks for: correct structure (axes/setup), correct labels, accurate representation of concept
+   - Award analysis marks for: explaining the diagram, linking to theory, showing chain of reasoning
+   - Be LENIENT on diagram quality - focus on whether key economic/scientific concepts are correctly shown
+` : ''}
 
 MARKING PROCESS:
 - Read the full answer carefully before judging
-- Look for correct numerical values, chemical formulae, and key concepts
+- Look for correct content and key concepts
 - Award marks for partially correct answers
 - Only deduct marks for fundamental errors or completely missing key points
 - If the student demonstrates understanding of the concept, be lenient with presentation
+${isDiagramQuestion && hasImage ? `
+- **IMAGE ANALYSIS**: The student has submitted a photo/whiteboard. Look for drawn diagrams showing:
+  * Correct axes (e.g., Price vs Quantity for supply/demand)
+  * Proper labels (D1, D2, S, equilibrium points, etc.)
+  * Accurate shifts or changes shown
+  * Clear indication of effects (price increase/decrease, quantity change)
+- Award diagram marks generously if core elements are present, even if hand-drawn or rough
+` : ''}
 
 Return JSON with: score (0-${marks}), keyIdeasCovered (array of strings showing what they got right), keyIdeasMissed (array of strings showing what they missed), feedback (constructive string), and modelAnswer (a concise model answer - short for 2-3 mark questions, longer for 4+ mark questions)`;
 
@@ -46,12 +63,19 @@ ${expectedContent}
 Student's Answer:
 ${studentAnswer}
 
+${hasImage ? '**NOTE**: Student submitted answer via photo/whiteboard. Look carefully for any diagrams, labels, or visual elements in their description.' : ''}
+
 MARKING INSTRUCTIONS:
 - For calculation questions: Check if numerical answers are correct (allow for rounding)
 - For explanation questions: Look for key concepts and understanding
 - For multi-part questions: Award marks for each correct part
 - Be LENIENT - if the answer demonstrates understanding, award marks
 - Award partial credit wherever possible
+${isDiagramQuestion ? `
+- **DIAGRAM MARKING**: Award up to ${Math.ceil(marks / 2)} marks for diagram quality (axes, labels, accuracy)
+- Award remaining marks for analysis and explanation linking to diagram
+- If no diagram drawn but concepts explained: Award analysis marks only
+` : ''}
 
 Official Markscheme:
 ${markscheme || 'No markscheme provided'}
