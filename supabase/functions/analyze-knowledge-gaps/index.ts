@@ -13,9 +13,9 @@ serve(async (req) => {
   try {
     const { studyContent, questionResults } = await req.json();
     
-    const BYTEZ_API_KEY_FLASH = Deno.env.get("BYTEZ_API_KEY_FLASH");
-    if (!BYTEZ_API_KEY_FLASH) {
-      throw new Error("BYTEZ_API_KEY_FLASH is not configured");
+    const LOVABLE_API_KEY = Deno.env.get("LOVABLE_API_KEY");
+    if (!LOVABLE_API_KEY) {
+      throw new Error("LOVABLE_API_KEY is not configured");
     }
 
     // Format the question results for analysis
@@ -27,7 +27,7 @@ Key Ideas Covered: ${r.keyIdeasCovered.join(", ") || "None"}
 Key Ideas Missed: ${r.keyIdeasMissed.join(", ") || "None"}
 `).join("\n---\n");
 
-    const systemPrompt = `You are an expert GCSE chemistry tutor analyzing a student's performance to identify knowledge gaps.
+    const systemPrompt = `You are an expert GCSE tutor analyzing a student's performance to identify knowledge gaps.
 Your task is to:
 1. Review the student's answers to multiple questions
 2. Identify patterns in what they understand well and what they struggle with
@@ -56,10 +56,10 @@ ${resultsText}
 
 Analyze this student's performance and identify their knowledge gaps and areas for improvement.`;
 
-    const response = await fetch("https://api.bytez.com/models/v2/openai/v1/chat/completions", {
+    const response = await fetch("https://ai.gateway.lovable.dev/v1/chat/completions", {
       method: "POST",
       headers: {
-        "Authorization": `Bearer ${BYTEZ_API_KEY_FLASH}`,
+        "Authorization": `Bearer ${LOVABLE_API_KEY}`,
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
@@ -80,7 +80,7 @@ Analyze this student's performance and identify their knowledge gaps and areas f
       }
       if (response.status === 402) {
         return new Response(
-          JSON.stringify({ error: "Payment required, please check your Bytez API credits." }),
+          JSON.stringify({ error: "Payment required, please add funds to your Lovable AI workspace." }),
           { status: 402, headers: { ...corsHeaders, "Content-Type": "application/json" } }
         );
       }

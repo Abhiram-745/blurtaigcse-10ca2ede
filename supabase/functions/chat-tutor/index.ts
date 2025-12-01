@@ -14,15 +14,15 @@ serve(async (req) => {
   try {
     const { messages, studyContent } = await req.json();
     
-    const BYTEZ_API_KEY_FLASH = Deno.env.get('BYTEZ_API_KEY_FLASH');
-    if (!BYTEZ_API_KEY_FLASH) {
-      throw new Error('BYTEZ_API_KEY_FLASH is not configured');
+    const LOVABLE_API_KEY = Deno.env.get('LOVABLE_API_KEY');
+    if (!LOVABLE_API_KEY) {
+      throw new Error('LOVABLE_API_KEY is not configured');
     }
 
-    const response = await fetch('https://api.bytez.com/models/v2/openai/v1/chat/completions', {
+    const response = await fetch('https://ai.gateway.lovable.dev/v1/chat/completions', {
       method: 'POST',
       headers: {
-        'Authorization': `Bearer ${BYTEZ_API_KEY_FLASH}`,
+        'Authorization': `Bearer ${LOVABLE_API_KEY}`,
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
@@ -30,7 +30,7 @@ serve(async (req) => {
         messages: [
           {
             role: 'system',
-            content: `You are a helpful GCSE chemistry tutor. You help students understand concepts from their study material. Be clear, concise, and encouraging. Use simple explanations and examples.
+            content: `You are a helpful GCSE tutor for science and other subjects. You help students understand concepts from their study material. Be clear, concise, and encouraging. Use simple explanations and examples.
 
 Study Content Context:
 ${studyContent}
@@ -47,8 +47,20 @@ When answering questions:
     });
 
     if (!response.ok) {
+      if (response.status === 429) {
+        return new Response(
+          JSON.stringify({ error: "Rate limits exceeded, please try again later." }),
+          { status: 429, headers: { ...corsHeaders, "Content-Type": "application/json" } }
+        );
+      }
+      if (response.status === 402) {
+        return new Response(
+          JSON.stringify({ error: "Payment required, please add funds to your Lovable AI workspace." }),
+          { status: 402, headers: { ...corsHeaders, "Content-Type": "application/json" } }
+        );
+      }
       const error = await response.text();
-      console.error('AI API error:', error);
+      console.error('AI API error:', response.status, error);
       throw new Error('Failed to get AI response');
     }
 
