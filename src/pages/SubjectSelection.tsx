@@ -64,7 +64,7 @@ const SubjectSelection = () => {
     {
       name: "Economics",
       icon: TrendingUp,
-      color: "from-emerald-500 to-teal-600",
+      color: "from-emerald-500 to-cyan-500",
       available: true,
       route: "/economics/chapters"
     },
