@@ -330,11 +330,12 @@ const Dashboard = () => {
             <CardDescription>Select a subject to start revising</CardDescription>
           </CardHeader>
           <CardContent>
-            <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+            <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-5">
               {[
                 { title: "Chemistry", desc: "AQA GCSE Chemistry", color: "from-blue-500 to-cyan-500", path: "/sections" },
                 { title: "Physics", desc: "AQA GCSE Physics", color: "from-purple-500 to-pink-500", path: "/physics" },
-                { title: "Economics", desc: "OCR GCSE Economics", color: "from-emerald-500 to-teal-500", path: "/economics/chapters" },
+                { title: "Geography", desc: "AQA GCSE Geography", color: "from-green-500 to-teal-500", path: "/geography" },
+                { title: "Economics", desc: "OCR GCSE Economics", color: "from-emerald-500 to-teal-600", path: "/economics/chapters" },
                 { title: "Product Design", desc: "AQA GCSE Product Design", color: "from-orange-500 to-amber-500", path: "/product-design/chapters" },
               ].map((subject, idx) => (
                 <Card 
