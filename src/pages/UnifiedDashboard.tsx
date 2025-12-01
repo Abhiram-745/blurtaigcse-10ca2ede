@@ -102,6 +102,12 @@ const subjectConfigs = {
     color: "from-green-500 to-teal-500",
     sectionsRoute: "/geography/living-world/sections",
   },
+  economics: {
+    name: "Economics",
+    icon: TrendingUp,
+    color: "from-emerald-500 to-cyan-500",
+    sectionsRoute: "/economics/chapters",
+  },
 };
 
 const UnifiedDashboard = () => {
