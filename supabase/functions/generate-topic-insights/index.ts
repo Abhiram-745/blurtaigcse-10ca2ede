@@ -12,9 +12,9 @@ serve(async (req) => {
   }
 
   try {
-    const BYTEZ_API_KEY_PRO = Deno.env.get('BYTEZ_API_KEY_PRO');
-    if (!BYTEZ_API_KEY_PRO) {
-      throw new Error("BYTEZ_API_KEY_PRO is not configured");
+    const LOVABLE_API_KEY = Deno.env.get('LOVABLE_API_KEY');
+    if (!LOVABLE_API_KEY) {
+      throw new Error("LOVABLE_API_KEY is not configured");
     }
 
     const SUPABASE_URL = Deno.env.get('SUPABASE_URL')!;
@@ -112,28 +112,38 @@ Recent activity: Last practiced ${new Date(sessions[0].created_at).toLocaleDateS
 
 Provide insights that are specific, encouraging, and actionable. Keep it concise and student-friendly.`;
 
-    console.log('Calling Bytez API with Gemini 2.5 Pro...');
+    console.log('Calling Lovable AI...');
 
-    const response = await fetch('https://api.bytez.com/models/v2/openai/v1/chat/completions', {
+    const response = await fetch('https://ai.gateway.lovable.dev/v1/chat/completions', {
       method: 'POST',
       headers: {
-        'Authorization': `Bearer ${BYTEZ_API_KEY_PRO}`,
+        'Authorization': `Bearer ${LOVABLE_API_KEY}`,
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        model: 'google/gemini-2.5-pro',
+        model: 'google/gemini-2.5-flash',
         messages: [
           { role: 'user', content: prompt }
         ],
-        max_tokens: 300,
-        temperature: 0.7,
       }),
     });
 
     if (!response.ok) {
+      if (response.status === 429) {
+        return new Response(
+          JSON.stringify({ error: "Rate limits exceeded, please try again later." }),
+          { status: 429, headers: { ...corsHeaders, "Content-Type": "application/json" } }
+        );
+      }
+      if (response.status === 402) {
+        return new Response(
+          JSON.stringify({ error: "Payment required, please add funds to your Lovable AI workspace." }),
+          { status: 402, headers: { ...corsHeaders, "Content-Type": "application/json" } }
+        );
+      }
       const errorText = await response.text();
-      console.error('Bytez API error:', response.status, errorText);
-      throw new Error(`Bytez API error: ${response.status}`);
+      console.error('AI gateway error:', response.status, errorText);
+      throw new Error(`AI gateway error: ${response.status}`);
     }
 
     const aiResponse = await response.json();

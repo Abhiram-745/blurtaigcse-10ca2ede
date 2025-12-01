@@ -13,12 +13,12 @@ serve(async (req) => {
   try {
     const { question, studentAnswer, expectedContent, marks, markscheme } = await req.json();
     
-    const BYTEZ_API_KEY_PRO = Deno.env.get("BYTEZ_API_KEY_PRO");
-    if (!BYTEZ_API_KEY_PRO) {
-      throw new Error("BYTEZ_API_KEY_PRO is not configured");
+    const LOVABLE_API_KEY = Deno.env.get("LOVABLE_API_KEY");
+    if (!LOVABLE_API_KEY) {
+      throw new Error("LOVABLE_API_KEY is not configured");
     }
 
-    const systemPrompt = `You are an expert chemistry examiner marking GCSE exam answers with LENIENT marking criteria.
+    const systemPrompt = `You are an expert examiner marking GCSE exam answers with LENIENT marking criteria.
 
 CRITICAL MARKING RULES:
 1. For calculation questions: Award FULL marks if the numerical answer is correct, even if working/units are slightly different
@@ -78,14 +78,14 @@ CRITICAL: The markingBreakdown array should break down each marking point indivi
 
 IMPORTANT: Be generous with marks. Students should get high scores for correct answers.`;
 
-    const response = await fetch("https://api.bytez.com/models/v2/openai/v1/chat/completions", {
+    const response = await fetch("https://ai.gateway.lovable.dev/v1/chat/completions", {
       method: "POST",
       headers: {
-        "Authorization": `Bearer ${BYTEZ_API_KEY_PRO}`,
+        "Authorization": `Bearer ${LOVABLE_API_KEY}`,
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        model: "google/gemini-2.5-pro",
+        model: "google/gemini-2.5-flash",
         messages: [
           { role: "system", content: systemPrompt },
           { role: "user", content: userPrompt }
@@ -102,7 +102,7 @@ IMPORTANT: Be generous with marks. Students should get high scores for correct a
       }
       if (response.status === 402) {
         return new Response(
-          JSON.stringify({ error: "Payment required, please check your Bytez API credits." }),
+          JSON.stringify({ error: "Payment required, please add funds to your Lovable AI workspace." }),
           { status: 402, headers: { ...corsHeaders, "Content-Type": "application/json" } }
         );
       }
