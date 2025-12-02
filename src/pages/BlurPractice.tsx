@@ -3,11 +3,13 @@ import { useNavigate, useParams, useLocation } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Textarea } from "@/components/ui/textarea";
-import { ArrowLeft, Timer, Send, BookOpen, CheckCircle, ChevronDown, Camera, Pen, Save } from "lucide-react";
+import { ArrowLeft, Timer, Send, BookOpen, CheckCircle, ChevronDown, Camera, Pen, Save, Maximize2, Minimize2 } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
+import { Slider } from "@/components/ui/slider";
 import { sectionsData, PracticeItem } from "@/data/sectionsData";
 import { physicsData } from "@/data/physicsData";
 import { productDesignData } from "@/data/productDesignData";
+import { biologyData } from "@/data/biologyData";
 import { getEconomicsChapterById, getEconomicsModuleById, getEconomicsSubsectionById } from "@/data/economicsData";
 import { useToast } from "@/hooks/use-toast";
 import { Progress } from "@/components/ui/progress";
@@ -145,6 +147,7 @@ const BlurPractice = () => {
   const [showDifficultySelector, setShowDifficultySelector] = useState(false);
   const [progressSaved, setProgressSaved] = useState(false);
   const [isSavingProgress, setIsSavingProgress] = useState(false);
+  const [notesWidth, setNotesWidth] = useState(100); // percentage width for notes
 
   // Save progress to database
   const saveProgressToDatabase = useCallback(async (pairIndex: number) => {
@@ -245,6 +248,7 @@ const BlurPractice = () => {
     const urlSaysPhysics = location.pathname.includes('/physics/');
     const urlSaysProductDesign = location.pathname.includes('/product-design/');
     const urlSaysEconomics = location.pathname.includes('/economics/');
+    const urlSaysBiology = location.pathname.includes('/biology/');
     
     let targetSubsection: any = null;
     
@@ -284,12 +288,14 @@ const BlurPractice = () => {
       
       console.log('BlurPractice - Found economics subsection:', targetSubsection.title);
     } else {
-      // Original logic for chemistry, physics, product design
-      let dataSource = sectionsData;
+      // Original logic for chemistry, physics, product design, biology
+      let dataSource: any = sectionsData;
       if (urlSaysPhysics) {
         dataSource = physicsData;
       } else if (urlSaysProductDesign) {
         dataSource = productDesignData;
+      } else if (urlSaysBiology) {
+        dataSource = biologyData;
       }
       
       console.log('BlurPractice - Looking for:', { 
@@ -298,8 +304,9 @@ const BlurPractice = () => {
         subsectionId, 
         urlSaysPhysics,
         urlSaysProductDesign,
+        urlSaysBiology,
         pathname: location.pathname,
-        availableTopics: dataSource.map(t => t.id)
+        availableTopics: dataSource.map((t: any) => t.id)
       });
       
       const topic = dataSource.find((t) => t.id === topicId);
@@ -1304,11 +1311,36 @@ const BlurPractice = () => {
   if (showStudyContent) {
     return (
       <div className="min-h-screen bg-gradient-to-br from-background via-primary/5 to-secondary/5">
-        <div className="container mx-auto px-4 py-8 max-w-4xl">
+        <div className="container mx-auto px-4 py-8" style={{ maxWidth: `${Math.max(notesWidth, 50)}%` }}>
           <Button variant="ghost" onClick={() => navigate(topicPath)} className="mb-4">
             <ArrowLeft className="mr-2 h-4 w-4" />
             Back to Topic
           </Button>
+
+          {/* Notes Width Control */}
+          <Card className="mb-4">
+            <CardContent className="py-3">
+              <div className="flex items-center gap-4">
+                <div className="flex items-center gap-2">
+                  <Minimize2 className="h-4 w-4 text-muted-foreground" />
+                  <span className="text-sm text-muted-foreground">Narrow</span>
+                </div>
+                <Slider
+                  value={[notesWidth]}
+                  onValueChange={(value) => setNotesWidth(value[0])}
+                  min={50}
+                  max={100}
+                  step={5}
+                  className="flex-1"
+                />
+                <div className="flex items-center gap-2">
+                  <span className="text-sm text-muted-foreground">Wide</span>
+                  <Maximize2 className="h-4 w-4 text-muted-foreground" />
+                </div>
+                <Badge variant="outline" className="ml-2">{notesWidth}%</Badge>
+              </div>
+            </CardContent>
+          </Card>
 
           <Card className="mb-6">
             <CardHeader>

@@ -5,6 +5,8 @@ import { forcesModuleData, ForcesModule } from './forcesModuleData';
 import { energyModuleData, EnergyModule } from './energyModuleData';
 import { energyTransfersModuleData, EnergyTransfersModule } from './energyTransfersModuleData';
 import { motionModuleData, MotionModule } from './motionModuleData';
+import { emWavesModuleData, EMWavesModule } from './emWavesModuleData';
+import { infraredPracticalData } from './infraredPracticalData';
 
 export interface PracticeItem {
   id: string;
@@ -71,6 +73,25 @@ const motionModule: Module = {
   title: motionModuleData.title,
   status: motionModuleData.status,
   subsections: motionModuleData.subsections as Subsection[]
+};
+
+// Convert EMWavesModule to Module type
+const emWavesModule: Module = {
+  id: emWavesModuleData.id,
+  title: emWavesModuleData.title,
+  status: emWavesModuleData.status,
+  subsections: emWavesModuleData.subsections as Subsection[]
+};
+
+// Convert infrared practical to Subsection
+const infraredSubsection: Subsection = {
+  id: infraredPracticalData.id,
+  title: infraredPracticalData.title,
+  type: infraredPracticalData.type,
+  content_html: infraredPracticalData.content_html,
+  canonical_keywords: infraredPracticalData.canonical_keywords,
+  practice_items: infraredPracticalData.practice_items as PracticeItem[],
+  study_group: infraredPracticalData.study_group
 };
 
 export const physicsData: TopicSection[] = [
@@ -3164,6 +3185,13 @@ export const physicsData: TopicSection[] = [
             ]
           }
         ]
+      },
+      emWavesModule,
+      {
+        id: "waves-practice-module",
+        title: "Module 3: Required Practicals",
+        status: "ready",
+        subsections: [infraredSubsection]
       }
     ]
   }
