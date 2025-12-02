@@ -2,7 +2,7 @@ import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
-import { ArrowLeft, BookOpen, Brain, TrendingUp, Shield } from "lucide-react";
+import { ArrowLeft, BookOpen, Brain, TrendingUp, Shield, Star } from "lucide-react";
 
 const Help = () => {
   const navigate = useNavigate();
@@ -20,6 +20,28 @@ const Help = () => {
           <p className="text-muted-foreground">Everything you need to know about using ChemBlur</p>
         </div>
 
+        {/* Starred Questions Card */}
+        <Card 
+          className="mb-8 cursor-pointer hover:shadow-lg transition-all border-2 border-yellow-200 dark:border-yellow-800 bg-gradient-to-br from-yellow-50 to-orange-50 dark:from-yellow-950/20 dark:to-orange-950/20"
+          onClick={() => navigate("/question-bank")}
+        >
+          <CardHeader>
+            <CardTitle className="flex items-center gap-2 text-xl">
+              <Star className="h-6 w-6 text-yellow-500 fill-yellow-500" />
+              Starred Questions Bank
+            </CardTitle>
+          </CardHeader>
+          <CardContent>
+            <p className="text-muted-foreground mb-4">
+              View all your starred exam questions organized by subject. Review model answers and markschemes anytime.
+            </p>
+            <Button className="bg-yellow-500 hover:bg-yellow-600 text-white">
+              <Star className="mr-2 h-4 w-4" />
+              View Question Bank
+            </Button>
+          </CardContent>
+        </Card>
+
         <div className="grid gap-6 md:grid-cols-2 mb-8">
           <Card>
             <CardHeader>
@@ -30,7 +52,7 @@ const Help = () => {
             </CardHeader>
             <CardContent>
               <p className="text-sm text-muted-foreground">
-                Browse chemistry topics and read the content carefully. Pay attention to key terms and concepts.
+                Browse topics and read the content carefully. Pay attention to key terms and concepts.
               </p>
             </CardContent>
           </Card>

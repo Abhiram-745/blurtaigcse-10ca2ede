@@ -28,6 +28,7 @@ import {
   LogOut,
   GraduationCap,
   Dna,
+  Star,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
@@ -46,6 +47,7 @@ const navigation = [
   { name: "Dashboard", icon: Home, route: "/dashboard" },
   { name: "Progress", icon: TrendingUp, route: "/progress" },
   { name: "History", icon: Clock, route: "/history" },
+  { name: "Question Bank", icon: Star, route: "/question-bank" },
   { name: "Settings", icon: Settings, route: "/settings" },
   { name: "Help", icon: HelpCircle, route: "/help" },
 ];

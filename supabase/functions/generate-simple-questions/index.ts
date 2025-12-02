@@ -6,7 +6,7 @@ const corsHeaders = {
   "Access-Control-Allow-Headers": "authorization, x-client-info, apikey, content-type",
 };
 
-async function callOpenAIWithTimeout(payload: any, timeoutMs = 30000) {
+async function callOpenAIWithTimeout(payload: any, timeoutMs = 45000) {
   const key = Deno.env.get("BYTEZ_API_KEY_PRO");
   if (!key) throw new Error("BYTEZ_API_KEY_PRO is not configured");
   
@@ -32,22 +32,74 @@ async function callOpenAIWithTimeout(payload: any, timeoutMs = 30000) {
   }
 }
 
-function containsChemistryLike(text: string): boolean {
-  const patterns = [
-    /\b[A-Z][a-z]?\d{0,2}\b/,
-    /→|⇌|<-+>|<=>|\+\s*\w+\s*->/,
-    /\((aq|g|s|l)\)/i,
-    /polymer|polymerisation|monomer/i,
-    /mole|molar|relative\s+atomic\s+mass|RFM|RAM/i,
-    /C\d+H\d+/i
-  ];
-  return patterns.some((r) => r.test(text));
-}
-
-function chemistryNotInNotes(text: string, notes: string): boolean {
-  // Allow chemistry-style content only if notes already contain it
-  if (containsChemistryLike(notes)) return false;
-  return containsChemistryLike(text);
+// Get subject-specific exam board and style
+function getSubjectContext(subject: string) {
+  const subjectLower = (subject || 'chemistry').toLowerCase();
+  
+  const contexts: Record<string, { board: string; style: string; examples: string }> = {
+    'physics': {
+      board: 'AQA GCSE Physics',
+      style: 'Focus on calculations, equations, practical applications, and explaining physical phenomena. Include formula-based questions where appropriate.',
+      examples: `
+PHYSICS QUESTION EXAMPLES:
+1 MARK: "State the unit of force." [1 mark]
+2 MARKS: "Calculate the speed of a car that travels 100m in 5 seconds." [2 marks]
+3 MARKS: "Explain why a parachutist reaches terminal velocity." [3 marks]
+4 MARKS: "Describe how a transformer works and explain why it is used in the National Grid." [4 marks]`
+    },
+    'chemistry': {
+      board: 'AQA GCSE Chemistry',
+      style: 'Focus on reactions, bonding, structure, and practical chemistry. Include balanced equations where appropriate.',
+      examples: `
+CHEMISTRY QUESTION EXAMPLES:
+1 MARK: "State the type of bonding in sodium chloride." [1 mark]
+2 MARKS: "Describe what happens to the atoms when sodium reacts with chlorine." [2 marks]
+3 MARKS: "Explain why metals are good conductors of electricity." [3 marks]
+4 MARKS: "Explain how a catalyst increases the rate of reaction." [4 marks]`
+    },
+    'biology': {
+      board: 'AQA GCSE Biology',
+      style: 'Focus on living organisms, processes, systems, and practical biology. Include diagrams and data interpretation where appropriate.',
+      examples: `
+BIOLOGY QUESTION EXAMPLES:
+1 MARK: "Name the organelle where aerobic respiration occurs." [1 mark]
+2 MARKS: "Describe the structure of a plant cell." [2 marks]
+3 MARKS: "Explain how the structure of the small intestine is adapted for absorption." [3 marks]
+4 MARKS: "Explain how natural selection leads to evolution." [4 marks]`
+    },
+    'economics': {
+      board: 'AQA GCSE Economics',
+      style: 'Focus on economic concepts, markets, business decisions, and real-world applications. Include diagram analysis and case studies.',
+      examples: `
+ECONOMICS QUESTION EXAMPLES:
+1 MARK: "Define opportunity cost." [1 mark]
+2 MARKS: "State two factors that cause demand to shift." [2 marks]
+3 MARKS: "Explain how an increase in interest rates affects consumer spending." [3 marks]
+4 MARKS: "Analyse how a minimum wage affects the labour market." [4 marks]`
+    },
+    'product-design': {
+      board: 'AQA GCSE Design and Technology',
+      style: 'Focus on materials, manufacturing processes, design principles, and sustainability. DO NOT include chemistry equations or formulas.',
+      examples: `
+PRODUCT DESIGN QUESTION EXAMPLES:
+1 MARK: "State one advantage of using MDF over solid wood." [1 mark]
+2 MARKS: "Describe two properties of thermoplastics." [2 marks]
+3 MARKS: "Explain how CAD/CAM has changed manufacturing processes." [3 marks]
+4 MARKS: "Evaluate the environmental impact of using renewable materials in product design." [4 marks]`
+    },
+    'geography': {
+      board: 'AQA GCSE Geography',
+      style: 'Focus on physical and human geography, case studies, and fieldwork. Include data interpretation and map skills.',
+      examples: `
+GEOGRAPHY QUESTION EXAMPLES:
+1 MARK: "Define the term 'urbanisation'." [1 mark]
+2 MARKS: "Describe two features of a meander." [2 marks]
+3 MARKS: "Explain how deforestation affects the water cycle." [3 marks]
+4 MARKS: "Evaluate the effectiveness of flood management strategies." [4 marks]`
+    }
+  };
+  
+  return contexts[subjectLower] || contexts['chemistry'];
 }
 
 serve(async (req) => {
@@ -56,7 +108,7 @@ serve(async (req) => {
   }
 
   try {
-    const { studyContent, numQuestions = 4, previousQuestions = [], subject, marks = 4, questionType = "general" } = await req.json();
+    const { studyContent, numQuestions = 1, previousQuestions = [], subject, marks = 4, questionType = "general" } = await req.json();
     
     if (!studyContent || typeof studyContent !== "string") {
       return new Response(
@@ -65,61 +117,33 @@ serve(async (req) => {
       );
     }
 
-    console.log("[generate-simple-questions] Generating questions for subject:", subject);
+    const subjectContext = getSubjectContext(subject);
+    console.log("[generate-simple-questions] Generating questions for subject:", subject, "marks:", marks);
 
-    const systemPrompt = `You are an expert GCSE AQA examiner creating exam questions that EXACTLY match authentic AQA past paper style.
+    const systemPrompt = `You are an expert ${subjectContext.board} examiner creating exam questions that EXACTLY match authentic past paper style.
 
-🎯 AQA SPECIFICATION ALIGNMENT:
-Questions must test SPECIFIC specification points using correct assessment objectives:
-- AO1: Demonstrate knowledge (recall facts, definitions, equations)
-- AO2: Apply knowledge (use in calculations, new contexts)
-- AO3: Analyse/evaluate (interpret data, draw conclusions)
+🎯 SUBJECT: ${subjectContext.board}
+${subjectContext.style}
 
-📚 AQA COMMAND WORDS (MUST use correctly):
+📚 COMMAND WORDS (use correctly for mark allocation):
 - **State/Name/Give** (1 mark) - Single word/phrase, factual recall
 - **Describe** (2-3 marks) - Give account of process/phenomenon
-- **Explain** (3-4 marks) - Give reasons using scientific vocabulary
+- **Explain** (3-4 marks) - Give reasons using correct terminology
 - **Calculate** (2-4 marks) - Show working, include units
 - **Compare** (3-4 marks) - State similarities AND differences
 - **Suggest** (2-3 marks) - Apply to unfamiliar context
+- **Analyse** (6 marks) - Examine in detail with reasons
+- **Evaluate** (8 marks) - Make judgement with justification
 
-📝 AUTHENTIC AQA QUESTION EXAMPLES:
-
-1 MARK (State/Name):
-"State the type of bonding in sodium chloride." [1 mark]
-"Name the product formed when magnesium reacts with oxygen." [1 mark]
-
-2 MARKS (Describe/Calculate):
-"Describe what happens to the atoms when sodium reacts with chlorine." [2 marks]
-"Calculate the relative formula mass of H₂SO₄. (Ar: H=1, S=32, O=16)" [2 marks]
-
-3 MARKS (Explain):
-"Explain why metals are good conductors of electricity." [3 marks]
-"Explain, in terms of particles, why gases can be compressed." [3 marks]
-
-4 MARKS (Extended Explain):
-"Explain how a catalyst increases the rate of reaction. Include a description of what happens at the molecular level." [4 marks]
-
-QUESTION TYPES TO GENERATE:
-1. Multiple Choice (1 mark) - 4 options, one correct
-2. Short Answer (2-3 marks) - State two/Describe
-3. Extended (4 marks) - Explain with reasons
-4. Analysis (6 marks) - Diagram analysis or case study with detailed explanation
-5. Evaluation (8 marks) - Extended response with judgement
-
-6 MARK QUESTIONS:
-- **Diagram Analysis**: "Using a diagram, analyse..." - requires student to draw/label diagram and analyse
-- **Case Study Analysis**: Provide realistic case study (e.g., business scenario) then ask analysis question
-
-8 MARK QUESTIONS:
-- Extended response requiring analysis + evaluation + judgement
-- Structure: Define → Explain → Analyse → Evaluate → Conclude
+${subjectContext.examples}
 
 🚨 CRITICAL CONSTRAINTS:
-✓ Questions must be DIRECTLY answerable from study content
+✓ Questions must be DIRECTLY answerable from the study content provided
 ✓ Use EXACT command words for mark allocation
 ✓ Every fact/term MUST appear in the study content
-✗ DO NOT introduce topics not covered
+✓ Generate questions appropriate for ${subjectContext.board}
+✗ DO NOT introduce topics not covered in the study content
+✗ DO NOT cross subject boundaries (e.g., no chemistry in physics questions)
 ✗ DO NOT invent data or scenarios not in notes
 
 Output ONLY valid JSON format.`;
@@ -222,10 +246,11 @@ Return ONLY this JSON structure:
 
 FINAL CHECK: The "marks" field in your response MUST be exactly ${marks}. Do not deviate from this.`;
 
-    console.log("[generate-simple-questions] Calling Bytez AI with marks:", marks);
+    console.log("[generate-simple-questions] Calling Gemini 2.5 Pro with marks:", marks);
     
+    // Use gemini-2.5-pro for better exam question quality
     const data = await callOpenAIWithTimeout({
-      model: "google/gemini-2.5-flash",
+      model: "google/gemini-2.5-pro",
       messages: [
         { role: "system", content: systemPrompt },
         { role: "user", content: userPrompt }
@@ -255,38 +280,6 @@ FINAL CHECK: The "marks" field in your response MUST be exactly ${marks}. Do not
 
 if (!parsed.questions || !Array.isArray(parsed.questions)) {
       throw new Error("Invalid response structure");
-    }
-
-    // Extra guard for Product Design: avoid chemistry-like content unless present in notes
-    if (subject && typeof subject === 'string' && subject.toLowerCase() === 'product-design') {
-      const combined = parsed.questions.map((q: any) => `${q.question}\n${q.markscheme || ''}`).join('\n');
-      if (chemistryNotInNotes(combined, studyContent)) {
-        console.warn("[generate-simple-questions] Detected chemistry-like content not in notes, retrying once with stricter guard.");
-        const retryData = await callOpenAIWithTimeout({
-          model: "google/gemini-2.5-flash",
-          messages: [
-            { role: "system", content: systemPrompt },
-            { role: "user", content: userPrompt + "\n\nIMPORTANT: Your previous draft included chemistry-style content (equations, element symbols, reaction arrows). Regenerate the questions strictly using ONLY the study content above. NO chemistry notation or calculations unless explicitly present in the notes." }
-          ],
-          max_completion_tokens: 3000,
-        });
-        const retryContent = retryData.choices?.[0]?.message?.content;
-        if (retryContent) {
-          try {
-            const retryParsed = JSON.parse(retryContent);
-            if (retryParsed?.questions && Array.isArray(retryParsed.questions)) {
-              const combinedRetry = retryParsed.questions.map((q: any) => `${q.question}\n${q.markscheme || ''}`).join('\n');
-              if (!chemistryNotInNotes(combinedRetry, studyContent)) {
-                parsed = retryParsed;
-              } else {
-                console.warn("[generate-simple-questions] Retry still contains chemistry-like content; returning first result.");
-              }
-            }
-          } catch (e) {
-            console.warn("[generate-simple-questions] Retry JSON parse failed:", e);
-          }
-        }
-      }
     }
 
     console.log("[generate-simple-questions] Successfully generated", parsed.questions.length, "questions");
