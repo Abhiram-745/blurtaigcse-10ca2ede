@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { ArrowLeft, CheckCircle, AlertTriangle, BookOpen, FileQuestion, PenLine, CheckCircle as CheckIcon } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
 import { supabase } from "@/integrations/supabase/client";
 import { LiveAnswerMarking } from "@/components/LiveAnswerMarking";
 
@@ -146,53 +147,83 @@ const Results = () => {
           </CardContent>
         </Card>
 
-        <div className="grid gap-6 md:grid-cols-2 mb-6">
-          <Card className="shadow-lg border-l-4 border-l-green-500">
-            <CardHeader className="bg-green-50 dark:bg-green-950/20">
-              <CardTitle className="flex items-center gap-2 text-green-700 dark:text-green-400">
-                <CheckCircle className="h-5 w-5" />
-                Key Ideas Covered ({keyIdeasCovered.length})
-              </CardTitle>
-            </CardHeader>
-            <CardContent className="pt-6">
-              {keyIdeasCovered.length > 0 ? (
-                <ul className="space-y-2">
-                  {keyIdeasCovered.map((idea, idx) => (
-                    <li key={idx} className="flex items-start gap-2">
-                      <CheckCircle className="h-4 w-4 text-green-600 mt-0.5 flex-shrink-0" />
-                      <span className="text-sm">{idea}</span>
-                    </li>
-                  ))}
-                </ul>
-              ) : (
-                <p className="text-sm text-muted-foreground">No key ideas covered</p>
-              )}
-            </CardContent>
-          </Card>
+        <TooltipProvider delayDuration={200}>
+          <div className="grid gap-6 md:grid-cols-2 mb-6">
+            <Card className="shadow-lg border-l-4 border-l-green-500">
+              <CardHeader className="bg-green-50 dark:bg-green-950/20">
+                <CardTitle className="flex items-center gap-2 text-green-700 dark:text-green-400">
+                  <CheckCircle className="h-5 w-5" />
+                  Key Ideas Covered ({keyIdeasCovered.length})
+                </CardTitle>
+              </CardHeader>
+              <CardContent className="pt-6">
+                {keyIdeasCovered.length > 0 ? (
+                  <ul className="space-y-2">
+                    {keyIdeasCovered.map((idea, idx) => {
+                      const matchingPoint = markingBreakdown?.find(
+                        p => p.awarded && p.markPoint.toLowerCase().includes(idea.toLowerCase().slice(0, 20))
+                      ) || markingBreakdown?.find(p => p.awarded);
+                      const explanation = matchingPoint?.explanation || "You demonstrated this concept correctly in your answer.";
+                      
+                      return (
+                        <Tooltip key={idx}>
+                          <TooltipTrigger asChild>
+                            <li className="flex items-start gap-2 cursor-help hover:bg-green-50/50 dark:hover:bg-green-900/20 p-1 rounded transition-colors">
+                              <CheckCircle className="h-4 w-4 text-green-600 mt-0.5 flex-shrink-0" />
+                              <span className="text-sm">{idea}</span>
+                            </li>
+                          </TooltipTrigger>
+                          <TooltipContent side="top" className="max-w-xs">
+                            <p className="text-sm">{explanation}</p>
+                          </TooltipContent>
+                        </Tooltip>
+                      );
+                    })}
+                  </ul>
+                ) : (
+                  <p className="text-sm text-muted-foreground">No key ideas covered</p>
+                )}
+              </CardContent>
+            </Card>
 
-          <Card className="shadow-lg border-l-4 border-l-yellow-500">
-            <CardHeader className="bg-yellow-50 dark:bg-yellow-950/20">
-              <CardTitle className="flex items-center gap-2 text-yellow-700 dark:text-yellow-400">
-                <AlertTriangle className="h-5 w-5" />
-                Key Ideas Missed ({keyIdeasMissed.length})
-              </CardTitle>
-            </CardHeader>
-            <CardContent className="pt-6">
-              {keyIdeasMissed.length > 0 ? (
-                <ul className="space-y-2">
-                  {keyIdeasMissed.map((idea, idx) => (
-                    <li key={idx} className="flex items-start gap-2">
-                      <AlertTriangle className="h-4 w-4 text-yellow-600 mt-0.5 flex-shrink-0" />
-                      <span className="text-sm">{idea}</span>
-                    </li>
-                  ))}
-                </ul>
-              ) : (
-                <p className="text-sm text-muted-foreground">All key ideas covered!</p>
-              )}
-            </CardContent>
-          </Card>
-        </div>
+            <Card className="shadow-lg border-l-4 border-l-yellow-500">
+              <CardHeader className="bg-yellow-50 dark:bg-yellow-950/20">
+                <CardTitle className="flex items-center gap-2 text-yellow-700 dark:text-yellow-400">
+                  <AlertTriangle className="h-5 w-5" />
+                  Key Ideas Missed ({keyIdeasMissed.length})
+                </CardTitle>
+              </CardHeader>
+              <CardContent className="pt-6">
+                {keyIdeasMissed.length > 0 ? (
+                  <ul className="space-y-2">
+                    {keyIdeasMissed.map((idea, idx) => {
+                      const matchingPoint = markingBreakdown?.find(
+                        p => !p.awarded && p.markPoint.toLowerCase().includes(idea.toLowerCase().slice(0, 20))
+                      ) || markingBreakdown?.find(p => !p.awarded);
+                      const explanation = matchingPoint?.explanation || "This key concept was missing or incomplete in your answer.";
+                      
+                      return (
+                        <Tooltip key={idx}>
+                          <TooltipTrigger asChild>
+                            <li className="flex items-start gap-2 cursor-help hover:bg-yellow-50/50 dark:hover:bg-yellow-900/20 p-1 rounded transition-colors">
+                              <AlertTriangle className="h-4 w-4 text-yellow-600 mt-0.5 flex-shrink-0" />
+                              <span className="text-sm">{idea}</span>
+                            </li>
+                          </TooltipTrigger>
+                          <TooltipContent side="top" className="max-w-xs">
+                            <p className="text-sm">{explanation}</p>
+                          </TooltipContent>
+                        </Tooltip>
+                      );
+                    })}
+                  </ul>
+                ) : (
+                  <p className="text-sm text-muted-foreground">All key ideas covered!</p>
+                )}
+              </CardContent>
+            </Card>
+          </div>
+        </TooltipProvider>
 
         <LiveAnswerMarking
           studentAnswer={answer}
