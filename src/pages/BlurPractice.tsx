@@ -370,7 +370,32 @@ const BlurPractice = () => {
     // Load progress from database (async)
     const totalPairsLocal = Math.ceil(subsectionsToUse.length / 2);
     
+    // Check if we're coming from navigation state with moveToNext - if so, skip database load
+    const navState = location.state as any;
+    const hasNavigationState = navState?.moveToNext || navState?.generateQuestion;
+    
     const initializeProgress = async () => {
+      // If we have navigation state, use that pair index instead of database
+      if (hasNavigationState && typeof navState?.currentPairIndex === 'number') {
+        const navPairIndex = navState.currentPairIndex;
+        const startIdx = navPairIndex * 2;
+        const initialPair = subsectionsToUse.slice(startIdx, startIdx + 2);
+        setCurrentPairIndex(navPairIndex);
+        setCurrentPairSubsections(initialPair);
+        setExpandedSections([0]);
+        
+        // Calculate memorization time
+        const textContent = initialPair.map(sub => {
+          const parser = new DOMParser();
+          const doc = parser.parseFromString(sub.html, 'text/html');
+          return doc.body.textContent || '';
+        }).join(' ');
+        const wordCount = textContent.trim().split(/\s+/).length;
+        const seconds = Math.ceil((wordCount / 50) * 10);
+        setMemorizationDuration(Math.max(30, seconds));
+        return;
+      }
+      
       const restoredIndex = await loadProgressFromDatabase(totalPairsLocal);
       
       const startIdx = restoredIndex * 2;
