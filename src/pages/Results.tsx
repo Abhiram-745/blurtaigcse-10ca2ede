@@ -225,6 +225,37 @@ const Results = () => {
           </div>
         </TooltipProvider>
 
+        {markingBreakdown && markingBreakdown.length > 0 && (
+          <Card className="mb-6 shadow-lg">
+            <CardHeader className="bg-blue-50 dark:bg-blue-950/20">
+              <CardTitle className="flex items-center gap-2 text-blue-700 dark:text-blue-400">
+                <BookOpen className="h-5 w-5" />
+                Mark Scheme ({markingBreakdown.length} points)
+              </CardTitle>
+            </CardHeader>
+            <CardContent className="pt-6">
+              <ul className="space-y-3">
+                {markingBreakdown.map((point, idx) => (
+                  <li key={idx} className="flex items-start gap-3 p-2 rounded-lg bg-muted/30">
+                    <Badge 
+                      variant={point.awarded ? "default" : "outline"} 
+                      className={`mt-0.5 ${point.awarded ? 'bg-green-600' : 'bg-transparent text-muted-foreground'}`}
+                    >
+                      {point.marks} mark{point.marks !== 1 ? 's' : ''}
+                    </Badge>
+                    <span className="text-sm flex-1">{point.markPoint}</span>
+                    {point.awarded ? (
+                      <CheckCircle className="h-4 w-4 text-green-600 flex-shrink-0" />
+                    ) : (
+                      <AlertTriangle className="h-4 w-4 text-yellow-600 flex-shrink-0" />
+                    )}
+                  </li>
+                ))}
+              </ul>
+            </CardContent>
+          </Card>
+        )}
+
         <LiveAnswerMarking
           studentAnswer={answer}
           markingBreakdown={markingBreakdown}
