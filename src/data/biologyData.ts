@@ -1,5 +1,5 @@
-// GCSE AQA Biology - Cell Biology Module
-// Module 1: Cell Structure with animated diagrams
+// GCSE AQA Biology - Full Module Structure matching Physics
+// Structured with chapters containing modules
 
 export interface PracticeItem {
   id: string;
@@ -21,19 +21,34 @@ export interface Subsection {
   study_group?: number;
 }
 
-export interface TopicSection {
+export interface Module {
   id: string;
   title: string;
   status: "ready" | "coming_soon";
   subsections: Subsection[];
 }
 
-export const biologyData: TopicSection[] = [
+export interface BiologyChapter {
+  id: string;
+  title: string;
+  status: "ready" | "coming_soon";
+  subsections: Subsection[];
+  modules?: Module[];
+}
+
+// Cell Biology Chapter with modules
+export const biologyData: BiologyChapter[] = [
   {
-    id: "cell-structure",
-    title: "Cell Structure",
+    id: "cell-biology",
+    title: "Cell Biology",
     status: "ready",
-    subsections: [
+    subsections: [],
+    modules: [
+      {
+        id: "cell-structure-module",
+        title: "Module 1: Cell Structure",
+        status: "ready",
+        subsections: [
       {
         id: "4-1-2-1-chromosomes",
         title: "4.1.2.1 — Chromosomes",
@@ -1375,17 +1390,21 @@ export const biologyData: TopicSection[] = [
         ]
       }
     ]
+      }
+    ]
   },
   {
     id: "cell-transport",
     title: "Cell Transport",
     status: "coming_soon",
-    subsections: []
+    subsections: [],
+    modules: []
   },
   {
     id: "cell-division",
     title: "Cell Division",
     status: "coming_soon",
-    subsections: []
+    subsections: [],
+    modules: []
   }
 ];

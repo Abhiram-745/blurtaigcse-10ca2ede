@@ -91,6 +91,7 @@ const App = () => (
             <Route path="/biology" element={<BiologyDashboard />} />
             <Route path="/biology/:chapterId" element={<BiologySections />} />
             <Route path="/biology/:chapterId/:topicId" element={<BiologyTopicView />} />
+            <Route path="/biology/blur-practice/:topicId/:moduleId/:subsectionId" element={<BlurPractice />} />
             <Route path="/biology/blur-practice/:topicId/:subsectionId" element={<BlurPractice />} />
             <Route path="/section/:id" element={<SectionReader />} />
             <Route path="/blur/:id" element={<BlurExercise />} />

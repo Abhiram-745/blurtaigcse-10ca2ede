@@ -84,6 +84,12 @@ const subjectConfigs = {
     color: "from-purple-500 to-pink-500",
     sectionsRoute: "/physics/sections",
   },
+  biology: {
+    name: "Biology",
+    icon: Sparkles,
+    color: "from-emerald-500 to-teal-500",
+    sectionsRoute: "/biology",
+  },
   "product-design": {
     name: "Product Design",
     icon: Palette,
