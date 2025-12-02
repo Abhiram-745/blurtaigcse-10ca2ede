@@ -128,15 +128,31 @@ Output ONLY valid JSON format.`;
 
 ${studyContent}
 
-🎯 Create exactly ${numQuestions} GCSE AQA exam questions with EXACTLY ${marks} marks.
+🎯 Create exactly ${numQuestions} GCSE AQA exam questions with EXACTLY ${marks} marks total.
 
-⚠️ CRITICAL CONSTRAINTS:
-✓ Question MUST be worth EXACTLY ${marks} marks
+⚠️ CRITICAL MARK CONSTRAINTS - YOU MUST FOLLOW THESE:
+✓ The question MUST be worth EXACTLY ${marks} marks - NO MORE, NO LESS
+✓ If ${marks} = 3, create a 3-mark question (short answer with 3 marking points)
+✓ If ${marks} = 4, create a 4-mark question (extended answer with 4 marking points)
+✓ If ${marks} = 6, create a 6-mark question (analysis question)
+✓ If ${marks} = 8, create an 8-mark question (evaluation question)
+✓ DO NOT create questions worth more marks than requested
+✓ The markscheme MUST have exactly ${marks} marking points totaling ${marks} marks
+
+⚠️ CONTENT CONSTRAINTS:
 ✓ Every word of your question must relate to concepts in the study content above
 ✓ Do NOT introduce new topics, materials, or processes not mentioned above
 ✓ Questions must be DIRECTLY answerable using ONLY the information provided
 ✓ Use clear, simple language
 ✓ Include questionType field matching question style
+
+${marks <= 4 ? `
+📝 SHORT/MEDIUM QUESTION (${marks} marks):
+- Use command words appropriate for ${marks} marks: State, Describe, Explain, Calculate
+- Keep the question focused and specific
+- Markscheme should have ${marks} distinct marking points, each worth 1 mark
+- Example format: "Explain why [concept from study content]. [${marks} marks]"
+` : ''}
 
 ${marks === 6 && questionType === "diagram" ? `
 📊 DIAGRAM ANALYSIS QUESTION (6 marks):
@@ -173,37 +189,43 @@ ${subject && subject.toLowerCase() === 'product-design' ? `ADDITIONAL FILTERS FO
 - If such symbols or equations do NOT appear in the study content above, you MUST NOT include them in the question or markscheme.
 - Focus on sources, origins, material categories, properties, provenance, environmental/ethical impact, supply chains, and responsible design.` : ''}
 
-MARK SCHEME REQUIREMENTS:
-Create detailed mark schemes following AQA style:
+MARK SCHEME REQUIREMENTS (MUST have exactly ${marks} marking points):
+Create detailed mark schemes following AQA exam paper style:
 
-For MULTIPLE CHOICE (1 mark):
-"**Mark Scheme:**\n\n✅ Correct answer: [Option letter]\n❌ All other options: 0 marks"
+${marks <= 2 ? `
+For ${marks} MARK question:
+"**Mark Scheme:**\\n\\n${Array.from({length: marks}, (_, i) => `• [Point ${i+1}] (1 mark)`).join('\\n')}\\n\\n**Maximum: ${marks} marks**"
+` : ''}
 
-For SHORT ANSWER (2 marks):
-"**Mark Scheme:**\n\n1 mark: [First acceptable point]\n1 mark: [Second acceptable point]\n\n✅ **Maximum: 2 marks**\n❌ No marks for [unacceptable answers]"
+${marks === 3 ? `
+For 3 MARK question:
+"**Mark Scheme:**\\n\\n• [First point] (1)\\n• [Second point] (1)\\n• [Third point] (1)\\n\\n**Maximum: 3 marks**"
+` : ''}
 
-For SHORT ANSWER (3 marks):
-"**Mark Scheme:**\n\n1 mark: [First point]\n1 mark: [Second point]\n1 mark: [Third point]\n\n✅ **Maximum: 3 marks**\n❌ Do not accept [unacceptable answers]"
+${marks === 4 ? `
+For 4 MARK question:
+"**Mark Scheme:**\\n\\n• [First point] (1)\\n• [Second point] (1)\\n• [Third point] (1)\\n• [Fourth point] (1)\\n\\n**Maximum: 4 marks**"
+` : ''}
 
-For EXTENDED (4 marks):
-"**Mark Scheme:**\n\n1 mark: [First point]\n1 mark: [Second point]\n1 mark: [Third point]\n1 mark: [Fourth point]\n\n✅ **Maximum: 4 marks**\n❌ No credit for [unacceptable answers]"
+${marks === 6 ? `
+For 6 MARK question:
+"**Mark Scheme:**\\n\\n**Knowledge/Application (AO1/AO2):**\\n• [Point 1] (1)\\n• [Point 2] (1)\\n• [Point 3] (1)\\n\\n**Analysis (AO3):**\\n• [Point 4] (1)\\n• [Point 5] (1)\\n• [Point 6 - chain of reasoning] (1)\\n\\n**Maximum: 6 marks**"
+` : ''}
 
-For DIAGRAM ANALYSIS (6 marks):
-"**Mark Scheme:**\n\n**Diagram (3 marks):**\n1 mark: Correctly drawn axes/structure\n1 mark: Correct labelling of key elements\n1 mark: Accurate representation of change/relationship\n\n**Analysis (3 marks):**\n1 mark: [First analytical point]\n1 mark: [Second analytical point]\n1 mark: [Third analytical point with link to diagram]\n\n✅ **Maximum: 6 marks**"
-
-For CASE STUDY ANALYSIS (6 marks):
-"**Mark Scheme:**\n\n1 mark: [First analytical point with case study reference]\n1 mark: [Second analytical point with data]\n1 mark: [Third analytical point]\n1 mark: [Fourth analytical point showing chain of reasoning]\n1 mark: [Fifth analytical point]\n1 mark: [Sixth analytical point with conclusion]\n\n✅ **Maximum: 6 marks**\n❌ Award marks only for points that reference the case study context"
-
-For EVALUATION (8 marks):
-"**Mark Scheme:**\n\nLevel 3 (7-8 marks): Detailed analysis of multiple factors + well-reasoned evaluation with clear judgement\nLevel 2 (4-6 marks): Some analysis + limited evaluation\nLevel 1 (1-3 marks): Basic knowledge shown, minimal analysis\n\n**Specific points:**\n1 mark: [Point 1]\n1 mark: [Point 2]\n1 mark: [Point 3]\n1 mark: [Point 4]\n1 mark: [Point 5]\n1 mark: [Point 6]\n1 mark: [Point 7]\n1 mark: [Point 8 - evaluation/judgement]\n\n✅ **Maximum: 8 marks**"
+${marks === 8 ? `
+For 8 MARK question:
+"**Mark Scheme:**\\n\\n**Level 3 (7-8 marks):** Detailed analysis + well-reasoned evaluation with clear judgement\\n**Level 2 (4-6 marks):** Some analysis + limited evaluation\\n**Level 1 (1-3 marks):** Basic knowledge, minimal analysis\\n\\n**Indicative content:**\\n• [Point 1]\\n• [Point 2]\\n• [Point 3]\\n• [Point 4]\\n• [Point 5]\\n• [Point 6]\\n• [Point 7]\\n• [Point 8 - evaluation/judgement]\\n\\n**Maximum: 8 marks**"
+` : ''}
 
 Return ONLY this JSON structure:
-{ "questions": [ { "question": string, "questionType": string, "marks": number, "expectedKeyPoints": string[], "markscheme": string, "caseStudy"?: string } ] }`;
+{ "questions": [ { "question": string, "questionType": string, "marks": ${marks}, "expectedKeyPoints": string[], "markscheme": string, "caseStudy"?: string } ] }
 
-    console.log("[generate-simple-questions] Calling Bytez AI...");
+FINAL CHECK: The "marks" field in your response MUST be exactly ${marks}. Do not deviate from this.`;
+
+    console.log("[generate-simple-questions] Calling Bytez AI with marks:", marks);
     
     const data = await callOpenAIWithTimeout({
-      model: "google/gemini-2.5-pro",
+      model: "google/gemini-2.5-flash",
       messages: [
         { role: "system", content: systemPrompt },
         { role: "user", content: userPrompt }
@@ -241,7 +263,7 @@ if (!parsed.questions || !Array.isArray(parsed.questions)) {
       if (chemistryNotInNotes(combined, studyContent)) {
         console.warn("[generate-simple-questions] Detected chemistry-like content not in notes, retrying once with stricter guard.");
         const retryData = await callOpenAIWithTimeout({
-          model: "google/gemini-2.5-pro",
+          model: "google/gemini-2.5-flash",
           messages: [
             { role: "system", content: systemPrompt },
             { role: "user", content: userPrompt + "\n\nIMPORTANT: Your previous draft included chemistry-style content (equations, element symbols, reaction arrows). Regenerate the questions strictly using ONLY the study content above. NO chemistry notation or calculations unless explicitly present in the notes." }
