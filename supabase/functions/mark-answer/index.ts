@@ -53,7 +53,7 @@ ${isDiagramQuestion && hasImage ? `
 - Award diagram marks generously if core elements are present, even if hand-drawn or rough
 ` : ''}
 
-Return JSON with: score (0-${marks}), keyIdeasCovered (array of strings showing what they got right), keyIdeasMissed (array of strings showing what they missed), feedback (constructive string), and modelAnswer (a concise model answer - short for 2-3 mark questions, longer for 4+ mark questions)`;
+Return JSON with: score (0-${marks}), keyIdeasCovered (array of strings showing what they got right), keyIdeasMissed (array of strings showing what they missed), feedback (constructive string), modelAnswer (a well-structured model answer), and markingBreakdown (array with improved suggestions)`;
 
     const userPrompt = `Question (${marks} marks): ${question}
 
@@ -86,7 +86,7 @@ Return your response as JSON with this exact structure:
   "keyIdeasCovered": ["list specific correct points from the answer"],
   "keyIdeasMissed": ["list specific missing or incorrect points"],
   "feedback": "Clear feedback explaining: (1) what they got right, (2) what they missed, (3) how to improve",
-  "modelAnswer": "A well-structured model answer. Keep it concise (2-3 sentences) for questions worth 2-3 marks. Provide more detail (4-6 sentences with clear structure) for questions worth 4+ marks.",
+  "modelAnswer": "A well-structured model answer that would score full marks. Format appropriately for the question type.",
   "markscheme": "${markscheme ? markscheme.replace(/"/g, '\\"').replace(/\n/g, '\\n') : 'No markscheme available'}",
   "markingBreakdown": [
     {
@@ -94,12 +94,17 @@ Return your response as JSON with this exact structure:
       "studentText": "The exact phrase from the student's answer that matches this point (or null if not found)",
       "awarded": true or false,
       "marks": number of marks for this point,
-      "explanation": "A brief 1-2 sentence explanation for why this mark was awarded/not awarded. If awarded: explain what the student did well. If not awarded: explain what was missing or incorrect."
+      "explanation": "Brief explanation for why this mark was awarded/not awarded",
+      "improvedSentence": "If NOT awarded: Write a sentence that incorporates this marking point into the student's existing answer style - something they could add to improve their answer. If awarded: null"
     }
   ]
 }
 
-CRITICAL: The markingBreakdown array should break down each marking point individually and match it to specific text from the student's answer. This allows precise highlighting of which parts earned marks. If a student didn't mention something, set studentText to null. Always include a helpful explanation for each marking point.
+CRITICAL FOR MISSED POINTS:
+- For each marking point NOT awarded, provide an "improvedSentence" field
+- This sentence should be written in the student's style, showing HOW to incorporate the missed concept
+- Example: If student wrote about price increases but missed mentioning demand shifts, improvedSentence could be: "This price increase leads to a leftward shift in the demand curve as consumers seek alternatives."
+- The improved sentence helps students understand exactly what to add to their answer
 
 IMPORTANT: Be generous with marks. Students should get high scores for correct answers.`;
 

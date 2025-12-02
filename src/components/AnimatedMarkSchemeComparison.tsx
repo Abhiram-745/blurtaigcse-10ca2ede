@@ -7,6 +7,8 @@ interface MarkingPoint {
   studentText: string | null;
   awarded: boolean;
   marks: number;
+  explanation?: string;
+  improvedSentence?: string | null;
 }
 
 interface AnimatedMarkSchemeComparisonProps {
@@ -305,6 +307,17 @@ const AnimatedMarkSchemeComparison = ({ markingBreakdown, studentAnswer }: Anima
                           </span>
                         )}
                       </div>
+                      {/* Show improved sentence suggestion for missed points */}
+                      {isHighlighted && !point.awarded && point.improvedSentence && (
+                        <div className="mt-3 p-3 bg-gradient-to-r from-emerald-50 to-teal-50 dark:from-emerald-950/40 dark:to-teal-950/40 rounded-lg border border-emerald-200 dark:border-emerald-800 animate-fade-in">
+                          <p className="text-xs font-semibold text-emerald-700 dark:text-emerald-300 mb-1.5 flex items-center gap-1">
+                            💡 Add this to your answer:
+                          </p>
+                          <p className="text-sm text-emerald-800 dark:text-emerald-200 italic leading-relaxed">
+                            "{point.improvedSentence}"
+                          </p>
+                        </div>
+                      )}
                     </div>
                   </div>
                 </div>
