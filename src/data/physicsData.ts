@@ -1194,7 +1194,8 @@ export const physicsData: TopicSection[] = [
             ]
           }
         ]
-      }
+      },
+      emWavesModule
     ],
     subsections: []
   },
@@ -3183,15 +3184,9 @@ export const physicsData: TopicSection[] = [
                 expected_keywords: ["strobe light", "measure multiple waves", "eye level", "level tank"]
               }
             ]
-          }
+          },
+          infraredSubsection
         ]
-      },
-      emWavesModule,
-      {
-        id: "waves-practice-module",
-        title: "Module 3: Required Practicals",
-        status: "ready",
-        subsections: [infraredSubsection]
       }
     ]
   }
