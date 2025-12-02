@@ -41,6 +41,9 @@ import QuestionBank from "./pages/QuestionBank";
 import EconomicsChapters from "./pages/EconomicsChapters";
 import EconomicsSections from "./pages/EconomicsSections";
 import EconomicsTopicView from "./pages/EconomicsTopicView";
+import BiologyDashboard from "./pages/BiologyDashboard";
+import BiologySections from "./pages/BiologySections";
+import BiologyTopicView from "./pages/BiologyTopicView";
 
 const queryClient = new QueryClient();
 
@@ -85,6 +88,10 @@ const App = () => (
             <Route path="/economics/topic/:chapterId/:moduleId/:subsectionId" element={<EconomicsTopicView />} />
             <Route path="/economics/blur-practice/:topicId/:moduleId/:subsectionId" element={<BlurPractice />} />
             <Route path="/blur-practice/:topicId/:subsectionId" element={<BlurPractice />} />
+            <Route path="/biology" element={<BiologyDashboard />} />
+            <Route path="/biology/:chapterId" element={<BiologySections />} />
+            <Route path="/biology/:chapterId/:topicId" element={<BiologyTopicView />} />
+            <Route path="/biology/blur-practice/:topicId/:subsectionId" element={<BlurPractice />} />
             <Route path="/section/:id" element={<SectionReader />} />
             <Route path="/blur/:id" element={<BlurExercise />} />
             <Route path="/results/:id" element={<Results />} />

@@ -27,6 +27,7 @@ import {
   HelpCircle,
   LogOut,
   GraduationCap,
+  Dna,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
@@ -34,6 +35,7 @@ import { Separator } from "@/components/ui/separator";
 const subjects = [
   { name: "Chemistry", icon: Beaker, route: "/dashboard?subject=chemistry" },
   { name: "Physics", icon: Zap, route: "/dashboard?subject=physics" },
+  { name: "Biology", icon: Dna, route: "/biology" },
   { name: "Product Design", icon: Palette, route: "/dashboard?subject=product-design" },
   { name: "English", icon: BookOpen, route: "/dashboard?subject=english" },
   { name: "Geography", icon: Globe, route: "/dashboard?subject=geography" },
