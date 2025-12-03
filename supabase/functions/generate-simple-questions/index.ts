@@ -286,7 +286,15 @@ For 8 MARK MULTI-PART question:
 Return ONLY this JSON structure:
 { "questions": [ { "question": string, "questionType": string, "marks": ${marks}, "expectedKeyPoints": string[], "markscheme": string, "caseStudy"?: string } ] }
 
-FINAL CHECK: The "marks" field in your response MUST be exactly ${marks}. Do not deviate from this.`;
+⚠️ FINAL VALIDATION CHECKLIST - ALL MUST BE TRUE:
+1. The "marks" field MUST equal exactly ${marks}
+2. The question MUST be worth exactly ${marks} marks total
+3. For ${marks} marks, the markscheme MUST have exactly ${marks} marking points
+4. If ${marks} = 8: The question MUST have multiple parts (a), (b), (c) adding to 8 marks
+5. DO NOT create a question worth fewer marks than ${marks}
+6. DO NOT create a question worth more marks than ${marks}
+
+REJECT ANY OUTPUT where marks ≠ ${marks}`;
 
     console.log("[generate-simple-questions] Calling Gemini 2.5 Pro with marks:", marks);
     
@@ -324,7 +332,13 @@ if (!parsed.questions || !Array.isArray(parsed.questions)) {
       throw new Error("Invalid response structure");
     }
 
-    console.log("[generate-simple-questions] Successfully generated", parsed.questions.length, "questions");
+    // ENFORCE MARKS: Override any incorrect marks values
+    parsed.questions = parsed.questions.map((q: any) => ({
+      ...q,
+      marks: marks // Force the marks to match the requested value
+    }));
+
+    console.log("[generate-simple-questions] Successfully generated", parsed.questions.length, "questions with enforced marks:", marks);
 
     return new Response(
       JSON.stringify(parsed),
