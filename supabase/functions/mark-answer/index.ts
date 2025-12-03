@@ -53,7 +53,9 @@ ${isDiagramQuestion && hasImage ? `
 - Award diagram marks generously if core elements are present, even if hand-drawn or rough
 ` : ''}
 
-Return JSON with: score (0-${marks}), keyIdeasCovered (array of strings showing what they got right), keyIdeasMissed (array of strings showing what they missed), feedback (constructive string), modelAnswer (a well-structured model answer), and markingBreakdown (array with improved suggestions)`;
+ALWAYS return a modelAnswer field with a complete, well-written model answer that would score full marks.
+
+Return JSON with: score (0-${marks}), keyIdeasCovered (array of strings showing what they got right), keyIdeasMissed (array of strings showing what they missed), feedback (constructive string), modelAnswer (REQUIRED: a well-structured model answer that would score full marks - this is MANDATORY), and markingBreakdown (array with improved suggestions)`;
 
     const userPrompt = `Question (${marks} marks): ${question}
 

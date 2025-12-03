@@ -1,12 +1,15 @@
 import { useLocation, useNavigate } from "react-router-dom";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { ArrowLeft, CheckCircle, AlertTriangle, BookOpen, FileQuestion, PenLine, CheckCircle as CheckIcon } from "lucide-react";
+import { ArrowLeft, CheckCircle, AlertTriangle, BookOpen, FileQuestion, PenLine, CheckCircle as CheckIcon, Star } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
 import { supabase } from "@/integrations/supabase/client";
 import { LiveAnswerMarking } from "@/components/LiveAnswerMarking";
+import AnimatedMarkSchemeComparison from "@/components/AnimatedMarkSchemeComparison";
+import MarkdownRenderer from "@/components/MarkdownRenderer";
+import { toast } from "sonner";
 
 interface MarkingPoint {
   markPoint: string;
@@ -14,6 +17,7 @@ interface MarkingPoint {
   awarded: boolean;
   marks: number;
   explanation?: string;
+  improvedSentence?: string | null;
 }
 
 interface FeedbackState {
@@ -31,22 +35,25 @@ interface FeedbackState {
   photoImage?: string;
   currentPairIndex?: number;
   previousQuestionResults?: any[];
-  subject?: "physics" | "product-design" | "chemistry" | "economics";
+  subject?: "physics" | "product-design" | "chemistry" | "economics" | "biology" | "geography";
   moduleId?: string;
   markingBreakdown?: MarkingPoint[];
+  modelAnswer?: string;
+  markscheme?: string;
 }
 
 const Results = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const feedbackData = location.state as FeedbackState;
+  const [isQuestionStarred, setIsQuestionStarred] = useState(false);
 
   if (!feedbackData) {
     navigate("/dashboard");
     return null;
   }
 
-  const { question, answer, keyIdeasCovered, keyIdeasMissed, score, maxMarks, topicId, subsectionId, subsectionTitle, questionType, photoImage, feedbackText, currentPairIndex, previousQuestionResults, subject, moduleId, markingBreakdown } = feedbackData;
+  const { question, answer, keyIdeasCovered, keyIdeasMissed, score, maxMarks, topicId, subsectionId, subsectionTitle, questionType, photoImage, feedbackText, currentPairIndex, previousQuestionResults, subject, moduleId, markingBreakdown, modelAnswer, markscheme } = feedbackData;
   const percentage = Math.round((score / maxMarks) * 100);
 
   console.log("Results page - received currentPairIndex:", currentPairIndex);
@@ -55,6 +62,8 @@ const Results = () => {
   const basePath = subject === 'physics' ? '/physics/blur-practice' : 
                    subject === 'product-design' ? '/product-design/blur-practice' :
                    subject === 'economics' ? '/economics/blur-practice' :
+                   subject === 'biology' ? '/biology/blur-practice' :
+                   subject === 'geography' ? '/geography/blur-practice' :
                    '/blur-practice';
   
   // Build the full navigation path
@@ -63,6 +72,51 @@ const Results = () => {
       return `${basePath}/${topicId}/${moduleId}/${subsectionId}`;
     }
     return `${basePath}/${topicId}/${subsectionId}`;
+  };
+
+  // Handle star question toggle
+  const handleToggleStarQuestion = async () => {
+    try {
+      const { data: { user } } = await supabase.auth.getUser();
+      if (!user) {
+        toast.error("Please login to star questions");
+        return;
+      }
+
+      if (isQuestionStarred) {
+        const { error } = await supabase
+          .from("starred_questions")
+          .delete()
+          .eq("user_id", user.id)
+          .eq("question_text", question);
+
+        if (error) throw error;
+        setIsQuestionStarred(false);
+        toast.success("Question removed from starred");
+      } else {
+        const { error } = await supabase
+          .from("starred_questions")
+          .insert({
+            user_id: user.id,
+            question_text: question,
+            question_type: questionType,
+            marks: maxMarks,
+            markscheme: markscheme || null,
+            model_answer: modelAnswer || null,
+            topic_slug: topicId,
+            subsection_slug: subsectionId,
+            subsection_title: subsectionTitle || null,
+            subject: subject || "chemistry"
+          });
+
+        if (error) throw error;
+        setIsQuestionStarred(true);
+        toast.success("Question added to question bank!");
+      }
+    } catch (error) {
+      console.error("Error toggling star:", error);
+      toast.error("Failed to star question");
+    }
   };
 
   // Save practice session to database
@@ -115,9 +169,20 @@ const Results = () => {
               <Badge variant="outline" className="text-sm">
                 {questionType === "exam" ? "Exam Question" : "Blurt Question"}
               </Badge>
-              <Badge variant="outline" className="text-sm">
-                {maxMarks} marks
-              </Badge>
+              <div className="flex items-center gap-2">
+                <Badge variant="outline" className="text-sm">
+                  {maxMarks} marks
+                </Badge>
+                <Button
+                  variant="ghost"
+                  size="sm"
+                  onClick={handleToggleStarQuestion}
+                  className={`gap-2 ${isQuestionStarred ? 'text-yellow-500 hover:text-yellow-600' : 'text-muted-foreground hover:text-yellow-500'}`}
+                >
+                  <Star className={`h-4 w-4 ${isQuestionStarred ? 'fill-yellow-500' : ''}`} />
+                  {isQuestionStarred ? "Starred" : "Star"}
+                </Button>
+              </div>
             </div>
             <CardTitle className="text-xl font-semibold">Question</CardTitle>
           </CardHeader>
@@ -137,6 +202,14 @@ const Results = () => {
             </div>
           </CardHeader>
         </Card>
+
+        {/* Animated Mark Scheme Comparison */}
+        {markingBreakdown && markingBreakdown.length > 0 && (
+          <AnimatedMarkSchemeComparison 
+            markingBreakdown={markingBreakdown}
+            studentAnswer={answer}
+          />
+        )}
 
         <Card className="mb-6 shadow-lg">
           <CardHeader className="bg-muted/50">
@@ -225,33 +298,32 @@ const Results = () => {
           </div>
         </TooltipProvider>
 
-        {markingBreakdown && markingBreakdown.length > 0 && (
-          <Card className="mb-6 shadow-lg">
-            <CardHeader className="bg-blue-50 dark:bg-blue-950/20">
-              <CardTitle className="flex items-center gap-2 text-blue-700 dark:text-blue-400">
+        {/* Model Answer Section */}
+        {modelAnswer && (
+          <Card className="mb-6 shadow-lg border-l-4 border-l-purple-500">
+            <CardHeader className="bg-purple-50 dark:bg-purple-950/20">
+              <CardTitle className="flex items-center gap-2 text-purple-700 dark:text-purple-400">
                 <BookOpen className="h-5 w-5" />
-                Mark Scheme ({markingBreakdown.length} points)
+                ✨ Model Answer
               </CardTitle>
             </CardHeader>
             <CardContent className="pt-6">
-              <ul className="space-y-3">
-                {markingBreakdown.map((point, idx) => (
-                  <li key={idx} className="flex items-start gap-3 p-2 rounded-lg bg-muted/30">
-                    <Badge 
-                      variant={point.awarded ? "default" : "outline"} 
-                      className={`mt-0.5 ${point.awarded ? 'bg-green-600' : 'bg-transparent text-muted-foreground'}`}
-                    >
-                      {point.marks} mark{point.marks !== 1 ? 's' : ''}
-                    </Badge>
-                    <span className="text-sm flex-1">{point.markPoint}</span>
-                    {point.awarded ? (
-                      <CheckCircle className="h-4 w-4 text-green-600 flex-shrink-0" />
-                    ) : (
-                      <AlertTriangle className="h-4 w-4 text-yellow-600 flex-shrink-0" />
-                    )}
-                  </li>
-                ))}
-              </ul>
+              <MarkdownRenderer content={modelAnswer} />
+            </CardContent>
+          </Card>
+        )}
+
+        {/* Markscheme Section */}
+        {markscheme && (
+          <Card className="mb-6 shadow-lg border-l-4 border-l-blue-500">
+            <CardHeader className="bg-blue-50 dark:bg-blue-950/20">
+              <CardTitle className="flex items-center gap-2 text-blue-700 dark:text-blue-400">
+                <FileQuestion className="h-5 w-5" />
+                📋 Official Markscheme
+              </CardTitle>
+            </CardHeader>
+            <CardContent className="pt-6">
+              <MarkdownRenderer content={markscheme} />
             </CardContent>
           </Card>
         )}
@@ -311,6 +383,8 @@ const Results = () => {
               const sectionsPath = subject === 'physics' ? '/physics/sections' : 
                                    subject === 'product-design' ? '/product-design/sections' :
                                    subject === 'economics' ? '/economics/chapters' :
+                                   subject === 'biology' ? '/biology/sections' :
+                                   subject === 'geography' ? '/geography/sections' :
                                    '/sections';
               navigate(sectionsPath);
             }}
