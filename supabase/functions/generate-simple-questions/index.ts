@@ -221,11 +221,30 @@ ${marks === 6 && questionType === "case-study" ? `
 ` : ''}
 
 ${marks === 8 ? `
-📝 EVALUATION QUESTION (8 marks):
-- Requires extended response with analysis AND evaluation
-- Use command words: "Evaluate", "To what extent", "Discuss"
-- Student must: analyse multiple factors, consider pros/cons, make judgement
-- Example: "Evaluate the view that [proposition related to study content]." [8 marks]
+📝 MULTI-PART EVALUATION QUESTION (8 marks total):
+⚠️ CRITICAL: For 8 marks, create a MULTI-PART question like real GCSE papers with parts (a), (b), (c):
+
+REQUIRED STRUCTURE FOR 8-MARK QUESTIONS:
+Create a question with MULTIPLE PARTS that add up to 8 marks total. Example structures:
+- (a) State... [1 mark] + (b) Describe... [3 marks] + (c) Explain... [4 marks] = 8 marks
+- (a) Define... [2 marks] + (b) Explain... [3 marks] + (c) Evaluate... [3 marks] = 8 marks
+- (a) State... [1 mark] + (b) Calculate... [2 marks] + (c) Explain... [2 marks] + (d) Suggest... [3 marks] = 8 marks
+
+FORMAT YOUR QUESTION LIKE THIS:
+"Topic: [Topic Name]
+
+(a) State [simple recall question]. [1 mark]
+
+(b) Describe [process/concept from study content]. [3 marks]
+
+(c) Explain [why/how aspect requiring analysis]. [4 marks]"
+
+The question MUST:
+- Have multiple parts labeled (a), (b), (c), etc.
+- Progress from simple recall to complex analysis
+- Have marks that add up to EXACTLY 8
+- Test different levels of understanding
+- Be directly answerable from the study content
 ` : ''}
 
 ${previousQuestions.length > 0 ? `AVOID repeating these previous questions:
@@ -260,8 +279,8 @@ For 6 MARK question:
 ` : ''}
 
 ${marks === 8 ? `
-For 8 MARK question:
-"**Mark Scheme:**\\n\\n**Level 3 (7-8 marks):** Detailed analysis + well-reasoned evaluation with clear judgement\\n**Level 2 (4-6 marks):** Some analysis + limited evaluation\\n**Level 1 (1-3 marks):** Basic knowledge, minimal analysis\\n\\n**Indicative content:**\\n• [Point 1]\\n• [Point 2]\\n• [Point 3]\\n• [Point 4]\\n• [Point 5]\\n• [Point 6]\\n• [Point 7]\\n• [Point 8 - evaluation/judgement]\\n\\n**Maximum: 8 marks**"
+For 8 MARK MULTI-PART question:
+"**Mark Scheme:**\\n\\n**(a)** [1 mark]\\n• [Answer point] (1)\\n\\n**(b)** [3 marks]\\n• [First point] (1)\\n• [Second point] (1)\\n• [Third point] (1)\\n\\n**(c)** [4 marks]\\n• [First explanation point] (1)\\n• [Second explanation point] (1)\\n• [Third explanation point] (1)\\n• [Fourth explanation point/link] (1)\\n\\n**Total: 8 marks**"
 ` : ''}
 
 Return ONLY this JSON structure:

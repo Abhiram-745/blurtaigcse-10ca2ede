@@ -14,6 +14,8 @@ import StepLoadingSpinner from "@/components/StepLoadingSpinner";
 import MarkingAnimation from "@/components/MarkingAnimation";
 import AnimatedMarkSchemeComparison from "@/components/AnimatedMarkSchemeComparison";
 import { StarButton } from "@/components/StarButton";
+import { PhotoUpload } from "@/components/PhotoUpload";
+import { DrawingCanvas } from "@/components/DrawingCanvas";
 
 interface PracticeExamQuestionsProps {
   sectionContent: string;
@@ -586,18 +588,50 @@ const PracticeExamQuestions = ({ sectionContent, sectionTitle, subsections, subj
                 </div>
               )}
 
-              {/* Placeholder for Photo/Whiteboard methods */}
-              {!feedback && (submissionMethod === 'photo' || submissionMethod === 'whiteboard') && (
-                <div className="space-y-4">
-                  <div className="p-6 bg-muted rounded-lg text-center">
-                    <p className="text-muted-foreground">
-                      {submissionMethod === 'photo' ? 'Photo upload' : 'Whiteboard drawing'} feature coming soon!
-                    </p>
-                  </div>
+              {/* Photo Upload */}
+              {!feedback && submissionMethod === 'photo' && !isSubmitting && (
+                <div className="space-y-4 animate-fade-in">
+                  <PhotoUpload
+                    studyContent={sectionContent}
+                    questions={currentQuestion ? [currentQuestion.question] : []}
+                    currentQuestion={currentQuestion?.question || ""}
+                    topicId=""
+                    subsectionId=""
+                    subsectionTitle={sectionTitle}
+                    questionType="exam"
+                    marks={currentQuestion?.marks || selectedMarks}
+                    subject={subject as any}
+                    moduleId={moduleId}
+                  />
                   <Button
                     onClick={() => setSubmissionMethod(null)}
                     variant="outline"
-                    className="w-full"
+                    className="w-full btn-press"
+                  >
+                    Back to Methods
+                  </Button>
+                </div>
+              )}
+
+              {/* Whiteboard Drawing */}
+              {!feedback && submissionMethod === 'whiteboard' && !isSubmitting && (
+                <div className="space-y-4 animate-fade-in">
+                  <DrawingCanvas
+                    studyContent={sectionContent}
+                    questions={currentQuestion ? [currentQuestion.question] : []}
+                    currentQuestion={currentQuestion?.question || ""}
+                    topicId=""
+                    subsectionId=""
+                    subsectionTitle={sectionTitle}
+                    questionType="exam"
+                    marks={currentQuestion?.marks || selectedMarks}
+                    subject={subject as any}
+                    moduleId={moduleId}
+                  />
+                  <Button
+                    onClick={() => setSubmissionMethod(null)}
+                    variant="outline"
+                    className="w-full btn-press"
                   >
                     Back to Methods
                   </Button>
