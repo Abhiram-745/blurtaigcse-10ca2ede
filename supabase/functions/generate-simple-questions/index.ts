@@ -36,16 +36,17 @@ async function callOpenAIWithTimeout(payload: any, timeoutMs = 45000) {
 function getSubjectContext(subject: string) {
   const subjectLower = (subject || 'chemistry').toLowerCase();
   
-  const contexts: Record<string, { board: string; style: string; examples: string }> = {
+  const contexts: Record<string, { board: string; style: string; examples: string; forbidden: string }> = {
     'physics': {
       board: 'AQA GCSE Physics',
-      style: 'Focus on calculations, equations, practical applications, and explaining physical phenomena. Include formula-based questions where appropriate.',
+      style: 'Focus on calculations, equations, practical applications, and explaining physical phenomena. Include formula-based questions where appropriate. Use physics terminology only.',
       examples: `
 PHYSICS QUESTION EXAMPLES:
 1 MARK: "State the unit of force." [1 mark]
 2 MARKS: "Calculate the speed of a car that travels 100m in 5 seconds." [2 marks]
 3 MARKS: "Explain why a parachutist reaches terminal velocity." [3 marks]
-4 MARKS: "Describe how a transformer works and explain why it is used in the National Grid." [4 marks]`
+4 MARKS: "Describe how a transformer works and explain why it is used in the National Grid." [4 marks]`,
+      forbidden: 'Do NOT include: chemical equations, reaction mechanisms, biological processes, economic concepts, design terminology.'
     },
     'chemistry': {
       board: 'AQA GCSE Chemistry',
@@ -55,7 +56,8 @@ CHEMISTRY QUESTION EXAMPLES:
 1 MARK: "State the type of bonding in sodium chloride." [1 mark]
 2 MARKS: "Describe what happens to the atoms when sodium reacts with chlorine." [2 marks]
 3 MARKS: "Explain why metals are good conductors of electricity." [3 marks]
-4 MARKS: "Explain how a catalyst increases the rate of reaction." [4 marks]`
+4 MARKS: "Explain how a catalyst increases the rate of reaction." [4 marks]`,
+      forbidden: 'Do NOT include: physics formulas (v=s/t, F=ma), biological processes, economic concepts.'
     },
     'biology': {
       board: 'AQA GCSE Biology',
@@ -65,7 +67,8 @@ BIOLOGY QUESTION EXAMPLES:
 1 MARK: "Name the organelle where aerobic respiration occurs." [1 mark]
 2 MARKS: "Describe the structure of a plant cell." [2 marks]
 3 MARKS: "Explain how the structure of the small intestine is adapted for absorption." [3 marks]
-4 MARKS: "Explain how natural selection leads to evolution." [4 marks]`
+4 MARKS: "Explain how natural selection leads to evolution." [4 marks]`,
+      forbidden: 'Do NOT include: physics formulas, chemical equations (unless simple like respiration), economic concepts.'
     },
     'economics': {
       board: 'AQA GCSE Economics',
@@ -75,7 +78,8 @@ ECONOMICS QUESTION EXAMPLES:
 1 MARK: "Define opportunity cost." [1 mark]
 2 MARKS: "State two factors that cause demand to shift." [2 marks]
 3 MARKS: "Explain how an increase in interest rates affects consumer spending." [3 marks]
-4 MARKS: "Analyse how a minimum wage affects the labour market." [4 marks]`
+4 MARKS: "Analyse how a minimum wage affects the labour market." [4 marks]`,
+      forbidden: 'Do NOT include: scientific equations, chemical formulas, physics calculations, biological processes.'
     },
     'product-design': {
       board: 'AQA GCSE Design and Technology',
@@ -85,7 +89,8 @@ PRODUCT DESIGN QUESTION EXAMPLES:
 1 MARK: "State one advantage of using MDF over solid wood." [1 mark]
 2 MARKS: "Describe two properties of thermoplastics." [2 marks]
 3 MARKS: "Explain how CAD/CAM has changed manufacturing processes." [3 marks]
-4 MARKS: "Evaluate the environmental impact of using renewable materials in product design." [4 marks]`
+4 MARKS: "Evaluate the environmental impact of using renewable materials in product design." [4 marks]`,
+      forbidden: 'Do NOT include: chemical equations, element symbols, reaction arrows, state symbols, polymerisation notation, mole calculations, physics formulas.'
     },
     'geography': {
       board: 'AQA GCSE Geography',
@@ -95,7 +100,8 @@ GEOGRAPHY QUESTION EXAMPLES:
 1 MARK: "Define the term 'urbanisation'." [1 mark]
 2 MARKS: "Describe two features of a meander." [2 marks]
 3 MARKS: "Explain how deforestation affects the water cycle." [3 marks]
-4 MARKS: "Evaluate the effectiveness of flood management strategies." [4 marks]`
+4 MARKS: "Evaluate the effectiveness of flood management strategies." [4 marks]`,
+      forbidden: 'Do NOT include: chemistry equations, physics formulas, economic graphs (unless relevant to human geography).'
     }
   };
   
@@ -120,10 +126,21 @@ serve(async (req) => {
     const subjectContext = getSubjectContext(subject);
     console.log("[generate-simple-questions] Generating questions for subject:", subject, "marks:", marks);
 
-    const systemPrompt = `You are an expert ${subjectContext.board} examiner creating exam questions that EXACTLY match authentic past paper style.
+const systemPrompt = `You are an expert ${subjectContext.board} examiner creating exam questions that EXACTLY match authentic past paper style.
 
-🎯 SUBJECT: ${subjectContext.board}
+🎯 SUBJECT: ${subjectContext.board} ONLY
 ${subjectContext.style}
+
+🚫 FORBIDDEN CONTENT FOR THIS SUBJECT:
+${subjectContext.forbidden}
+
+⚠️ ABSOLUTE SUBJECT RESTRICTION:
+- You are ONLY creating ${subjectContext.board} questions
+- Do NOT include content from other subjects
+- Do NOT use chemistry terminology in physics questions
+- Do NOT use physics formulas in biology questions
+- Do NOT use scientific notation in economics questions
+- EVERY question must be 100% relevant to ${subjectContext.board}
 
 📚 COMMAND WORDS (use correctly for mark allocation):
 - **State/Name/Give** (1 mark) - Single word/phrase, factual recall
@@ -143,8 +160,14 @@ ${subjectContext.examples}
 ✓ Every fact/term MUST appear in the study content
 ✓ Generate questions appropriate for ${subjectContext.board}
 ✗ DO NOT introduce topics not covered in the study content
-✗ DO NOT cross subject boundaries (e.g., no chemistry in physics questions)
+✗ DO NOT cross subject boundaries
 ✗ DO NOT invent data or scenarios not in notes
+
+📋 TABLE FORMATTING (when needed):
+- Use proper markdown table syntax with headers
+- Format: | Header1 | Header2 |
+- Separate headers with: |---|---|
+- Keep tables clean and readable
 
 Output ONLY valid JSON format.`;
 

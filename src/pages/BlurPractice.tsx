@@ -748,9 +748,13 @@ const BlurPractice = () => {
       // Get previously asked questions to avoid repetition
       const previousQuestions = generatedQuestions.map(q => q.question);
       
-      // Determine subject from URL for product design detection
+      // Determine subject from URL
       const urlSaysProductDesign = location.pathname.includes('/product-design/');
-      const subject = urlSaysProductDesign ? 'product-design' : 'chemistry';
+      const urlSaysPhysics = location.pathname.includes('/physics/');
+      const urlSaysBiology = location.pathname.includes('/biology/');
+      const urlSaysGeography = location.pathname.includes('/geography/');
+      const urlSaysEconomics = location.pathname.includes('/economics/');
+      const subject = urlSaysPhysics ? 'physics' : urlSaysProductDesign ? 'product-design' : urlSaysBiology ? 'biology' : urlSaysGeography ? 'geography' : urlSaysEconomics ? 'economics' : 'chemistry';
 
       const url = `${import.meta.env.VITE_SUPABASE_URL}/functions/v1/${endpoint}`;
       const payload = {
@@ -932,7 +936,10 @@ const BlurPractice = () => {
       // Determine subject for Results page navigation
       const urlSaysPhysics = location.pathname.includes('/physics/');
       const urlSaysProductDesign = location.pathname.includes('/product-design/');
-      const subject = urlSaysPhysics ? 'physics' : urlSaysProductDesign ? 'product-design' : 'chemistry';
+      const urlSaysBiology = location.pathname.includes('/biology/');
+      const urlSaysGeography = location.pathname.includes('/geography/');
+      const urlSaysEconomics = location.pathname.includes('/economics/');
+      const subject = urlSaysPhysics ? 'physics' : urlSaysProductDesign ? 'product-design' : urlSaysBiology ? 'biology' : urlSaysGeography ? 'geography' : urlSaysEconomics ? 'economics' : 'chemistry';
       
       navigate("/results", {
         state: {
@@ -950,7 +957,9 @@ const BlurPractice = () => {
           currentPairIndex,
           previousQuestionResults: questionResults,
           subject,
-          markingBreakdown: result.markingBreakdown
+          markingBreakdown: result.markingBreakdown,
+          modelAnswer: result.modelAnswer,
+          markscheme: result.markscheme
         },
         replace: true
       });
