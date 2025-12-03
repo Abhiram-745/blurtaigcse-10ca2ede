@@ -664,7 +664,7 @@ const PracticeExamQuestions = ({ sectionContent, sectionTitle, subsections, subj
                     />
                   )}
 
-                  {/* Fallback to legacy display if no breakdown */}
+                  {/* Fallback key ideas display if no breakdown */}
                   {(!feedback.markingBreakdown || feedback.markingBreakdown.length === 0) && (
                     <>
                       {feedback.keyIdeasCovered.length > 0 && (
@@ -697,13 +697,6 @@ const PracticeExamQuestions = ({ sectionContent, sectionTitle, subsections, subj
                         </div>
                       )}
 
-                      {feedback.markscheme && (
-                        <div className="p-4 bg-blue-50 dark:bg-blue-950/30 rounded-lg border border-blue-200 dark:border-blue-800 stagger-4 hover-lift">
-                          <h4 className="font-semibold mb-3 text-blue-900 dark:text-blue-100">📋 Official Markscheme (AQA Style)</h4>
-                          <MarkdownRenderer content={feedback.markscheme} />
-                        </div>
-                      )}
-
                       {userAnswer && (
                         <div className="text-sm text-muted-foreground p-3 bg-background rounded border">
                           <strong>Your Answer:</strong>
@@ -718,8 +711,17 @@ const PracticeExamQuestions = ({ sectionContent, sectionTitle, subsections, subj
                     <MarkdownRenderer content={feedback.feedbackText} />
                   </div>
 
+                  {/* Always show Markscheme */}
+                  {feedback.markscheme && (
+                    <div className="p-4 bg-blue-50 dark:bg-blue-950/30 rounded-lg border border-blue-200 dark:border-blue-800 stagger-4 hover-lift">
+                      <h4 className="font-semibold mb-3 text-blue-900 dark:text-blue-100">📋 Official Markscheme (AQA Style)</h4>
+                      <MarkdownRenderer content={feedback.markscheme} />
+                    </div>
+                  )}
+
+                  {/* Always show Model Answer */}
                   {feedback.modelAnswer && (
-                    <div className="p-4 bg-purple-50 dark:bg-purple-950/30 rounded-lg border border-purple-200 dark:border-purple-800 stagger-4 hover-lift">
+                    <div className="p-4 bg-purple-50 dark:bg-purple-950/30 rounded-lg border border-purple-200 dark:border-purple-800 stagger-5 hover-lift">
                       <h4 className="font-semibold mb-3 text-purple-900 dark:text-purple-100">✨ Model Answer</h4>
                       <MarkdownRenderer content={feedback.modelAnswer} />
                     </div>
