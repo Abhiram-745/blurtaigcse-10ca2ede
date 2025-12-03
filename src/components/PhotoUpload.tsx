@@ -1,8 +1,8 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Upload, X, Loader2 } from "lucide-react";
+import { Upload, X, Loader2, Camera } from "lucide-react";
 import { toast } from "sonner";
 import { supabase } from "@/integrations/supabase/client";
 
@@ -24,6 +24,8 @@ export const PhotoUpload = ({ studyContent, questions, currentQuestion, topicId,
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
   const [previewUrl, setPreviewUrl] = useState<string | null>(null);
   const [isAnalyzing, setIsAnalyzing] = useState(false);
+  const fileInputRef = useRef<HTMLInputElement>(null);
+  const cameraInputRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
     const handlePaste = (event: ClipboardEvent) => {
@@ -103,6 +105,24 @@ export const PhotoUpload = ({ studyContent, questions, currentQuestion, topicId,
     }
   };
 
+  const handleCameraCapture = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const file = event.target.files?.[0];
+    if (file) {
+      if (file.size > 10 * 1024 * 1024) {
+        toast.error("File too large. Maximum size is 10MB.");
+        return;
+      }
+      
+      setSelectedFile(file);
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        setPreviewUrl(reader.result as string);
+      };
+      reader.readAsDataURL(file);
+      toast.success("Photo captured successfully!");
+    }
+  };
+
   const handleAnalyze = async () => {
     if (!selectedFile || !previewUrl) return;
 
@@ -157,25 +177,55 @@ export const PhotoUpload = ({ studyContent, questions, currentQuestion, topicId,
   return (
     <Card className="border-dashed border-2">
       <CardHeader>
-        <CardTitle className="text-lg">Upload Photo of Your Answers</CardTitle>
+        <CardTitle className="text-lg">Upload or Take Photo of Your Answers</CardTitle>
       </CardHeader>
       <CardContent onPaste={handleReactPaste}>
         {!previewUrl ? (
-          <label
-            tabIndex={0}
-            role="button"
-            onPaste={handleReactPaste}
-            className="flex flex-col items-center justify-center p-8 cursor-pointer hover:bg-muted/50 rounded-lg transition-colors">
-            <Upload className="h-12 w-12 text-muted-foreground mb-4" />
-            <p className="text-sm text-muted-foreground mb-2">Click to upload, drag and drop, or paste (Ctrl+V)</p>
-            <p className="text-xs text-muted-foreground">PNG, JPG up to 10MB</p>
+          <div className="space-y-4">
+            {/* Camera capture button */}
+            <Button
+              variant="outline"
+              className="w-full h-16 flex items-center justify-center gap-3"
+              onClick={() => cameraInputRef.current?.click()}
+            >
+              <Camera className="h-6 w-6" />
+              <span className="text-base">Take Photo</span>
+            </Button>
             <input
+              ref={cameraInputRef}
+              type="file"
+              accept="image/*"
+              capture="environment"
+              onChange={handleCameraCapture}
+              className="hidden"
+            />
+
+            <div className="relative flex items-center justify-center">
+              <div className="absolute inset-0 flex items-center">
+                <span className="w-full border-t" />
+              </div>
+              <span className="relative bg-background px-3 text-sm text-muted-foreground">or</span>
+            </div>
+
+            {/* File upload area */}
+            <label
+              tabIndex={0}
+              role="button"
+              onPaste={handleReactPaste}
+              onClick={() => fileInputRef.current?.click()}
+              className="flex flex-col items-center justify-center p-6 cursor-pointer hover:bg-muted/50 rounded-lg transition-colors border border-dashed">
+              <Upload className="h-10 w-10 text-muted-foreground mb-3" />
+              <p className="text-sm text-muted-foreground mb-1">Click to upload, drag and drop, or paste (Ctrl+V)</p>
+              <p className="text-xs text-muted-foreground">PNG, JPG up to 10MB</p>
+            </label>
+            <input
+              ref={fileInputRef}
               type="file"
               accept="image/*"
               onChange={handleFileSelect}
               className="hidden"
             />
-          </label>
+          </div>
         ) : (
           <div className="space-y-4">
             <div className="relative">
