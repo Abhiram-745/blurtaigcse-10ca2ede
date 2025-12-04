@@ -1,5 +1,5 @@
-// Optics Module Data - 4.6.2.5 Lenses and 4.6.2.6 Visible Light
-// AQA GCSE Physics Waves Chapter
+// Optics Module Data - Structured by AQA GCSE Physics Specification
+// 4.6.2.5 Lenses, 4.6.2.6 Visible Light, 4.6.3.1 Infrared Radiation, 4.6.3.2 Perfect Black Bodies
 
 export interface OpticsPracticeItem {
   id: string;
@@ -19,28 +19,51 @@ export interface OpticsSubsection {
   canonical_keywords: string[];
   practice_items: OpticsPracticeItem[];
   study_group?: number;
+  pair_title?: string; // Title for the pair selector
+}
+
+export interface OpticsSection {
+  id: string;
+  spec_number: string;
+  title: string;
+  subsections: OpticsSubsection[];
 }
 
 export interface OpticsModule {
   id: string;
   title: string;
   status: "ready" | "coming_soon";
-  subsections: OpticsSubsection[];
+  sections: OpticsSection[];
 }
+
+// Helper to get all subsections flat for backwards compatibility
+export const getOpticsSubsections = (module: OpticsModule): OpticsSubsection[] => {
+  return module.sections.flatMap(section => section.subsections);
+};
 
 export const opticsModuleData: OpticsModule = {
   id: "optics-module",
   title: "Module 3: Optics",
   status: "ready",
-  subsections: [
+  sections: [
+    // ============================================
+    // SECTION 1: 4.6.2.5 – LENSES
+    // ============================================
     {
-      id: "4-6-2-5-lenses-intro",
-      title: "4.6.2.5 – Lenses: What a Lens Does",
-      type: "content",
-      study_group: 1,
-      content_html: `
+      id: "4-6-2-5-lenses",
+      spec_number: "4.6.2.5",
+      title: "Lenses",
+      subsections: [
+        // PAIR 1: What a Lens Does & Types of Lenses
+        {
+          id: "4-6-2-5-lenses-intro",
+          title: "What a Lens Does",
+          pair_title: "Lens Basics",
+          type: "content",
+          study_group: 1,
+          content_html: `
 <div class="subsection">
-  <h3 class="subsection-heading">Subsection 1 – What a Lens Does</h3>
+  <h3 class="subsection-heading">What a Lens Does</h3>
   
   <div class="definition-block">
     <h4>Definition:</h4>
@@ -56,90 +79,109 @@ export const opticsModuleData: OpticsModule = {
   <div class="key-idea-block anim-pause-hover" style="padding: 1rem; margin: 1rem 0;">
     <h4>How Lenses Control Light (hover to pause)</h4>
     <div style="display: flex; justify-content: center; padding: 0.5rem;">
-      <svg width="420" height="200" viewBox="0 0 420 200">
+      <svg width="500" height="220" viewBox="0 0 500 220">
         <!-- Background -->
-        <rect x="0" y="0" width="420" height="200" fill="none"/>
+        <rect x="0" y="0" width="500" height="220" fill="none"/>
         
-        <!-- Converging Lens Section -->
-        <text x="105" y="20" fill="#3b82f6" font-size="12" text-anchor="middle" font-weight="bold">Converging (Convex)</text>
+        <!-- CONVERGING LENS SECTION -->
+        <text x="125" y="22" fill="#3b82f6" font-size="13" text-anchor="middle" font-weight="bold">Converging (Convex)</text>
         
-        <!-- Convex lens shape -->
-        <ellipse cx="105" cy="100" rx="12" ry="60" fill="hsl(var(--primary)/0.2)" stroke="#3b82f6" stroke-width="2"/>
+        <!-- Principal axis left -->
+        <line x1="20" y1="110" x2="230" y2="110" stroke="currentColor" stroke-width="1" stroke-dasharray="4,4" opacity="0.3"/>
         
-        <!-- Incoming parallel rays -->
-        <line x1="20" y1="60" x2="93" y2="60" stroke="#f59e0b" stroke-width="2" class="anim-dash">
-          <animate attributeName="stroke-dashoffset" from="20" to="0" dur="2s" repeatCount="indefinite"/>
-        </line>
-        <line x1="20" y1="100" x2="93" y2="100" stroke="#f59e0b" stroke-width="2" class="anim-dash">
-          <animate attributeName="stroke-dashoffset" from="20" to="0" dur="2s" repeatCount="indefinite"/>
-        </line>
-        <line x1="20" y1="140" x2="93" y2="140" stroke="#f59e0b" stroke-width="2" class="anim-dash">
-          <animate attributeName="stroke-dashoffset" from="20" to="0" dur="2s" repeatCount="indefinite"/>
-        </line>
+        <!-- Convex lens shape - proper biconvex -->
+        <ellipse cx="125" cy="110" rx="12" ry="55" fill="hsl(var(--primary)/0.2)" stroke="#3b82f6" stroke-width="2.5"/>
         
-        <!-- Converging rays after lens -->
-        <line x1="117" y1="60" x2="175" y2="100" stroke="#22c55e" stroke-width="2">
-          <animate attributeName="opacity" values="0.5;1;0.5" dur="2s" repeatCount="indefinite"/>
+        <!-- F markers on both sides -->
+        <circle cx="75" cy="110" r="4" fill="#ef4444"/>
+        <text x="75" y="135" fill="#ef4444" font-size="10" text-anchor="middle" font-weight="bold">F</text>
+        <circle cx="175" cy="110" r="4" fill="#ef4444"/>
+        <text x="175" y="135" fill="#ef4444" font-size="10" text-anchor="middle" font-weight="bold">F</text>
+        
+        <!-- Incoming parallel rays (yellow/orange) -->
+        <line x1="25" y1="65" x2="113" y2="65" stroke="#f59e0b" stroke-width="2.5">
+          <animate attributeName="stroke-dashoffset" from="30" to="0" dur="2s" repeatCount="indefinite"/>
         </line>
-        <line x1="117" y1="100" x2="175" y2="100" stroke="#22c55e" stroke-width="2">
-          <animate attributeName="opacity" values="0.5;1;0.5" dur="2s" repeatCount="indefinite"/>
+        <line x1="25" y1="110" x2="113" y2="110" stroke="#f59e0b" stroke-width="2.5">
+          <animate attributeName="stroke-dashoffset" from="30" to="0" dur="2s" repeatCount="indefinite"/>
         </line>
-        <line x1="117" y1="140" x2="175" y2="100" stroke="#22c55e" stroke-width="2">
-          <animate attributeName="opacity" values="0.5;1;0.5" dur="2s" repeatCount="indefinite"/>
+        <line x1="25" y1="155" x2="113" y2="155" stroke="#f59e0b" stroke-width="2.5">
+          <animate attributeName="stroke-dashoffset" from="30" to="0" dur="2s" repeatCount="indefinite"/>
         </line>
         
-        <!-- Focus point -->
-        <circle cx="175" cy="100" r="5" fill="#ef4444">
-          <animate attributeName="r" values="5;7;5" dur="1s" repeatCount="indefinite"/>
+        <!-- Converging rays after lens (green) - all meet at F -->
+        <line x1="137" y1="65" x2="175" y2="110" stroke="#22c55e" stroke-width="2.5">
+          <animate attributeName="opacity" values="0.6;1;0.6" dur="2s" repeatCount="indefinite"/>
+        </line>
+        <line x1="137" y1="110" x2="175" y2="110" stroke="#22c55e" stroke-width="2.5">
+          <animate attributeName="opacity" values="0.6;1;0.6" dur="2s" repeatCount="indefinite"/>
+        </line>
+        <line x1="137" y1="155" x2="175" y2="110" stroke="#22c55e" stroke-width="2.5">
+          <animate attributeName="opacity" values="0.6;1;0.6" dur="2s" repeatCount="indefinite"/>
+        </line>
+        
+        <!-- Focus point glow -->
+        <circle cx="175" cy="110" r="6" fill="#ef4444" opacity="0.3">
+          <animate attributeName="r" values="6;10;6" dur="1.5s" repeatCount="indefinite"/>
         </circle>
-        <text x="175" y="125" fill="#ef4444" font-size="10" text-anchor="middle" font-weight="bold">F (Focus)</text>
         
-        <!-- Diverging Lens Section -->
-        <text x="315" y="20" fill="#ec4899" font-size="12" text-anchor="middle" font-weight="bold">Diverging (Concave)</text>
+        <text x="125" y="175" fill="currentColor" font-size="9" text-anchor="middle">Rays converge at focus</text>
         
-        <!-- Concave lens shape -->
-        <path d="M303 40 Q315 100 303 160 M327 40 Q315 100 327 160" fill="none" stroke="#ec4899" stroke-width="2"/>
-        <line x1="303" y1="40" x2="327" y2="40" stroke="#ec4899" stroke-width="2"/>
-        <line x1="303" y1="160" x2="327" y2="160" stroke="#ec4899" stroke-width="2"/>
+        <!-- DIVERGING LENS SECTION -->
+        <text x="375" y="22" fill="#ec4899" font-size="13" text-anchor="middle" font-weight="bold">Diverging (Concave)</text>
+        
+        <!-- Principal axis right -->
+        <line x1="270" y1="110" x2="480" y2="110" stroke="currentColor" stroke-width="1" stroke-dasharray="4,4" opacity="0.3"/>
+        
+        <!-- Concave lens shape - proper biconcave -->
+        <path d="M363 55 Q378 110 363 165" fill="none" stroke="#ec4899" stroke-width="2.5"/>
+        <path d="M387 55 Q372 110 387 165" fill="none" stroke="#ec4899" stroke-width="2.5"/>
+        <line x1="363" y1="55" x2="387" y2="55" stroke="#ec4899" stroke-width="2.5"/>
+        <line x1="363" y1="165" x2="387" y2="165" stroke="#ec4899" stroke-width="2.5"/>
+        <rect x="363" y="55" width="24" height="110" fill="hsl(var(--primary)/0.08)"/>
+        
+        <!-- Virtual F marker (behind lens) -->
+        <circle cx="325" cy="110" r="4" fill="none" stroke="#ef4444" stroke-width="2" stroke-dasharray="3,3"/>
+        <text x="325" y="135" fill="#ef4444" font-size="9" text-anchor="middle">F (virtual)</text>
         
         <!-- Incoming parallel rays -->
-        <line x1="230" y1="60" x2="303" y2="60" stroke="#f59e0b" stroke-width="2">
-          <animate attributeName="stroke-dashoffset" from="20" to="0" dur="2s" repeatCount="indefinite"/>
+        <line x1="280" y1="65" x2="363" y2="65" stroke="#f59e0b" stroke-width="2.5">
+          <animate attributeName="stroke-dashoffset" from="30" to="0" dur="2s" repeatCount="indefinite"/>
         </line>
-        <line x1="230" y1="100" x2="303" y2="100" stroke="#f59e0b" stroke-width="2">
-          <animate attributeName="stroke-dashoffset" from="20" to="0" dur="2s" repeatCount="indefinite"/>
+        <line x1="280" y1="110" x2="363" y2="110" stroke="#f59e0b" stroke-width="2.5">
+          <animate attributeName="stroke-dashoffset" from="30" to="0" dur="2s" repeatCount="indefinite"/>
         </line>
-        <line x1="230" y1="140" x2="303" y2="140" stroke="#f59e0b" stroke-width="2">
-          <animate attributeName="stroke-dashoffset" from="20" to="0" dur="2s" repeatCount="indefinite"/>
-        </line>
-        
-        <!-- Diverging rays after lens -->
-        <line x1="327" y1="60" x2="390" y2="40" stroke="#8b5cf6" stroke-width="2">
-          <animate attributeName="opacity" values="0.5;1;0.5" dur="2s" repeatCount="indefinite"/>
-        </line>
-        <line x1="327" y1="100" x2="390" y2="100" stroke="#8b5cf6" stroke-width="2">
-          <animate attributeName="opacity" values="0.5;1;0.5" dur="2s" repeatCount="indefinite"/>
-        </line>
-        <line x1="327" y1="140" x2="390" y2="160" stroke="#8b5cf6" stroke-width="2">
-          <animate attributeName="opacity" values="0.5;1;0.5" dur="2s" repeatCount="indefinite"/>
+        <line x1="280" y1="155" x2="363" y2="155" stroke="#f59e0b" stroke-width="2.5">
+          <animate attributeName="stroke-dashoffset" from="30" to="0" dur="2s" repeatCount="indefinite"/>
         </line>
         
-        <!-- Virtual focus (traced back) -->
-        <line x1="327" y1="60" x2="265" y2="100" stroke="#8b5cf6" stroke-width="1" stroke-dasharray="4,4" opacity="0.5"/>
-        <line x1="327" y1="140" x2="265" y2="100" stroke="#8b5cf6" stroke-width="1" stroke-dasharray="4,4" opacity="0.5"/>
-        <circle cx="265" cy="100" r="4" fill="none" stroke="#ef4444" stroke-width="2" stroke-dasharray="3,3"/>
-        <text x="265" y="125" fill="#ef4444" font-size="9" text-anchor="middle">Virtual F</text>
+        <!-- Diverging rays after lens (purple) -->
+        <line x1="387" y1="65" x2="465" y2="35" stroke="#8b5cf6" stroke-width="2.5">
+          <animate attributeName="opacity" values="0.6;1;0.6" dur="2s" repeatCount="indefinite"/>
+        </line>
+        <line x1="387" y1="110" x2="465" y2="110" stroke="#8b5cf6" stroke-width="2.5">
+          <animate attributeName="opacity" values="0.6;1;0.6" dur="2s" repeatCount="indefinite"/>
+        </line>
+        <line x1="387" y1="155" x2="465" y2="185" stroke="#8b5cf6" stroke-width="2.5">
+          <animate attributeName="opacity" values="0.6;1;0.6" dur="2s" repeatCount="indefinite"/>
+        </line>
+        
+        <!-- Virtual rays traced back (dashed) -->
+        <line x1="387" y1="65" x2="325" y2="110" stroke="#8b5cf6" stroke-width="1.5" stroke-dasharray="5,4" opacity="0.5"/>
+        <line x1="387" y1="155" x2="325" y2="110" stroke="#8b5cf6" stroke-width="1.5" stroke-dasharray="5,4" opacity="0.5"/>
+        
+        <text x="375" y="175" fill="currentColor" font-size="9" text-anchor="middle">Rays appear to come from F</text>
         
         <!-- Legend -->
-        <rect x="10" y="170" width="15" height="3" fill="#f59e0b"/>
-        <text x="30" y="175" fill="currentColor" font-size="9">Parallel rays</text>
-        <rect x="100" y="170" width="15" height="3" fill="#22c55e"/>
-        <text x="120" y="175" fill="currentColor" font-size="9">Converging</text>
-        <rect x="190" y="170" width="15" height="3" fill="#8b5cf6"/>
-        <text x="210" y="175" fill="currentColor" font-size="9">Diverging</text>
+        <rect x="140" y="190" width="220" height="25" fill="hsl(var(--muted)/0.4)" rx="4"/>
+        <rect x="150" y="200" width="15" height="3" fill="#f59e0b"/>
+        <text x="170" y="205" fill="currentColor" font-size="8">Parallel rays</text>
+        <rect x="230" y="200" width="15" height="3" fill="#22c55e"/>
+        <text x="250" y="205" fill="currentColor" font-size="8">Converge</text>
+        <rect x="300" y="200" width="15" height="3" fill="#8b5cf6"/>
+        <text x="320" y="205" fill="currentColor" font-size="8">Diverge</text>
       </svg>
     </div>
-    <p style="text-align: center; font-size: 0.85rem; color: var(--muted-foreground);">Convex lenses converge rays • Concave lenses diverge rays</p>
   </div>
 
   <div class="example-block">
@@ -147,28 +189,29 @@ export const opticsModuleData: OpticsModule = {
     <p>This allows lenses to be used in <strong>glasses, cameras, microscopes, projectors, and magnifying glasses</strong>.</p>
   </div>
 </div>
-      `,
-      canonical_keywords: ["lens", "refraction", "converge", "diverge", "image", "magnified", "real", "virtual"],
-      practice_items: [
+          `,
+          canonical_keywords: ["lens", "refraction", "converge", "diverge", "image", "magnified", "real", "virtual"],
+          practice_items: [
+            {
+              id: "p1",
+              prompt_template: "Explain what a lens does and how it forms an image.",
+              marks: 3,
+              type: "short-answer",
+              difficulty: "easy",
+              randomise: true,
+              expected_keywords: ["refract", "light", "converge", "diverge", "image"]
+            }
+          ]
+        },
         {
-          id: "p1",
-          prompt_template: "Explain what a lens does and how it forms an image.",
-          marks: 3,
-          type: "short-answer",
-          difficulty: "easy",
-          randomise: true,
-          expected_keywords: ["refract", "light", "converge", "diverge", "image"]
-        }
-      ]
-    },
-    {
-      id: "4-6-2-5-lens-types",
-      title: "4.6.2.5 – Types of Lenses",
-      type: "content",
-      study_group: 1,
-      content_html: `
+          id: "4-6-2-5-lens-types",
+          title: "Types of Lenses",
+          pair_title: "Lens Basics",
+          type: "content",
+          study_group: 1,
+          content_html: `
 <div class="subsection">
-  <h3 class="subsection-heading">Subsection 2 – Types of Lenses</h3>
+  <h3 class="subsection-heading">Types of Lenses</h3>
   
   <div class="definition-block" style="border-left: 4px solid #3b82f6;">
     <h4>🔵 Convex Lens (Converging Lens)</h4>
@@ -193,44 +236,46 @@ export const opticsModuleData: OpticsModule = {
 
   <!-- Lens Shapes Diagram -->
   <div class="key-idea-block" style="padding: 1rem; margin: 1rem 0;">
-    <h4>Lens Shapes & Symbols</h4>
+    <h4>Lens Shapes & Diagram Symbols</h4>
     <div style="display: flex; justify-content: center; padding: 0.5rem;">
-      <svg width="450" height="220" viewBox="0 0 450 220">
-        <!-- Convex Lens -->
-        <text x="112" y="25" fill="#3b82f6" font-size="14" text-anchor="middle" font-weight="bold">Convex (Converging)</text>
+      <svg width="480" height="240" viewBox="0 0 480 240">
+        <!-- CONVEX LENS -->
+        <text x="120" y="25" fill="#3b82f6" font-size="14" text-anchor="middle" font-weight="bold">Convex (Converging)</text>
         
         <!-- Physical convex lens shape -->
-        <ellipse cx="80" cy="110" rx="25" ry="60" fill="hsl(var(--primary)/0.15)" stroke="#3b82f6" stroke-width="3"/>
-        <text x="80" y="185" fill="currentColor" font-size="10" text-anchor="middle">Physical shape</text>
-        
-        <!-- Convex lens symbol -->
-        <line x1="140" y1="50" x2="140" y2="170" stroke="#3b82f6" stroke-width="3"/>
-        <polygon points="140,50 130,60 150,60" fill="#3b82f6"/>
-        <polygon points="140,170 130,160 150,160" fill="#3b82f6"/>
-        <text x="140" y="195" fill="currentColor" font-size="10" text-anchor="middle">Diagram symbol</text>
+        <ellipse cx="70" cy="120" rx="22" ry="60" fill="hsl(var(--primary)/0.15)" stroke="#3b82f6" stroke-width="3"/>
+        <text x="70" y="200" fill="currentColor" font-size="10" text-anchor="middle">Physical shape</text>
         
         <!-- Arrows showing thicker middle -->
-        <path d="M65 80 L55 110 L65 140" fill="none" stroke="#22c55e" stroke-width="2"/>
-        <text x="45" y="112" fill="#22c55e" font-size="8" text-anchor="end">Thick</text>
-        <text x="45" y="122" fill="#22c55e" font-size="8" text-anchor="end">middle</text>
+        <path d="M40 90 L30 120 L40 150" fill="none" stroke="#22c55e" stroke-width="2"/>
+        <text x="20" y="120" fill="#22c55e" font-size="9" text-anchor="end">Thick</text>
+        
+        <!-- Convex lens diagram symbol -->
+        <line x1="160" y1="60" x2="160" y2="180" stroke="#3b82f6" stroke-width="3"/>
+        <polygon points="160,60 148,75 172,75" fill="#3b82f6"/>
+        <polygon points="160,180 148,165 172,165" fill="#3b82f6"/>
+        <text x="160" y="210" fill="currentColor" font-size="10" text-anchor="middle">Diagram symbol</text>
 
-        <!-- Concave Lens -->
-        <text x="337" y="25" fill="#ec4899" font-size="14" text-anchor="middle" font-weight="bold">Concave (Diverging)</text>
+        <!-- CONCAVE LENS -->
+        <text x="360" y="25" fill="#ec4899" font-size="14" text-anchor="middle" font-weight="bold">Concave (Diverging)</text>
         
         <!-- Physical concave lens shape -->
-        <path d="M280 50 Q310 110 280 170 L320 170 Q290 110 320 50 Z" fill="hsl(var(--primary)/0.15)" stroke="#ec4899" stroke-width="3"/>
-        <text x="300" y="185" fill="currentColor" font-size="10" text-anchor="middle">Physical shape</text>
-        
-        <!-- Concave lens symbol -->
-        <line x1="380" y1="50" x2="380" y2="170" stroke="#ec4899" stroke-width="3"/>
-        <polygon points="380,50 370,60 390,60" fill="#ec4899" transform="rotate(180,380,55)"/>
-        <polygon points="380,170 370,160 390,160" fill="#ec4899" transform="rotate(180,380,165)"/>
-        <text x="380" y="195" fill="currentColor" font-size="10" text-anchor="middle">Diagram symbol</text>
+        <path d="M290 60 Q320 120 290 180" fill="none" stroke="#ec4899" stroke-width="3"/>
+        <path d="M340 60 Q310 120 340 180" fill="none" stroke="#ec4899" stroke-width="3"/>
+        <line x1="290" y1="60" x2="340" y2="60" stroke="#ec4899" stroke-width="3"/>
+        <line x1="290" y1="180" x2="340" y2="180" stroke="#ec4899" stroke-width="3"/>
+        <rect x="290" y="60" width="50" height="120" fill="hsl(var(--primary)/0.08)"/>
+        <text x="315" y="200" fill="currentColor" font-size="10" text-anchor="middle">Physical shape</text>
         
         <!-- Arrows showing thin middle -->
-        <path d="M285 80 L295 110 L285 140" fill="none" stroke="#f59e0b" stroke-width="2"/>
-        <text x="265" y="112" fill="#f59e0b" font-size="8" text-anchor="end">Thin</text>
-        <text x="265" y="122" fill="#f59e0b" font-size="8" text-anchor="end">middle</text>
+        <path d="M300 90 L310 120 L300 150" fill="none" stroke="#f59e0b" stroke-width="2"/>
+        <text x="280" y="120" fill="#f59e0b" font-size="9" text-anchor="end">Thin</text>
+        
+        <!-- Concave lens diagram symbol -->
+        <line x1="410" y1="60" x2="410" y2="180" stroke="#ec4899" stroke-width="3"/>
+        <polygon points="410,60 398,75 422,75" fill="#ec4899" transform="rotate(180,410,67.5)"/>
+        <polygon points="410,180 398,165 422,165" fill="#ec4899" transform="rotate(180,410,172.5)"/>
+        <text x="410" y="210" fill="currentColor" font-size="10" text-anchor="middle">Diagram symbol</text>
       </svg>
     </div>
   </div>
@@ -246,28 +291,30 @@ export const opticsModuleData: OpticsModule = {
     </tbody>
   </table>
 </div>
-      `,
-      canonical_keywords: ["convex lens", "concave lens", "converging", "diverging", "principal focus", "focal length", "thicker", "thinner"],
-      practice_items: [
+          `,
+          canonical_keywords: ["convex lens", "concave lens", "converging", "diverging", "principal focus", "focal length", "thicker", "thinner"],
+          practice_items: [
+            {
+              id: "p1",
+              prompt_template: "Describe the differences between a convex and concave lens in terms of shape and how they affect light.",
+              marks: 4,
+              type: "short-answer",
+              difficulty: "medium",
+              randomise: true,
+              expected_keywords: ["convex", "concave", "converge", "diverge", "thicker middle", "thinner middle"]
+            }
+          ]
+        },
+        // PAIR 2: Principal Focus & Focal Length, Real and Virtual Images
         {
-          id: "p1",
-          prompt_template: "Describe the differences between a convex and concave lens in terms of shape and how they affect light.",
-          marks: 4,
-          type: "short-answer",
-          difficulty: "medium",
-          randomise: true,
-          expected_keywords: ["convex", "concave", "converge", "diverge", "thicker middle", "thinner middle"]
-        }
-      ]
-    },
-    {
-      id: "4-6-2-5-focal-length",
-      title: "4.6.2.5 – Principal Focus & Focal Length",
-      type: "content",
-      study_group: 1,
-      content_html: `
+          id: "4-6-2-5-focal-length",
+          title: "Principal Focus & Focal Length",
+          pair_title: "Focus & Image Types",
+          type: "content",
+          study_group: 2,
+          content_html: `
 <div class="subsection">
-  <h3 class="subsection-heading">Subsection 3 – Principal Focus & Focal Length</h3>
+  <h3 class="subsection-heading">Principal Focus & Focal Length</h3>
   
   <div class="definition-block">
     <h4>🎯 Principal Focus (F):</h4>
@@ -286,38 +333,37 @@ export const opticsModuleData: OpticsModule = {
     </ul>
   </div>
 
-  <!-- Interactive Focal Length Diagram -->
+  <!-- Focal Length Diagram -->
   <div class="key-idea-block anim-pause-hover" style="padding: 1rem; margin: 1rem 0;">
     <h4>Principal Focus and Focal Length (hover to pause)</h4>
     <div style="display: flex; justify-content: center; padding: 0.5rem;">
       <svg width="500" height="200" viewBox="0 0 500 200">
         <!-- Principal axis -->
         <line x1="20" y1="100" x2="480" y2="100" stroke="currentColor" stroke-width="1" stroke-dasharray="4,4" opacity="0.4"/>
-        <text x="490" y="105" fill="currentColor" font-size="9">Principal axis</text>
         
         <!-- Convex lens -->
-        <ellipse cx="150" cy="100" rx="10" ry="55" fill="hsl(var(--primary)/0.2)" stroke="#3b82f6" stroke-width="2"/>
-        <text x="150" y="170" fill="#3b82f6" font-size="10" text-anchor="middle" font-weight="bold">Convex Lens</text>
+        <ellipse cx="150" cy="100" rx="10" ry="55" fill="hsl(var(--primary)/0.2)" stroke="#3b82f6" stroke-width="2.5"/>
+        <text x="150" y="175" fill="#3b82f6" font-size="11" text-anchor="middle" font-weight="bold">Convex Lens</text>
         
         <!-- Parallel rays coming in -->
-        <line x1="30" y1="55" x2="140" y2="55" stroke="#f59e0b" stroke-width="2">
+        <line x1="30" y1="55" x2="140" y2="55" stroke="#f59e0b" stroke-width="2.5">
           <animate attributeName="stroke-dashoffset" from="30" to="0" dur="1.5s" repeatCount="indefinite"/>
         </line>
-        <line x1="30" y1="100" x2="140" y2="100" stroke="#f59e0b" stroke-width="2">
+        <line x1="30" y1="100" x2="140" y2="100" stroke="#f59e0b" stroke-width="2.5">
           <animate attributeName="stroke-dashoffset" from="30" to="0" dur="1.5s" repeatCount="indefinite"/>
         </line>
-        <line x1="30" y1="145" x2="140" y2="145" stroke="#f59e0b" stroke-width="2">
+        <line x1="30" y1="145" x2="140" y2="145" stroke="#f59e0b" stroke-width="2.5">
           <animate attributeName="stroke-dashoffset" from="30" to="0" dur="1.5s" repeatCount="indefinite"/>
         </line>
         
         <!-- Rays converging to focus -->
-        <line x1="160" y1="55" x2="230" y2="100" stroke="#22c55e" stroke-width="2">
+        <line x1="160" y1="55" x2="230" y2="100" stroke="#22c55e" stroke-width="2.5">
           <animate attributeName="opacity" values="0.6;1;0.6" dur="1.5s" repeatCount="indefinite"/>
         </line>
-        <line x1="160" y1="100" x2="230" y2="100" stroke="#22c55e" stroke-width="2">
+        <line x1="160" y1="100" x2="230" y2="100" stroke="#22c55e" stroke-width="2.5">
           <animate attributeName="opacity" values="0.6;1;0.6" dur="1.5s" repeatCount="indefinite"/>
         </line>
-        <line x1="160" y1="145" x2="230" y2="100" stroke="#22c55e" stroke-width="2">
+        <line x1="160" y1="145" x2="230" y2="100" stroke="#22c55e" stroke-width="2.5">
           <animate attributeName="opacity" values="0.6;1;0.6" dur="1.5s" repeatCount="indefinite"/>
         </line>
         
@@ -325,40 +371,40 @@ export const opticsModuleData: OpticsModule = {
         <circle cx="230" cy="100" r="6" fill="#ef4444">
           <animate attributeName="r" values="6;8;6" dur="1s" repeatCount="indefinite"/>
         </circle>
-        <text x="230" y="130" fill="#ef4444" font-size="11" text-anchor="middle" font-weight="bold">F</text>
+        <text x="230" y="130" fill="#ef4444" font-size="12" text-anchor="middle" font-weight="bold">F</text>
         <text x="230" y="145" fill="#ef4444" font-size="9" text-anchor="middle">(Principal Focus)</text>
         
         <!-- Focal length indicator -->
-        <line x1="150" y1="70" x2="230" y2="70" stroke="#ec4899" stroke-width="2"/>
-        <line x1="150" y1="65" x2="150" y2="75" stroke="#ec4899" stroke-width="2"/>
-        <line x1="230" y1="65" x2="230" y2="75" stroke="#ec4899" stroke-width="2"/>
-        <text x="190" y="62" fill="#ec4899" font-size="11" text-anchor="middle" font-weight="bold">f (Focal Length)</text>
+        <line x1="150" y1="65" x2="230" y2="65" stroke="#ec4899" stroke-width="2.5"/>
+        <line x1="150" y1="58" x2="150" y2="72" stroke="#ec4899" stroke-width="2.5"/>
+        <line x1="230" y1="58" x2="230" y2="72" stroke="#ec4899" stroke-width="2.5"/>
+        <text x="190" y="55" fill="#ec4899" font-size="12" text-anchor="middle" font-weight="bold">f (Focal Length)</text>
         
         <!-- Centre of lens marker -->
-        <circle cx="150" cy="100" r="3" fill="#3b82f6"/>
-        <text x="150" y="185" fill="currentColor" font-size="9" text-anchor="middle">Centre (C)</text>
+        <circle cx="150" cy="100" r="4" fill="#3b82f6"/>
+        <text x="150" y="190" fill="currentColor" font-size="9" text-anchor="middle">Centre (C)</text>
         
         <!-- Comparison: Stronger lens -->
-        <text x="380" y="35" fill="#8b5cf6" font-size="11" text-anchor="middle" font-weight="bold">Stronger Lens</text>
-        <text x="380" y="50" fill="currentColor" font-size="9" text-anchor="middle">(more curved)</text>
-        <ellipse cx="380" cy="100" rx="12" ry="45" fill="hsl(var(--primary)/0.2)" stroke="#8b5cf6" stroke-width="2"/>
+        <text x="390" y="35" fill="#8b5cf6" font-size="12" text-anchor="middle" font-weight="bold">Stronger Lens</text>
+        <text x="390" y="50" fill="currentColor" font-size="9" text-anchor="middle">(more curved)</text>
+        <ellipse cx="390" cy="100" rx="14" ry="45" fill="hsl(var(--primary)/0.2)" stroke="#8b5cf6" stroke-width="2"/>
         
-        <!-- Shorter focal length -->
-        <line x1="310" y1="75" x2="370" y2="75" stroke="#f59e0b" stroke-width="1.5"/>
-        <line x1="390" y1="75" x2="420" y2="100" stroke="#22c55e" stroke-width="1.5"/>
-        <line x1="310" y1="100" x2="370" y2="100" stroke="#f59e0b" stroke-width="1.5"/>
-        <line x1="390" y1="100" x2="420" y2="100" stroke="#22c55e" stroke-width="1.5"/>
-        <line x1="310" y1="125" x2="370" y2="125" stroke="#f59e0b" stroke-width="1.5"/>
-        <line x1="390" y1="125" x2="420" y2="100" stroke="#22c55e" stroke-width="1.5"/>
+        <!-- Shorter focal length demonstration -->
+        <line x1="310" y1="75" x2="376" y2="75" stroke="#f59e0b" stroke-width="1.5"/>
+        <line x1="404" y1="75" x2="430" y2="100" stroke="#22c55e" stroke-width="1.5"/>
+        <line x1="310" y1="100" x2="376" y2="100" stroke="#f59e0b" stroke-width="1.5"/>
+        <line x1="404" y1="100" x2="430" y2="100" stroke="#22c55e" stroke-width="1.5"/>
+        <line x1="310" y1="125" x2="376" y2="125" stroke="#f59e0b" stroke-width="1.5"/>
+        <line x1="404" y1="125" x2="430" y2="100" stroke="#22c55e" stroke-width="1.5"/>
         
-        <circle cx="420" cy="100" r="5" fill="#ef4444"/>
-        <text x="420" y="125" fill="#ef4444" font-size="9" text-anchor="middle">F</text>
+        <circle cx="430" cy="100" r="5" fill="#ef4444"/>
+        <text x="430" y="125" fill="#ef4444" font-size="10" text-anchor="middle">F</text>
         
-        <line x1="380" y1="140" x2="420" y2="140" stroke="#ec4899" stroke-width="1.5"/>
-        <text x="400" y="155" fill="#ec4899" font-size="9" text-anchor="middle">Shorter f</text>
+        <line x1="390" y1="145" x2="430" y2="145" stroke="#ec4899" stroke-width="1.5"/>
+        <text x="410" y="160" fill="#ec4899" font-size="9" text-anchor="middle">Shorter f</text>
       </svg>
     </div>
-    <p style="text-align: center; font-size: 0.85rem; color: var(--muted-foreground);"><strong>More curved lens = shorter focal length = stronger bending</strong></p>
+    <p style="text-align: center; font-size: 0.9rem; color: var(--muted-foreground);"><strong>More curved lens = shorter focal length = stronger bending</strong></p>
   </div>
 
   <div class="key-idea-block">
@@ -366,28 +412,29 @@ export const opticsModuleData: OpticsModule = {
     <p>Understanding focal length allows you to <strong>predict whether the image will be magnified or diminished</strong>. Lenses with shorter focal lengths produce more magnification for close objects.</p>
   </div>
 </div>
-      `,
-      canonical_keywords: ["principal focus", "focal length", "F", "f", "converge", "diverge", "centre of lens"],
-      practice_items: [
+          `,
+          canonical_keywords: ["principal focus", "focal length", "F", "f", "converge", "diverge", "centre of lens"],
+          practice_items: [
+            {
+              id: "p1",
+              prompt_template: "Define focal length and explain how it relates to the strength of a lens.",
+              marks: 3,
+              type: "short-answer",
+              difficulty: "easy",
+              randomise: true,
+              expected_keywords: ["focal length", "distance", "principal focus", "shorter", "stronger"]
+            }
+          ]
+        },
         {
-          id: "p1",
-          prompt_template: "Define focal length and explain how it relates to the strength of a lens.",
-          marks: 3,
-          type: "short-answer",
-          difficulty: "easy",
-          randomise: true,
-          expected_keywords: ["focal length", "distance", "principal focus", "shorter", "stronger"]
-        }
-      ]
-    },
-    {
-      id: "4-6-2-5-real-virtual-images",
-      title: "4.6.2.5 – Real and Virtual Images",
-      type: "content",
-      study_group: 2,
-      content_html: `
+          id: "4-6-2-5-real-virtual-images",
+          title: "Real and Virtual Images",
+          pair_title: "Focus & Image Types",
+          type: "content",
+          study_group: 2,
+          content_html: `
 <div class="subsection">
-  <h3 class="subsection-heading">Subsection 4 – Real and Virtual Images</h3>
+  <h3 class="subsection-heading">Real and Virtual Images</h3>
   
   <div class="definition-block" style="border-left: 4px solid #22c55e;">
     <h4>🟢 Real Image</h4>
@@ -414,101 +461,104 @@ export const opticsModuleData: OpticsModule = {
     </ul>
   </div>
 
-  <!-- Real vs Virtual Image Diagram -->
-  <div class="key-idea-block anim-pause-hover" style="padding: 1rem; margin: 1rem 0;">
-    <h4>Real vs Virtual Images (hover to pause)</h4>
+  <!-- ACCURATE Real vs Virtual Image Diagram -->
+  <div class="key-idea-block anim-pause-hover" style="padding: 1rem; margin: 1rem 0; background: linear-gradient(135deg, hsl(45 100% 96%), hsl(30 100% 95%));">
+    <h4 style="color: #ea580c;">Real vs Virtual Images (hover to pause)</h4>
     <div style="display: flex; justify-content: center; padding: 0.5rem;">
-      <svg width="500" height="240" viewBox="0 0 500 240">
-        <!-- REAL IMAGE SECTION -->
-        <text x="125" y="20" fill="#22c55e" font-size="13" text-anchor="middle" font-weight="bold">REAL IMAGE</text>
+      <svg width="560" height="280" viewBox="0 0 560 280">
+        <!-- ========== REAL IMAGE SECTION (Left) ========== -->
+        <text x="140" y="25" fill="#22c55e" font-size="14" text-anchor="middle" font-weight="bold">REAL IMAGE</text>
         
         <!-- Principal axis -->
-        <line x1="10" y1="110" x2="240" y2="110" stroke="currentColor" stroke-width="1" stroke-dasharray="4,4" opacity="0.3"/>
+        <line x1="15" y1="140" x2="265" y2="140" stroke="#666" stroke-width="1" stroke-dasharray="4,4"/>
         
-        <!-- Convex lens -->
-        <ellipse cx="125" cy="110" rx="8" ry="45" fill="hsl(var(--primary)/0.15)" stroke="#3b82f6" stroke-width="2"/>
+        <!-- Convex lens at x=140 -->
+        <ellipse cx="140" cy="140" rx="8" ry="50" fill="hsl(200 80% 85%/0.6)" stroke="#3b82f6" stroke-width="2.5"/>
         
-        <!-- Object (arrow) -->
-        <line x1="50" y1="110" x2="50" y2="65" stroke="#f59e0b" stroke-width="3"/>
-        <polygon points="50,60 45,70 55,70" fill="#f59e0b"/>
-        <text x="50" y="130" fill="#f59e0b" font-size="9" text-anchor="middle">Object</text>
+        <!-- F and 2F markers - LEFT SIDE -->
+        <circle cx="90" cy="140" r="4" fill="#ef4444"/>
+        <text x="90" y="160" fill="#ef4444" font-size="10" text-anchor="middle" font-weight="bold">F</text>
         
-        <!-- Focus points -->
-        <circle cx="160" cy="110" r="3" fill="#ef4444"/>
-        <text x="160" y="125" fill="#ef4444" font-size="8" text-anchor="middle">F</text>
-        <circle cx="90" cy="110" r="3" fill="#ef4444"/>
-        <text x="90" y="125" fill="#ef4444" font-size="8" text-anchor="middle">F</text>
+        <!-- F and 2F markers - RIGHT SIDE -->
+        <circle cx="190" cy="140" r="4" fill="#ef4444"/>
+        <text x="190" y="160" fill="#ef4444" font-size="10" text-anchor="middle" font-weight="bold">F</text>
         
-        <!-- Ray through centre -->
-        <line x1="50" y1="65" x2="220" y2="155" stroke="#3b82f6" stroke-width="1.5">
-          <animate attributeName="opacity" values="0.5;1;0.5" dur="2s" repeatCount="indefinite"/>
+        <!-- Object arrow (beyond F, at x=55) - ORANGE -->
+        <line x1="55" y1="140" x2="55" y2="85" stroke="#f59e0b" stroke-width="4"/>
+        <polygon points="55,80 50,92 60,92" fill="#f59e0b"/>
+        <text x="55" y="175" fill="#f59e0b" font-size="10" text-anchor="middle" font-weight="bold">Object</text>
+        
+        <!-- RAY 1: Parallel ray from top of object → through F after lens -->
+        <!-- Goes horizontal to lens, then bends through F -->
+        <line x1="55" y1="85" x2="140" y2="85" stroke="#3b82f6" stroke-width="2">
+          <animate attributeName="opacity" values="0.6;1;0.6" dur="2s" repeatCount="indefinite"/>
+        </line>
+        <line x1="140" y1="85" x2="235" y2="195" stroke="#3b82f6" stroke-width="2">
+          <animate attributeName="opacity" values="0.6;1;0.6" dur="2s" repeatCount="indefinite"/>
         </line>
         
-        <!-- Ray parallel then through F -->
-        <line x1="50" y1="65" x2="125" y2="65" stroke="#ec4899" stroke-width="1.5">
-          <animate attributeName="opacity" values="0.5;1;0.5" dur="2s" repeatCount="indefinite"/>
-        </line>
-        <line x1="125" y1="65" x2="220" y2="155" stroke="#ec4899" stroke-width="1.5">
-          <animate attributeName="opacity" values="0.5;1;0.5" dur="2s" repeatCount="indefinite"/>
+        <!-- RAY 2: Through centre of lens (straight through) -->
+        <line x1="55" y1="85" x2="235" y2="195" stroke="#ec4899" stroke-width="2">
+          <animate attributeName="opacity" values="0.6;1;0.6" dur="2s" repeatCount="indefinite"/>
         </line>
         
-        <!-- Real image (inverted arrow) -->
-        <line x1="200" y1="110" x2="200" y2="155" stroke="#22c55e" stroke-width="3"/>
-        <polygon points="200,160 195,150 205,150" fill="#22c55e"/>
-        <text x="200" y="180" fill="#22c55e" font-size="9" text-anchor="middle">Real Image</text>
-        <text x="200" y="195" fill="#22c55e" font-size="8" text-anchor="middle">(inverted)</text>
+        <!-- Real image (inverted arrow at x=235) - GREEN -->
+        <line x1="235" y1="140" x2="235" y2="195" stroke="#22c55e" stroke-width="4"/>
+        <polygon points="235,200 230,188 240,188" fill="#22c55e"/>
+        <text x="235" y="225" fill="#22c55e" font-size="9" text-anchor="middle" font-weight="bold">Real Image</text>
+        <text x="235" y="238" fill="#22c55e" font-size="8" text-anchor="middle">(inverted)</text>
         
         <!-- Screen -->
-        <rect x="215" y="85" width="8" height="80" fill="hsl(var(--muted))" stroke="currentColor" stroke-width="1"/>
-        <text x="235" y="130" fill="currentColor" font-size="8">Screen</text>
+        <rect x="250" y="105" width="10" height="90" fill="hsl(var(--muted))" stroke="#888" stroke-width="1"/>
+        <text x="255" y="215" fill="currentColor" font-size="8" transform="rotate(90,255,215)">Screen</text>
         
-        <!-- VIRTUAL IMAGE SECTION -->
-        <text x="375" y="20" fill="#f59e0b" font-size="13" text-anchor="middle" font-weight="bold">VIRTUAL IMAGE</text>
+        <!-- Checkmark indicator -->
+        <text x="235" y="255" fill="#22c55e" font-size="10" text-anchor="middle">✓ Can project on screen</text>
+        
+        <!-- ========== VIRTUAL IMAGE SECTION (Right) ========== -->
+        <text x="420" y="25" fill="#f59e0b" font-size="14" text-anchor="middle" font-weight="bold">VIRTUAL IMAGE</text>
         
         <!-- Principal axis -->
-        <line x1="260" y1="110" x2="490" y2="110" stroke="currentColor" stroke-width="1" stroke-dasharray="4,4" opacity="0.3"/>
+        <line x1="295" y1="140" x2="545" y2="140" stroke="#666" stroke-width="1" stroke-dasharray="4,4"/>
         
-        <!-- Convex lens -->
-        <ellipse cx="375" cy="110" rx="8" ry="45" fill="hsl(var(--primary)/0.15)" stroke="#3b82f6" stroke-width="2"/>
+        <!-- Convex lens at x=420 -->
+        <ellipse cx="420" cy="140" rx="8" ry="50" fill="hsl(200 80% 85%/0.6)" stroke="#3b82f6" stroke-width="2.5"/>
         
-        <!-- Object inside F (arrow) -->
-        <line x1="355" y1="110" x2="355" y2="75" stroke="#f59e0b" stroke-width="3"/>
-        <polygon points="355,70 350,80 360,80" fill="#f59e0b"/>
-        <text x="355" y="130" fill="#f59e0b" font-size="9" text-anchor="middle">Object</text>
-        <text x="355" y="142" fill="#f59e0b" font-size="7" text-anchor="middle">(inside F)</text>
+        <!-- F markers -->
+        <circle cx="370" cy="140" r="4" fill="#ef4444"/>
+        <text x="370" y="160" fill="#ef4444" font-size="10" text-anchor="middle" font-weight="bold">F</text>
+        <circle cx="470" cy="140" r="4" fill="#ef4444"/>
+        <text x="470" y="160" fill="#ef4444" font-size="10" text-anchor="middle" font-weight="bold">F</text>
         
-        <!-- Focus points -->
-        <circle cx="410" cy="110" r="3" fill="#ef4444"/>
-        <text x="410" y="125" fill="#ef4444" font-size="8" text-anchor="middle">F</text>
-        <circle cx="340" cy="110" r="3" fill="#ef4444"/>
-        <text x="340" y="125" fill="#ef4444" font-size="8" text-anchor="middle">F</text>
+        <!-- Object arrow (inside F, at x=395) - ORANGE -->
+        <line x1="395" y1="140" x2="395" y2="95" stroke="#f59e0b" stroke-width="4"/>
+        <polygon points="395,90 390,102 400,102" fill="#f59e0b"/>
+        <text x="395" y="175" fill="#f59e0b" font-size="9" text-anchor="middle" font-weight="bold">Object</text>
+        <text x="395" y="187" fill="#f59e0b" font-size="7" text-anchor="middle">(inside F)</text>
         
-        <!-- Diverging rays -->
-        <line x1="355" y1="75" x2="375" y2="75" stroke="#ec4899" stroke-width="1.5"/>
-        <line x1="375" y1="75" x2="450" y2="60" stroke="#ec4899" stroke-width="1.5">
-          <animate attributeName="opacity" values="0.5;1;0.5" dur="2s" repeatCount="indefinite"/>
-        </line>
-        <line x1="355" y1="75" x2="450" y2="95" stroke="#3b82f6" stroke-width="1.5">
-          <animate attributeName="opacity" values="0.5;1;0.5" dur="2s" repeatCount="indefinite"/>
+        <!-- RAY 1: Parallel ray from top of object → diverges after lens as if from F -->
+        <line x1="395" y1="95" x2="420" y2="95" stroke="#3b82f6" stroke-width="2"/>
+        <line x1="420" y1="95" x2="520" y2="70" stroke="#3b82f6" stroke-width="2">
+          <animate attributeName="opacity" values="0.6;1;0.6" dur="2s" repeatCount="indefinite"/>
         </line>
         
-        <!-- Traced back (virtual rays) -->
-        <line x1="375" y1="75" x2="290" y2="35" stroke="#ec4899" stroke-width="1" stroke-dasharray="4,4" opacity="0.6"/>
-        <line x1="375" y1="100" x2="290" y2="35" stroke="#3b82f6" stroke-width="1" stroke-dasharray="4,4" opacity="0.6"/>
+        <!-- RAY 2: Through centre of lens (continues straight) -->
+        <line x1="395" y1="95" x2="520" y2="115" stroke="#ec4899" stroke-width="2">
+          <animate attributeName="opacity" values="0.6;1;0.6" dur="2s" repeatCount="indefinite"/>
+        </line>
         
-        <!-- Virtual image (upright, larger) -->
-        <line x1="290" y1="110" x2="290" y2="35" stroke="#f59e0b" stroke-width="3" stroke-dasharray="6,3"/>
-        <polygon points="290,30 285,40 295,40" fill="#f59e0b" opacity="0.7"/>
-        <text x="290" y="180" fill="#f59e0b" font-size="9" text-anchor="middle">Virtual Image</text>
-        <text x="290" y="195" fill="#f59e0b" font-size="8" text-anchor="middle">(upright, magnified)</text>
+        <!-- Virtual rays traced back (dashed) - meet at virtual image location -->
+        <line x1="420" y1="95" x2="320" y2="55" stroke="#3b82f6" stroke-width="1.5" stroke-dasharray="5,4" opacity="0.6"/>
+        <line x1="420" y1="105" x2="320" y2="55" stroke="#ec4899" stroke-width="1.5" stroke-dasharray="5,4" opacity="0.6"/>
         
-        <!-- No screen possible indicator -->
-        <text x="455" y="200" fill="#ef4444" font-size="8" text-anchor="middle">❌ Cannot project</text>
-        <text x="455" y="212" fill="#ef4444" font-size="8" text-anchor="middle">on screen</text>
+        <!-- Virtual image (upright, magnified arrow) - dashed ORANGE -->
+        <line x1="320" y1="140" x2="320" y2="55" stroke="#f59e0b" stroke-width="3" stroke-dasharray="6,4"/>
+        <polygon points="320,50 315,62 325,62" fill="#f59e0b" opacity="0.7"/>
+        <text x="320" y="215" fill="#f59e0b" font-size="9" text-anchor="middle" font-weight="bold">Virtual Image</text>
+        <text x="320" y="228" fill="#f59e0b" font-size="8" text-anchor="middle">(upright, magnified)</text>
         
-        <!-- Can project indicator -->
-        <text x="200" y="212" fill="#22c55e" font-size="8" text-anchor="middle">✓ Can project</text>
-        <text x="200" y="224" fill="#22c55e" font-size="8" text-anchor="middle">on screen</text>
+        <!-- X indicator -->
+        <text x="420" y="255" fill="#ef4444" font-size="10" text-anchor="middle">✗ Cannot project on screen</text>
       </svg>
     </div>
   </div>
@@ -523,37 +573,39 @@ export const opticsModuleData: OpticsModule = {
     </tbody>
   </table>
 </div>
-      `,
-      canonical_keywords: ["real image", "virtual image", "inverted", "upright", "projected", "screen", "traced back"],
-      practice_items: [
-        {
-          id: "p1",
-          prompt_template: "Explain the difference between a real and virtual image.",
-          marks: 4,
-          type: "short-answer",
-          difficulty: "medium",
-          randomise: true,
-          expected_keywords: ["real", "rays meet", "projected", "inverted", "virtual", "appear to meet", "upright"]
+          `,
+          canonical_keywords: ["real image", "virtual image", "inverted", "upright", "projected", "screen", "traced back"],
+          practice_items: [
+            {
+              id: "p1",
+              prompt_template: "Explain the difference between a real and virtual image.",
+              marks: 4,
+              type: "short-answer",
+              difficulty: "medium",
+              randomise: true,
+              expected_keywords: ["real", "rays meet", "projected", "inverted", "virtual", "appear to meet", "upright"]
+            },
+            {
+              id: "p2",
+              prompt_template: "State two ways a virtual image can be produced by lenses.",
+              marks: 2,
+              type: "short-answer",
+              difficulty: "easy",
+              randomise: true,
+              expected_keywords: ["concave lens", "convex", "inside focal length"]
+            }
+          ]
         },
+        // PAIR 3: Ray Diagrams Convex Lens
         {
-          id: "p2",
-          prompt_template: "State two ways a virtual image can be produced by lenses.",
-          marks: 2,
-          type: "short-answer",
-          difficulty: "easy",
-          randomise: true,
-          expected_keywords: ["concave lens", "convex", "inside focal length"]
-        }
-      ]
-    },
-    {
-      id: "4-6-2-5-ray-diagrams-convex",
-      title: "4.6.2.5 – Ray Diagrams: Convex Lens",
-      type: "content",
-      study_group: 2,
-      content_html: `
+          id: "4-6-2-5-ray-diagrams-convex",
+          title: "Ray Diagrams: Convex Lens",
+          pair_title: "Convex Lens Ray Diagrams",
+          type: "content",
+          study_group: 3,
+          content_html: `
 <div class="subsection">
-  <h3 class="subsection-heading">Subsection 5 – Ray Diagrams: Convex Lens</h3>
+  <h3 class="subsection-heading">Ray Diagrams: Convex Lens</h3>
   
   <div class="key-idea-block">
     <h4>📐 Ray Diagrams:</h4>
@@ -563,70 +615,90 @@ export const opticsModuleData: OpticsModule = {
   <div class="definition-block">
     <h4>Three Key Rays You Always Draw:</h4>
     <ol>
-      <li><strong>Ray parallel to the principal axis</strong> → refracts through the principal focus (F)</li>
-      <li><strong>Ray through the centre of the lens</strong> → passes straight through without bending</li>
-      <li><strong>Ray through the focal point</strong> (before reaching the lens) → refracts parallel to the axis</li>
+      <li><strong style="color: #22c55e;">Ray parallel to the principal axis</strong> → refracts through the principal focus (F)</li>
+      <li><strong style="color: #3b82f6;">Ray through the centre of the lens</strong> → passes straight through without bending</li>
+      <li><strong style="color: #ec4899;">Ray through the focal point</strong> (before reaching the lens) → refracts parallel to the axis</li>
     </ol>
   </div>
 
-  <!-- Ray Diagram Construction Guide -->
-  <div class="key-idea-block anim-pause-hover" style="padding: 1rem; margin: 1rem 0;">
-    <h4>The Three Construction Rays (hover to pause)</h4>
+  <!-- ACCURATE 3 Construction Rays Diagram -->
+  <div class="key-idea-block anim-pause-hover" style="padding: 1rem; margin: 1rem 0; background: linear-gradient(135deg, hsl(45 100% 96%), hsl(30 100% 95%));">
+    <h4 style="color: #ea580c;">The Three Construction Rays (hover to pause)</h4>
     <div style="display: flex; justify-content: center; padding: 0.5rem;">
-      <svg width="500" height="200" viewBox="0 0 500 200">
+      <svg width="540" height="260" viewBox="0 0 540 260">
         <!-- Principal axis -->
-        <line x1="20" y1="100" x2="480" y2="100" stroke="currentColor" stroke-width="1" stroke-dasharray="4,4" opacity="0.3"/>
+        <line x1="20" y1="130" x2="520" y2="130" stroke="#666" stroke-width="1" stroke-dasharray="4,4"/>
+        <text x="510" y="145" fill="#666" font-size="8">axis</text>
         
-        <!-- Lens -->
-        <ellipse cx="200" cy="100" rx="10" ry="65" fill="hsl(var(--primary)/0.15)" stroke="#3b82f6" stroke-width="2"/>
+        <!-- Lens at x=220 -->
+        <ellipse cx="220" cy="130" rx="10" ry="70" fill="hsl(200 80% 85%/0.6)" stroke="#3b82f6" stroke-width="3"/>
         
-        <!-- 2F and F markers -->
-        <circle cx="100" cy="100" r="3" fill="#8b5cf6"/>
-        <text x="100" y="120" fill="#8b5cf6" font-size="9" text-anchor="middle" font-weight="bold">2F</text>
-        <circle cx="150" cy="100" r="3" fill="#ef4444"/>
-        <text x="150" y="120" fill="#ef4444" font-size="9" text-anchor="middle" font-weight="bold">F</text>
-        <circle cx="250" cy="100" r="3" fill="#ef4444"/>
-        <text x="250" y="120" fill="#ef4444" font-size="9" text-anchor="middle" font-weight="bold">F</text>
-        <circle cx="300" cy="100" r="3" fill="#8b5cf6"/>
-        <text x="300" y="120" fill="#8b5cf6" font-size="9" text-anchor="middle" font-weight="bold">2F</text>
+        <!-- 2F and F markers on BOTH sides -->
+        <circle cx="120" cy="130" r="5" fill="#8b5cf6"/>
+        <text x="120" y="155" fill="#8b5cf6" font-size="11" text-anchor="middle" font-weight="bold">2F</text>
         
-        <!-- Object -->
-        <line x1="80" y1="100" x2="80" y2="50" stroke="#f59e0b" stroke-width="4"/>
-        <polygon points="80,45 75,55 85,55" fill="#f59e0b"/>
+        <circle cx="170" cy="130" r="5" fill="#ef4444"/>
+        <text x="170" y="155" fill="#ef4444" font-size="11" text-anchor="middle" font-weight="bold">F</text>
         
-        <!-- Ray 1: Parallel then through F -->
-        <line x1="80" y1="50" x2="200" y2="50" stroke="#22c55e" stroke-width="2">
+        <circle cx="270" cy="130" r="5" fill="#ef4444"/>
+        <text x="270" y="155" fill="#ef4444" font-size="11" text-anchor="middle" font-weight="bold">F</text>
+        
+        <circle cx="320" cy="130" r="5" fill="#8b5cf6"/>
+        <text x="320" y="155" fill="#8b5cf6" font-size="11" text-anchor="middle" font-weight="bold">2F</text>
+        
+        <!-- Object at x=80 (beyond 2F) - height 60px -->
+        <line x1="80" y1="130" x2="80" y2="55" stroke="#f59e0b" stroke-width="5"/>
+        <polygon points="80,48 73,62 87,62" fill="#f59e0b"/>
+        <text x="80" y="175" fill="#f59e0b" font-size="11" text-anchor="middle" font-weight="bold">OBJECT</text>
+        
+        <!-- RAY 1 (GREEN): Parallel to axis → through F after lens -->
+        <line x1="80" y1="55" x2="220" y2="55" stroke="#22c55e" stroke-width="2.5">
           <animate attributeName="stroke-dashoffset" from="40" to="0" dur="2s" repeatCount="indefinite"/>
         </line>
-        <line x1="200" y1="50" x2="380" y2="155" stroke="#22c55e" stroke-width="2">
+        <!-- This ray goes through F (270,130) and continues to image -->
+        <line x1="220" y1="55" x2="400" y2="205" stroke="#22c55e" stroke-width="2.5">
           <animate attributeName="opacity" values="0.6;1;0.6" dur="2s" repeatCount="indefinite"/>
         </line>
         
-        <!-- Ray 2: Through centre -->
-        <line x1="80" y1="50" x2="380" y2="155" stroke="#3b82f6" stroke-width="2">
+        <!-- RAY 2 (BLUE): Through centre - straight through -->
+        <line x1="80" y1="55" x2="400" y2="205" stroke="#3b82f6" stroke-width="2.5">
           <animate attributeName="opacity" values="0.6;1;0.6" dur="2s" repeatCount="indefinite"/>
         </line>
         
-        <!-- Ray 3: Through F then parallel -->
-        <line x1="80" y1="50" x2="150" y2="82" stroke="#ec4899" stroke-width="2">
+        <!-- RAY 3 (PINK): Through F before lens → parallel after -->
+        <!-- Goes from object through F (170,130), but we trace from top of object -->
+        <line x1="80" y1="55" x2="170" y2="105" stroke="#ec4899" stroke-width="2.5">
           <animate attributeName="stroke-dashoffset" from="30" to="0" dur="2s" repeatCount="indefinite"/>
         </line>
-        <line x1="150" y1="82" x2="200" y2="100" stroke="#ec4899" stroke-width="2"/>
-        <line x1="200" y1="100" x2="380" y2="155" stroke="#ec4899" stroke-width="2" stroke-dasharray="3,3"/>
+        <!-- After lens, parallel to axis -->
+        <line x1="220" y1="90" x2="400" y2="90" stroke="#ec4899" stroke-width="2.5" stroke-dasharray="4,3">
+          <animate attributeName="opacity" values="0.6;1;0.6" dur="2s" repeatCount="indefinite"/>
+        </line>
         
-        <!-- Image (where rays meet) -->
-        <line x1="320" y1="100" x2="320" y2="155" stroke="#f59e0b" stroke-width="3"/>
-        <polygon points="320,160 315,150 325,150" fill="#f59e0b"/>
-        <text x="320" y="180" fill="#f59e0b" font-size="9" text-anchor="middle">Image</text>
+        <!-- Image (where rays meet) at approximately x=350 -->
+        <line x1="350" y1="130" x2="350" y2="185" stroke="#22c55e" stroke-width="4"/>
+        <polygon points="350,192 343,178 357,178" fill="#22c55e"/>
+        <text x="350" y="215" fill="#22c55e" font-size="11" text-anchor="middle" font-weight="bold">IMAGE</text>
         
-        <!-- Legend -->
-        <rect x="360" y="20" width="130" height="70" fill="hsl(var(--muted)/0.5)" rx="5"/>
-        <line x1="370" y1="35" x2="395" y2="35" stroke="#22c55e" stroke-width="2"/>
-        <text x="400" y="38" fill="currentColor" font-size="8">Parallel → F</text>
-        <line x1="370" y1="50" x2="395" y2="50" stroke="#3b82f6" stroke-width="2"/>
-        <text x="400" y="53" fill="currentColor" font-size="8">Through centre</text>
-        <line x1="370" y1="65" x2="395" y2="65" stroke="#ec4899" stroke-width="2"/>
-        <text x="400" y="68" fill="currentColor" font-size="8">Through F → parallel</text>
+        <!-- Numbered labels for rays -->
+        <rect x="125" y="40" width="18" height="18" fill="#22c55e" rx="3"/>
+        <text x="134" y="54" fill="white" font-size="11" text-anchor="middle" font-weight="bold">1</text>
+        
+        <rect x="165" y="75" width="18" height="18" fill="#3b82f6" rx="3"/>
+        <text x="174" y="89" fill="white" font-size="11" text-anchor="middle" font-weight="bold">2</text>
+        
+        <rect x="115" y="90" width="18" height="18" fill="#ec4899" rx="3"/>
+        <text x="124" y="104" fill="white" font-size="11" text-anchor="middle" font-weight="bold">3</text>
+        
+        <!-- Legend box -->
+        <rect x="380" y="20" width="150" height="85" fill="hsl(var(--muted)/0.6)" rx="6" stroke="#ccc"/>
+        <text x="455" y="38" fill="currentColor" font-size="10" text-anchor="middle" font-weight="bold">Ray Key:</text>
+        <line x1="390" y1="52" x2="415" y2="52" stroke="#22c55e" stroke-width="3"/>
+        <text x="420" y="56" fill="currentColor" font-size="9">1. Parallel → F</text>
+        <line x1="390" y1="68" x2="415" y2="68" stroke="#3b82f6" stroke-width="3"/>
+        <text x="420" y="72" fill="currentColor" font-size="9">2. Through centre</text>
+        <line x1="390" y1="84" x2="415" y2="84" stroke="#ec4899" stroke-width="3"/>
+        <text x="420" y="88" fill="currentColor" font-size="9">3. Through F → parallel</text>
       </svg>
     </div>
   </div>
@@ -635,167 +707,207 @@ export const opticsModuleData: OpticsModule = {
     <h4>🎯 What Happens Depends on Object Position:</h4>
   </div>
 
-  <!-- Object Beyond 2F -->
-  <div class="key-idea-block anim-pause-hover" style="padding: 1rem; margin: 1rem 0; border-left: 4px solid #22c55e;">
-    <h4>Object Beyond 2F (hover to pause)</h4>
+  <!-- Object Beyond 2F - ACCURATE -->
+  <div class="key-idea-block anim-pause-hover" style="padding: 1rem; margin: 1rem 0; border-left: 4px solid #22c55e; background: linear-gradient(135deg, hsl(45 100% 97%), hsl(30 100% 96%));">
+    <h4 style="color: #16a34a;">Object Beyond 2F (hover to pause)</h4>
     <div style="display: flex; justify-content: center; padding: 0.5rem;">
-      <svg width="450" height="160" viewBox="0 0 450 160">
+      <svg width="480" height="180" viewBox="0 0 480 180">
         <!-- Axis -->
-        <line x1="20" y1="80" x2="430" y2="80" stroke="currentColor" stroke-width="1" stroke-dasharray="3,3" opacity="0.3"/>
-        <!-- Lens -->
-        <ellipse cx="200" cy="80" rx="8" ry="50" fill="hsl(var(--primary)/0.15)" stroke="#3b82f6" stroke-width="2"/>
+        <line x1="20" y1="90" x2="460" y2="90" stroke="#666" stroke-width="1" stroke-dasharray="3,3"/>
+        
+        <!-- Lens at x=200 -->
+        <ellipse cx="200" cy="90" rx="8" ry="55" fill="hsl(200 80% 85%/0.5)" stroke="#3b82f6" stroke-width="2.5"/>
+        
         <!-- Markers -->
-        <circle cx="100" cy="80" r="2" fill="#8b5cf6"/>
-        <text x="100" y="95" fill="#8b5cf6" font-size="8" text-anchor="middle">2F</text>
-        <circle cx="150" cy="80" r="2" fill="#ef4444"/>
-        <text x="150" y="95" fill="#ef4444" font-size="8" text-anchor="middle">F</text>
-        <circle cx="250" cy="80" r="2" fill="#ef4444"/>
-        <text x="250" y="95" fill="#ef4444" font-size="8" text-anchor="middle">F</text>
-        <circle cx="300" cy="80" r="2" fill="#8b5cf6"/>
-        <text x="300" y="95" fill="#8b5cf6" font-size="8" text-anchor="middle">2F</text>
-        <!-- Object (beyond 2F) -->
-        <line x1="50" y1="80" x2="50" y2="35" stroke="#f59e0b" stroke-width="3"/>
-        <polygon points="50,30 45,40 55,40" fill="#f59e0b"/>
-        <text x="50" y="110" fill="#f59e0b" font-size="9" text-anchor="middle">Object</text>
-        <!-- Rays -->
-        <line x1="50" y1="35" x2="200" y2="35" stroke="#22c55e" stroke-width="1.5"/>
-        <line x1="200" y1="35" x2="280" y2="100" stroke="#22c55e" stroke-width="1.5"/>
-        <line x1="50" y1="35" x2="280" y2="100" stroke="#3b82f6" stroke-width="1.5"/>
-        <!-- Image -->
-        <line x1="280" y1="80" x2="280" y2="100" stroke="#22c55e" stroke-width="3"/>
-        <polygon points="280,105 277,98 283,98" fill="#22c55e"/>
-        <text x="280" y="125" fill="#22c55e" font-size="9" text-anchor="middle">Image</text>
-        <!-- Properties -->
-        <rect x="340" y="20" width="100" height="60" fill="hsl(var(--muted)/0.5)" rx="5"/>
-        <text x="390" y="38" fill="currentColor" font-size="9" text-anchor="middle" font-weight="bold">Properties:</text>
-        <text x="390" y="52" fill="#22c55e" font-size="8" text-anchor="middle">✓ Real</text>
-        <text x="390" y="64" fill="#22c55e" font-size="8" text-anchor="middle">✓ Inverted</text>
-        <text x="390" y="76" fill="#22c55e" font-size="8" text-anchor="middle">✓ Smaller</text>
+        <circle cx="100" cy="90" r="4" fill="#8b5cf6"/>
+        <text x="100" y="110" fill="#8b5cf6" font-size="9" text-anchor="middle" font-weight="bold">2F</text>
+        <circle cx="150" cy="90" r="4" fill="#ef4444"/>
+        <text x="150" y="110" fill="#ef4444" font-size="9" text-anchor="middle" font-weight="bold">F</text>
+        <circle cx="250" cy="90" r="4" fill="#ef4444"/>
+        <text x="250" y="110" fill="#ef4444" font-size="9" text-anchor="middle" font-weight="bold">F</text>
+        <circle cx="300" cy="90" r="4" fill="#8b5cf6"/>
+        <text x="300" y="110" fill="#8b5cf6" font-size="9" text-anchor="middle" font-weight="bold">2F</text>
+        
+        <!-- Object (beyond 2F at x=50) - tall -->
+        <line x1="50" y1="90" x2="50" y2="35" stroke="#f59e0b" stroke-width="4"/>
+        <polygon points="50,30 45,42 55,42" fill="#f59e0b"/>
+        <text x="50" y="125" fill="#f59e0b" font-size="10" text-anchor="middle" font-weight="bold">Object</text>
+        
+        <!-- Ray 1: Parallel then through F -->
+        <line x1="50" y1="35" x2="200" y2="35" stroke="#22c55e" stroke-width="2"/>
+        <line x1="200" y1="35" x2="285" y2="115" stroke="#22c55e" stroke-width="2"/>
+        
+        <!-- Ray 2: Through centre -->
+        <line x1="50" y1="35" x2="285" y2="115" stroke="#3b82f6" stroke-width="2"/>
+        
+        <!-- Image (between F and 2F, smaller) -->
+        <line x1="285" y1="90" x2="285" y2="115" stroke="#22c55e" stroke-width="3"/>
+        <polygon points="285,120 281,110 289,110" fill="#22c55e"/>
+        <text x="285" y="140" fill="#22c55e" font-size="9" text-anchor="middle" font-weight="bold">Image</text>
+        
+        <!-- Properties box -->
+        <rect x="350" y="25" width="115" height="70" fill="hsl(var(--muted)/0.5)" rx="5" stroke="#ccc"/>
+        <text x="407" y="43" fill="currentColor" font-size="10" text-anchor="middle" font-weight="bold">Properties:</text>
+        <text x="407" y="58" fill="#22c55e" font-size="9" text-anchor="middle">✓ Real</text>
+        <text x="407" y="72" fill="#22c55e" font-size="9" text-anchor="middle">✓ Inverted</text>
+        <text x="407" y="86" fill="#22c55e" font-size="9" text-anchor="middle">✓ Smaller</text>
       </svg>
     </div>
   </div>
 
-  <!-- Object at 2F -->
-  <div class="key-idea-block anim-pause-hover" style="padding: 1rem; margin: 1rem 0; border-left: 4px solid #3b82f6;">
-    <h4>Object at 2F (hover to pause)</h4>
+  <!-- Object at 2F - ACCURATE -->
+  <div class="key-idea-block anim-pause-hover" style="padding: 1rem; margin: 1rem 0; border-left: 4px solid #3b82f6; background: linear-gradient(135deg, hsl(45 100% 97%), hsl(30 100% 96%));">
+    <h4 style="color: #2563eb;">Object at 2F (hover to pause)</h4>
     <div style="display: flex; justify-content: center; padding: 0.5rem;">
-      <svg width="450" height="160" viewBox="0 0 450 160">
+      <svg width="480" height="180" viewBox="0 0 480 180">
         <!-- Axis -->
-        <line x1="20" y1="80" x2="430" y2="80" stroke="currentColor" stroke-width="1" stroke-dasharray="3,3" opacity="0.3"/>
-        <!-- Lens -->
-        <ellipse cx="200" cy="80" rx="8" ry="50" fill="hsl(var(--primary)/0.15)" stroke="#3b82f6" stroke-width="2"/>
+        <line x1="20" y1="90" x2="460" y2="90" stroke="#666" stroke-width="1" stroke-dasharray="3,3"/>
+        
+        <!-- Lens at x=200 -->
+        <ellipse cx="200" cy="90" rx="8" ry="55" fill="hsl(200 80% 85%/0.5)" stroke="#3b82f6" stroke-width="2.5"/>
+        
         <!-- Markers -->
-        <circle cx="100" cy="80" r="2" fill="#8b5cf6"/>
-        <text x="100" y="95" fill="#8b5cf6" font-size="8" text-anchor="middle">2F</text>
-        <circle cx="150" cy="80" r="2" fill="#ef4444"/>
-        <text x="150" y="95" fill="#ef4444" font-size="8" text-anchor="middle">F</text>
-        <circle cx="250" cy="80" r="2" fill="#ef4444"/>
-        <text x="250" y="95" fill="#ef4444" font-size="8" text-anchor="middle">F</text>
-        <circle cx="300" cy="80" r="2" fill="#8b5cf6"/>
-        <text x="300" y="95" fill="#8b5cf6" font-size="8" text-anchor="middle">2F</text>
-        <!-- Object (at 2F) -->
-        <line x1="100" y1="80" x2="100" y2="35" stroke="#f59e0b" stroke-width="3"/>
-        <polygon points="100,30 95,40 105,40" fill="#f59e0b"/>
-        <!-- Rays -->
-        <line x1="100" y1="35" x2="200" y2="35" stroke="#22c55e" stroke-width="1.5"/>
-        <line x1="200" y1="35" x2="300" y2="125" stroke="#22c55e" stroke-width="1.5"/>
-        <line x1="100" y1="35" x2="300" y2="125" stroke="#3b82f6" stroke-width="1.5"/>
-        <!-- Image (at 2F, same size) -->
-        <line x1="300" y1="80" x2="300" y2="125" stroke="#3b82f6" stroke-width="3"/>
-        <polygon points="300,130 297,123 303,123" fill="#3b82f6"/>
-        <!-- Properties -->
-        <rect x="340" y="20" width="100" height="70" fill="hsl(var(--muted)/0.5)" rx="5"/>
-        <text x="390" y="38" fill="currentColor" font-size="9" text-anchor="middle" font-weight="bold">Properties:</text>
-        <text x="390" y="52" fill="#3b82f6" font-size="8" text-anchor="middle">✓ Real</text>
-        <text x="390" y="64" fill="#3b82f6" font-size="8" text-anchor="middle">✓ Inverted</text>
-        <text x="390" y="76" fill="#3b82f6" font-size="8" text-anchor="middle">✓ Same size</text>
-        <text x="390" y="88" fill="#3b82f6" font-size="8" text-anchor="middle">✓ At 2F</text>
+        <circle cx="100" cy="90" r="4" fill="#8b5cf6"/>
+        <text x="100" y="110" fill="#8b5cf6" font-size="9" text-anchor="middle" font-weight="bold">2F</text>
+        <circle cx="150" cy="90" r="4" fill="#ef4444"/>
+        <text x="150" y="110" fill="#ef4444" font-size="9" text-anchor="middle" font-weight="bold">F</text>
+        <circle cx="250" cy="90" r="4" fill="#ef4444"/>
+        <text x="250" y="110" fill="#ef4444" font-size="9" text-anchor="middle" font-weight="bold">F</text>
+        <circle cx="300" cy="90" r="4" fill="#8b5cf6"/>
+        <text x="300" y="110" fill="#8b5cf6" font-size="9" text-anchor="middle" font-weight="bold">2F</text>
+        
+        <!-- Object (at 2F, x=100) -->
+        <line x1="100" y1="90" x2="100" y2="40" stroke="#f59e0b" stroke-width="4"/>
+        <polygon points="100,35 95,47 105,47" fill="#f59e0b"/>
+        <text x="100" y="125" fill="#f59e0b" font-size="10" text-anchor="middle" font-weight="bold">Object</text>
+        
+        <!-- Ray 1: Parallel then through F -->
+        <line x1="100" y1="40" x2="200" y2="40" stroke="#22c55e" stroke-width="2"/>
+        <line x1="200" y1="40" x2="300" y2="140" stroke="#22c55e" stroke-width="2"/>
+        
+        <!-- Ray 2: Through centre -->
+        <line x1="100" y1="40" x2="300" y2="140" stroke="#3b82f6" stroke-width="2"/>
+        
+        <!-- Image (at 2F on other side, SAME SIZE) -->
+        <line x1="300" y1="90" x2="300" y2="140" stroke="#3b82f6" stroke-width="3"/>
+        <polygon points="300,145 295,133 305,133" fill="#3b82f6"/>
+        <text x="300" y="165" fill="#3b82f6" font-size="9" text-anchor="middle" font-weight="bold">Image</text>
+        
+        <!-- Properties box -->
+        <rect x="350" y="25" width="115" height="70" fill="hsl(var(--muted)/0.5)" rx="5" stroke="#ccc"/>
+        <text x="407" y="43" fill="currentColor" font-size="10" text-anchor="middle" font-weight="bold">Properties:</text>
+        <text x="407" y="58" fill="#3b82f6" font-size="9" text-anchor="middle">✓ Real</text>
+        <text x="407" y="72" fill="#3b82f6" font-size="9" text-anchor="middle">✓ Inverted</text>
+        <text x="407" y="86" fill="#3b82f6" font-size="9" text-anchor="middle">✓ Same size</text>
       </svg>
     </div>
   </div>
 
-  <!-- Object Between F and 2F -->
-  <div class="key-idea-block anim-pause-hover" style="padding: 1rem; margin: 1rem 0; border-left: 4px solid #ec4899;">
-    <h4>Object Between F and 2F (hover to pause)</h4>
+  <!-- Object Between F and 2F - ACCURATE -->
+  <div class="key-idea-block anim-pause-hover" style="padding: 1rem; margin: 1rem 0; border-left: 4px solid #8b5cf6; background: linear-gradient(135deg, hsl(45 100% 97%), hsl(30 100% 96%));">
+    <h4 style="color: #7c3aed;">Object Between F and 2F (hover to pause)</h4>
     <div style="display: flex; justify-content: center; padding: 0.5rem;">
-      <svg width="450" height="160" viewBox="0 0 450 160">
+      <svg width="520" height="200" viewBox="0 0 520 200">
         <!-- Axis -->
-        <line x1="20" y1="80" x2="430" y2="80" stroke="currentColor" stroke-width="1" stroke-dasharray="3,3" opacity="0.3"/>
-        <!-- Lens -->
-        <ellipse cx="200" cy="80" rx="8" ry="50" fill="hsl(var(--primary)/0.15)" stroke="#3b82f6" stroke-width="2"/>
+        <line x1="20" y1="100" x2="500" y2="100" stroke="#666" stroke-width="1" stroke-dasharray="3,3"/>
+        
+        <!-- Lens at x=180 -->
+        <ellipse cx="180" cy="100" rx="8" ry="55" fill="hsl(200 80% 85%/0.5)" stroke="#3b82f6" stroke-width="2.5"/>
+        
         <!-- Markers -->
-        <circle cx="100" cy="80" r="2" fill="#8b5cf6"/>
-        <text x="100" y="95" fill="#8b5cf6" font-size="8" text-anchor="middle">2F</text>
-        <circle cx="150" cy="80" r="2" fill="#ef4444"/>
-        <text x="150" y="95" fill="#ef4444" font-size="8" text-anchor="middle">F</text>
-        <circle cx="250" cy="80" r="2" fill="#ef4444"/>
-        <text x="250" y="95" fill="#ef4444" font-size="8" text-anchor="middle">F</text>
-        <circle cx="300" cy="80" r="2" fill="#8b5cf6"/>
-        <text x="300" y="95" fill="#8b5cf6" font-size="8" text-anchor="middle">2F</text>
-        <!-- Object (between F and 2F) -->
-        <line x1="125" y1="80" x2="125" y2="45" stroke="#f59e0b" stroke-width="3"/>
-        <polygon points="125,40 120,50 130,50" fill="#f59e0b"/>
-        <!-- Rays -->
-        <line x1="125" y1="45" x2="200" y2="45" stroke="#22c55e" stroke-width="1.5"/>
-        <line x1="200" y1="45" x2="360" y2="135" stroke="#22c55e" stroke-width="1.5"/>
-        <line x1="125" y1="45" x2="360" y2="135" stroke="#3b82f6" stroke-width="1.5"/>
-        <!-- Image (beyond 2F, magnified) -->
-        <line x1="360" y1="80" x2="360" y2="135" stroke="#ec4899" stroke-width="3"/>
-        <polygon points="360,140 357,133 363,133" fill="#ec4899"/>
-        <!-- Properties -->
-        <rect x="380" y="20" width="65" height="70" fill="hsl(var(--muted)/0.5)" rx="5"/>
-        <text x="412" y="35" fill="currentColor" font-size="8" text-anchor="middle" font-weight="bold">Properties:</text>
-        <text x="412" y="48" fill="#ec4899" font-size="7" text-anchor="middle">✓ Real</text>
-        <text x="412" y="60" fill="#ec4899" font-size="7" text-anchor="middle">✓ Inverted</text>
-        <text x="412" y="72" fill="#ec4899" font-size="7" text-anchor="middle">✓ Magnified</text>
-        <text x="412" y="84" fill="#ec4899" font-size="7" text-anchor="middle">✓ Beyond 2F</text>
+        <circle cx="80" cy="100" r="4" fill="#8b5cf6"/>
+        <text x="80" y="120" fill="#8b5cf6" font-size="9" text-anchor="middle" font-weight="bold">2F</text>
+        <circle cx="130" cy="100" r="4" fill="#ef4444"/>
+        <text x="130" y="120" fill="#ef4444" font-size="9" text-anchor="middle" font-weight="bold">F</text>
+        <circle cx="230" cy="100" r="4" fill="#ef4444"/>
+        <text x="230" y="120" fill="#ef4444" font-size="9" text-anchor="middle" font-weight="bold">F</text>
+        <circle cx="280" cy="100" r="4" fill="#8b5cf6"/>
+        <text x="280" y="120" fill="#8b5cf6" font-size="9" text-anchor="middle" font-weight="bold">2F</text>
+        
+        <!-- Object (between F and 2F, at x=105) -->
+        <line x1="105" y1="100" x2="105" y2="60" stroke="#f59e0b" stroke-width="4"/>
+        <polygon points="105,55 100,67 110,67" fill="#f59e0b"/>
+        <text x="105" y="135" fill="#f59e0b" font-size="10" text-anchor="middle" font-weight="bold">Object</text>
+        
+        <!-- Ray 1: Parallel then through F -->
+        <line x1="105" y1="60" x2="180" y2="60" stroke="#22c55e" stroke-width="2"/>
+        <line x1="180" y1="60" x2="420" y2="185" stroke="#22c55e" stroke-width="2"/>
+        
+        <!-- Ray 2: Through centre -->
+        <line x1="105" y1="60" x2="420" y2="165" stroke="#3b82f6" stroke-width="2"/>
+        
+        <!-- Image (beyond 2F, MAGNIFIED) -->
+        <line x1="390" y1="100" x2="390" y2="175" stroke="#8b5cf6" stroke-width="3"/>
+        <polygon points="390,180 385,168 395,168" fill="#8b5cf6"/>
+        <text x="390" y="195" fill="#8b5cf6" font-size="9" text-anchor="middle" font-weight="bold">Image</text>
+        
+        <!-- Properties box -->
+        <rect x="420" y="35" width="90" height="70" fill="hsl(var(--muted)/0.5)" rx="5" stroke="#ccc"/>
+        <text x="465" y="53" fill="currentColor" font-size="10" text-anchor="middle" font-weight="bold">Properties:</text>
+        <text x="465" y="68" fill="#8b5cf6" font-size="9" text-anchor="middle">✓ Real</text>
+        <text x="465" y="82" fill="#8b5cf6" font-size="9" text-anchor="middle">✓ Inverted</text>
+        <text x="465" y="96" fill="#8b5cf6" font-size="9" text-anchor="middle">✓ Magnified</text>
       </svg>
     </div>
   </div>
 
-  <!-- Object Inside F (Magnifying Glass) -->
-  <div class="key-idea-block anim-pause-hover" style="padding: 1rem; margin: 1rem 0; border-left: 4px solid #f59e0b;">
-    <h4>Object Inside F - Magnifying Glass Effect (hover to pause)</h4>
+  <!-- Object Inside F - ACCURATE (Magnifying Glass) -->
+  <div class="key-idea-block anim-pause-hover" style="padding: 1rem; margin: 1rem 0; border-left: 4px solid #f59e0b; background: linear-gradient(135deg, hsl(45 100% 97%), hsl(30 100% 96%));">
+    <h4 style="color: #ea580c;">Object Inside F - Magnifying Glass Effect (hover to pause)</h4>
     <div style="display: flex; justify-content: center; padding: 0.5rem;">
-      <svg width="450" height="170" viewBox="0 0 450 170">
+      <svg width="540" height="220" viewBox="0 0 540 220">
         <!-- Axis -->
-        <line x1="20" y1="85" x2="430" y2="85" stroke="currentColor" stroke-width="1" stroke-dasharray="3,3" opacity="0.3"/>
-        <!-- Lens -->
-        <ellipse cx="250" cy="85" rx="8" ry="50" fill="hsl(var(--primary)/0.15)" stroke="#3b82f6" stroke-width="2"/>
+        <line x1="20" y1="110" x2="520" y2="110" stroke="#666" stroke-width="1" stroke-dasharray="3,3"/>
+        
+        <!-- Lens at x=280 -->
+        <ellipse cx="280" cy="110" rx="8" ry="55" fill="hsl(200 80% 85%/0.5)" stroke="#3b82f6" stroke-width="2.5"/>
+        
         <!-- Markers -->
-        <circle cx="150" cy="85" r="2" fill="#8b5cf6"/>
-        <text x="150" y="100" fill="#8b5cf6" font-size="8" text-anchor="middle">2F</text>
-        <circle cx="200" cy="85" r="2" fill="#ef4444"/>
-        <text x="200" y="100" fill="#ef4444" font-size="8" text-anchor="middle">F</text>
-        <circle cx="300" cy="85" r="2" fill="#ef4444"/>
-        <text x="300" y="100" fill="#ef4444" font-size="8" text-anchor="middle">F</text>
-        <circle cx="350" cy="85" r="2" fill="#8b5cf6"/>
-        <text x="350" y="100" fill="#8b5cf6" font-size="8" text-anchor="middle">2F</text>
-        <!-- Object (inside F) -->
-        <line x1="225" y1="85" x2="225" y2="55" stroke="#f59e0b" stroke-width="3"/>
-        <polygon points="225,50 220,60 230,60" fill="#f59e0b"/>
-        <text x="225" y="115" fill="#f59e0b" font-size="8" text-anchor="middle">Object</text>
-        <!-- Diverging rays -->
-        <line x1="225" y1="55" x2="250" y2="55" stroke="#22c55e" stroke-width="1.5"/>
-        <line x1="250" y1="55" x2="380" y2="35" stroke="#22c55e" stroke-width="1.5"/>
-        <line x1="225" y1="55" x2="380" y2="70" stroke="#3b82f6" stroke-width="1.5"/>
-        <!-- Traced back (virtual image) -->
-        <line x1="250" y1="55" x2="80" y2="10" stroke="#22c55e" stroke-width="1" stroke-dasharray="4,4" opacity="0.6"/>
-        <line x1="250" y1="80" x2="80" y2="10" stroke="#3b82f6" stroke-width="1" stroke-dasharray="4,4" opacity="0.6"/>
-        <!-- Virtual image (upright, magnified) -->
-        <line x1="80" y1="85" x2="80" y2="10" stroke="#f59e0b" stroke-width="3" stroke-dasharray="5,3"/>
-        <polygon points="80,5 75,15 85,15" fill="#f59e0b" opacity="0.7"/>
-        <text x="80" y="135" fill="#f59e0b" font-size="9" text-anchor="middle">Virtual Image</text>
-        <text x="80" y="150" fill="#f59e0b" font-size="7" text-anchor="middle">(Magnified)</text>
-        <!-- Magnifying glass icon -->
-        <text x="380" y="130" fill="#f59e0b" font-size="10" text-anchor="middle">🔍 This is how</text>
-        <text x="380" y="145" fill="#f59e0b" font-size="10" text-anchor="middle">magnifying glasses work!</text>
-        <!-- Properties -->
-        <rect x="340" y="10" width="90" height="65" fill="hsl(var(--muted)/0.5)" rx="5"/>
-        <text x="385" y="25" fill="currentColor" font-size="8" text-anchor="middle" font-weight="bold">Properties:</text>
-        <text x="385" y="38" fill="#f59e0b" font-size="7" text-anchor="middle">✓ Virtual</text>
-        <text x="385" y="50" fill="#f59e0b" font-size="7" text-anchor="middle">✓ Upright</text>
-        <text x="385" y="62" fill="#f59e0b" font-size="7" text-anchor="middle">✓ Magnified</text>
+        <circle cx="180" cy="110" r="4" fill="#8b5cf6"/>
+        <text x="180" y="130" fill="#8b5cf6" font-size="9" text-anchor="middle" font-weight="bold">2F</text>
+        <circle cx="230" cy="110" r="4" fill="#ef4444"/>
+        <text x="230" y="130" fill="#ef4444" font-size="9" text-anchor="middle" font-weight="bold">F</text>
+        <circle cx="330" cy="110" r="4" fill="#ef4444"/>
+        <text x="330" y="130" fill="#ef4444" font-size="9" text-anchor="middle" font-weight="bold">F</text>
+        <circle cx="380" cy="110" r="4" fill="#8b5cf6"/>
+        <text x="380" y="130" fill="#8b5cf6" font-size="9" text-anchor="middle" font-weight="bold">2F</text>
+        
+        <!-- Object (INSIDE F, at x=255) -->
+        <line x1="255" y1="110" x2="255" y2="75" stroke="#f59e0b" stroke-width="4"/>
+        <polygon points="255,70 250,82 260,82" fill="#f59e0b"/>
+        <text x="255" y="145" fill="#f59e0b" font-size="10" text-anchor="middle" font-weight="bold">Object</text>
+        
+        <!-- RAY 1: Parallel ray from top of object → diverges as if from F -->
+        <line x1="255" y1="75" x2="280" y2="75" stroke="#22c55e" stroke-width="2"/>
+        <line x1="280" y1="75" x2="470" y2="35" stroke="#22c55e" stroke-width="2">
+          <animate attributeName="opacity" values="0.6;1;0.6" dur="2s" repeatCount="indefinite"/>
+        </line>
+        
+        <!-- RAY 2: Through centre (straight) -->
+        <line x1="255" y1="75" x2="470" y2="95" stroke="#3b82f6" stroke-width="2">
+          <animate attributeName="opacity" values="0.6;1;0.6" dur="2s" repeatCount="indefinite"/>
+        </line>
+        
+        <!-- Virtual rays traced BACK (dashed) -->
+        <line x1="280" y1="75" x2="100" y2="35" stroke="#22c55e" stroke-width="1.5" stroke-dasharray="5,4" opacity="0.6"/>
+        <line x1="280" y1="90" x2="100" y2="35" stroke="#3b82f6" stroke-width="1.5" stroke-dasharray="5,4" opacity="0.6"/>
+        
+        <!-- Virtual image (SAME SIDE as object, upright, magnified) - dashed -->
+        <line x1="100" y1="110" x2="100" y2="35" stroke="#f59e0b" stroke-width="3" stroke-dasharray="6,4"/>
+        <polygon points="100,30 95,42 105,42" fill="#f59e0b" opacity="0.7"/>
+        <text x="100" y="165" fill="#f59e0b" font-size="9" text-anchor="middle" font-weight="bold">Virtual Image</text>
+        <text x="100" y="180" fill="#f59e0b" font-size="8" text-anchor="middle">(Magnified)</text>
+        
+        <!-- Properties box -->
+        <rect x="390" y="140" width="130" height="70" fill="hsl(var(--muted)/0.5)" rx="5" stroke="#ccc"/>
+        <text x="455" y="158" fill="currentColor" font-size="10" text-anchor="middle" font-weight="bold">Properties:</text>
+        <text x="455" y="173" fill="#f59e0b" font-size="9" text-anchor="middle">✓ Virtual</text>
+        <text x="455" y="187" fill="#f59e0b" font-size="9" text-anchor="middle">✓ Upright</text>
+        <text x="455" y="201" fill="#f59e0b" font-size="9" text-anchor="middle">✓ Magnified</text>
+        
+        <!-- Magnifying glass note -->
+        <text x="455" y="60" fill="#ea580c" font-size="10" text-anchor="middle">🔍 This is how</text>
+        <text x="455" y="75" fill="#ea580c" font-size="10" text-anchor="middle">magnifying glasses work!</text>
       </svg>
     </div>
   </div>
@@ -810,46 +922,48 @@ export const opticsModuleData: OpticsModule = {
     </tbody>
   </table>
 </div>
-      `,
-      canonical_keywords: ["ray diagram", "convex lens", "2F", "F", "principal axis", "parallel", "centre", "focal point", "magnified", "inverted"],
-      practice_items: [
-        {
-          id: "p1",
-          prompt_template: "Describe the three rays used to construct a ray diagram for a convex lens.",
-          marks: 3,
-          type: "short-answer",
-          difficulty: "medium",
-          randomise: true,
-          expected_keywords: ["parallel", "through focus", "through centre", "straight"]
+          `,
+          canonical_keywords: ["ray diagram", "convex lens", "2F", "F", "principal axis", "parallel", "centre", "focal point", "magnified", "inverted"],
+          practice_items: [
+            {
+              id: "p1",
+              prompt_template: "Describe the three rays used to construct a ray diagram for a convex lens.",
+              marks: 3,
+              type: "short-answer",
+              difficulty: "medium",
+              randomise: true,
+              expected_keywords: ["parallel", "through focus", "through centre", "straight"]
+            },
+            {
+              id: "p2",
+              prompt_template: "An object is placed between F and 2F of a convex lens. Describe the image formed.",
+              marks: 4,
+              type: "short-answer",
+              difficulty: "medium",
+              randomise: true,
+              expected_keywords: ["real", "inverted", "magnified", "beyond 2F"]
+            },
+            {
+              id: "p3",
+              prompt_template: "Explain how a magnifying glass works using your knowledge of convex lenses.",
+              marks: 4,
+              type: "short-answer",
+              difficulty: "hard",
+              randomise: true,
+              expected_keywords: ["convex", "inside focal length", "virtual", "upright", "magnified"]
+            }
+          ]
         },
+        // PAIR 4: Ray Diagrams Concave Lens & Magnification
         {
-          id: "p2",
-          prompt_template: "An object is placed between F and 2F of a convex lens. Describe the image formed.",
-          marks: 4,
-          type: "short-answer",
-          difficulty: "medium",
-          randomise: true,
-          expected_keywords: ["real", "inverted", "magnified", "beyond 2F"]
-        },
-        {
-          id: "p3",
-          prompt_template: "Explain how a magnifying glass works using your knowledge of convex lenses.",
-          marks: 4,
-          type: "short-answer",
-          difficulty: "hard",
-          randomise: true,
-          expected_keywords: ["convex", "inside focal length", "virtual", "upright", "magnified"]
-        }
-      ]
-    },
-    {
-      id: "4-6-2-5-ray-diagrams-concave",
-      title: "4.6.2.5 – Ray Diagrams: Concave Lens",
-      type: "content",
-      study_group: 3,
-      content_html: `
+          id: "4-6-2-5-ray-diagrams-concave",
+          title: "Ray Diagrams: Concave Lens",
+          pair_title: "Concave Lens & Magnification",
+          type: "content",
+          study_group: 4,
+          content_html: `
 <div class="subsection">
-  <h3 class="subsection-heading">Subsection 6 – Ray Diagrams: Concave Lens</h3>
+  <h3 class="subsection-heading">Ray Diagrams: Concave Lens</h3>
   
   <div class="key-idea-block">
     <h4>📐 Concave Lens Behaviour:</h4>
@@ -859,72 +973,75 @@ export const opticsModuleData: OpticsModule = {
   <div class="definition-block">
     <h4>Two Main Rays:</h4>
     <ol>
-      <li><strong>A ray parallel to the axis</strong> → refracts as if coming from the virtual focus behind the lens</li>
-      <li><strong>A ray through the centre</strong> → continues straight through</li>
+      <li><strong style="color: #22c55e;">A ray parallel to the axis</strong> → refracts as if coming from the virtual focus behind the lens</li>
+      <li><strong style="color: #3b82f6;">A ray through the centre</strong> → continues straight through</li>
     </ol>
   </div>
 
-  <!-- Concave Lens Ray Diagram -->
-  <div class="key-idea-block anim-pause-hover" style="padding: 1rem; margin: 1rem 0;">
-    <h4>Concave Lens Ray Diagram (hover to pause)</h4>
+  <!-- ACCURATE Concave Lens Ray Diagram -->
+  <div class="key-idea-block anim-pause-hover" style="padding: 1rem; margin: 1rem 0; background: linear-gradient(135deg, hsl(45 100% 97%), hsl(30 100% 96%));">
+    <h4 style="color: #ea580c;">Concave Lens Ray Diagram (hover to pause)</h4>
     <div style="display: flex; justify-content: center; padding: 0.5rem;">
-      <svg width="500" height="200" viewBox="0 0 500 200">
+      <svg width="540" height="240" viewBox="0 0 540 240">
         <!-- Principal axis -->
-        <line x1="20" y1="100" x2="480" y2="100" stroke="currentColor" stroke-width="1" stroke-dasharray="4,4" opacity="0.3"/>
+        <line x1="20" y1="120" x2="520" y2="120" stroke="#666" stroke-width="1" stroke-dasharray="4,4"/>
         
-        <!-- Concave lens -->
-        <path d="M248 35 Q268 100 248 165 M278 35 Q258 100 278 165" fill="none" stroke="#ec4899" stroke-width="2"/>
-        <line x1="248" y1="35" x2="278" y2="35" stroke="#ec4899" stroke-width="2"/>
-        <line x1="248" y1="165" x2="278" y2="165" stroke="#ec4899" stroke-width="2"/>
+        <!-- Concave lens at x=280 -->
+        <path d="M268 55 Q290 120 268 185" fill="none" stroke="#ec4899" stroke-width="3"/>
+        <path d="M292 55 Q270 120 292 185" fill="none" stroke="#ec4899" stroke-width="3"/>
+        <line x1="268" y1="55" x2="292" y2="55" stroke="#ec4899" stroke-width="3"/>
+        <line x1="268" y1="185" x2="292" y2="185" stroke="#ec4899" stroke-width="3"/>
+        <rect x="268" y="55" width="24" height="130" fill="hsl(var(--primary)/0.08)"/>
         
-        <!-- Focus markers -->
-        <circle cx="195" cy="100" r="3" fill="#ef4444"/>
-        <text x="195" y="120" fill="#ef4444" font-size="9" text-anchor="middle" font-weight="bold">F (virtual)</text>
-        <circle cx="330" cy="100" r="3" fill="#ef4444"/>
-        <text x="330" y="120" fill="#ef4444" font-size="9" text-anchor="middle" font-weight="bold">F</text>
+        <!-- Virtual focus (behind lens) markers -->
+        <circle cx="220" cy="120" r="5" fill="none" stroke="#ef4444" stroke-width="2" stroke-dasharray="4,3"/>
+        <text x="220" y="145" fill="#ef4444" font-size="10" text-anchor="middle">F (virtual)</text>
+        <circle cx="340" cy="120" r="5" fill="#ef4444"/>
+        <text x="340" y="145" fill="#ef4444" font-size="10" text-anchor="middle" font-weight="bold">F</text>
         
-        <!-- Object -->
-        <line x1="80" y1="100" x2="80" y2="50" stroke="#f59e0b" stroke-width="4"/>
-        <polygon points="80,45 75,55 85,55" fill="#f59e0b"/>
-        <text x="80" y="130" fill="#f59e0b" font-size="10" text-anchor="middle" font-weight="bold">Object</text>
+        <!-- Object at x=100 -->
+        <line x1="100" y1="120" x2="100" y2="60" stroke="#f59e0b" stroke-width="5"/>
+        <polygon points="100,53 93,67 107,67" fill="#f59e0b"/>
+        <text x="100" y="155" fill="#f59e0b" font-size="11" text-anchor="middle" font-weight="bold">Object</text>
         
-        <!-- Ray 1: Parallel then appears to come from F -->
-        <line x1="80" y1="50" x2="248" y2="50" stroke="#22c55e" stroke-width="2">
+        <!-- RAY 1 (GREEN): Parallel to axis → diverges as if from virtual F -->
+        <line x1="100" y1="60" x2="268" y2="60" stroke="#22c55e" stroke-width="2.5">
           <animate attributeName="stroke-dashoffset" from="40" to="0" dur="2s" repeatCount="indefinite"/>
         </line>
-        <line x1="278" y1="50" x2="420" y2="20" stroke="#22c55e" stroke-width="2">
+        <line x1="292" y1="60" x2="480" y2="25" stroke="#22c55e" stroke-width="2.5">
           <animate attributeName="opacity" values="0.6;1;0.6" dur="2s" repeatCount="indefinite"/>
         </line>
         <!-- Traced back to virtual F -->
-        <line x1="278" y1="50" x2="195" y2="100" stroke="#22c55e" stroke-width="1" stroke-dasharray="4,4" opacity="0.5"/>
+        <line x1="292" y1="60" x2="220" y2="120" stroke="#22c55e" stroke-width="1.5" stroke-dasharray="5,4" opacity="0.5"/>
         
-        <!-- Ray 2: Through centre -->
-        <line x1="80" y1="50" x2="420" y2="135" stroke="#3b82f6" stroke-width="2">
+        <!-- RAY 2 (BLUE): Through centre (straight) -->
+        <line x1="100" y1="60" x2="480" y2="175" stroke="#3b82f6" stroke-width="2.5">
           <animate attributeName="opacity" values="0.6;1;0.6" dur="2s" repeatCount="indefinite"/>
         </line>
         
-        <!-- Virtual image (where traced rays appear to meet) -->
-        <line x1="145" y1="100" x2="145" y2="70" stroke="#f59e0b" stroke-width="3" stroke-dasharray="5,3"/>
-        <polygon points="145,65 140,75 150,75" fill="#f59e0b" opacity="0.7"/>
-        <text x="145" y="150" fill="#f59e0b" font-size="9" text-anchor="middle">Virtual Image</text>
-        <text x="145" y="165" fill="#f59e0b" font-size="8" text-anchor="middle">(upright, smaller)</text>
+        <!-- Virtual image (where traced rays appear to meet) - same side as object -->
+        <line x1="175" y1="120" x2="175" y2="85" stroke="#f59e0b" stroke-width="3" stroke-dasharray="6,4"/>
+        <polygon points="175,80 170,92 180,92" fill="#f59e0b" opacity="0.7"/>
+        <text x="175" y="175" fill="#f59e0b" font-size="10" text-anchor="middle" font-weight="bold">Virtual Image</text>
+        <text x="175" y="190" fill="#f59e0b" font-size="8" text-anchor="middle">(upright, smaller)</text>
         
-        <!-- Traced ray intersection -->
-        <line x1="420" y1="135" x2="145" y2="70" stroke="#3b82f6" stroke-width="1" stroke-dasharray="4,4" opacity="0.5"/>
+        <!-- Traced ray to show where they appear to meet -->
+        <line x1="480" y1="175" x2="175" y2="85" stroke="#3b82f6" stroke-width="1.5" stroke-dasharray="5,4" opacity="0.5"/>
         
         <!-- Eye position -->
-        <circle cx="430" cy="60" r="15" fill="none" stroke="currentColor" stroke-width="2"/>
-        <circle cx="430" cy="60" r="5" fill="currentColor"/>
-        <text x="430" y="90" fill="currentColor" font-size="8" text-anchor="middle">Observer</text>
+        <circle cx="490" cy="80" r="18" fill="none" stroke="currentColor" stroke-width="2"/>
+        <circle cx="490" cy="80" r="6" fill="currentColor"/>
+        <text x="490" y="110" fill="currentColor" font-size="9" text-anchor="middle">Observer</text>
         
         <!-- Properties box -->
-        <rect x="350" y="130" width="130" height="60" fill="hsl(var(--muted)/0.5)" rx="5"/>
-        <text x="415" y="148" fill="currentColor" font-size="10" text-anchor="middle" font-weight="bold">Image Properties:</text>
-        <text x="415" y="163" fill="#f59e0b" font-size="9" text-anchor="middle">✓ Virtual • ✓ Upright</text>
-        <text x="415" y="178" fill="#f59e0b" font-size="9" text-anchor="middle">✓ Smaller (diminished)</text>
+        <rect x="380" y="150" width="140" height="75" fill="hsl(var(--muted)/0.6)" rx="6" stroke="#ccc"/>
+        <text x="450" y="168" fill="currentColor" font-size="11" text-anchor="middle" font-weight="bold">Image Properties:</text>
+        <text x="450" y="185" fill="#f59e0b" font-size="10" text-anchor="middle">✓ Virtual (always)</text>
+        <text x="450" y="200" fill="#f59e0b" font-size="10" text-anchor="middle">✓ Upright (always)</text>
+        <text x="450" y="215" fill="#f59e0b" font-size="10" text-anchor="middle">✓ Smaller (always)</text>
       </svg>
     </div>
-    <p style="text-align: center; font-size: 0.85rem; color: var(--muted-foreground);">The image appears on the <strong>same side</strong> as the object</p>
+    <p style="text-align: center; font-size: 0.9rem; color: var(--muted-foreground);">The image appears on the <strong>same side</strong> as the object</p>
   </div>
 
   <div class="definition-block" style="border-left: 4px solid #f59e0b;">
@@ -942,37 +1059,38 @@ export const opticsModuleData: OpticsModule = {
     <p>Concave lenses are used in <strong>spectacles for short-sighted people</strong>. They diverge light before it enters the eye, helping the image focus correctly on the retina.</p>
   </div>
 </div>
-      `,
-      canonical_keywords: ["concave lens", "ray diagram", "virtual image", "upright", "diminished", "diverging", "virtual focus"],
-      practice_items: [
-        {
-          id: "p1",
-          prompt_template: "Describe the properties of an image formed by a concave lens.",
-          marks: 3,
-          type: "short-answer",
-          difficulty: "easy",
-          randomise: true,
-          expected_keywords: ["virtual", "upright", "smaller", "diminished"]
+          `,
+          canonical_keywords: ["concave lens", "ray diagram", "virtual image", "upright", "diminished", "diverging", "virtual focus"],
+          practice_items: [
+            {
+              id: "p1",
+              prompt_template: "Describe the properties of an image formed by a concave lens.",
+              marks: 3,
+              type: "short-answer",
+              difficulty: "easy",
+              randomise: true,
+              expected_keywords: ["virtual", "upright", "smaller", "diminished"]
+            },
+            {
+              id: "p2",
+              prompt_template: "Draw and label a ray diagram showing how a concave lens forms an image.",
+              marks: 4,
+              type: "short-answer",
+              difficulty: "medium",
+              randomise: true,
+              expected_keywords: ["parallel ray", "through centre", "diverge", "virtual focus", "same side"]
+            }
+          ]
         },
         {
-          id: "p2",
-          prompt_template: "Draw and label a ray diagram showing how a concave lens forms an image.",
-          marks: 4,
-          type: "short-answer",
-          difficulty: "medium",
-          randomise: true,
-          expected_keywords: ["parallel ray", "through centre", "diverge", "virtual focus", "same side"]
-        }
-      ]
-    },
-    {
-      id: "4-6-2-5-magnification",
-      title: "4.6.2.5 – Magnification",
-      type: "content",
-      study_group: 3,
-      content_html: `
+          id: "4-6-2-5-magnification",
+          title: "Magnification",
+          pair_title: "Concave Lens & Magnification",
+          type: "content",
+          study_group: 4,
+          content_html: `
 <div class="subsection">
-  <h3 class="subsection-heading">Subsection 7 – Magnification</h3>
+  <h3 class="subsection-heading">Magnification</h3>
   
   <div class="definition-block">
     <h4>📐 What is Magnification?</h4>
@@ -990,19 +1108,12 @@ export const opticsModuleData: OpticsModule = {
     <h4>Magnification Formula Triangle</h4>
     <div style="display: flex; justify-content: center; padding: 0.5rem;">
       <svg width="280" height="200" viewBox="0 0 280 200">
-        <!-- Triangle -->
-        <polygon points="140,20 40,180 240,180" fill="none" stroke="currentColor" stroke-width="3"/>
-        
-        <!-- Dividing line -->
+        <polygon points="140,20 40,180 240,180" fill="hsl(var(--muted)/0.3)" stroke="currentColor" stroke-width="3"/>
         <line x1="40" y1="100" x2="240" y2="100" stroke="currentColor" stroke-width="2"/>
-        
-        <!-- Labels -->
         <text x="140" y="70" fill="#22c55e" font-size="16" text-anchor="middle" font-weight="bold">Image Height</text>
         <text x="90" y="145" fill="#3b82f6" font-size="14" text-anchor="middle" font-weight="bold">M</text>
-        <text x="190" y="145" fill="#ec4899" font-size="14" text-anchor="middle" font-weight="bold">Object</text>
-        <text x="190" y="162" fill="#ec4899" font-size="14" text-anchor="middle" font-weight="bold">Height</text>
-        
-        <!-- Multiplication/Division symbols -->
+        <text x="190" y="140" fill="#ec4899" font-size="12" text-anchor="middle" font-weight="bold">Object</text>
+        <text x="190" y="158" fill="#ec4899" font-size="12" text-anchor="middle" font-weight="bold">Height</text>
         <text x="140" y="145" fill="currentColor" font-size="20" text-anchor="middle">×</text>
       </svg>
     </div>
@@ -1018,43 +1129,43 @@ export const opticsModuleData: OpticsModule = {
     </ul>
   </div>
 
-  <!-- Visual Example -->
+  <!-- Visual Examples -->
   <div class="key-idea-block" style="padding: 1rem; margin: 1rem 0;">
     <h4>Magnification Examples</h4>
     <div style="display: flex; justify-content: center; padding: 0.5rem;">
-      <svg width="450" height="180" viewBox="0 0 450 180">
+      <svg width="460" height="180" viewBox="0 0 460 180">
         <!-- Example 1: M > 1 -->
-        <rect x="10" y="10" width="130" height="160" fill="hsl(var(--muted)/0.3)" rx="8"/>
-        <text x="75" y="30" fill="#22c55e" font-size="11" text-anchor="middle" font-weight="bold">M = 2 (magnified)</text>
-        <line x1="35" y1="120" x2="35" y2="80" stroke="#f59e0b" stroke-width="4"/>
-        <polygon points="35,75 30,85 40,85" fill="#f59e0b"/>
-        <text x="35" y="140" fill="#f59e0b" font-size="9" text-anchor="middle">Object: 2cm</text>
-        <line x1="95" y1="120" x2="95" y2="40" stroke="#22c55e" stroke-width="4"/>
-        <polygon points="95,35 90,45 100,45" fill="#22c55e"/>
-        <text x="95" y="140" fill="#22c55e" font-size="9" text-anchor="middle">Image: 4cm</text>
-        <text x="75" y="160" fill="currentColor" font-size="10" text-anchor="middle">4 ÷ 2 = 2</text>
+        <rect x="10" y="10" width="135" height="160" fill="hsl(var(--muted)/0.3)" rx="8"/>
+        <text x="77" y="30" fill="#22c55e" font-size="11" text-anchor="middle" font-weight="bold">M = 2 (magnified)</text>
+        <line x1="40" y1="125" x2="40" y2="85" stroke="#f59e0b" stroke-width="4"/>
+        <polygon points="40,80 35,90 45,90" fill="#f59e0b"/>
+        <text x="40" y="145" fill="#f59e0b" font-size="9" text-anchor="middle">Object: 2cm</text>
+        <line x1="105" y1="125" x2="105" y2="45" stroke="#22c55e" stroke-width="4"/>
+        <polygon points="105,40 100,50 110,50" fill="#22c55e"/>
+        <text x="105" y="145" fill="#22c55e" font-size="9" text-anchor="middle">Image: 4cm</text>
+        <text x="77" y="165" fill="currentColor" font-size="10" text-anchor="middle">4 ÷ 2 = 2</text>
         
         <!-- Example 2: M = 1 -->
-        <rect x="160" y="10" width="130" height="160" fill="hsl(var(--muted)/0.3)" rx="8"/>
-        <text x="225" y="30" fill="#3b82f6" font-size="11" text-anchor="middle" font-weight="bold">M = 1 (same size)</text>
-        <line x1="185" y1="120" x2="185" y2="70" stroke="#f59e0b" stroke-width="4"/>
-        <polygon points="185,65 180,75 190,75" fill="#f59e0b"/>
-        <text x="185" y="140" fill="#f59e0b" font-size="9" text-anchor="middle">Object: 3cm</text>
-        <line x1="265" y1="120" x2="265" y2="70" stroke="#3b82f6" stroke-width="4"/>
-        <polygon points="265,65 260,75 270,75" fill="#3b82f6"/>
-        <text x="265" y="140" fill="#3b82f6" font-size="9" text-anchor="middle">Image: 3cm</text>
-        <text x="225" y="160" fill="currentColor" font-size="10" text-anchor="middle">3 ÷ 3 = 1</text>
+        <rect x="162" y="10" width="135" height="160" fill="hsl(var(--muted)/0.3)" rx="8"/>
+        <text x="230" y="30" fill="#3b82f6" font-size="11" text-anchor="middle" font-weight="bold">M = 1 (same size)</text>
+        <line x1="190" y1="125" x2="190" y2="70" stroke="#f59e0b" stroke-width="4"/>
+        <polygon points="190,65 185,75 195,75" fill="#f59e0b"/>
+        <text x="190" y="145" fill="#f59e0b" font-size="9" text-anchor="middle">Object: 3cm</text>
+        <line x1="270" y1="125" x2="270" y2="70" stroke="#3b82f6" stroke-width="4"/>
+        <polygon points="270,65 265,75 275,75" fill="#3b82f6"/>
+        <text x="270" y="145" fill="#3b82f6" font-size="9" text-anchor="middle">Image: 3cm</text>
+        <text x="230" y="165" fill="currentColor" font-size="10" text-anchor="middle">3 ÷ 3 = 1</text>
         
         <!-- Example 3: M < 1 -->
-        <rect x="310" y="10" width="130" height="160" fill="hsl(var(--muted)/0.3)" rx="8"/>
-        <text x="375" y="30" fill="#ef4444" font-size="11" text-anchor="middle" font-weight="bold">M = 0.5 (diminished)</text>
-        <line x1="335" y1="120" x2="335" y2="60" stroke="#f59e0b" stroke-width="4"/>
-        <polygon points="335,55 330,65 340,65" fill="#f59e0b"/>
-        <text x="335" y="140" fill="#f59e0b" font-size="9" text-anchor="middle">Object: 4cm</text>
-        <line x1="415" y1="120" x2="415" y2="90" stroke="#ef4444" stroke-width="4"/>
-        <polygon points="415,85 410,95 420,95" fill="#ef4444"/>
-        <text x="415" y="140" fill="#ef4444" font-size="9" text-anchor="middle">Image: 2cm</text>
-        <text x="375" y="160" fill="currentColor" font-size="10" text-anchor="middle">2 ÷ 4 = 0.5</text>
+        <rect x="315" y="10" width="135" height="160" fill="hsl(var(--muted)/0.3)" rx="8"/>
+        <text x="382" y="30" fill="#ef4444" font-size="11" text-anchor="middle" font-weight="bold">M = 0.5 (smaller)</text>
+        <line x1="343" y1="125" x2="343" y2="60" stroke="#f59e0b" stroke-width="4"/>
+        <polygon points="343,55 338,65 348,65" fill="#f59e0b"/>
+        <text x="343" y="145" fill="#f59e0b" font-size="9" text-anchor="middle">Object: 4cm</text>
+        <line x1="420" y1="125" x2="420" y2="92" stroke="#ef4444" stroke-width="4"/>
+        <polygon points="420,87 415,97 425,97" fill="#ef4444"/>
+        <text x="420" y="145" fill="#ef4444" font-size="9" text-anchor="middle">Image: 2cm</text>
+        <text x="382" y="165" fill="currentColor" font-size="10" text-anchor="middle">2 ÷ 4 = 0.5</text>
       </svg>
     </div>
   </div>
@@ -1077,46 +1188,58 @@ export const opticsModuleData: OpticsModule = {
     </ul>
   </div>
 </div>
-      `,
-      canonical_keywords: ["magnification", "image height", "object height", "ratio", "magnified", "diminished", "same size"],
-      practice_items: [
-        {
-          id: "p1",
-          prompt_template: "State the equation for magnification.",
-          marks: 1,
-          type: "short-answer",
-          difficulty: "easy",
-          randomise: true,
-          expected_keywords: ["image height", "object height", "ratio"]
-        },
-        {
-          id: "p2",
-          prompt_template: "An object is 2 cm tall and its image is 6 cm tall. Calculate the magnification.",
-          marks: 2,
-          type: "short-answer",
-          difficulty: "easy",
-          randomise: true,
-          expected_keywords: ["6 ÷ 2", "3", "magnification = 3"]
-        },
-        {
-          id: "p3",
-          prompt_template: "Explain what a magnification of 0.4 tells you about the image.",
-          marks: 2,
-          type: "short-answer",
-          difficulty: "medium",
-          randomise: true,
-          expected_keywords: ["smaller", "diminished", "less than 1"]
+          `,
+          canonical_keywords: ["magnification", "image height", "object height", "ratio", "magnified", "diminished", "same size"],
+          practice_items: [
+            {
+              id: "p1",
+              prompt_template: "State the equation for magnification.",
+              marks: 1,
+              type: "short-answer",
+              difficulty: "easy",
+              randomise: true,
+              expected_keywords: ["image height", "object height", "ratio"]
+            },
+            {
+              id: "p2",
+              prompt_template: "An object is 2 cm tall and its image is 6 cm tall. Calculate the magnification.",
+              marks: 2,
+              type: "short-answer",
+              difficulty: "easy",
+              randomise: true,
+              expected_keywords: ["6 ÷ 2", "3", "magnification = 3"]
+            },
+            {
+              id: "p3",
+              prompt_template: "Explain what a magnification of 0.4 tells you about the image.",
+              marks: 2,
+              type: "short-answer",
+              difficulty: "medium",
+              randomise: true,
+              expected_keywords: ["smaller", "diminished", "less than 1"]
+            }
+          ]
         }
       ]
     },
+    // ============================================
+    // SECTION 2: 4.6.2.6 – VISIBLE LIGHT
+    // ============================================
     {
-      id: "4-6-2-6-visible-spectrum",
-      title: "4.6.2.6 – The Visible Spectrum",
-      type: "content",
-      study_group: 4,
-      content_html: `
+      id: "4-6-2-6-visible-light",
+      spec_number: "4.6.2.6",
+      title: "Visible Light",
+      subsections: [
+        // PAIR 1: Visible Spectrum & Colour Filters
+        {
+          id: "4-6-2-6-visible-spectrum",
+          title: "The Visible Spectrum",
+          pair_title: "Spectrum & Filters",
+          type: "content",
+          study_group: 1,
+          content_html: `
 <div class="subsection">
-  <h3 class="subsection-heading">Subsection 1 – The Visible Spectrum</h3>
+  <h3 class="subsection-heading">The Visible Spectrum</h3>
   
   <div class="definition-block">
     <h4>💡 Definition:</h4>
@@ -1140,288 +1263,204 @@ export const opticsModuleData: OpticsModule = {
           </linearGradient>
         </defs>
         
-        <!-- Spectrum bar -->
         <rect x="30" y="60" width="440" height="50" fill="url(#spectrum)" rx="5"/>
         
-        <!-- Wavelength arrow -->
         <line x1="30" y1="40" x2="470" y2="40" stroke="currentColor" stroke-width="2"/>
         <polygon points="470,40 460,35 460,45" fill="currentColor"/>
         <text x="250" y="30" fill="currentColor" font-size="11" text-anchor="middle">Wavelength decreases →</text>
         
-        <!-- Colour labels -->
         <text x="50" y="135" fill="#ff0000" font-size="10" text-anchor="middle" font-weight="bold">Red</text>
         <text x="110" y="135" fill="#ff7700" font-size="10" text-anchor="middle" font-weight="bold">Orange</text>
-        <text x="170" y="135" fill="#cccc00" font-size="10" text-anchor="middle" font-weight="bold">Yellow</text>
-        <text x="230" y="135" fill="#00aa00" font-size="10" text-anchor="middle" font-weight="bold">Green</text>
-        <text x="300" y="135" fill="#0000ff" font-size="10" text-anchor="middle" font-weight="bold">Blue</text>
-        <text x="370" y="135" fill="#4b0082" font-size="10" text-anchor="middle" font-weight="bold">Indigo</text>
-        <text x="440" y="135" fill="#9400d3" font-size="10" text-anchor="middle" font-weight="bold">Violet</text>
+        <text x="175" y="135" fill="#ccaa00" font-size="10" text-anchor="middle" font-weight="bold">Yellow</text>
+        <text x="250" y="135" fill="#00aa00" font-size="10" text-anchor="middle" font-weight="bold">Green</text>
+        <text x="325" y="135" fill="#0000ff" font-size="10" text-anchor="middle" font-weight="bold">Blue</text>
+        <text x="390" y="135" fill="#4b0082" font-size="10" text-anchor="middle" font-weight="bold">Indigo</text>
+        <text x="450" y="135" fill="#9400d3" font-size="10" text-anchor="middle" font-weight="bold">Violet</text>
         
-        <!-- Wavelength values -->
-        <text x="50" y="150" fill="currentColor" font-size="8" text-anchor="middle">~700nm</text>
-        <text x="440" y="150" fill="currentColor" font-size="8" text-anchor="middle">~400nm</text>
+        <text x="50" y="155" fill="currentColor" font-size="8" text-anchor="middle">~700nm</text>
+        <text x="450" y="155" fill="currentColor" font-size="8" text-anchor="middle">~400nm</text>
         
-        <!-- Frequency arrow -->
-        <line x1="30" y1="165" x2="470" y2="165" stroke="currentColor" stroke-width="2"/>
-        <polygon points="470,165 460,160 460,170" fill="currentColor"/>
-        <text x="250" y="178" fill="currentColor" font-size="11" text-anchor="middle">Frequency increases →</text>
-        
-        <!-- Energy indicator -->
-        <text x="50" y="55" fill="#ff0000" font-size="9" text-anchor="middle">Lower</text>
-        <text x="50" y="125" fill="#ff0000" font-size="9" text-anchor="middle">energy</text>
-        <text x="440" y="55" fill="#9400d3" font-size="9" text-anchor="middle">Higher</text>
-        <text x="440" y="125" fill="#9400d3" font-size="9" text-anchor="middle">energy</text>
+        <text x="250" y="170" fill="currentColor" font-size="9" text-anchor="middle">ROY G BIV - Longest → Shortest wavelength</text>
       </svg>
     </div>
-    <p style="text-align: center; font-size: 0.85rem; color: var(--muted-foreground);"><strong>ROY G. BIV</strong> - Red, Orange, Yellow, Green, Blue, Indigo, Violet</p>
   </div>
 
   <div class="key-idea-block">
     <h4>🧠 Key Relationship:</h4>
-    <p>As <strong>wavelength decreases</strong>, <strong>frequency increases</strong>.</p>
-    <ul>
-      <li><strong>Violet</strong> has the <strong>highest frequency</strong> (most energy)</li>
-      <li><strong>Red</strong> has the <strong>lowest frequency</strong> (least energy)</li>
-    </ul>
+    <p>As <strong>wavelength decreases</strong>, <strong>frequency increases</strong>. Violet has the highest frequency (most energy), while red has the lowest frequency.</p>
     <p>Understanding this helps explain how objects absorb or reflect specific colours.</p>
   </div>
-
-  <table class="data-table" style="margin: 1rem 0;">
-    <thead><tr><th>Colour</th><th>Wavelength (nm)</th><th>Frequency</th><th>Energy</th></tr></thead>
-    <tbody>
-      <tr style="background: rgba(255,0,0,0.1);"><td>Red</td><td>~700</td><td>Lowest</td><td>Lowest</td></tr>
-      <tr style="background: rgba(255,119,0,0.1);"><td>Orange</td><td>~620</td><td>↓</td><td>↓</td></tr>
-      <tr style="background: rgba(255,255,0,0.1);"><td>Yellow</td><td>~580</td><td>↓</td><td>↓</td></tr>
-      <tr style="background: rgba(0,255,0,0.1);"><td>Green</td><td>~530</td><td>↓</td><td>↓</td></tr>
-      <tr style="background: rgba(0,0,255,0.1);"><td>Blue</td><td>~470</td><td>↓</td><td>↓</td></tr>
-      <tr style="background: rgba(75,0,130,0.1);"><td>Indigo</td><td>~450</td><td>↓</td><td>↓</td></tr>
-      <tr style="background: rgba(148,0,211,0.1);"><td>Violet</td><td>~400</td><td>Highest</td><td>Highest</td></tr>
-    </tbody>
-  </table>
 </div>
-      `,
-      canonical_keywords: ["visible spectrum", "wavelength", "frequency", "red", "violet", "ROY G BIV", "energy", "colour"],
-      practice_items: [
-        {
-          id: "p1",
-          prompt_template: "State the order of colours in the visible spectrum from longest to shortest wavelength.",
-          marks: 2,
-          type: "short-answer",
-          difficulty: "easy",
-          randomise: true,
-          expected_keywords: ["red", "orange", "yellow", "green", "blue", "indigo", "violet"]
+          `,
+          canonical_keywords: ["visible spectrum", "wavelength", "frequency", "ROY G BIV", "red", "violet", "electromagnetic spectrum"],
+          practice_items: [
+            {
+              id: "p1",
+              prompt_template: "State the order of colours in the visible spectrum from longest to shortest wavelength.",
+              marks: 2,
+              type: "short-answer",
+              difficulty: "easy",
+              randomise: true,
+              expected_keywords: ["red", "orange", "yellow", "green", "blue", "indigo", "violet"]
+            },
+            {
+              id: "p2",
+              prompt_template: "Explain the relationship between wavelength and frequency in the visible spectrum.",
+              marks: 3,
+              type: "short-answer",
+              difficulty: "medium",
+              randomise: true,
+              expected_keywords: ["wavelength decreases", "frequency increases", "violet highest", "red lowest"]
+            }
+          ]
         },
         {
-          id: "p2",
-          prompt_template: "Which colour of visible light has the highest frequency and energy?",
-          marks: 2,
-          type: "short-answer",
-          difficulty: "easy",
-          randomise: true,
-          expected_keywords: ["violet", "highest frequency", "highest energy"]
-        }
-      ]
-    },
-    {
-      id: "4-6-2-6-colour-filters",
-      title: "4.6.2.6 – Colour Filters",
-      type: "content",
-      study_group: 4,
-      content_html: `
+          id: "4-6-2-6-colour-filters",
+          title: "How Colour Filters Work",
+          pair_title: "Spectrum & Filters",
+          type: "content",
+          study_group: 1,
+          content_html: `
 <div class="subsection">
-  <h3 class="subsection-heading">Subsection 2 – How Colour Filters Work</h3>
+  <h3 class="subsection-heading">How Colour Filters Work</h3>
   
   <div class="definition-block">
     <h4>🎨 Colour Filters:</h4>
     <p>Colour filters control which colours <strong>pass through</strong> and which are <strong>absorbed</strong>.</p>
   </div>
 
-  <!-- Colour Filter Diagram -->
-  <div class="key-idea-block anim-pause-hover" style="padding: 1rem; margin: 1rem 0;">
-    <h4>How Colour Filters Work (hover to pause)</h4>
+  <div class="key-facts-block">
+    <h4>How They Behave:</h4>
+    <ul>
+      <li>A <strong style="color: #ef4444;">red filter</strong> transmits red light only and absorbs all other colours</li>
+      <li>A <strong style="color: #22c55e;">green filter</strong> transmits green light only</li>
+      <li>A <strong style="color: #3b82f6;">blue filter</strong> transmits blue light only</li>
+      <li>A <strong style="color: #eab308;">yellow filter</strong> transmits red + green wavelengths (yellow = red + green)</li>
+    </ul>
+  </div>
+
+  <!-- Filter Diagram -->
+  <div class="key-idea-block" style="padding: 1rem; margin: 1rem 0;">
+    <h4>Filter Behaviour</h4>
     <div style="display: flex; justify-content: center; padding: 0.5rem;">
-      <svg width="500" height="200" viewBox="0 0 500 200">
-        <!-- White light source -->
-        <circle cx="50" cy="100" r="25" fill="#fff" stroke="#333" stroke-width="2"/>
-        <text x="50" y="105" fill="#333" font-size="10" text-anchor="middle" font-weight="bold">White</text>
-        <text x="50" y="145" fill="currentColor" font-size="9" text-anchor="middle">Light</text>
+      <svg width="400" height="160" viewBox="0 0 400 160">
+        <!-- White light -->
+        <defs>
+          <linearGradient id="whitelight" x1="0%" y1="0%" x2="100%" y2="0%">
+            <stop offset="0%" style="stop-color:#ff6666"/>
+            <stop offset="33%" style="stop-color:#66ff66"/>
+            <stop offset="66%" style="stop-color:#6666ff"/>
+            <stop offset="100%" style="stop-color:#ff66ff"/>
+          </linearGradient>
+        </defs>
         
-        <!-- Incoming white light rays (rainbow) -->
-        <line x1="75" y1="85" x2="140" y2="85" stroke="#ff0000" stroke-width="2"/>
-        <line x1="75" y1="93" x2="140" y2="93" stroke="#00ff00" stroke-width="2"/>
-        <line x1="75" y1="100" x2="140" y2="100" stroke="#0000ff" stroke-width="2"/>
-        <line x1="75" y1="107" x2="140" y2="107" stroke="#ffff00" stroke-width="2"/>
-        <line x1="75" y1="115" x2="140" y2="115" stroke="#ff00ff" stroke-width="2"/>
+        <text x="50" y="30" fill="currentColor" font-size="12" text-anchor="middle" font-weight="bold">White Light</text>
+        <rect x="20" y="40" width="60" height="20" fill="url(#whitelight)" rx="3"/>
         
-        <!-- Red filter -->
-        <rect x="140" y="50" width="20" height="100" fill="#ff0000" opacity="0.7" rx="3"/>
-        <text x="150" y="40" fill="#ff0000" font-size="11" text-anchor="middle" font-weight="bold">Red Filter</text>
+        <line x1="80" y1="50" x2="130" y2="50" stroke="url(#whitelight)" stroke-width="8"/>
         
-        <!-- Only red passes through -->
-        <line x1="160" y1="85" x2="230" y2="85" stroke="#ff0000" stroke-width="3">
-          <animate attributeName="opacity" values="0.6;1;0.6" dur="1.5s" repeatCount="indefinite"/>
-        </line>
+        <rect x="130" y="20" width="20" height="60" fill="#ef4444" opacity="0.8" stroke="#aa0000"/>
+        <text x="140" y="100" fill="#ef4444" font-size="10" text-anchor="middle" font-weight="bold">Red Filter</text>
         
-        <!-- Absorbed colours (X marks) -->
-        <text x="175" y="96" fill="white" font-size="12" font-weight="bold">✗</text>
-        <text x="175" y="106" fill="white" font-size="12" font-weight="bold">✗</text>
-        <text x="175" y="116" fill="white" font-size="12" font-weight="bold">✗</text>
+        <line x1="150" y1="50" x2="220" y2="50" stroke="#ef4444" stroke-width="8"/>
         
-        <!-- Eye seeing red -->
-        <circle cx="250" cy="85" r="15" fill="#fff" stroke="#333" stroke-width="2"/>
-        <circle cx="250" cy="85" r="5" fill="#ff0000"/>
-        <text x="250" y="120" fill="#ff0000" font-size="10" text-anchor="middle" font-weight="bold">See RED</text>
+        <text x="260" y="55" fill="#ef4444" font-size="12" text-anchor="middle" font-weight="bold">Only red passes</text>
         
-        <!-- Second example: Blue filter -->
-        <circle cx="320" cy="100" r="20" fill="#fff" stroke="#333" stroke-width="2"/>
-        <text x="320" y="104" fill="#333" font-size="8" text-anchor="middle">White</text>
-        
-        <line x1="340" y1="90" x2="380" y2="90" stroke="#ff0000" stroke-width="1.5"/>
-        <line x1="340" y1="100" x2="380" y2="100" stroke="#0000ff" stroke-width="1.5"/>
-        <line x1="340" y1="110" x2="380" y2="110" stroke="#00ff00" stroke-width="1.5"/>
-        
-        <rect x="380" y="70" width="15" height="60" fill="#0000ff" opacity="0.7" rx="2"/>
-        <text x="387" y="60" fill="#0000ff" font-size="10" text-anchor="middle" font-weight="bold">Blue</text>
-        
-        <line x1="395" y1="100" x2="450" y2="100" stroke="#0000ff" stroke-width="2">
-          <animate attributeName="opacity" values="0.6;1;0.6" dur="1.5s" repeatCount="indefinite"/>
-        </line>
-        
-        <circle cx="465" cy="100" r="12" fill="#fff" stroke="#333" stroke-width="1.5"/>
-        <circle cx="465" cy="100" r="4" fill="#0000ff"/>
-        <text x="465" y="130" fill="#0000ff" font-size="9" text-anchor="middle" font-weight="bold">Blue</text>
-        
-        <!-- Key idea box -->
-        <rect x="280" y="150" width="210" height="40" fill="hsl(var(--muted)/0.5)" rx="5"/>
-        <text x="385" y="168" fill="currentColor" font-size="10" text-anchor="middle" font-weight="bold">Filters ABSORB, not add colour</text>
-        <text x="385" y="182" fill="currentColor" font-size="9" text-anchor="middle">They remove wavelengths</text>
+        <!-- X marks for absorbed colours -->
+        <text x="140" y="130" fill="currentColor" font-size="9" text-anchor="middle">Other colours absorbed</text>
       </svg>
     </div>
   </div>
 
-  <div class="key-facts-block">
-    <h4>How Different Filters Behave:</h4>
-    <ul>
-      <li>A <strong style="color:#ff0000;">red filter</strong> transmits red light only and absorbs all other colours</li>
-      <li>A <strong style="color:#00aa00;">green filter</strong> transmits green light only</li>
-      <li>A <strong style="color:#0000ff;">blue filter</strong> transmits blue light only</li>
-      <li>A <strong style="color:#cccc00;">yellow filter</strong> transmits red + green wavelengths (because yellow = red + green light)</li>
-    </ul>
-  </div>
-
   <div class="key-idea-block">
     <h4>🧠 Key Idea:</h4>
-    <p>Filters <strong>don't add colour</strong> — they <strong>remove certain wavelengths by absorbing them</strong>, allowing only selected wavelengths to pass.</p>
-    <p>So if you shine <strong>white light through a red filter</strong>, the output becomes <strong>red</strong> because all non-red wavelengths were absorbed.</p>
+    <p>Filters <strong>don't add colour</strong> — they <strong>remove certain wavelengths</strong> by absorbing them, allowing only selected wavelengths to pass.</p>
+    <p>So if you shine white light through a red filter, the output becomes red because all non-red wavelengths were absorbed.</p>
   </div>
 </div>
-      `,
-      canonical_keywords: ["colour filter", "absorb", "transmit", "wavelength", "red filter", "green filter", "blue filter"],
-      practice_items: [
+          `,
+          canonical_keywords: ["colour filter", "absorb", "transmit", "wavelength", "red filter", "green filter", "blue filter"],
+          practice_items: [
+            {
+              id: "p1",
+              prompt_template: "Explain how a red filter affects white light.",
+              marks: 3,
+              type: "short-answer",
+              difficulty: "medium",
+              randomise: true,
+              expected_keywords: ["absorbs", "other colours", "transmits", "red only"]
+            }
+          ]
+        },
+        // PAIR 2: Why Objects Have Colour & Transparent/Opaque
         {
-          id: "p1",
-          prompt_template: "Explain how a red filter produces red light from white light.",
-          marks: 3,
-          type: "short-answer",
-          difficulty: "medium",
-          randomise: true,
-          expected_keywords: ["absorbs", "other colours", "transmits", "red", "wavelength"]
-        }
-      ]
-    },
-    {
-      id: "4-6-2-6-object-colour",
-      title: "4.6.2.6 – Why Objects Have Colour",
-      type: "content",
-      study_group: 5,
-      content_html: `
+          id: "4-6-2-6-object-colour",
+          title: "Why Objects Have Colour",
+          pair_title: "Object Colour & Materials",
+          type: "content",
+          study_group: 2,
+          content_html: `
 <div class="subsection">
-  <h3 class="subsection-heading">Subsection 3 – Why Objects Have Colour</h3>
+  <h3 class="subsection-heading">Why Objects Have Colour</h3>
   
   <div class="definition-block">
     <h4>🎨 Object Colour:</h4>
     <p>An object's colour depends on which wavelengths it <strong>reflects</strong> and which it <strong>absorbs</strong>.</p>
   </div>
 
-  <!-- Object Colour Diagram -->
-  <div class="key-idea-block anim-pause-hover" style="padding: 1rem; margin: 1rem 0;">
-    <h4>Why a Red Apple Looks Red (hover to pause)</h4>
-    <div style="display: flex; justify-content: center; padding: 0.5rem;">
-      <svg width="400" height="200" viewBox="0 0 400 200">
-        <!-- Sun/white light -->
-        <circle cx="200" cy="20" r="18" fill="#ffd700"/>
-        <text x="200" y="8" fill="#333" font-size="8" text-anchor="middle">White light</text>
-        
-        <!-- Rainbow rays coming down -->
-        <line x1="185" y1="38" x2="165" y2="90" stroke="#ff0000" stroke-width="2"/>
-        <line x1="195" y1="38" x2="185" y2="90" stroke="#00ff00" stroke-width="2"/>
-        <line x1="205" y1="38" x2="205" y2="90" stroke="#0000ff" stroke-width="2"/>
-        <line x1="215" y1="38" x2="225" y2="90" stroke="#ffff00" stroke-width="2"/>
-        
-        <!-- Apple (red object) -->
-        <ellipse cx="200" cy="120" rx="50" ry="35" fill="#cc0000"/>
-        <path d="M200 85 Q210 70 220 85" fill="#228b22"/>
-        
-        <!-- Absorbed rays (going into apple) -->
-        <text x="145" y="105" fill="#00ff00" font-size="10">✗ absorbed</text>
-        <text x="230" y="105" fill="#0000ff" font-size="10">✗ absorbed</text>
-        <text x="245" y="115" fill="#ffff00" font-size="10">✗</text>
-        
-        <!-- Reflected red ray -->
-        <line x1="165" y1="100" x2="80" y2="160" stroke="#ff0000" stroke-width="3">
-          <animate attributeName="opacity" values="0.6;1;0.6" dur="1.5s" repeatCount="indefinite"/>
-        </line>
-        <line x1="235" y1="100" x2="320" y2="160" stroke="#ff0000" stroke-width="3">
-          <animate attributeName="opacity" values="0.6;1;0.6" dur="1.5s" repeatCount="indefinite"/>
-        </line>
-        
-        <!-- Eyes -->
-        <circle cx="70" cy="170" r="12" fill="#fff" stroke="#333" stroke-width="2"/>
-        <circle cx="70" cy="170" r="4" fill="#333"/>
-        <circle cx="330" cy="170" r="12" fill="#fff" stroke="#333" stroke-width="2"/>
-        <circle cx="330" cy="170" r="4" fill="#333"/>
-        
-        <!-- Labels -->
-        <text x="200" y="175" fill="#ff0000" font-size="11" text-anchor="middle" font-weight="bold">Only RED reflected</text>
-        <text x="200" y="192" fill="currentColor" font-size="10" text-anchor="middle">→ Apple appears RED</text>
-      </svg>
-    </div>
-  </div>
-
   <div class="key-facts-block">
-    <h4>✔ Opaque Objects (objects you cannot see through):</h4>
+    <h4>✔ Opaque Objects:</h4>
     <ul>
       <li>They <strong>absorb</strong> some wavelengths</li>
       <li>They <strong>reflect</strong> the wavelengths you see</li>
     </ul>
   </div>
 
-  <table class="data-table" style="margin: 1rem 0;">
-    <thead><tr><th>Object Colour</th><th>Reflects</th><th>Absorbs</th></tr></thead>
-    <tbody>
-      <tr style="background: rgba(255,0,0,0.1);"><td>Red object</td><td>Red</td><td>All other colours</td></tr>
-      <tr style="background: rgba(0,255,0,0.1);"><td>Green object</td><td>Green</td><td>All other colours</td></tr>
-      <tr style="background: rgba(0,0,255,0.1);"><td>Blue object</td><td>Blue</td><td>All other colours</td></tr>
-      <tr style="background: rgba(255,255,255,0.3);"><td>White object</td><td>All colours</td><td>None</td></tr>
-      <tr style="background: rgba(0,0,0,0.1);"><td>Black object</td><td>None (very little)</td><td>All colours</td></tr>
-    </tbody>
-  </table>
+  <div class="example-block">
+    <h4>Examples:</h4>
+    <ul>
+      <li>A <strong style="color: #ef4444;">red apple</strong> reflects red wavelengths and absorbs all others</li>
+      <li>A <strong style="color: #22c55e;">green leaf</strong> reflects green wavelengths and absorbs red and blue</li>
+      <li>A <strong>white object</strong> reflects all wavelengths</li>
+      <li>A <strong>black object</strong> absorbs all wavelengths</li>
+    </ul>
+  </div>
 
   <div class="key-idea-block">
     <h4>🧠 Important Rule:</h4>
-    <p>The colour you see is determined by the <strong>wavelengths that are reflected</strong> to your eyes. The absorbed wavelengths are converted to <strong>heat energy</strong>.</p>
+    <p>White light (a mix of all colours) hits the object → the object's surface absorbs some wavelengths → the wavelengths that are <strong>not absorbed are reflected</strong> → the reflected wavelengths enter your eyes → your brain interprets them as the object's colour.</p>
   </div>
 </div>
-
+          `,
+          canonical_keywords: ["object colour", "reflect", "absorb", "wavelength", "opaque", "white", "black"],
+          practice_items: [
+            {
+              id: "p1",
+              prompt_template: "Explain why a red object appears red in white light.",
+              marks: 3,
+              type: "short-answer",
+              difficulty: "medium",
+              randomise: true,
+              expected_keywords: ["reflects red", "absorbs other colours", "white light", "wavelengths"]
+            }
+          ]
+        },
+        {
+          id: "4-6-2-6-transparent-opaque",
+          title: "Transparent, Translucent, and Opaque",
+          pair_title: "Object Colour & Materials",
+          type: "content",
+          study_group: 2,
+          content_html: `
 <div class="subsection">
-  <h3 class="subsection-heading">Subsection 4 – Transparent, Translucent, and Opaque Objects</h3>
+  <h3 class="subsection-heading">Transparent, Translucent, and Opaque Objects</h3>
   
   <div class="definition-block" style="border-left: 4px solid #3b82f6;">
     <h4>🔵 Transparent Objects:</h4>
     <ul>
       <li>Transmit <strong>most</strong> of the light that hits them</li>
-      <li>Allow you to see <strong>clearly</strong> through them</li>
-      <li>Example: clear glass</li>
+      <li>Allow you to see <strong>clearly through</strong> them</li>
+      <li>Example: clear glass, water</li>
     </ul>
   </div>
 
@@ -1430,52 +1469,18 @@ export const opticsModuleData: OpticsModule = {
     <ul>
       <li>Transmit <strong>some</strong> light</li>
       <li><strong>Scatter</strong> the rest</li>
-      <li>You can see shapes but not clear images</li>
-      <li>Example: frosted glass</li>
+      <li>You can see shapes but <strong>not clear images</strong></li>
+      <li>Example: frosted glass, tissue paper</li>
     </ul>
   </div>
 
-  <div class="definition-block" style="border-left: 4px solid #1f2937; margin-top: 1rem;">
+  <div class="definition-block" style="border-left: 4px solid #374151; margin-top: 1rem;">
     <h4>⚫ Opaque Objects:</h4>
     <ul>
-      <li>Transmit <strong>no</strong> light</li>
+      <li>Transmit <strong>no light</strong></li>
       <li>Either <strong>reflect or absorb</strong> all incoming wavelengths</li>
       <li>Example: wood, metal, book covers</li>
     </ul>
-  </div>
-
-  <!-- Transparency Diagram -->
-  <div class="key-idea-block" style="padding: 1rem; margin: 1rem 0;">
-    <h4>Light Transmission Comparison</h4>
-    <div style="display: flex; justify-content: center; padding: 0.5rem;">
-      <svg width="450" height="150" viewBox="0 0 450 150">
-        <!-- Transparent -->
-        <rect x="20" y="20" width="120" height="100" fill="hsl(var(--muted)/0.3)" rx="8"/>
-        <text x="80" y="40" fill="#3b82f6" font-size="11" text-anchor="middle" font-weight="bold">Transparent</text>
-        <rect x="55" y="55" width="50" height="40" fill="rgba(135,206,250,0.3)" stroke="#3b82f6" stroke-width="2"/>
-        <line x1="45" y1="75" x2="115" y2="75" stroke="#f59e0b" stroke-width="2"/>
-        <text x="80" y="108" fill="currentColor" font-size="9" text-anchor="middle">All light passes</text>
-        
-        <!-- Translucent -->
-        <rect x="165" y="20" width="120" height="100" fill="hsl(var(--muted)/0.3)" rx="8"/>
-        <text x="225" y="40" fill="#8b5cf6" font-size="11" text-anchor="middle" font-weight="bold">Translucent</text>
-        <rect x="200" y="55" width="50" height="40" fill="rgba(200,200,200,0.7)" stroke="#8b5cf6" stroke-width="2"/>
-        <line x1="190" y1="75" x2="210" y2="75" stroke="#f59e0b" stroke-width="2"/>
-        <line x1="210" y1="75" x2="225" y2="65" stroke="#f59e0b" stroke-width="1" opacity="0.5"/>
-        <line x1="210" y1="75" x2="225" y2="85" stroke="#f59e0b" stroke-width="1" opacity="0.5"/>
-        <line x1="230" y1="70" x2="260" y2="70" stroke="#f59e0b" stroke-width="1" opacity="0.5"/>
-        <text x="225" y="108" fill="currentColor" font-size="9" text-anchor="middle">Some scatters</text>
-        
-        <!-- Opaque -->
-        <rect x="310" y="20" width="120" height="100" fill="hsl(var(--muted)/0.3)" rx="8"/>
-        <text x="370" y="40" fill="#1f2937" font-size="11" text-anchor="middle" font-weight="bold">Opaque</text>
-        <rect x="345" y="55" width="50" height="40" fill="#333" stroke="#1f2937" stroke-width="2"/>
-        <line x1="335" y1="75" x2="355" y2="75" stroke="#f59e0b" stroke-width="2"/>
-        <line x1="355" y1="75" x2="335" y2="60" stroke="#f59e0b" stroke-width="1.5"/>
-        <text x="345" y="55" fill="#f59e0b" font-size="10">↩</text>
-        <text x="370" y="108" fill="currentColor" font-size="9" text-anchor="middle">None passes</text>
-      </svg>
-    </div>
   </div>
 
   <div class="key-idea-block">
@@ -1483,183 +1488,453 @@ export const opticsModuleData: OpticsModule = {
     <p>This classification affects how objects appear under different lighting conditions.</p>
   </div>
 </div>
-      `,
-      canonical_keywords: ["object colour", "reflect", "absorb", "transparent", "translucent", "opaque", "wavelength"],
-      practice_items: [
-        {
-          id: "p1",
-          prompt_template: "Explain why a green leaf appears green in white light.",
-          marks: 3,
-          type: "short-answer",
-          difficulty: "medium",
-          randomise: true,
-          expected_keywords: ["reflects", "green", "absorbs", "other colours"]
+          `,
+          canonical_keywords: ["transparent", "translucent", "opaque", "transmit", "scatter", "absorb", "reflect"],
+          practice_items: [
+            {
+              id: "p1",
+              prompt_template: "Describe the difference between transparent and translucent materials.",
+              marks: 4,
+              type: "short-answer",
+              difficulty: "medium",
+              randomise: true,
+              expected_keywords: ["transparent", "most light", "see clearly", "translucent", "some light", "scatter"]
+            }
+          ]
         },
+        // PAIR 3: Filter Effects on Objects
         {
-          id: "p2",
-          prompt_template: "Explain the difference between transparent, translucent and opaque materials.",
-          marks: 3,
-          type: "short-answer",
-          difficulty: "easy",
-          randomise: true,
-          expected_keywords: ["transparent", "all light", "translucent", "some", "scatter", "opaque", "none"]
+          id: "4-6-2-6-filter-effects",
+          title: "How Filters Affect Object Appearance",
+          pair_title: "Filter Effects",
+          type: "content",
+          study_group: 3,
+          content_html: `
+<div class="subsection">
+  <h3 class="subsection-heading">How Filters Affect the Appearance of Objects</h3>
+
+  <div class="example-block" style="border-left: 4px solid #ef4444;">
+    <h4>Example 1: 🔴 A red object under a red filter</h4>
+    <p>The object appears <strong>red</strong>, because the filter allows red light to pass and the object reflects red light.</p>
+  </div>
+
+  <div class="example-block" style="border-left: 4px solid #3b82f6; margin-top: 1rem;">
+    <h4>Example 2: 🔵 A blue object under a red filter</h4>
+    <p>The object will look <strong>black or very dark</strong>.</p>
+    <p><em>Explanation:</em> The blue object reflects blue light, but the red filter blocks all blue wavelengths, so no light reaches your eyes.</p>
+  </div>
+
+  <div class="example-block" style="border-left: 4px solid #22c55e; margin-top: 1rem;">
+    <h4>Example 3: A green object under white light</h4>
+    <p>It appears <strong>green</strong>, because it reflects green wavelengths.</p>
+  </div>
+
+  <div class="example-block" style="border-left: 4px solid #eab308; margin-top: 1rem;">
+    <h4>Example 4: A yellow object under a blue filter</h4>
+    <p>Appears <strong>black or dull</strong>, because yellow objects reflect red + green light, and a blue filter blocks both.</p>
+  </div>
+
+  <div class="key-idea-block">
+    <h4>🧠 Important Understanding:</h4>
+    <p>The colour you see depends on:</p>
+    <ol>
+      <li>The <strong>colour of the object</strong> (what wavelengths it reflects)</li>
+      <li>Which <strong>wavelengths the filter allows</strong> to reach it</li>
+    </ol>
+  </div>
+</div>
+          `,
+          canonical_keywords: ["filter", "object colour", "appears black", "red filter", "blue filter", "absorb", "reflect"],
+          practice_items: [
+            {
+              id: "p1",
+              prompt_template: "Explain why a blue object appears black when viewed through a red filter.",
+              marks: 3,
+              type: "short-answer",
+              difficulty: "medium",
+              randomise: true,
+              expected_keywords: ["blue reflects blue", "red filter absorbs blue", "no light reaches eyes"]
+            }
+          ]
         }
       ]
     },
+    // ============================================
+    // SECTION 3: 4.6.3.1 – INFRARED RADIATION
+    // ============================================
     {
-      id: "4-6-2-6-filters-and-objects",
-      title: "4.6.2.6 – Filters & Object Appearance",
-      type: "content",
-      study_group: 5,
-      content_html: `
+      id: "4-6-3-1-infrared",
+      spec_number: "4.6.3.1",
+      title: "Emission and Absorption of Infrared Radiation",
+      subsections: [
+        // PAIR 1: All Objects Emit IR & Temperature Effects
+        {
+          id: "4-6-3-1-all-objects-emit",
+          title: "All Objects Emit and Absorb IR",
+          pair_title: "IR Emission Basics",
+          type: "content",
+          study_group: 1,
+          content_html: `
 <div class="subsection">
-  <h3 class="subsection-heading">Subsection 5 – How Filters Affect the Appearance of Objects</h3>
-  
-  <div class="key-idea-block">
-    <h4>🎯 Understanding Filter + Object Combinations:</h4>
-    <p>The colour you see depends on:</p>
-    <ol>
-      <li>The colour of the <strong>object</strong> (what it reflects)</li>
-      <li>Which wavelengths the <strong>filter allows</strong> to reach it</li>
-    </ol>
-  </div>
-
-  <!-- Filter + Object Examples -->
-  <div class="key-idea-block anim-pause-hover" style="padding: 1rem; margin: 1rem 0;">
-    <h4>Filter + Object Combinations (hover to pause)</h4>
-    <div style="display: flex; justify-content: center; padding: 0.5rem;">
-      <svg width="500" height="200" viewBox="0 0 500 200">
-        <!-- Example 1: Red object + Red filter = RED -->
-        <rect x="10" y="10" width="150" height="85" fill="hsl(var(--muted)/0.3)" rx="5"/>
-        <text x="85" y="28" fill="currentColor" font-size="10" text-anchor="middle" font-weight="bold">Red object + Red filter</text>
-        <circle cx="35" cy="55" r="10" fill="#fff" stroke="#333" stroke-width="1"/>
-        <rect x="55" y="45" width="8" height="20" fill="#ff0000" opacity="0.7"/>
-        <circle cx="85" cy="55" r="12" fill="#ff0000"/>
-        <text x="85" y="85" fill="#ff0000" font-size="11" text-anchor="middle" font-weight="bold">= RED ✓</text>
-        
-        <!-- Example 2: Blue object + Red filter = BLACK -->
-        <rect x="175" y="10" width="150" height="85" fill="hsl(var(--muted)/0.3)" rx="5"/>
-        <text x="250" y="28" fill="currentColor" font-size="10" text-anchor="middle" font-weight="bold">Blue object + Red filter</text>
-        <circle cx="200" cy="55" r="10" fill="#fff" stroke="#333" stroke-width="1"/>
-        <rect x="220" y="45" width="8" height="20" fill="#ff0000" opacity="0.7"/>
-        <circle cx="255" cy="55" r="12" fill="#0000ff"/>
-        <line x1="235" y1="55" x2="250" y2="55" stroke="#ff0000" stroke-width="2"/>
-        <text x="265" y="52" fill="#333" font-size="14">✗</text>
-        <text x="250" y="85" fill="#333" font-size="11" text-anchor="middle" font-weight="bold">= BLACK</text>
-        
-        <!-- Example 3: Green object + White light = GREEN -->
-        <rect x="340" y="10" width="150" height="85" fill="hsl(var(--muted)/0.3)" rx="5"/>
-        <text x="415" y="28" fill="currentColor" font-size="10" text-anchor="middle" font-weight="bold">Green object + White light</text>
-        <circle cx="365" cy="55" r="10" fill="#fff" stroke="#333" stroke-width="1"/>
-        <text x="365" y="58" fill="#333" font-size="6" text-anchor="middle">W</text>
-        <circle cx="420" cy="55" r="12" fill="#00aa00"/>
-        <text x="415" y="85" fill="#00aa00" font-size="11" text-anchor="middle" font-weight="bold">= GREEN ✓</text>
-        
-        <!-- Example 4: Yellow object + Blue filter = BLACK -->
-        <rect x="10" y="105" width="150" height="85" fill="hsl(var(--muted)/0.3)" rx="5"/>
-        <text x="85" y="123" fill="currentColor" font-size="10" text-anchor="middle" font-weight="bold">Yellow obj + Blue filter</text>
-        <circle cx="35" cy="150" r="10" fill="#fff" stroke="#333" stroke-width="1"/>
-        <rect x="55" y="140" width="8" height="20" fill="#0000ff" opacity="0.7"/>
-        <circle cx="85" cy="150" r="12" fill="#ffcc00"/>
-        <text x="105" y="147" fill="#333" font-size="14">✗</text>
-        <text x="85" y="180" fill="#333" font-size="11" text-anchor="middle" font-weight="bold">= BLACK/DARK</text>
-        
-        <!-- Explanation box -->
-        <rect x="175" y="105" width="315" height="85" fill="hsl(var(--primary)/0.1)" rx="5"/>
-        <text x="332" y="125" fill="hsl(var(--primary))" font-size="11" text-anchor="middle" font-weight="bold">🧠 Why does this happen?</text>
-        <text x="332" y="145" fill="currentColor" font-size="9" text-anchor="middle">Blue object → reflects BLUE light only</text>
-        <text x="332" y="160" fill="currentColor" font-size="9" text-anchor="middle">Red filter → blocks ALL blue wavelengths</text>
-        <text x="332" y="175" fill="currentColor" font-size="9" text-anchor="middle">No light reaches your eyes → appears BLACK</text>
-      </svg>
-    </div>
-  </div>
-
-  <table class="data-table" style="margin: 1rem 0;">
-    <thead><tr><th>Object</th><th>Filter</th><th>Appearance</th><th>Reason</th></tr></thead>
-    <tbody>
-      <tr><td style="color:#ff0000;">Red object</td><td style="color:#ff0000;">Red filter</td><td style="color:#ff0000;">RED</td><td>Filter allows red; object reflects red</td></tr>
-      <tr><td style="color:#0000ff;">Blue object</td><td style="color:#ff0000;">Red filter</td><td>BLACK</td><td>Filter blocks blue; object can't reflect red</td></tr>
-      <tr><td style="color:#00aa00;">Green object</td><td>White light</td><td style="color:#00aa00;">GREEN</td><td>Object reflects green wavelengths</td></tr>
-      <tr><td style="color:#ccaa00;">Yellow object</td><td style="color:#0000ff;">Blue filter</td><td>BLACK</td><td>Yellow reflects red+green; filter blocks both</td></tr>
-    </tbody>
-  </table>
-
-  <div class="key-idea-block">
-    <h4>💡 Important Understanding:</h4>
-    <p>The colour you see depends on <strong>both</strong>:</p>
-    <ol>
-      <li>What wavelengths the <strong>filter allows</strong> to pass</li>
-      <li>What wavelengths the <strong>object reflects</strong></li>
-    </ol>
-    <p>If there's no overlap between these, the object appears <strong>black</strong>.</p>
-  </div>
-</div>
-
-<div class="subsection">
-  <h3 class="subsection-heading">Subsection 6 – Differential Absorption, Transmission, and Reflection</h3>
+  <h3 class="subsection-heading">All Objects Emit and Absorb Infrared Radiation</h3>
   
   <div class="definition-block">
-    <h4>Objects interact with light in three ways:</h4>
-    <ol>
-      <li><strong>Absorption</strong> - The surface takes in specific wavelengths → converts them into heat. Black surfaces absorb the most energy.</li>
-      <li><strong>Transmission</strong> - Light passes through the material (as in transparent or translucent objects).</li>
-      <li><strong>Reflection</strong> - Light bounces back from the surface.</li>
-    </ol>
+    <h4>🌡️ Key Principle:</h4>
+    <p>Every object above <strong>absolute zero</strong> emits electromagnetic radiation, mostly in the <strong>infrared (IR)</strong> part of the spectrum. This includes everyday objects such as the ground, your body, cars, houses, and even ice.</p>
   </div>
 
   <div class="key-idea-block">
-    <h4>🎨 How This Links to Colour:</h4>
-    <p>The balance of <strong>absorption, transmission, and reflection</strong> determines what colour we perceive.</p>
+    <h4>🔑 Key Idea:</h4>
+    <p>The <strong>hotter an object is</strong>, the more infrared radiation it <strong>emits in a given time</strong>. This is why hot objects glow faintly red in the dark — they are emitting large amounts of IR, some of which enters the visible range.</p>
   </div>
 </div>
-
-<div class="subsection">
-  <h3 class="subsection-heading">Subsection 7 – Why an Opaque Object Has a Particular Colour</h3>
-  
-  <div class="key-facts-block">
-    <h4>The Process:</h4>
-    <ol>
-      <li><strong>White light</strong> (a mix of all colours) hits the object</li>
-      <li>The object's surface <strong>absorbs some wavelengths</strong></li>
-      <li>The wavelengths that are <strong>not absorbed are reflected</strong></li>
-      <li>The reflected wavelengths enter your eyes → your brain interprets them as the object's colour</li>
-    </ol>
-  </div>
-
-  <table class="data-table" style="margin: 1rem 0;">
-    <thead><tr><th>Object Colour</th><th>Reflects</th><th>Absorbs</th></tr></thead>
-    <tbody>
-      <tr style="background: rgba(128,0,128,0.1);"><td>Purple</td><td>Red + Blue</td><td>Green, Yellow, Orange</td></tr>
-      <tr style="background: rgba(0,255,255,0.1);"><td>Cyan</td><td>Green + Blue</td><td>Red, Yellow, Orange</td></tr>
-      <tr style="background: rgba(255,0,255,0.1);"><td>Magenta</td><td>Red + Blue</td><td>Green, Yellow</td></tr>
-    </tbody>
-  </table>
-
-  <div class="key-idea-block">
-    <h4>🧠 Key Point:</h4>
-    <p>Your brain interprets the <strong>mixture of reflected wavelengths</strong> as the object's final colour.</p>
-  </div>
-</div>
-      `,
-      canonical_keywords: ["filter", "object colour", "absorb", "reflect", "transmit", "black", "appearance", "wavelength"],
-      practice_items: [
-        {
-          id: "p1",
-          prompt_template: "A blue object is viewed through a red filter. Explain why it appears black.",
-          marks: 4,
-          type: "short-answer",
-          difficulty: "hard",
-          randomise: true,
-          expected_keywords: ["blue reflects blue", "red filter blocks blue", "no light", "black"]
+          `,
+          canonical_keywords: ["infrared radiation", "emit", "absorb", "temperature", "electromagnetic spectrum", "absolute zero"],
+          practice_items: [
+            {
+              id: "p1",
+              prompt_template: "State what happens to the infrared radiation emitted by an object as its temperature increases.",
+              marks: 2,
+              type: "short-answer",
+              difficulty: "easy",
+              randomise: true,
+              expected_keywords: ["more radiation", "emits more", "increases"]
+            }
+          ]
         },
         {
-          id: "p2",
-          prompt_template: "Explain the three ways objects can interact with light.",
-          marks: 3,
-          type: "short-answer",
-          difficulty: "medium",
-          randomise: true,
-          expected_keywords: ["absorption", "transmission", "reflection", "heat", "pass through"]
+          id: "4-6-3-1-temperature-radiation",
+          title: "Temperature and Radiation Emission",
+          pair_title: "IR Emission Basics",
+          type: "content",
+          study_group: 1,
+          content_html: `
+<div class="subsection">
+  <h3 class="subsection-heading">Temperature and Radiation Emission</h3>
+  
+  <div class="key-facts-block">
+    <h4>📈 The Link Between Temperature and Radiation:</h4>
+    <p>As temperature increases:</p>
+    <ul>
+      <li><strong>Total energy emitted increases</strong></li>
+      <li>Radiation becomes <strong>more intense</strong></li>
+      <li>The <strong>peak wavelength</strong> of radiation becomes <strong>shorter</strong> (shifts towards visible light)</li>
+    </ul>
+  </div>
+
+  <div class="example-block">
+    <h4>💡 Example:</h4>
+    <p>This explains why very hot metals glow <strong>red → orange → white</strong> — hotter surfaces emit shorter wavelengths.</p>
+  </div>
+</div>
+          `,
+          canonical_keywords: ["temperature", "radiation emission", "intensity", "wavelength", "peak wavelength", "glow"],
+          practice_items: [
+            {
+              id: "p1",
+              prompt_template: "Explain why a very hot piece of metal glows red, then orange, then white as it gets hotter.",
+              marks: 4,
+              type: "short-answer",
+              difficulty: "hard",
+              randomise: true,
+              expected_keywords: ["hotter", "more radiation", "shorter wavelength", "visible range"]
+            }
+          ]
+        },
+        // PAIR 2: Absorption & Surface Types
+        {
+          id: "4-6-3-1-absorption",
+          title: "Absorption of Infrared Radiation",
+          pair_title: "Absorption & Surfaces",
+          type: "content",
+          study_group: 2,
+          content_html: `
+<div class="subsection">
+  <h3 class="subsection-heading">Absorption of Infrared Radiation</h3>
+  
+  <div class="definition-block">
+    <h4>📥 Absorption:</h4>
+    <p>Objects <strong>absorb</strong> infrared radiation from their surroundings. The temperature of a body changes depending on how much IR it absorbs compared to how much it emits.</p>
+  </div>
+
+  <div class="key-facts-block">
+    <h4>Temperature Change Rules:</h4>
+    <ul>
+      <li>If <strong>absorption > emission</strong> → The object <strong>heats up</strong></li>
+      <li>If <strong>emission > absorption</strong> → The object <strong>cools down</strong></li>
+    </ul>
+  </div>
+
+  <div class="key-idea-block">
+    <h4>🏠 Surface Type Matters:</h4>
+    <ul>
+      <li><strong>Black, matte surfaces</strong> absorb AND emit IR radiation <strong>most effectively</strong></li>
+      <li><strong>White or shiny surfaces</strong> absorb and emit the <strong>least</strong></li>
+    </ul>
+  </div>
+
+  <div class="example-block">
+    <h4>Real-World Applications:</h4>
+    <ul>
+      <li><strong>Solar panels are black</strong> → to absorb more radiation</li>
+      <li><strong>Survival blankets are shiny silver</strong> → to reduce heat emission</li>
+    </ul>
+  </div>
+</div>
+          `,
+          canonical_keywords: ["absorption", "emission", "heats up", "cools down", "black surface", "shiny surface", "matte"],
+          practice_items: [
+            {
+              id: "p1",
+              prompt_template: "Explain why solar panels are black.",
+              marks: 2,
+              type: "short-answer",
+              difficulty: "easy",
+              randomise: true,
+              expected_keywords: ["black", "absorbs more", "radiation", "heat"]
+            },
+            {
+              id: "p2",
+              prompt_template: "Describe how the colour and texture of a surface affects its absorption and emission of infrared radiation.",
+              marks: 4,
+              type: "short-answer",
+              difficulty: "medium",
+              randomise: true,
+              expected_keywords: ["black matte", "absorbs most", "emits most", "white shiny", "absorbs least"]
+            }
+          ]
+        },
+        {
+          id: "4-6-3-1-perfect-black-body-intro",
+          title: "What Is a Perfect Black Body?",
+          pair_title: "Absorption & Surfaces",
+          type: "content",
+          study_group: 2,
+          content_html: `
+<div class="subsection">
+  <h3 class="subsection-heading">What Is a Perfect Black Body?</h3>
+  
+  <div class="definition-block">
+    <h4>⬛ Perfect Black Body:</h4>
+    <p>A perfect black body is an <strong>idealised object</strong> that:</p>
+    <ul>
+      <li><strong>Absorbs all radiation</strong> that hits it (no reflection, no transmission)</li>
+      <li><strong>Emits radiation as effectively as possible</strong> for its temperature</li>
+    </ul>
+  </div>
+
+  <div class="key-idea-block">
+    <h4>🧠 Key Understanding:</h4>
+    <p>Because it absorbs all wavelengths equally, a perfect black body is also the <strong>best possible emitter</strong> of radiation. Real objects try to imitate this behaviour but none achieve true perfection.</p>
+  </div>
+</div>
+          `,
+          canonical_keywords: ["perfect black body", "absorbs all", "emits", "idealised", "no reflection"],
+          practice_items: [
+            {
+              id: "p1",
+              prompt_template: "Describe the properties of a perfect black body.",
+              marks: 3,
+              type: "short-answer",
+              difficulty: "medium",
+              randomise: true,
+              expected_keywords: ["absorbs all radiation", "best emitter", "no reflection", "idealised"]
+            }
+          ]
+        }
+      ]
+    },
+    // ============================================
+    // SECTION 4: 4.6.3.2 – PERFECT BLACK BODIES AND RADIATION
+    // ============================================
+    {
+      id: "4-6-3-2-black-bodies",
+      spec_number: "4.6.3.2",
+      title: "Perfect Black Bodies and Radiation",
+      subsections: [
+        // PAIR 1: All Bodies Emit & Temperature Distribution
+        {
+          id: "4-6-3-2-all-bodies-emit",
+          title: "All Bodies Emit Radiation",
+          pair_title: "Radiation Principles",
+          type: "content",
+          study_group: 1,
+          content_html: `
+<div class="subsection">
+  <h3 class="subsection-heading">All Bodies Emit Radiation</h3>
+  
+  <div class="definition-block">
+    <h4>☀️ Universal Emission:</h4>
+    <p>Every object radiates energy as <strong>electromagnetic waves</strong>. This radiation includes a range of wavelengths, and the exact mix depends on the object's <strong>temperature</strong>.</p>
+  </div>
+
+  <div class="key-idea-block">
+    <h4>🔑 Key Principle:</h4>
+    <p>Even objects that feel <strong>cold to touch</strong> are still emitting radiation — just <strong>less</strong> than hotter objects.</p>
+  </div>
+</div>
+          `,
+          canonical_keywords: ["emit radiation", "electromagnetic waves", "temperature", "wavelengths", "cold objects"],
+          practice_items: [
+            {
+              id: "p1",
+              prompt_template: "State whether cold objects emit infrared radiation. Explain your answer.",
+              marks: 2,
+              type: "short-answer",
+              difficulty: "easy",
+              randomise: true,
+              expected_keywords: ["yes", "all objects", "less than hot", "above absolute zero"]
+            }
+          ]
+        },
+        {
+          id: "4-6-3-2-wavelength-distribution",
+          title: "Temperature and Wavelength Distribution",
+          pair_title: "Radiation Principles",
+          type: "content",
+          study_group: 1,
+          content_html: `
+<div class="subsection">
+  <h3 class="subsection-heading">Temperature Determines Intensity and Wavelength Distribution</h3>
+  
+  <div class="key-facts-block">
+    <h4>📈 When an Object Becomes Hotter:</h4>
+    <ul>
+      <li>It emits <strong>more radiation per second</strong></li>
+      <li>The wavelengths emitted <strong>shift towards the shorter end</strong> of the spectrum</li>
+      <li>Radiation becomes <strong>more intense</strong> overall</li>
+    </ul>
+  </div>
+
+  <div class="key-idea-block">
+    <h4>💡 Important:</h4>
+    <p>A hotter object does not just emit <strong>more</strong> radiation — it emits <strong>different</strong> radiation (shorter wavelengths).</p>
+  </div>
+</div>
+          `,
+          canonical_keywords: ["intensity", "wavelength distribution", "shorter wavelength", "hotter", "radiation spectrum"],
+          practice_items: [
+            {
+              id: "p1",
+              prompt_template: "Describe how the radiation emitted by an object changes as its temperature increases.",
+              marks: 4,
+              type: "short-answer",
+              difficulty: "medium",
+              randomise: true,
+              expected_keywords: ["more radiation", "more intense", "shorter wavelength", "spectrum shifts"]
+            }
+          ]
+        },
+        // PAIR 2: Thermal Balance & Earth's Temperature
+        {
+          id: "4-6-3-2-thermal-balance",
+          title: "Thermal Balance: Absorption vs Emission",
+          pair_title: "Earth's Temperature",
+          type: "content",
+          study_group: 2,
+          content_html: `
+<div class="subsection">
+  <h3 class="subsection-heading">Thermal Balance: Absorption vs Emission</h3>
+  
+  <div class="definition-block">
+    <h4>⚖️ Temperature Equilibrium:</h4>
+    <p>A body's temperature remains <strong>constant</strong> only if:</p>
+    <p style="text-align: center; font-size: 1.2rem; font-weight: bold; color: hsl(var(--primary));">Energy absorbed per second = Energy emitted per second</p>
+  </div>
+
+  <div class="key-facts-block">
+    <h4>Temperature Change:</h4>
+    <ul>
+      <li>If a body <strong>absorbs faster than it emits</strong> → Its temperature <strong>increases</strong></li>
+      <li>If a body <strong>emits faster than it absorbs</strong> → Its temperature <strong>decreases</strong></li>
+    </ul>
+  </div>
+
+  <div class="key-idea-block">
+    <h4>🧠 Key Understanding:</h4>
+    <p>This balance determines the temperature of any planet, building, or physical system.</p>
+  </div>
+</div>
+          `,
+          canonical_keywords: ["thermal balance", "equilibrium", "absorbs", "emits", "temperature constant", "energy balance"],
+          practice_items: [
+            {
+              id: "p1",
+              prompt_template: "Explain what happens to the temperature of an object if it absorbs more radiation than it emits.",
+              marks: 2,
+              type: "short-answer",
+              difficulty: "easy",
+              randomise: true,
+              expected_keywords: ["temperature increases", "heats up", "absorbs more"]
+            }
+          ]
+        },
+        {
+          id: "4-6-3-2-earth-temperature",
+          title: "Earth's Temperature and Radiation Balance",
+          pair_title: "Earth's Temperature",
+          type: "content",
+          study_group: 2,
+          content_html: `
+<div class="subsection">
+  <h3 class="subsection-heading">Earth's Temperature and Radiation Balance</h3>
+  
+  <div class="definition-block">
+    <h4>🌍 Earth's Temperature Depends On:</h4>
+    <ul>
+      <li><strong>Absorption</strong> of radiation from the Sun (mainly visible light and some infrared)</li>
+      <li><strong>Emission</strong> of infrared radiation back into space</li>
+      <li><strong>Reflection</strong> of incoming radiation by clouds, ice, oceans, and land</li>
+      <li>The <strong>atmosphere</strong>, which can trap infrared radiation (greenhouse effect)</li>
+    </ul>
+  </div>
+
+  <div class="key-facts-block">
+    <h4>🌡️ Why Earth's Temperature Stays Relatively Stable:</h4>
+    <ul>
+      <li>Earth <strong>absorbs solar radiation</strong> during the day</li>
+      <li>Earth <strong>emits infrared radiation</strong> continuously</li>
+      <li>When these processes <strong>balance</strong>, temperature remains steady</li>
+      <li>If the balance changes (e.g., stronger greenhouse effect), Earth warms or cools</li>
+    </ul>
+  </div>
+
+  <div class="key-idea-block">
+    <h4>🧠 Key Takeaway:</h4>
+    <p>The temperature of Earth depends on the <strong>radiation balance</strong> between what is absorbed and what is emitted.</p>
+  </div>
+
+  <div class="example-block">
+    <h4>📊 Evidence of Energy Imbalance:</h4>
+    <ul>
+      <li>Increases in atmospheric CO₂ → more radiation trapped → higher average temperature</li>
+      <li>Changes in albedo (reflectivity) due to melting ice</li>
+      <li>Temperature graphs over time showing evidence of energy imbalance</li>
+    </ul>
+  </div>
+</div>
+          `,
+          canonical_keywords: ["Earth temperature", "radiation balance", "greenhouse effect", "absorb", "emit", "atmosphere", "CO2"],
+          practice_items: [
+            {
+              id: "p1",
+              prompt_template: "Explain how the Earth's temperature is determined by radiation balance.",
+              marks: 4,
+              type: "short-answer",
+              difficulty: "hard",
+              randomise: true,
+              expected_keywords: ["absorbs solar", "emits infrared", "balance", "greenhouse effect", "stable temperature"]
+            },
+            {
+              id: "p2",
+              prompt_template: "Explain how an increase in greenhouse gases can affect Earth's temperature.",
+              marks: 4,
+              type: "short-answer",
+              difficulty: "hard",
+              randomise: true,
+              expected_keywords: ["traps infrared", "less escapes", "absorption greater than emission", "temperature rises"]
+            }
+          ]
         }
       ]
     }
