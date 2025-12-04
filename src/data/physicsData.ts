@@ -84,12 +84,27 @@ const emWavesModule: Module = {
   subsections: emWavesModuleData.subsections as Subsection[]
 };
 
+// Convert OpticsModule sections to flat subsections array
+const getOpticsSubsections = (): Subsection[] => {
+  return opticsModuleData.sections.flatMap(section => 
+    section.subsections.map(sub => ({
+      id: sub.id,
+      title: sub.title,
+      type: sub.type,
+      content_html: sub.content_html,
+      canonical_keywords: sub.canonical_keywords,
+      practice_items: sub.practice_items as PracticeItem[],
+      study_group: sub.study_group
+    }))
+  );
+};
+
 // Convert OpticsModule to Module type
 const opticsModule: Module = {
   id: opticsModuleData.id,
   title: opticsModuleData.title,
   status: opticsModuleData.status,
-  subsections: opticsModuleData.subsections as Subsection[]
+  subsections: getOpticsSubsections()
 };
 
 // Convert infrared practical to Subsection
