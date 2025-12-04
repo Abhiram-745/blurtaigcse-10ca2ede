@@ -1186,20 +1186,67 @@ const BlurPractice = () => {
             Back to Topic
           </Button>
 
-          {/* Progress saved indicator */}
-          <div className="mb-4 flex items-center justify-between">
-            <Badge variant="outline" className="flex items-center gap-2 px-3 py-1.5">
-              <span>📍 Pair {currentPairIndex + 1} of {totalPairs}</span>
-              {progressSaved && (
-                <span className="flex items-center gap-1 text-green-600 dark:text-green-400 text-xs animate-in fade-in">
-                  <Save className="h-3 w-3" />
-                  Saved
-                </span>
+          {/* Progress saved indicator & Pair Selector */}
+          <div className="mb-4 flex items-center justify-between flex-wrap gap-2">
+            <div className="flex items-center gap-2">
+              <Badge variant="outline" className="flex items-center gap-2 px-3 py-1.5">
+                <span>📍 Pair {currentPairIndex + 1} of {totalPairs}</span>
+                {progressSaved && (
+                  <span className="flex items-center gap-1 text-green-600 dark:text-green-400 text-xs animate-in fade-in">
+                    <Save className="h-3 w-3" />
+                    Saved
+                  </span>
+                )}
+                {isSavingProgress && (
+                  <span className="text-muted-foreground text-xs">Saving...</span>
+                )}
+              </Badge>
+              
+              {/* Pair Selector Dropdown */}
+              {totalPairs > 1 && (
+                <Select
+                  value={String(currentPairIndex)}
+                  onValueChange={(value) => {
+                    const newIndex = parseInt(value, 10);
+                    const startIdx = newIndex * 2;
+                    const newPair = internalSubsections.slice(startIdx, startIdx + 2);
+                    setCurrentPairIndex(newIndex);
+                    setCurrentPairSubsections(newPair);
+                    setExpandedSections([0]);
+                    // Recalculate memorization duration
+                    const textContent = newPair.map(sub => {
+                      const parser = new DOMParser();
+                      const doc = parser.parseFromString(sub.html, 'text/html');
+                      return doc.body.textContent || '';
+                    }).join(' ');
+                    const wordCount = textContent.trim().split(/\s+/).length;
+                    const seconds = Math.ceil((wordCount / 50) * 10);
+                    setMemorizationDuration(Math.max(30, seconds));
+                    toast({
+                      title: `Jumped to Pair ${newIndex + 1}`,
+                      description: newPair.map(s => s.title).join(' & '),
+                    });
+                  }}
+                >
+                  <SelectTrigger className="w-[200px] h-8 text-xs">
+                    <SelectValue placeholder="Jump to pair..." />
+                  </SelectTrigger>
+                  <SelectContent className="bg-background border shadow-lg z-50">
+                    {Array.from({ length: totalPairs }, (_, i) => {
+                      const startIdx = i * 2;
+                      const pairSubs = internalSubsections.slice(startIdx, startIdx + 2);
+                      const pairLabel = pairSubs.map(s => s.title).join(' & ');
+                      return (
+                        <SelectItem key={i} value={String(i)} className="text-xs">
+                          <span className="font-medium">Pair {i + 1}:</span> {pairLabel.length > 40 ? pairLabel.slice(0, 40) + '...' : pairLabel}
+                        </SelectItem>
+                      );
+                    })}
+                  </SelectContent>
+                </Select>
               )}
-              {isSavingProgress && (
-                <span className="text-muted-foreground text-xs">Saving...</span>
-              )}
-            </Badge>
+            </div>
+            
             {currentPairIndex > 0 && (
               <span className="text-xs text-muted-foreground">
                 Progress is automatically saved
@@ -1353,8 +1400,8 @@ const BlurPractice = () => {
 
           <Card className="mb-6">
             <CardHeader>
-              <div className="flex items-center justify-between mb-2">
-                <div className="flex items-center gap-2">
+              <div className="flex items-center justify-between mb-2 flex-wrap gap-2">
+                <div className="flex items-center gap-2 flex-wrap">
                   <BookOpen className="h-5 w-5 text-primary" />
                   <Badge variant="secondary" className="flex items-center gap-2">
                     📍 Pair {currentPairIndex + 1} of {totalPairs}
@@ -1365,6 +1412,49 @@ const BlurPractice = () => {
                       </span>
                     )}
                   </Badge>
+                  
+                  {/* Pair Selector in Study View */}
+                  {totalPairs > 1 && (
+                    <Select
+                      value={String(currentPairIndex)}
+                      onValueChange={(value) => {
+                        const newIndex = parseInt(value, 10);
+                        const startIdx = newIndex * 2;
+                        const newPair = internalSubsections.slice(startIdx, startIdx + 2);
+                        setCurrentPairIndex(newIndex);
+                        setCurrentPairSubsections(newPair);
+                        setExpandedSections([0]);
+                        const textContent = newPair.map(sub => {
+                          const parser = new DOMParser();
+                          const doc = parser.parseFromString(sub.html, 'text/html');
+                          return doc.body.textContent || '';
+                        }).join(' ');
+                        const wordCount = textContent.trim().split(/\s+/).length;
+                        const seconds = Math.ceil((wordCount / 50) * 10);
+                        setMemorizationDuration(Math.max(30, seconds));
+                        toast({
+                          title: `Jumped to Pair ${newIndex + 1}`,
+                          description: newPair.map(s => s.title).join(' & '),
+                        });
+                      }}
+                    >
+                      <SelectTrigger className="w-[180px] h-7 text-xs">
+                        <SelectValue placeholder="Jump to pair..." />
+                      </SelectTrigger>
+                      <SelectContent className="bg-background border shadow-lg z-50">
+                        {Array.from({ length: totalPairs }, (_, i) => {
+                          const startIdx = i * 2;
+                          const pairSubs = internalSubsections.slice(startIdx, startIdx + 2);
+                          const pairLabel = pairSubs.map(s => s.title).join(' & ');
+                          return (
+                            <SelectItem key={i} value={String(i)} className="text-xs">
+                              <span className="font-medium">Pair {i + 1}:</span> {pairLabel.length > 35 ? pairLabel.slice(0, 35) + '...' : pairLabel}
+                            </SelectItem>
+                          );
+                        })}
+                      </SelectContent>
+                    </Select>
+                  )}
                 </div>
                 <span className="text-xs text-muted-foreground">
                   Progress saved automatically
