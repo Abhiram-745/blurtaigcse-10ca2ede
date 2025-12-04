@@ -7,6 +7,7 @@ import { energyTransfersModuleData, EnergyTransfersModule } from './energyTransf
 import { motionModuleData, MotionModule } from './motionModuleData';
 import { emWavesModuleData, EMWavesModule } from './emWavesModuleData';
 import { infraredPracticalData } from './infraredPracticalData';
+import { opticsModuleData, OpticsModule } from './opticsModuleData';
 
 export interface PracticeItem {
   id: string;
@@ -81,6 +82,14 @@ const emWavesModule: Module = {
   title: emWavesModuleData.title,
   status: emWavesModuleData.status,
   subsections: emWavesModuleData.subsections as Subsection[]
+};
+
+// Convert OpticsModule to Module type
+const opticsModule: Module = {
+  id: opticsModuleData.id,
+  title: opticsModuleData.title,
+  status: opticsModuleData.status,
+  subsections: opticsModuleData.subsections as Subsection[]
 };
 
 // Convert infrared practical to Subsection
@@ -1195,7 +1204,8 @@ export const physicsData: TopicSection[] = [
           }
         ]
       },
-      emWavesModule
+      emWavesModule,
+      opticsModule
     ],
     subsections: []
   },
